@@ -1,0 +1,6 @@
+<Solution>
+  <Folder Name="/Source/">
+    <Project Path="Source/Portfolio.Api/Portfolio.Api.csproj" />
+    <Project Path="Source/Portfolio.Web/Protfolio.Web.csproj" />
+  </Folder>
+</Solution>
