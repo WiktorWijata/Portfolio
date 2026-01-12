@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { SectionTitle, Tag, Button, Card, Timeline, TimelineItem } from '../design-system';
 
 interface ExperienceItem {
   company: string;
@@ -57,69 +58,20 @@ function Experience() {
   return (
     <section id="experience" className="py-20">
       <div className="container mx-auto px-0">
-        <h2 className="text-3xl md:text-4xl font-bold text-center mb-16">
-          <span
-            style={{
-              background: 'linear-gradient(to right, #6b21a8, #a855f7, #c084fc, #e9d5ff)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              backgroundClip: 'text',
-            }}
-          >
-            Doświadczenie
-          </span>
-        </h2>
+        <SectionTitle>Doświadczenie</SectionTitle>
 
-        <div className="w-[1406px] mx-auto relative px-0">
-          {/* Vertical timeline line */}
-          <div
-            className="absolute left-0 w-0.5"
-            style={{
-              top: '-60px',
-              height: 'calc(100% + 120px)',
-              background: 'linear-gradient(to bottom, #6b21a8, #a855f7, #c084fc, #e9d5ff)',
-              maskImage: 'linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%)',
-              WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%)'
-            }}
-          ></div>
-          <div className="space-y-12">
-            {experiences.map((exp, index) => (
-              <div
-                key={index}
-                className="relative pl-12"
-                style={{
-                  animation: `fadeIn 0.6s ease-out ${index * 0.2}s both`
-                }}
-              >
-                {/* Timeline dot */}
-                <div
-                  className="absolute -left-3 w-6 h-6 rounded-full border-4"
+        <Timeline>
+          {experiences.map((exp, index) => (
+            <TimelineItem key={index} animationDelay={index * 0.2}>
+              <Card
+                  className="transition-all duration-500 relative"
                   style={{
-                    top: '50%',
-                    transform: 'translateY(-50%)',
-                    borderColor: '#a855f7',
-                    backgroundColor: '#1a0a2e',
-                    boxShadow: '0 0 20px rgba(168, 85, 247, 0.6)'
-                  }}
-                ></div>
-                {/* Content card */}
-                <div
-                  className="p-6 rounded-lg backdrop-blur-sm transition-all duration-500 relative"
-                  style={{
-                    border: '1px solid rgba(255, 248, 231, 0.15)',
-                    backgroundColor: 'rgba(255, 248, 231, 0.03)',
                     transformOrigin: 'left center'
                   }}
                 >
-                  <span
-                    className="absolute top-4 right-4 text-gray-300 text-sm font-semibold px-2 py-1 rounded backdrop-blur-sm"
-                    style={{
-                      border: '1px solid rgba(255, 248, 231, 0.15)',
-                      backgroundColor: 'rgba(255, 248, 231, 0.03)'
-                    }}
-                  >
+                  <Tag variant="date">
                     {exp.period}
-                  </span>
+                  </Tag>
                   <div className="flex items-center gap-3 mb-1">
                     <h3 className="text-xl font-bold text-gray-200">{exp.position}</h3>
                   </div>
@@ -152,47 +104,25 @@ function Experience() {
                   <div className="flex flex-wrap gap-2 mt-4 items-center">
                     <div className="flex flex-wrap gap-2 flex-1">
                       {exp.technologies.map((tech, techIndex) => (
-                        <span
-                          key={techIndex}
-                          className="px-2 py-1 text-xs rounded font-semibold text-gray-300 backdrop-blur-sm"
-                          style={{
-                            border: '1px solid rgba(255, 248, 231, 0.15)',
-                            backgroundColor: 'rgba(255, 248, 231, 0.03)'
-                          }}
-                        >
+                        <Tag key={techIndex} variant="neutral">
                           {tech}
-                        </span>
+                        </Tag>
                       ))}
                     </div>
                     {exp.description.length > 0 && (
-                      <button
+                      <Button
                         onClick={() => toggleCard(index)}
-                        className="px-3 py-1.5 text-sm rounded-lg font-medium transition-all duration-300 hover:scale-105"
-                        style={{
-                          border: '1px solid rgba(168, 85, 247, 0.4)',
-                          backgroundColor: 'rgba(168, 85, 247, 0.1)',
-                          color: '#e9d5ff',
-                          backdropFilter: 'blur(10px)',
-                          marginRight: '-8px'
-                        }}
-                        onMouseEnter={(e) => {
-                          e.currentTarget.style.backgroundColor = 'rgba(168, 85, 247, 0.2)';
-                          e.currentTarget.style.borderColor = 'rgba(168, 85, 247, 0.6)';
-                        }}
-                        onMouseLeave={(e) => {
-                          e.currentTarget.style.backgroundColor = 'rgba(168, 85, 247, 0.1)';
-                          e.currentTarget.style.borderColor = 'rgba(168, 85, 247, 0.4)';
-                        }}
+                        variant="small"
+                        className="-mr-2"
                       >
                         {expandedCards[index] ? 'Pokaż mniej' : 'Pokaż więcej'}
-                      </button>
+                      </Button>
                     )}
                   </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
+                </Card>
+            </TimelineItem>
+          ))}
+        </Timeline>
       </div>
     </section>
   );

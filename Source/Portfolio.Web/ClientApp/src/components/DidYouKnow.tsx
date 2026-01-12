@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { SectionTitle, Card, IconButton } from '../design-system';
 
 interface Fact {
   title: string;
@@ -57,18 +58,7 @@ function DidYouKnow() {
   return (
     <section id="didyouknow" className="py-20">
       <div className="container mx-auto px-6">
-        <h2 className="text-3xl md:text-4xl font-bold text-center mb-16">
-          <span 
-            style={{
-              background: 'linear-gradient(to right, #6b21a8, #a855f7, #c084fc, #e9d5ff)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              backgroundClip: 'text'
-            }}
-          >
-            Czy wiesz że...?
-          </span>
-        </h2>
+        <SectionTitle>Czy wiesz że...?</SectionTitle>
 
         <div className="w-[1406px] mx-auto relative">
           {/* Carousel container */}
@@ -84,16 +74,11 @@ function DidYouKnow() {
                   key={index}
                   className="w-full flex-shrink-0 px-20"
                 >
-                  <div 
-                    className="p-12 rounded-lg backdrop-blur-sm text-center"
+                  <Card
+                    className="text-center flex flex-col justify-center items-center"
                     style={{
-                      border: '1px solid rgba(255, 248, 231, 0.15)',
-                      backgroundColor: 'rgba(255, 248, 231, 0.03)',
                       minHeight: '320px',
-                      display: 'flex',
-                      flexDirection: 'column',
-                      justifyContent: 'center',
-                      alignItems: 'center'
+                      padding: '3rem'
                     }}
                   >
                     <div className="text-6xl mb-6">{fact.icon}</div>
@@ -103,56 +88,32 @@ function DidYouKnow() {
                     <p className="text-gray-400 text-lg leading-relaxed max-w-2xl">
                       {fact.description}
                     </p>
-                  </div>
+                  </Card>
                 </div>
               ))}
             </div>
           </div>
 
           {/* Navigation buttons */}
-          <button
+          <IconButton
             onClick={prevFact}
-            className="absolute left-0 top-1/2 -translate-y-1/2 w-12 h-12 flex items-center justify-center rounded-lg backdrop-blur-sm transition-all duration-300 hover:scale-110"
-            style={{
-              border: '1px solid rgba(168, 85, 247, 0.4)',
-              backgroundColor: 'rgba(168, 85, 247, 0.1)',
-              color: '#e9d5ff'
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.backgroundColor = 'rgba(168, 85, 247, 0.2)';
-              e.currentTarget.style.borderColor = 'rgba(168, 85, 247, 0.6)';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.backgroundColor = 'rgba(168, 85, 247, 0.1)';
-              e.currentTarget.style.borderColor = 'rgba(168, 85, 247, 0.4)';
-            }}
+            size="medium"
+            className="absolute left-0 top-1/2 -translate-y-1/2"
           >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
             </svg>
-          </button>
+          </IconButton>
 
-          <button
+          <IconButton
             onClick={nextFact}
-            className="absolute right-0 top-1/2 -translate-y-1/2 w-12 h-12 flex items-center justify-center rounded-lg backdrop-blur-sm transition-all duration-300 hover:scale-110"
-            style={{
-              border: '1px solid rgba(168, 85, 247, 0.4)',
-              backgroundColor: 'rgba(168, 85, 247, 0.1)',
-              color: '#e9d5ff'
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.backgroundColor = 'rgba(168, 85, 247, 0.2)';
-              e.currentTarget.style.borderColor = 'rgba(168, 85, 247, 0.6)';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.backgroundColor = 'rgba(168, 85, 247, 0.1)';
-              e.currentTarget.style.borderColor = 'rgba(168, 85, 247, 0.4)';
-            }}
+            size="medium"
+            className="absolute right-0 top-1/2 -translate-y-1/2"
           >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>
-          </button>
+          </IconButton>
 
           {/* Dots navigation */}
           <div className="flex justify-center gap-3 mt-8">

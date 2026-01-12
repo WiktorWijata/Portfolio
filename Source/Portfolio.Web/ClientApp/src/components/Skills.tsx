@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { SectionTitle, Card, Button } from '../design-system';
 
 interface Technology {
   name: string;
@@ -66,18 +67,9 @@ function Skills() {
   return (
     <section id="skills" className="py-20">
       <div className="container mx-auto px-6">
-        <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
-          <span 
-            style={{
-              background: 'linear-gradient(to right, #6b21a8, #a855f7, #c084fc, #e9d5ff)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              backgroundClip: 'text'
-            }}
-          >
-            Umiejętności i technologie
-          </span>
-        </h2>
+        <SectionTitle>
+          Umiejętności i technologie
+        </SectionTitle>
         
         {/* Category filters */}
         <div className="flex flex-wrap justify-center gap-3 mb-12">
@@ -85,7 +77,7 @@ function Skills() {
             <button
               key={category.id}
               onClick={() => setActiveCategory(category.id)}
-              className={`px-6 py-2 rounded backdrop-blur-sm transition-all font-medium ${
+              className={`px-6 py-2 rounded-lg backdrop-blur-sm transition-all font-medium ${
                 activeCategory === category.id ? 'text-gray-300' : 'text-gray-400 hover:text-gray-300'
               }`}
               style={{
@@ -140,32 +132,15 @@ function Skills() {
         {/* Show More/Less Button */}
         {hasMoreThanOneRow && (
           <div className="flex justify-center mt-8">
-            <button
-              onClick={() => setIsExpanded(!isExpanded)}
-              className="px-8 py-3 rounded-lg font-medium transition-all duration-300 hover:scale-105"
-              style={{
-                border: '1px solid rgba(168, 85, 247, 0.4)',
-                backgroundColor: 'rgba(168, 85, 247, 0.1)',
-                color: '#e9d5ff',
-                backdropFilter: 'blur(10px)'
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.backgroundColor = 'rgba(168, 85, 247, 0.2)';
-                e.currentTarget.style.borderColor = 'rgba(168, 85, 247, 0.6)';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.backgroundColor = 'rgba(168, 85, 247, 0.1)';
-                e.currentTarget.style.borderColor = 'rgba(168, 85, 247, 0.4)';
-              }}
-            >
+            <Button onClick={() => setIsExpanded(!isExpanded)}>
               {isExpanded ? 'Pokaż mniej' : 'Pokaż więcej'}
-            </button>
+            </Button>
           </div>
         )}
         </div>
       </div>
     </section>
   );
-};
+}
 
 export default Skills;

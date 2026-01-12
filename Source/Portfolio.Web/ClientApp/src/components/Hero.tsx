@@ -1,27 +1,14 @@
+import { Button, Card } from '../design-system';
+
 function Hero() {
   return (
     <section id="home" className="min-h-screen flex items-center justify-center relative">
       {/* Przycisk Projekty */}
       <div className="absolute top-24 left-1/2 transform -translate-x-1/2 z-10 flex flex-col items-center gap-16">
-        <a 
-          href="#projects" 
-          className="inline-flex items-center gap-2 px-12 py-3 rounded-lg font-medium transition-all duration-300 hover:scale-105"
-          style={{ 
-            border: '1px solid rgba(168, 85, 247, 0.4)',
-            backgroundColor: 'rgba(168, 85, 247, 0.1)',
-            color: '#e9d5ff',
-            backdropFilter: 'blur(10px)'
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.backgroundColor = 'rgba(168, 85, 247, 0.2)';
-            e.currentTarget.style.borderColor = 'rgba(168, 85, 247, 0.6)';
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.backgroundColor = 'rgba(168, 85, 247, 0.1)';
-            e.currentTarget.style.borderColor = 'rgba(168, 85, 247, 0.4)';
-          }}
-        >
-          Projekty
+        <a href="#projects">
+          <Button className="px-12">
+            Projekty
+          </Button>
         </a>
         
         {/* Cytat pod przyciskiem */}
@@ -32,28 +19,14 @@ function Hero() {
         {/* Ramki z foto i opisem */}
         <div className="flex gap-6 mt-1">
           {/* Lewa ramka - FOTO */}
-          <div 
-            className="w-[900px] min-h-[550px] flex items-center justify-center rounded backdrop-blur-sm overflow-hidden"
-            style={{ 
-              border: '1px solid rgba(255, 248, 231, 0.15)',
-              backgroundColor: 'rgba(255, 248, 231, 0.03)'
-            }}
-          >
-            <img 
-              src="/src/assets/developer.png" 
-              alt="Developer" 
-              className="w-full h-full object-cover"
-            />
-          </div>
+          <Card 
+            imageUrl="/src/assets/developer.png"
+            imageAlt="Developer"
+            className="w-[900px] min-h-[550px] flex items-center justify-center overflow-hidden p-0"
+          />
           
           {/* Prawa ramka - Opis */}
-          <div 
-            className="w-[484px] min-h-[550px] flex items-start justify-center p-8 rounded backdrop-blur-sm"
-            style={{ 
-              border: '1px solid rgba(255, 248, 231, 0.15)',
-              backgroundColor: 'rgba(255, 248, 231, 0.03)'
-            }}
-          >
+          <Card className="w-[484px] min-h-[550px] flex items-start justify-center p-8">
             <div className="flex flex-col gap-8 mt-8">
               <h2 className="text-gray-300 text-5xl font-semibold flex items-center gap-4">
                 <svg className="w-10 h-10 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -74,11 +47,11 @@ function Hero() {
                 Zawsze staram się pisać kod, który jest nie tylko funkcjonalny, ale także czytelny i łatwy w utrzymaniu.
               </p>
             </div>
-          </div>
+          </Card>
         </div>
       </div>
     </section>
   );
-};
+}
 
 export default Hero;
