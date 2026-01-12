@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { SectionTitle, Card, Button } from '../design-system';
+import { SectionTitle, Button } from '../design-system';
+import { useScrollReveal } from '../hooks/useScrollReveal';
 
 interface Technology {
   name: string;
@@ -10,6 +11,7 @@ interface Technology {
 type Category = 'all' | 'frontend' | 'backend' | 'mobile' | 'database' | 'devops' | 'design' | 'others';
 
 function Skills() {
+  const { elementRef, className } = useScrollReveal({ delay: 100 });
   const [activeCategory, setActiveCategory] = useState<Category>('all');
   const [isExpanded, setIsExpanded] = useState(false);
 
@@ -65,7 +67,7 @@ function Skills() {
   const hasMoreThanOneRow = filteredTechnologies.length > 7;
 
   return (
-    <section id="skills" className="py-20">
+    <section id="skills" ref={elementRef} className={`py-20 ${className}`}>
       <div className="container mx-auto px-6">
         <SectionTitle>
           Umiejętności i technologie

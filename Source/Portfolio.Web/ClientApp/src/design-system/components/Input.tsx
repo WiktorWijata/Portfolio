@@ -13,7 +13,7 @@ interface InputProps {
   className?: string;
 }
 
-function Input({ 
+export function Input({ 
   id,
   name,
   value,
@@ -60,5 +60,3 @@ function Input({
     </div>
   );
 }
-
-export default Input;

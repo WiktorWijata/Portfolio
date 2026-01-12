@@ -1,3 +1,5 @@
+import { useScrollReveal } from '../hooks/useScrollReveal';
+
 interface EducationItem {
   school: string;
   degree: string;
@@ -5,6 +7,7 @@ interface EducationItem {
 }
 
 function Education() {
+  const { elementRef, className } = useScrollReveal({ delay: 200 });
   const education: EducationItem[] = [
     {
       school: 'Nazwa Uczelni 1',
@@ -19,7 +22,7 @@ function Education() {
   ];
 
   return (
-    <section id="education" className="py-20">
+    <section id="education" ref={elementRef} className={`py-20 px-4 ${className}`}>
       <div className="container mx-auto px-0">
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-16">
           <span 

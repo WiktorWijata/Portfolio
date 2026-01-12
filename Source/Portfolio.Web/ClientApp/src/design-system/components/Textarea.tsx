@@ -13,7 +13,7 @@ interface TextareaProps {
   className?: string;
 }
 
-function Textarea({ 
+export function Textarea({ 
   id,
   name,
   value,
@@ -60,5 +60,3 @@ function Textarea({
     </div>
   );
 }
-
-export default Textarea;

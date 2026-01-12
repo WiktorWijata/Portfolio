@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { SectionTitle, Tag, Button, Card, Timeline, TimelineItem } from '../design-system';
+import { SectionTitle, Tag, Button, Tile, Timeline, TimelineItem } from '../design-system';
+import { useScrollReveal } from '../hooks/useScrollReveal';
 
 interface ExperienceItem {
   company: string;
@@ -10,6 +11,7 @@ interface ExperienceItem {
 }
 
 function Experience() {
+  const { elementRef, className } = useScrollReveal({ delay: 200 });
   const [expandedCards, setExpandedCards] = useState<{ [key: number]: boolean }>({});
 
   const toggleCard = (index: number) => {
@@ -56,14 +58,14 @@ function Experience() {
   ];
 
   return (
-    <section id="experience" className="py-20">
+    <section id="experience" ref={elementRef} className={`py-20 px-4 ${className}`}>
       <div className="container mx-auto px-0">
         <SectionTitle>Doświadczenie</SectionTitle>
 
         <Timeline>
           {experiences.map((exp, index) => (
             <TimelineItem key={index} animationDelay={index * 0.2}>
-              <Card
+              <Tile
                   className="transition-all duration-500 relative"
                   style={{
                     transformOrigin: 'left center'
@@ -119,7 +121,7 @@ function Experience() {
                       </Button>
                     )}
                   </div>
-                </Card>
+                </Tile>
             </TimelineItem>
           ))}
         </Timeline>

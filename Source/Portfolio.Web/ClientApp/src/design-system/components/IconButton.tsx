@@ -11,7 +11,7 @@ interface IconButtonProps {
   rel?: string;
 }
 
-function IconButton({ 
+export function IconButton({ 
   children, 
   onClick,
   href,
@@ -72,5 +72,3 @@ function IconButton({
     </button>
   );
 }
-
-export default IconButton;

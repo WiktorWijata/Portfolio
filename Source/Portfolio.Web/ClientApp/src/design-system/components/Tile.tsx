@@ -1,21 +1,23 @@
-import type { ReactNode } from 'react';
+import type { ReactNode, CSSProperties } from 'react';
 import { colors, radius } from '../tokens';
 
-interface CardProps {
-  children: ReactNode;
+interface TileProps {
+  children?: ReactNode;
   hover?: boolean;
   className?: string;
   imageUrl?: string;
   imageAlt?: string;
+  style?: CSSProperties;
 }
 
-function Card({ 
+export function Tile({ 
   children, 
   hover = false, 
   className = '', 
   imageUrl,
-  imageAlt = ''
-}: CardProps) {
+  imageAlt = '',
+  style
+}: TileProps) {
   const hoverClass = hover ? 'transition-all duration-300 hover:scale-105' : '';
   const hasChildren = children !== undefined && children !== null;
   const imageOnlyMode = imageUrl && !hasChildren;
@@ -26,7 +28,8 @@ function Card({
       className={`${paddingClass} ${radius.card} backdrop-blur-sm ${hoverClass} ${className}`}
       style={{
         border: `1px solid ${colors.neutral.border}`,
-        backgroundColor: colors.neutral.bg
+        backgroundColor: colors.neutral.bg,
+        ...style
       }}
     >
       {imageUrl && (
@@ -42,5 +45,3 @@ function Card({
     </div>
   );
 }
-
-export default Card;

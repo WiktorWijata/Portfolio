@@ -1,19 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 function Navigation() {
-  const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [language, setLanguage] = useState<'pl' | 'en'>('pl');
   const [isLanguageMenuOpen, setIsLanguageMenuOpen] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   const navLinks = [
     { href: '#home', label: 'Start' },

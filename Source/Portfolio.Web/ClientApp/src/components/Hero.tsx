@@ -1,4 +1,4 @@
-import { Button, Card } from '../design-system';
+import { Button, Tile } from '../design-system';
 
 function Hero() {
   return (
@@ -19,14 +19,13 @@ function Hero() {
         {/* Ramki z foto i opisem */}
         <div className="flex gap-6 mt-1">
           {/* Lewa ramka - FOTO */}
-          <Card 
+          <Tile 
             imageUrl="/src/assets/developer.png"
             imageAlt="Developer"
-            className="w-[900px] min-h-[550px] flex items-center justify-center overflow-hidden p-0"
-          />
+            className="w-[900px] min-h-[550px] flex items-center justify-center overflow-hidden p-0"/>
           
           {/* Prawa ramka - Opis */}
-          <Card className="w-[484px] min-h-[550px] flex items-start justify-center p-8">
+          <Tile className="w-[484px] min-h-[550px] flex items-start justify-center p-8">
             <div className="flex flex-col gap-8 mt-8">
               <h2 className="text-gray-300 text-5xl font-semibold flex items-center gap-4">
                 <svg className="w-10 h-10 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -47,7 +46,7 @@ function Hero() {
                 Zawsze staram się pisać kod, który jest nie tylko funkcjonalny, ale także czytelny i łatwy w utrzymaniu.
               </p>
             </div>
-          </Card>
+          </Tile>
         </div>
       </div>
     </section>

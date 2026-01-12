@@ -10,7 +10,7 @@ interface ButtonProps {
   variant?: 'primary' | 'small';
 }
 
-function Button({ 
+export function Button({ 
   children, 
   onClick, 
   disabled = false,
@@ -53,5 +53,3 @@ function Button({
     </button>
   );
 }
-
-export default Button;

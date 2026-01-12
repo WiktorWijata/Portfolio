@@ -5,7 +5,7 @@ interface TimelineProps {
   className?: string;
 }
 
-function Timeline({ children, className = '' }: TimelineProps) {
+export function Timeline({ children, className = '' }: TimelineProps) {
   return (
     <div className={`w-[1406px] mx-auto relative px-0 ${className}`}>
       {/* Vertical timeline line */}
@@ -25,5 +25,3 @@ function Timeline({ children, className = '' }: TimelineProps) {
     </div>
   );
 }
-
-export default Timeline;

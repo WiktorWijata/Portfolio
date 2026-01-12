@@ -7,7 +7,7 @@ interface TagProps {
   className?: string;
 }
 
-function Tag({ children, variant = 'neutral', className = '' }: TagProps) {
+export function Tag({ children, variant = 'neutral', className = '' }: TagProps) {
   const baseClasses = `font-semibold text-gray-300 backdrop-blur-sm`;
   
   const variantClasses = variant === 'date' 
@@ -26,5 +26,3 @@ function Tag({ children, variant = 'neutral', className = '' }: TagProps) {
     </span>
   );
 }
-
-export default Tag;

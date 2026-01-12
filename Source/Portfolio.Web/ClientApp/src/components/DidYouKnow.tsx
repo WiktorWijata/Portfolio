@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { SectionTitle, Card, IconButton } from '../design-system';
+import { SectionTitle, Tile, IconButton } from '../design-system';
+import { useScrollReveal } from '../hooks/useScrollReveal';
 
 interface Fact {
   title: string;
@@ -8,6 +9,7 @@ interface Fact {
 }
 
 function DidYouKnow() {
+  const { elementRef, className } = useScrollReveal({ delay: 200 });
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const facts: Fact[] = [
@@ -56,7 +58,7 @@ function DidYouKnow() {
   };
 
   return (
-    <section id="didyouknow" className="py-20">
+    <section id="didyouknow" ref={elementRef} className={`py-20 px-4 ${className}`}>
       <div className="container mx-auto px-6">
         <SectionTitle>Czy wiesz że...?</SectionTitle>
 
@@ -74,7 +76,7 @@ function DidYouKnow() {
                   key={index}
                   className="w-full flex-shrink-0 px-20"
                 >
-                  <Card
+                  <Tile
                     className="text-center flex flex-col justify-center items-center"
                     style={{
                       minHeight: '320px',
@@ -88,7 +90,7 @@ function DidYouKnow() {
                     <p className="text-gray-400 text-lg leading-relaxed max-w-2xl">
                       {fact.description}
                     </p>
-                  </Card>
+                  </Tile>
                 </div>
               ))}
             </div>

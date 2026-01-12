@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { SectionTitle, Card, Tag, IconButton, Button } from '../design-system';
+import { SectionTitle, Tile, Tag, IconButton, Button } from '../design-system';
+import { useScrollReveal } from '../hooks/useScrollReveal';
 
 interface Project {
   title: string;
@@ -12,6 +13,7 @@ interface Project {
 }
 
 function Projects() {
+  const { elementRef, className } = useScrollReveal({ delay: 200 });
   const [showAllProjects, setShowAllProjects] = useState(false);
 
   const projects: Project[] = [
@@ -102,7 +104,7 @@ function Projects() {
   ];
 
   return (
-    <section id="projects" className="py-20">
+    <section id="projects" ref={elementRef} className={`py-20 ${className}`}>
       <div className="container mx-auto px-0">
         <SectionTitle>Projekty</SectionTitle>
         <div 
@@ -112,7 +114,7 @@ function Projects() {
           }}
         >
           {projects.map((project, index) => (
-            <Card
+            <Tile
               key={index}
               imageUrl={project.image}
               imageAlt={project.title}
@@ -163,7 +165,7 @@ function Projects() {
                   </IconButton>
                 )}
               </div>
-            </Card>
+            </Tile>
           ))}
         </div>
         

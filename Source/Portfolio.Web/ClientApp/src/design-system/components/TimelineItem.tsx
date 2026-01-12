@@ -6,7 +6,7 @@ interface TimelineItemProps {
   animationDelay?: number;
 }
 
-function TimelineItem({ children, className = '', animationDelay = 0 }: TimelineItemProps) {
+export function TimelineItem({ children, className = '', animationDelay = 0 }: TimelineItemProps) {
   return (
     <div
       className={`relative pl-12 ${className}`}
@@ -29,5 +29,3 @@ function TimelineItem({ children, className = '', animationDelay = 0 }: Timeline
     </div>
   );
 }
-
-export default TimelineItem;
