@@ -1,10 +1,4 @@
-import type { ReactNode } from 'react';
-
-interface TimelineItemProps {
-  children: ReactNode;
-  className?: string;
-  animationDelay?: number;
-}
+import type { TimelineItemProps } from './TimelineItem.types';
 
 export function TimelineItem({ children, className = '', animationDelay = 0 }: TimelineItemProps) {
   return (

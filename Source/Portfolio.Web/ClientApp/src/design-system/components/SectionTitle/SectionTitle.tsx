@@ -1,10 +1,5 @@
-import type { ReactNode } from 'react';
-import { colors } from '../tokens';
-
-interface SectionTitleProps {
-  children: ReactNode;
-  className?: string;
-}
+import { colors } from '../../tokens';
+import type { SectionTitleProps } from './SectionTitle.types';
 
 export function SectionTitle({ children, className = '' }: SectionTitleProps) {
   return (

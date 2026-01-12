@@ -1,15 +1,6 @@
-import type { ReactNode, MouseEvent } from 'react';
-import { colors, radius } from '../tokens';
-
-interface IconButtonProps {
-  children: ReactNode;
-  onClick?: () => void;
-  href?: string;
-  size?: 'small' | 'medium' | 'large';
-  className?: string;
-  target?: string;
-  rel?: string;
-}
+import type { MouseEvent } from 'react';
+import { colors, radius } from '../../tokens';
+import type { IconButtonProps } from './IconButton.types';
 
 export function IconButton({ 
   children, 

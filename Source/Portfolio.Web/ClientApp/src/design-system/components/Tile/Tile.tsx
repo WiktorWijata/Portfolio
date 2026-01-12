@@ -1,14 +1,5 @@
-import type { ReactNode, CSSProperties } from 'react';
-import { colors, radius } from '../tokens';
-
-interface TileProps {
-  children?: ReactNode;
-  hover?: boolean;
-  className?: string;
-  imageUrl?: string;
-  imageAlt?: string;
-  style?: CSSProperties;
-}
+import { colors, radius } from '../../tokens';
+import type { TileProps } from './Tile.types';
 
 export function Tile({ 
   children, 

@@ -1,35 +1,23 @@
-import type { FocusEvent, ChangeEvent } from 'react';
-import { colors, radius } from '../tokens';
+import { colors } from '../../tokens';
+import type { TextareaProps } from './Textarea.types';
 
-interface InputProps {
-  id: string;
-  name: string;
-  value: string;
-  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
-  type?: string;
-  placeholder?: string;
-  required?: boolean;
-  label?: string;
-  className?: string;
-}
-
-export function Input({ 
+export function Textarea({ 
   id,
   name,
   value,
   onChange,
-  type = 'text',
   placeholder,
   required = false,
   label,
+  rows = 5,
   className = ''
-}: InputProps) {
-  const handleFocus = (e: FocusEvent<HTMLInputElement>) => {
+}: TextareaProps) {
+  const handleFocus = (e: React.FocusEvent<HTMLTextAreaElement>) => {
     e.currentTarget.style.borderColor = colors.primary.borderHover;
     e.currentTarget.style.backgroundColor = colors.neutral.bgDarkFocus;
   };
   
-  const handleBlur = (e: FocusEvent<HTMLInputElement>) => {
+  const handleBlur = (e: React.FocusEvent<HTMLTextAreaElement>) => {
     e.currentTarget.style.borderColor = colors.neutral.border;
     e.currentTarget.style.backgroundColor = colors.neutral.bgDark;
   };
@@ -41,21 +29,21 @@ export function Input({
           {label}
         </label>
       )}
-      <input
-        type={type}
+      <textarea
         id={id}
         name={name}
         value={value}
         onChange={onChange}
-        required={required}
+        onFocus={handleFocus}
+        onBlur={handleBlur}
         placeholder={placeholder}
-        className={`w-full px-4 py-3 ${radius.input} focus:outline-none transition-all text-gray-300`}
+        required={required}
+        rows={rows}
+        className="w-full p-3 rounded-lg border border-gray-700 bg-gray-900 text-gray-100 focus:outline-none transition-colors duration-200"
         style={{
           border: `1px solid ${colors.neutral.border}`,
           backgroundColor: colors.neutral.bgDark
         }}
-        onFocus={handleFocus}
-        onBlur={handleBlur}
       />
     </div>
   );

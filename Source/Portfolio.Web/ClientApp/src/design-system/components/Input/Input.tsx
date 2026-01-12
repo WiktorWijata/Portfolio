@@ -1,35 +1,24 @@
-import type { FocusEvent, ChangeEvent } from 'react';
-import { colors, radius } from '../tokens';
+import type { FocusEvent } from 'react';
+import { colors, radius } from '../../tokens';
+import type { InputProps } from './Input.types';
 
-interface TextareaProps {
-  id: string;
-  name: string;
-  value: string;
-  onChange: (e: ChangeEvent<HTMLTextAreaElement>) => void;
-  placeholder?: string;
-  required?: boolean;
-  label?: string;
-  rows?: number;
-  className?: string;
-}
-
-export function Textarea({ 
+export function Input({ 
   id,
   name,
   value,
   onChange,
+  type = 'text',
   placeholder,
   required = false,
   label,
-  rows = 5,
   className = ''
-}: TextareaProps) {
-  const handleFocus = (e: FocusEvent<HTMLTextAreaElement>) => {
+}: InputProps) {
+  const handleFocus = (e: FocusEvent<HTMLInputElement>) => {
     e.currentTarget.style.borderColor = colors.primary.borderHover;
     e.currentTarget.style.backgroundColor = colors.neutral.bgDarkFocus;
   };
   
-  const handleBlur = (e: FocusEvent<HTMLTextAreaElement>) => {
+  const handleBlur = (e: FocusEvent<HTMLInputElement>) => {
     e.currentTarget.style.borderColor = colors.neutral.border;
     e.currentTarget.style.backgroundColor = colors.neutral.bgDark;
   };
@@ -41,15 +30,15 @@ export function Textarea({
           {label}
         </label>
       )}
-      <textarea
+      <input
+        type={type}
         id={id}
         name={name}
         value={value}
         onChange={onChange}
         required={required}
         placeholder={placeholder}
-        rows={rows}
-        className={`w-full px-4 py-3 ${radius.input} focus:outline-none transition-all resize-none text-gray-300`}
+        className={`w-full px-4 py-3 ${radius.input} focus:outline-none transition-all text-gray-300`}
         style={{
           border: `1px solid ${colors.neutral.border}`,
           backgroundColor: colors.neutral.bgDark

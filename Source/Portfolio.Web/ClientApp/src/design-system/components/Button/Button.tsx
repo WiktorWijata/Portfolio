@@ -1,14 +1,6 @@
-import type { ReactNode, MouseEvent } from 'react';
-import { colors, radius } from '../tokens';
-
-interface ButtonProps {
-  children: ReactNode;
-  onClick?: () => void;
-  disabled?: boolean;
-  className?: string;
-  type?: 'button' | 'submit' | 'reset';
-  variant?: 'primary' | 'small';
-}
+import type { MouseEvent } from 'react';
+import { colors, radius } from '../../tokens';
+import type { ButtonProps } from './Button.types';
 
 export function Button({ 
   children, 

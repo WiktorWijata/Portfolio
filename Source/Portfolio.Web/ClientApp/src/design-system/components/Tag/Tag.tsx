@@ -1,11 +1,5 @@
-import type { ReactNode } from 'react';
-import { colors, radius } from '../tokens';
-
-interface TagProps {
-  children: ReactNode;
-  variant?: 'neutral' | 'date';
-  className?: string;
-}
+import { colors, radius } from '../../tokens';
+import type { TagProps } from './Tag.types';
 
 export function Tag({ children, variant = 'neutral', className = '' }: TagProps) {
   const baseClasses = `font-semibold text-gray-300 backdrop-blur-sm`;

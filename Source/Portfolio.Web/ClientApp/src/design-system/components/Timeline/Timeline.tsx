@@ -1,9 +1,4 @@
-import type { ReactNode } from 'react';
-
-interface TimelineProps {
-  children: ReactNode;
-  className?: string;
-}
+import type { TimelineProps } from './Timeline.types';
 
 export function Timeline({ children, className = '' }: TimelineProps) {
   return (
