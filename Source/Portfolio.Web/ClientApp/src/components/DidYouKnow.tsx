@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import { SectionTitle, Tile, IconButton } from '../design-system';
-import { useScrollReveal } from '../hooks/useScrollReveal';
+import { SectionTitle, Tile, IconButton } from '../design-system/components';
+import { useScrollReveal } from '../design-system/hooks';
+import { IconButtonSize } from '../design-system/tokens';
 
 interface Fact {
   title: string;
@@ -99,7 +100,7 @@ function DidYouKnow() {
           {/* Navigation buttons */}
           <IconButton
             onClick={prevFact}
-            size="medium"
+            size={IconButtonSize.MEDIUM}
             className="absolute left-0 top-1/2 -translate-y-1/2"
           >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -109,7 +110,7 @@ function DidYouKnow() {
 
           <IconButton
             onClick={nextFact}
-            size="medium"
+            size={IconButtonSize.MEDIUM}
             className="absolute right-0 top-1/2 -translate-y-1/2"
           >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">

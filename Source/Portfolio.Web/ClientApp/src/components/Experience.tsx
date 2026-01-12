@@ -1,14 +1,7 @@
 import { useState } from 'react';
-import { SectionTitle, Tag, Button, Tile, Timeline, TimelineItem } from '../design-system';
-import { useScrollReveal } from '../hooks/useScrollReveal';
-
-interface ExperienceItem {
-  company: string;
-  position: string;
-  period: string;
-  description: string[];
-  technologies: string[];
-}
+import { SectionTitle, Tag, Button, Tile, Timeline, TimelineItem } from '../design-system/components';
+import { useScrollReveal } from '../design-system/hooks';
+import { experiences } from '../data';
 
 function Experience() {
   const { elementRef, className } = useScrollReveal({ delay: 200 });
@@ -20,42 +13,6 @@ function Experience() {
       [index]: !prev[index]
     }));
   };
-
-  const experiences: ExperienceItem[] = [
-    {
-      company: 'Nazwa Firmy 1',
-      position: 'Senior .NET Developer',
-      period: '2022 - Obecnie',
-      description: [
-        'Projektowanie i rozwój aplikacji webowych w technologii .NET',
-        'Implementacja REST API oraz integracje z zewnętrznymi systemami',
-        'Optymalizacja wydajności aplikacji i baz danych'
-      ],
-      technologies: ['C#', '.NET', 'React', 'PostgreSQL', 'Docker']
-    },
-    {
-      company: 'Nazwa Firmy 2',
-      position: '.NET Developer',
-      period: '2020 - 2022',
-      description: [
-        'Rozwój aplikacji biznesowych w ekosystemie .NET',
-        'Tworzenie interfejsów użytkownika w React',
-        'Współpraca z zespołem w metodyce Agile/Scrum'
-      ],
-      technologies: ['C#', 'ASP.NET Core', 'JavaScript', 'MSSQL', 'Azure']
-    },
-    {
-      company: 'Nazwa Firmy 3',
-      position: 'Junior .NET Developer',
-      period: '2018 - 2020',
-      description: [
-        'Utrzymanie i rozwój istniejących aplikacji .NET',
-        'Wsparcie zespołu w codziennych zadaniach developerskich',
-        'Pisanie testów jednostkowych i dokumentacji technicznej'
-      ],
-      technologies: ['C#', '.NET', 'WinForms', 'MSSQL']
-    }
-  ];
 
   return (
     <section id="experience" ref={elementRef} className={`py-20 px-4 ${className}`}>

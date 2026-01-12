@@ -1,4 +1,4 @@
-import { Button, Tile } from '../design-system';
+import { Button, Tile, Icon, IconName, IconSize } from '../design-system/components';
 
 function Hero() {
   return (
@@ -28,9 +28,7 @@ function Hero() {
           <Tile className="w-[484px] min-h-[550px] flex items-start justify-center p-8">
             <div className="flex flex-col gap-8 mt-8">
               <h2 className="text-gray-300 text-5xl font-semibold flex items-center gap-4">
-                <svg className="w-10 h-10 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-                </svg>
+                <Icon name={IconName.CODE} size={IconSize.XL} className="text-purple-400" />
                 .NET Developer
               </h2>
               <p className="text-gray-400 text-2xl leading-relaxed font-semibold text-justify">

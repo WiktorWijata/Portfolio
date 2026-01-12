@@ -2,6 +2,7 @@ export { Tile } from './Tile';
 export { Button } from './Button';
 export { SectionTitle } from './SectionTitle';
 export { Tag } from './Tag';
+export { Icon, IconName, IconSize } from './Icon';
 export { IconButton } from './IconButton';
 export { Input } from './Input';
 export { Textarea } from './Textarea';

@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
 import Navigation from './Navigation';
 import Footer from './Footer';
-import { Cosmos, CosmosVariant, DynamicBackground } from '../design-system';
+import { Cosmos, CosmosVariant, DynamicBackground } from '../design-system/dynamic-backgrounds';
 
 interface MainLayoutProps {
   children: ReactNode;

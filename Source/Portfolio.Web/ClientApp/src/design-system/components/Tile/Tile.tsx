@@ -16,10 +16,12 @@ export function Tile({
   
   return (
     <div 
-      className={`${paddingClass} ${radius.card} backdrop-blur-sm ${hoverClass} ${className}`}
+      className={`${paddingClass} ${radius.card} ${hoverClass} ${className}`}
       style={{
         border: `1px solid ${colors.neutral.border}`,
         backgroundColor: colors.neutral.bg,
+        backdropFilter: 'blur(8px)',
+        WebkitBackdropFilter: 'blur(8px)',
         ...style
       }}
     >

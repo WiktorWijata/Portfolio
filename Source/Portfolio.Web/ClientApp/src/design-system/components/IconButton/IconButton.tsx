@@ -1,39 +1,33 @@
-import type { MouseEvent } from 'react';
 import { colors, radius } from '../../tokens';
 import type { IconButtonProps } from './IconButton.types';
+import { useButton } from '../../hooks';
+import { iconButtonSizeClasses } from './IconButton.consts';
+import { IconButtonSize } from '../../tokens/sizes';
 
 export function IconButton({ 
   children, 
   onClick,
   href,
-  size = 'small',
+  size = IconButtonSize.SMALL,
   className = '',
   target,
-  rel
+  rel,
+  disabled = false
 }: IconButtonProps) {
-  const sizeClasses = {
-    small: 'w-8 h-8',
-    medium: 'w-12 h-12',
-    large: 'w-16 h-16'
-  };
-  
-  const baseClasses = `${sizeClasses[size]} flex items-center justify-center ${radius.button} backdrop-blur-sm transition-all duration-300 hover:scale-110`;
-  
-  const handleMouseEnter = (e: MouseEvent<HTMLElement>) => {
-    e.currentTarget.style.backgroundColor = colors.primary.bgHover;
-    e.currentTarget.style.borderColor = colors.primary.borderHover;
-  };
-  
-  const handleMouseLeave = (e: MouseEvent<HTMLElement>) => {
-    e.currentTarget.style.backgroundColor = colors.primary.bg;
-    e.currentTarget.style.borderColor = colors.primary.border;
-  };
-  
-  const style = {
-    border: `1px solid ${colors.primary.border}`,
-    backgroundColor: colors.primary.bg,
-    color: colors.primary.text
-  };
+  const buttonRadius = radius.button;
+  const {
+    computedClassName,
+    isDisabled,
+    handleClick,
+    handleMouseEnter,
+    handleMouseLeave,
+    style,
+  } = useButton({
+    disabled,
+    className: `${iconButtonSizeClasses[size]} flex items-center justify-center ${buttonRadius} backdrop-blur-sm transition-all duration-300 ${!disabled ? 'hover:scale-110' : 'opacity-60 cursor-not-allowed'} ${className}`,
+    onClick,
+    colors,
+  });
   
   if (href) {
     return (
@@ -41,10 +35,12 @@ export function IconButton({
         href={href}
         target={target}
         rel={rel}
-        className={`${baseClasses} ${className}`}
+        className={computedClassName}
         style={style}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
+        aria-disabled={isDisabled}
+        tabIndex={isDisabled ? -1 : 0}
       >
         {children}
       </a>
@@ -53,8 +49,10 @@ export function IconButton({
   
   return (
     <button
-      onClick={onClick}
-      className={`${baseClasses} ${className}`}
+      type="button"
+      onClick={handleClick}
+      disabled={isDisabled}
+      className={computedClassName}
       style={style}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
