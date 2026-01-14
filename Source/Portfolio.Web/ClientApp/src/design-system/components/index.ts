@@ -24,3 +24,5 @@ export { List } from './List';
 export type { ListProps } from './List';
 export { TagGroup } from './TagGroup';
 export type { TagGroupProps } from './TagGroup';
+export { Carousel, CarouselItem } from './Carousel';
+export type { CarouselProps, CarouselItemProps } from './Carousel';

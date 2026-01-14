@@ -21,11 +21,9 @@ function Education() {
                 }}
               >
                 <Tag variant={TagVariant.DATE}>{edu.period}</Tag>
-                <div className="flex items-center gap-3 mb-1">
-                  <Text as={TextAs.H3} size={TextSize.MD} variant={TextVariant.PRIMARY} weight={TextWeight.BOLD}>
-                    {edu.degree}
-                  </Text>
-                </div>
+                <Text as={TextAs.H3} size={TextSize.MD} weight={TextWeight.BOLD} className="mb-1">
+                  {edu.degree}
+                </Text>
                 <Text size={TextSize.SM} variant={TextVariant.ACCENT} weight={TextWeight.MEDIUM}>
                   {edu.school}
                 </Text>
