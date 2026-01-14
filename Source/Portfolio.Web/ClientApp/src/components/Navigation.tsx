@@ -1,9 +1,15 @@
 import { useState } from 'react';
+import { Select, Icon, IconName, IconSize } from '../design-system/components';
+import type { SelectOption } from '../design-system/components';
 
 function Navigation() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [language, setLanguage] = useState<'pl' | 'en'>('pl');
-  const [isLanguageMenuOpen, setIsLanguageMenuOpen] = useState(false);
+
+  const languageOptions: SelectOption<'pl' | 'en'>[] = [
+    { value: 'pl', label: 'Polski', shortLabel: 'PL' },
+    { value: 'en', label: 'English', shortLabel: 'EN' }
+  ];
 
   const navLinks = [
     { href: '#home', label: 'Start' },
@@ -46,98 +52,14 @@ function Navigation() {
             ))}
           </div>
 
-          {/* Language Switcher - dropdown menu */}
+          {/* Language Switcher */}
           <div className="hidden md:block fixed top-5 right-6 z-50">
-            <div className="relative">
-            <button
-              onClick={() => setIsLanguageMenuOpen(!isLanguageMenuOpen)}
-              className="flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-all duration-300 hover:scale-105"
-              style={{
-                border: '1px solid rgba(168, 85, 247, 0.4)',
-                backgroundColor: 'rgba(168, 85, 247, 0.1)',
-                color: '#e9d5ff',
-                backdropFilter: 'blur(10px)'
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.backgroundColor = 'rgba(168, 85, 247, 0.2)';
-                e.currentTarget.style.borderColor = 'rgba(168, 85, 247, 0.6)';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.backgroundColor = 'rgba(168, 85, 247, 0.1)';
-                e.currentTarget.style.borderColor = 'rgba(168, 85, 247, 0.4)';
-              }}
-            >
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129" />
-              </svg>
-              {language === 'pl' ? 'PL' : 'EN'}
-              <svg className={`w-4 h-4 transition-transform ${isLanguageMenuOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-              </svg>
-            </button>
-
-            {/* Dropdown */}
-            {isLanguageMenuOpen && (
-              <div 
-                className="absolute top-full right-0 mt-2 w-32 rounded backdrop-blur-md overflow-hidden"
-                style={{ 
-                  border: '1px solid rgba(255, 248, 231, 0.15)',
-                  backgroundColor: 'rgba(26, 10, 46, 0.9)'
-                }}
-              >
-                <button
-                  onClick={() => {
-                    setLanguage('pl');
-                    setIsLanguageMenuOpen(false);
-                  }}
-                  className={`w-full text-left px-4 py-2 rounded transition-all ${
-                    language === 'pl' ? 'text-gray-300' : 'text-gray-400 hover:text-gray-300'
-                  }`}
-                  style={language === 'pl' ? { 
-                    backgroundColor: 'rgba(255, 248, 231, 0.08)',
-                    border: '1px solid rgba(255, 248, 231, 0.2)'
-                  } : {}}
-                  onMouseEnter={(e) => {
-                    if (language !== 'pl') {
-                      e.currentTarget.style.backgroundColor = 'rgba(255, 248, 231, 0.05)';
-                    }
-                  }}
-                  onMouseLeave={(e) => {
-                    if (language !== 'pl') {
-                      e.currentTarget.style.backgroundColor = 'transparent';
-                    }
-                  }}
-                >
-                  Polski
-                </button>
-                <button
-                  onClick={() => {
-                    setLanguage('en');
-                    setIsLanguageMenuOpen(false);
-                  }}
-                  className={`w-full text-left px-4 py-2 rounded transition-all ${
-                    language === 'en' ? 'text-gray-300' : 'text-gray-400 hover:text-gray-300'
-                  }`}
-                  style={language === 'en' ? { 
-                    backgroundColor: 'rgba(255, 248, 231, 0.08)',
-                    border: '1px solid rgba(255, 248, 231, 0.2)'
-                  } : {}}
-                  onMouseEnter={(e) => {
-                    if (language !== 'en') {
-                      e.currentTarget.style.backgroundColor = 'rgba(255, 248, 231, 0.05)';
-                    }
-                  }}
-                  onMouseLeave={(e) => {
-                    if (language !== 'en') {
-                      e.currentTarget.style.backgroundColor = 'transparent';
-                    }
-                  }}
-                >
-                  English
-                </button>
-              </div>
-            )}
-            </div>
+            <Select
+              options={languageOptions}
+              value={language}
+              onChange={setLanguage}
+              icon={<Icon name={IconName.LANGUAGE} size={IconSize.SM} />}
+            />
           </div>
 
           {/* Mobile Menu Button */}

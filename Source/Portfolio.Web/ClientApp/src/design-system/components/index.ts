@@ -8,3 +8,5 @@ export { Input } from './Input';
 export { Textarea } from './Textarea';
 export { Timeline } from './Timeline';
 export { TimelineItem } from './Timeline/TimelineItem';
+export { Select } from './Select';
+export type { SelectProps, SelectOption } from './Select';

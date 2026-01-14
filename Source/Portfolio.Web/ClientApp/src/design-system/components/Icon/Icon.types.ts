@@ -5,6 +5,7 @@ export const IconName = {
   EXTERNAL_LINK: 'external-link',
   CODE: 'code',
   GLOBE: 'globe',
+  LANGUAGE: 'language',
   CHEVRON_DOWN: 'chevron-down',
   CHEVRON_LEFT: 'chevron-left',
   CHEVRON_RIGHT: 'chevron-right',
