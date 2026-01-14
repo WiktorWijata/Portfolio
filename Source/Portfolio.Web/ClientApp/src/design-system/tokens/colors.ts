@@ -17,6 +17,7 @@ export const colors = {
     bg: 'rgba(255, 248, 231, 0.03)',
     bgDark: 'rgba(0, 0, 0, 0.3)',
     bgDarkFocus: 'rgba(0, 0, 0, 0.5)',
+    bgDarkest: 'rgba(0, 0, 0, 0.95)',
   },
   
   // Text

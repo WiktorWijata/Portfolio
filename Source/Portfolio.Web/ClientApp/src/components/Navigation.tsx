@@ -1,6 +1,8 @@
 import { useState } from 'react';
-import { Select, Icon, IconName, IconSize } from '../design-system/components';
+import { Select, Icon, IconName, IconSize, Link, LinkVariant, IconButton } from '../design-system/components';
 import type { SelectOption } from '../design-system/components';
+import { IconButtonSize } from '../design-system/components/IconButton/IconButton.consts';
+import { colors } from '../design-system/tokens';
 
 function Navigation() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -30,10 +32,12 @@ function Navigation() {
 
   return (
     <nav 
-      className="fixed top-0 left-0 right-0 z-50 backdrop-blur-sm transition-all duration-300"
+      className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
       style={{ 
-        borderBottom: '1px solid rgba(255, 248, 231, 0.15)',
-        backgroundColor: 'rgba(255, 248, 231, 0.03)'
+        borderBottom: `1px solid ${colors.neutral.border}`,
+        backgroundColor: colors.neutral.bg,
+        backdropFilter: 'blur(4px)',
+        WebkitBackdropFilter: 'blur(4px)'
       }}
     >
       <div className="container mx-auto px-6">
@@ -41,14 +45,13 @@ function Navigation() {
           {/* Desktop Navigation - wyśrodkowane */}
           <div className="hidden md:flex items-center gap-8">
             {navLinks.map((link) => (
-              <a
+              <Link
                 key={link.href}
                 href={link.href}
                 onClick={(e) => handleNavClick(e, link.href)}
-                className="text-gray-400 hover:text-gray-300 transition-colors font-medium"
               >
                 {link.label}
-              </a>
+              </Link>
             ))}
           </div>
 
@@ -63,47 +66,38 @@ function Navigation() {
           </div>
 
           {/* Mobile Menu Button */}
-          <button
+          <IconButton
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden text-white focus:outline-none"
+            size={IconButtonSize.MEDIUM}
+            className="md:hidden"
           >
-            <svg
-              className="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              {isMobileMenuOpen ? (
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              ) : (
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M4 6h16M4 12h16M4 18h16"
-                />
-              )}
-            </svg>
-          </button>
+            <Icon 
+              name={isMobileMenuOpen ? IconName.CLOSE : IconName.MENU} 
+              size={IconSize.MD}
+            />
+          </IconButton>
         </div>
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="md:hidden py-4 bg-black/95 backdrop-blur-sm">
+          <div 
+            className="md:hidden py-4"
+            style={{
+              backgroundColor: colors.neutral.bgDarkest,
+              backdropFilter: 'blur(4px)',
+              WebkitBackdropFilter: 'blur(4px)'
+            }}
+          >
             {navLinks.map((link) => (
-              <a
+              <Link
                 key={link.href}
                 href={link.href}
                 onClick={(e) => handleNavClick(e, link.href)}
-                className="block py-2 text-gray-300 hover:text-[#9ca3af] transition-colors"
+                className="block py-2"
+                variant={LinkVariant.TEXT}
               >
                 {link.label}
-              </a>
+              </Link>
             ))}
           </div>
         )}

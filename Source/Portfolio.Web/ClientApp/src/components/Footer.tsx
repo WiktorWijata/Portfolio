@@ -1,4 +1,4 @@
-import { Icon, IconName, IconSize } from '../design-system/components';
+import { Icon, IconName, IconSize, Link, LinkVariant } from '../design-system/components';
 
 function Footer() {
   const currentYear = new Date().getFullYear();
@@ -14,33 +14,33 @@ function Footer() {
 
           {/* Social Links */}
           <div className="flex gap-6">
-            <a
+            <Link
               href="https://github.com/twoj-profil"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-gray-400 hover:text-[#9ca3af] transition-colors"
               aria-label="GitHub"
+              variant={LinkVariant.TEXT}
             >
               <Icon name={IconName.GITHUB} size={IconSize.MD} />
-            </a>
+            </Link>
 
-            <a
+            <Link
               href="https://linkedin.com/in/twoj-profil"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-gray-400 hover:text-[#9ca3af] transition-colors"
               aria-label="LinkedIn"
+              variant={LinkVariant.TEXT}
             >
               <Icon name={IconName.LINKEDIN} size={IconSize.MD} />
-            </a>
+            </Link>
 
-            <a
+            <Link
               href="mailto:twoj@email.com"
-              className="text-gray-400 hover:text-[#9ca3af] transition-colors"
               aria-label="Email"
+              variant={LinkVariant.TEXT}
             >
               <Icon name={IconName.EMAIL} size={IconSize.MD} />
-            </a>
+            </Link>
           </div>
         </div>
 

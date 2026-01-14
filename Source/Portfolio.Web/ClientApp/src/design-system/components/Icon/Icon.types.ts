@@ -10,7 +10,8 @@ export const IconName = {
   CHEVRON_LEFT: 'chevron-left',
   CHEVRON_RIGHT: 'chevron-right',
   CHEVRON_UP: 'chevron-up',
-  MENU: 'menu'
+  MENU: 'menu',
+  CLOSE: 'close'
 } as const;
 
 export type IconNameType = typeof IconName[keyof typeof IconName];

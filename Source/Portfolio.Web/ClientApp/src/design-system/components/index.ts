@@ -10,3 +10,5 @@ export { Timeline } from './Timeline';
 export { TimelineItem } from './Timeline/TimelineItem';
 export { Select } from './Select';
 export type { SelectProps, SelectOption } from './Select';
+export { Link, LinkVariant } from './Link';
+export type { LinkProps, LinkVariantType } from './Link';
