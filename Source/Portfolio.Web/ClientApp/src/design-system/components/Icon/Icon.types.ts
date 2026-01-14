@@ -8,6 +8,7 @@ export const IconName = {
   CHEVRON_DOWN: 'chevron-down',
   CHEVRON_LEFT: 'chevron-left',
   CHEVRON_RIGHT: 'chevron-right',
+  CHEVRON_UP: 'chevron-up',
   MENU: 'menu'
 } as const;
 

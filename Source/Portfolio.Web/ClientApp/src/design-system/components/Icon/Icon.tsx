@@ -13,7 +13,7 @@ export function Icon({ name, size = IconSize.MD, color = 'white', className = ''
   const sizeClass = sizeClasses[size];
   const combinedClassName = `${sizeClass} ${className}`.trim();
 
-  const iconPath = `/src/assets/icons/${name}.svg`;
+  const iconPath = `/src/design-system/assets/icons/${name}.svg`;
 
   return (
     <div 

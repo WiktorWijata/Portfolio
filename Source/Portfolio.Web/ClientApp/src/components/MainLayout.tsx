@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react';
 import Navigation from './Navigation';
 import Footer from './Footer';
+import ScrollToTop from './ScrollToTop';
 import { Cosmos, CosmosVariant, DynamicBackground } from '../design-system/dynamic-backgrounds';
 
 interface MainLayoutProps {
@@ -22,6 +23,7 @@ function MainLayout({ children }: MainLayoutProps) {
           {children}
         </main>
         <Footer />
+        <ScrollToTop />
       </div>
     </div>
   );
