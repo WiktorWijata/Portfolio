@@ -1,12 +1,13 @@
 import { useState } from 'react';
 import { SectionTitle, Button } from '../design-system/components';
 import { useScrollReveal, fadeInStagger } from '../design-system/hooks';
-import { colors } from '../design-system/tokens';
+import { useTheme } from '../design-system/themes';
 import { technologies } from '../data';
 
 type Category = 'all' | 'frontend' | 'backend' | 'mobile' | 'database' | 'devops' | 'design' | 'others';
 
 function Skills() {
+  const { currentTheme } = useTheme();
   const { elementRef, className } = useScrollReveal({ delay: 100 });
   const [activeCategory, setActiveCategory] = useState<Category>('all');
   const [isExpanded, setIsExpanded] = useState(false);
@@ -45,8 +46,8 @@ function Skills() {
                 activeCategory === category.id ? 'text-gray-300' : 'text-gray-400 hover:text-gray-300'
               }`}
               style={{
-                border: `1px solid ${activeCategory === category.id ? colors.primary.borderGlow : colors.neutral.border}`,
-                backgroundColor: activeCategory === category.id ? colors.primary.bgActive : colors.neutral.bg,
+                border: `1px solid ${activeCategory === category.id ? currentTheme.colors.primary.borderGlow : currentTheme.colors.neutral.border}`,
+                backgroundColor: activeCategory === category.id ? currentTheme.colors.primary.bgActive : currentTheme.colors.neutral.bg,
                 boxShadow: activeCategory === category.id ? '0 0 15px rgba(168, 85, 247, 0.4)' : 'none'
               }}
             >
@@ -70,8 +71,8 @@ function Skills() {
                 index >= 7 && !isExpanded ? 'opacity-0 scale-95' : 'opacity-100 scale-100'
               }`}
               style={{ 
-                border: `1px solid ${colors.neutral.border}`,
-                backgroundColor: colors.neutral.bg,
+                border: `1px solid ${currentTheme.colors.neutral.border}`,
+                backgroundColor: currentTheme.colors.neutral.bg,
                 backdropFilter: 'blur(8px)',
                 WebkitBackdropFilter: 'blur(8px)',
                 ...fadeInStagger(index, { staggerDelay: 0.05, duration: 0.4 })

@@ -1,8 +1,12 @@
 import { useMemo } from 'react';
 import type { MouseEvent } from 'react';
 import type { UseButtonOptions } from './useButton.types';
+import { useTheme } from '../../themes';
 
-export function useButton({ disabled, loading, className, onClick, colors }: UseButtonOptions) {
+export function useButton({ disabled, loading, className, onClick }: UseButtonOptions) {
+  const { currentTheme } = useTheme();
+  const colors = currentTheme.colors;
+  
   // Bazowe klasy dla przycisku
   const baseClass = 'inline-flex items-center justify-center font-semibold transition-colors duration-200 focus:outline-none';
 
@@ -28,24 +32,22 @@ export function useButton({ disabled, loading, className, onClick, colors }: Use
 
   // Obsługa stylów hover/focus
   const handleMouseEnter = (e: MouseEvent<HTMLElement>) => {
-    if (!isDisabled && colors) {
+    if (!isDisabled) {
       e.currentTarget.style.backgroundColor = colors.primary.bgHover;
       e.currentTarget.style.borderColor = colors.primary.borderHover;
     }
   };
 
   const handleMouseLeave = (e: MouseEvent<HTMLElement>) => {
-    if (colors) {
-      e.currentTarget.style.backgroundColor = colors.primary.bg;
-      e.currentTarget.style.borderColor = colors.primary.border;
-    }
+    e.currentTarget.style.backgroundColor = colors.primary.bg;
+    e.currentTarget.style.borderColor = colors.primary.border;
   };
 
-  const style = colors ? {
+  const style = {
     border: `1px solid ${colors.primary.border}`,
     backgroundColor: colors.primary.bg,
     color: colors.primary.text,
-  } : undefined;
+  };
 
   return {
     computedClassName,

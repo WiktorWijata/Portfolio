@@ -1,4 +1,5 @@
-import { colors, radius } from '../../tokens';
+import { radius } from '../../tokens';
+import { useTheme } from '../../themes';
 import type { TileProps } from './Tile.types';
 
 export function Tile({ 
@@ -9,6 +10,7 @@ export function Tile({
   imageAlt = '',
   style
 }: TileProps) {
+  const { currentTheme } = useTheme();
   const hoverClass = hover ? 'transition-all duration-300 hover:scale-105' : '';
   const hasChildren = children !== undefined && children !== null;
   const imageOnlyMode = imageUrl && !hasChildren;
@@ -18,8 +20,8 @@ export function Tile({
     <div 
       className={`${paddingClass} ${radius.card} ${hoverClass} ${className}`}
       style={{
-        border: `1px solid ${colors.neutral.border}`,
-        backgroundColor: colors.neutral.bg,
+        border: `1px solid ${currentTheme.colors.neutral.border}`,
+        backgroundColor: currentTheme.colors.neutral.bg,
         backdropFilter: 'blur(8px)',
         WebkitBackdropFilter: 'blur(8px)',
         transform: 'translateZ(0)',

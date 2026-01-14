@@ -1,4 +1,4 @@
-import { colors } from '../../tokens';
+import { useTheme } from '../../themes';
 import type { TextareaProps } from './Textarea.types';
 
 export function Textarea({ 
@@ -12,6 +12,9 @@ export function Textarea({
   rows = 5,
   className = ''
 }: TextareaProps) {
+  const { currentTheme } = useTheme();
+  const colors = currentTheme.colors;
+  
   const handleFocus = (e: React.FocusEvent<HTMLTextAreaElement>) => {
     e.currentTarget.style.borderColor = colors.primary.borderHover;
     e.currentTarget.style.backgroundColor = colors.neutral.bgDarkFocus;

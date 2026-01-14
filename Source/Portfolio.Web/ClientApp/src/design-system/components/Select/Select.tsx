@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
-import { colors, radius } from '../../tokens';
+import { radius } from '../../tokens';
 import { useButton } from '../../hooks';
+import { useTheme } from '../../themes';
 import type { SelectProps } from './Select.types';
 import { Icon, IconName, IconSize } from '../Icon';
 
@@ -13,6 +14,7 @@ export function Select<T extends string>({
   className = '',
   disabled = false
 }: SelectProps<T>) {
+  const { currentTheme } = useTheme();
   const [isOpen, setIsOpen] = useState(false);
   const selectRef = useRef<HTMLDivElement>(null);
 
@@ -56,7 +58,6 @@ export function Select<T extends string>({
     disabled,
     className: `flex items-center gap-2 px-4 py-2 ${radius.button} font-medium transition-all duration-300 ${className}`,
     onClick: handleToggle,
-    colors,
   });
 
   return (
@@ -87,7 +88,7 @@ export function Select<T extends string>({
         <div 
           className={`absolute top-full right-0 mt-2 min-w-[8rem] ${radius.card} backdrop-blur-md overflow-hidden`}
           style={{ 
-            border: `1px solid ${colors.neutral.border}`,
+            border: `1px solid ${currentTheme.colors.neutral.border}`,
             backgroundColor: 'rgba(26, 10, 46, 0.9)',
             zIndex: 50
           }}

@@ -2,9 +2,10 @@ import { useState } from 'react';
 import { Select, Icon, IconName, IconSize, Link, LinkVariant, IconButton } from '../design-system/components';
 import type { SelectOption } from '../design-system/components';
 import { IconButtonSize } from '../design-system/components/IconButton/IconButton.consts';
-import { colors } from '../design-system/tokens';
+import { useTheme } from '../design-system/themes';
 
 function Navigation() {
+  const { currentTheme } = useTheme();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [language, setLanguage] = useState<'pl' | 'en'>('pl');
 
@@ -34,8 +35,8 @@ function Navigation() {
     <nav 
       className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
       style={{ 
-        borderBottom: `1px solid ${colors.neutral.border}`,
-        backgroundColor: colors.neutral.bg,
+        borderBottom: `1px solid ${currentTheme.colors.neutral.border}`,
+        backgroundColor: currentTheme.colors.neutral.bg,
         backdropFilter: 'blur(4px)',
         WebkitBackdropFilter: 'blur(4px)'
       }}
@@ -83,7 +84,7 @@ function Navigation() {
           <div 
             className="md:hidden py-4"
             style={{
-              backgroundColor: colors.neutral.bgDarkest,
+              backgroundColor: currentTheme.colors.neutral.bgDarkest,
               backdropFilter: 'blur(4px)',
               WebkitBackdropFilter: 'blur(4px)'
             }}

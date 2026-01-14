@@ -28,7 +28,7 @@ function Hero() {
           <Tile className="w-[484px] min-h-[550px] flex items-start justify-center p-8">
             <div className="flex flex-col gap-8 mt-8">
               <h2 className="text-gray-300 text-5xl font-semibold flex items-center gap-4">
-                <Icon name={IconName.CODE} size={IconSize.XL} className="text-purple-400" />
+                <Icon name={IconName.CODE} size={IconSize.XL} color="#c084fc" className="drop-shadow-[0_0_8px_rgba(192,132,252,0.6)]" />
                 .NET Developer
               </h2>
               <p className="text-gray-400 text-2xl leading-relaxed font-semibold text-justify">

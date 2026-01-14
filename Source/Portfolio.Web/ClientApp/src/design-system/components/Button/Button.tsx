@@ -1,5 +1,5 @@
 
-import { colors, radius } from '../../tokens';
+import { radius } from '../../tokens';
 import type { ButtonProps } from './Button.types';
 import { useButton } from '../../hooks'
 
@@ -25,7 +25,6 @@ export function Button({
     disabled,
     className: `${buttonRadius} font-medium transition-all duration-300 ${sizeClasses} ${disabled ? 'opacity-60 cursor-not-allowed' : ''} ${className}`,
     onClick,
-    colors,
   });
 
   return (

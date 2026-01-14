@@ -2,10 +2,11 @@ import { useState } from 'react';
 import type { FormEvent } from 'react';
 import { SectionTitle, Tile, IconButton, Input, Textarea, Button, Icon, IconName, IconSize } from '../design-system/components';
 import { useScrollReveal } from '../design-system/hooks';
-import { colors } from '../design-system/tokens';
+import { useTheme } from '../design-system/themes';
 import { IconButtonSize } from '../design-system/components/IconButton/IconButton.consts';
 
 function Contact() {
+  const { currentTheme } = useTheme();
   const { elementRef, className } = useScrollReveal({ delay: 300 });
   const [formData, setFormData] = useState({
     name: '',
@@ -106,8 +107,8 @@ function Contact() {
           <div 
             className="rounded-lg p-8 backdrop-blur-sm overflow-visible"
             style={{
-              border: `1px solid ${colors.neutral.border}`,
-              backgroundColor: colors.neutral.bg
+              border: `1px solid ${currentTheme.colors.neutral.border}`,
+              backgroundColor: currentTheme.colors.neutral.bg
             }}
           >
             <form onSubmit={handleSubmit} className="space-y-5">

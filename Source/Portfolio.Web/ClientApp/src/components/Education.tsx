@@ -1,8 +1,9 @@
 import { useScrollReveal, fadeInStagger } from '../design-system/hooks';
-import { colors } from '../design-system/tokens';
+import { useTheme } from '../design-system/themes';
 import { education } from '../data';
 
 function Education() {
+  const { currentTheme } = useTheme();
   const { elementRef, className } = useScrollReveal({ delay: 200 });
 
   return (
@@ -55,8 +56,8 @@ function Education() {
                 <div
                   className="p-6 rounded-lg backdrop-blur-sm transition-all duration-500 relative"
                   style={{
-                    border: `1px solid ${colors.neutral.border}`,
-                    backgroundColor: colors.neutral.bg,
+                    border: `1px solid ${currentTheme.colors.neutral.border}`,
+                    backgroundColor: currentTheme.colors.neutral.bg,
                     ...fadeInStagger(index, { staggerDelay: 0.2, duration: 0.6 }),
                     transform: 'translateZ(0)',
                     WebkitTransform: 'translateZ(0)',
@@ -66,8 +67,8 @@ function Education() {
                   <span
                     className="absolute top-4 right-4 text-gray-300 text-sm font-semibold px-2 py-1 rounded backdrop-blur-sm"
                     style={{
-                      border: `1px solid ${colors.neutral.border}`,
-                      backgroundColor: colors.neutral.bg
+                      border: `1px solid ${currentTheme.colors.neutral.border}`,
+                      backgroundColor: currentTheme.colors.neutral.bg
                     }}
                   >
                     {edu.period}

@@ -1,3 +1,4 @@
+import { ThemeProvider } from './design-system/themes';
 import MainLayout from './components/MainLayout';
 import Hero from './components/Hero';
 import Skills from './components/Skills';
@@ -9,14 +10,16 @@ import Contact from './components/Contact';
 
 export function App() {
   return (
-    <MainLayout>
-      <Hero />
-      <Skills />
-      <Projects />
-      <Experience />
-      <Education />
-      <DidYouKnow />
-      <Contact />
-    </MainLayout>
+    <ThemeProvider>
+      <MainLayout>
+        <Hero />
+        <Skills />
+        <Projects />
+        <Experience />
+        <Education />
+        <DidYouKnow />
+        <Contact />
+      </MainLayout>
+    </ThemeProvider>
   );
 }

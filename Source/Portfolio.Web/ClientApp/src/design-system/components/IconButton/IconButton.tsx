@@ -1,4 +1,4 @@
-import { colors, radius } from '../../tokens';
+import { radius } from '../../tokens';
 import type { IconButtonProps } from './IconButton.types';
 import { useButton } from '../../hooks';
 import { iconButtonSizeClasses, IconButtonSize } from './IconButton.consts';
@@ -25,7 +25,6 @@ export function IconButton({
     disabled,
     className: `${iconButtonSizeClasses[size]} flex items-center justify-center ${buttonRadius} backdrop-blur-sm transition-all duration-300 ${disabled ? 'opacity-60 cursor-not-allowed' : ''} ${className}`,
     onClick,
-    colors,
   });
   
   if (href) {

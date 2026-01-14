@@ -1,5 +1,6 @@
 import type { FocusEvent } from 'react';
-import { colors, radius } from '../../tokens';
+import { radius } from '../../tokens';
+import { useTheme } from '../../themes';
 import type { InputProps } from './Input.types';
 
 export function Input({ 
@@ -13,6 +14,9 @@ export function Input({
   label,
   className = ''
 }: InputProps) {
+  const { currentTheme } = useTheme();
+  const colors = currentTheme.colors;
+  
   const handleFocus = (e: FocusEvent<HTMLInputElement>) => {
     e.currentTarget.style.borderColor = colors.primary.borderHover;
     e.currentTarget.style.backgroundColor = colors.neutral.bgDarkFocus;
