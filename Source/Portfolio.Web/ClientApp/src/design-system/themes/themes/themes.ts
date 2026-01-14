@@ -1,5 +1,5 @@
 import type { Theme } from './themes.types';
-import { cosmosTheme } from './cosmos/cosmosTheme';
+import { cosmosTheme } from '../themes/cosmos/cosmosTheme';
 
 export const themes: Record<string, Theme> = {
   cosmos: cosmosTheme,

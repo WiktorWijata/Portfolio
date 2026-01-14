@@ -38,22 +38,34 @@ function Skills() {
         
         {/* Category filters */}
         <div className="flex flex-wrap justify-center gap-3 mb-12">
-          {categories.map((category) => (
-            <button
-              key={category.id}
-              onClick={() => setActiveCategory(category.id)}
-              className={`px-6 py-2 rounded-lg backdrop-blur-sm transition-all font-medium ${
-                activeCategory === category.id ? 'text-gray-300' : 'text-gray-400 hover:text-gray-300'
-              }`}
-              style={{
-                border: `1px solid ${activeCategory === category.id ? currentTheme.colors.primary.borderGlow : currentTheme.colors.neutral.border}`,
-                backgroundColor: activeCategory === category.id ? currentTheme.colors.primary.bgActive : currentTheme.colors.neutral.bg,
-                boxShadow: activeCategory === category.id ? '0 0 15px rgba(168, 85, 247, 0.4)' : 'none'
-              }}
-            >
-              {category.label}
-            </button>
-          ))}
+          {categories.map((category) => {
+            const isActive = activeCategory === category.id;
+            return (
+              <button
+                key={category.id}
+                onClick={() => setActiveCategory(category.id)}
+                className="px-6 py-2 rounded-lg backdrop-blur-sm transition-all font-medium"
+                style={{
+                  border: `1px solid ${isActive ? currentTheme.colors.primary.borderGlow : currentTheme.colors.neutral.border}`,
+                  backgroundColor: isActive ? currentTheme.colors.primary.bgActive : currentTheme.colors.neutral.bg,
+                  boxShadow: isActive ? currentTheme.colors.primary.glow : 'none',
+                  color: isActive ? currentTheme.colors.text.secondary : currentTheme.colors.text.muted
+                }}
+                onMouseEnter={(e) => {
+                  if (!isActive) {
+                    e.currentTarget.style.color = currentTheme.colors.text.secondary;
+                  }
+                }}
+                onMouseLeave={(e) => {
+                  if (!isActive) {
+                    e.currentTarget.style.color = currentTheme.colors.text.muted;
+                  }
+                }}
+              >
+                {category.label}
+              </button>
+            );
+          })}
         </div>
         
         <div className="w-[1406px] mx-auto mt-8">
@@ -86,10 +98,19 @@ function Skills() {
                     className="w-full h-full object-contain filter brightness-90 group-hover:brightness-110 transition-all"
                   />
                 ) : (
-                  <div className="text-purple-400 text-4xl font-bold">&lt;/&gt;</div>
+                  <div className="text-4xl font-bold" style={{ color: currentTheme.colors.primary.borderHover }}>&lt;/&gt;</div>
                 )}
               </div>
-              <span className="text-gray-400 text-sm font-medium group-hover:text-gray-300 transition-colors">
+              <span 
+                className="text-sm font-medium transition-colors" 
+                style={{ color: currentTheme.colors.text.muted }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.color = currentTheme.colors.text.secondary;
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.color = currentTheme.colors.text.muted;
+                }}
+              >
                 {tech.name}
               </span>
             </div>

@@ -9,6 +9,7 @@ export interface ThemeColors {
     borderHover: string;
     borderGlow: string;
     text: string;
+    glow: string;
   };
   neutral: {
     border: string;

@@ -14,6 +14,7 @@ export const cosmosTheme: Theme = {
       borderHover: 'rgba(168, 85, 247, 1)',
       borderGlow: 'rgba(168, 85, 247, 0.8)',
       text: '#e9d5ff',
+      glow: '0 0 15px rgba(168, 85, 247, 0.4)',
     },
     neutral: {
       border: 'rgba(255, 248, 231, 0.15)',

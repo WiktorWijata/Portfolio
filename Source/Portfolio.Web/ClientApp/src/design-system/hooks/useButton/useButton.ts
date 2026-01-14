@@ -6,7 +6,6 @@ import { useTheme } from '../../themes';
 export function useButton({ disabled, loading, className, onClick }: UseButtonOptions) {
   const { currentTheme } = useTheme();
   const colors = currentTheme.colors;
-  
   // Bazowe klasy dla przycisku
   const baseClass = 'inline-flex items-center justify-center font-semibold transition-colors duration-200 focus:outline-none';
 

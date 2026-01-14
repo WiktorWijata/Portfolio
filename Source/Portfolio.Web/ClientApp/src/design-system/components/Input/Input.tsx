@@ -16,7 +16,6 @@ export function Input({
 }: InputProps) {
   const { currentTheme } = useTheme();
   const colors = currentTheme.colors;
-  
   const handleFocus = (e: FocusEvent<HTMLInputElement>) => {
     e.currentTarget.style.borderColor = colors.primary.borderHover;
     e.currentTarget.style.backgroundColor = colors.neutral.bgDarkFocus;
