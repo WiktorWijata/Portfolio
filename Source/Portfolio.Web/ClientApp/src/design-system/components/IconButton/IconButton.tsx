@@ -1,8 +1,7 @@
 import { colors, radius } from '../../tokens';
 import type { IconButtonProps } from './IconButton.types';
 import { useButton } from '../../hooks';
-import { iconButtonSizeClasses } from './IconButton.consts';
-import { IconButtonSize } from '../../tokens/sizes';
+import { iconButtonSizeClasses, IconButtonSize } from './IconButton.consts';
 
 export function IconButton({ 
   children, 

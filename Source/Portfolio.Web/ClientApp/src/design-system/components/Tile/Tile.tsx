@@ -22,6 +22,8 @@ export function Tile({
         backgroundColor: colors.neutral.bg,
         backdropFilter: 'blur(8px)',
         WebkitBackdropFilter: 'blur(8px)',
+        transform: 'translateZ(0)',
+        WebkitTransform: 'translateZ(0)',
         ...style
       }}
     >

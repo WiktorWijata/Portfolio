@@ -7,6 +7,7 @@ export function useScrollReveal(options: UseScrollRevealOptions = {}) {
   const elementRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
+    const element = elementRef.current;
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -23,21 +24,21 @@ export function useScrollReveal(options: UseScrollRevealOptions = {}) {
       }
     );
 
-    if (elementRef.current) {
-      observer.observe(elementRef.current);
+    if (element) {
+      observer.observe(element);
     }
 
     return () => {
-      if (elementRef.current) {
-        observer.unobserve(elementRef.current);
+      if (element) {
+        observer.unobserve(element);
       }
     };
   }, [delay, threshold, rootMargin]);
 
   const className = `transition-all duration-1000 ease-out ${
     isVisible 
-      ? 'opacity-100 translate-y-0' 
-      : 'opacity-10 translate-y-16'
+      ? 'translate-y-0' 
+      : 'translate-y-16'
   }`;
 
   return { elementRef, className, isVisible };

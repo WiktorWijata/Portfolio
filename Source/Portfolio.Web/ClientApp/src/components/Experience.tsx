@@ -21,11 +21,12 @@ function Experience() {
 
         <Timeline>
           {experiences.map((exp, index) => (
-            <TimelineItem key={index} animationDelay={index * 0.2}>
+            <TimelineItem key={index}>
               <Tile
                   className="transition-all duration-500 relative"
                   style={{
-                    transformOrigin: 'left center'
+                    transformOrigin: 'left center',
+                    animation: `fadeIn 0.6s ease-out ${index * 0.2}s both`
                   }}
                 >
                   <Tag variant="date">

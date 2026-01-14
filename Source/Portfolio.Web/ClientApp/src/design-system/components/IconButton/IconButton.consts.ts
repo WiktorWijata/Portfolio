@@ -1,4 +1,8 @@
-import { IconButtonSize } from "../../tokens/sizes";
+export const IconButtonSize = {
+  SMALL: 'SMALL',
+  MEDIUM: 'MEDIUM',
+  LARGE: 'LARGE',
+} as const;
 
 export type IconButtonSizeType = typeof IconButtonSize[keyof typeof IconButtonSize];
 

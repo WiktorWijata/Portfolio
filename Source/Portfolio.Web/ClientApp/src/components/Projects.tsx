@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { SectionTitle, Tile, Tag, IconButton, Button, Icon, IconName, IconSize } from '../design-system/components';
 import { useScrollReveal } from '../design-system/hooks';
-import { IconButtonSize } from '../design-system/tokens';
+import { IconButtonSize } from '../design-system/components/IconButton/IconButton.consts';
 import { projects } from '../data';
 
 function Projects() {

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import type { FormEvent } from 'react';
 import { SectionTitle, Tile, IconButton, Input, Textarea, Button, Icon, IconName, IconSize } from '../design-system/components';
 import { useScrollReveal } from '../design-system/hooks';
-import { IconButtonSize } from '../design-system/tokens';
+import { IconButtonSize } from '../design-system/components/IconButton/IconButton.consts';
 
 function Contact() {
   const { elementRef, className } = useScrollReveal({ delay: 300 });

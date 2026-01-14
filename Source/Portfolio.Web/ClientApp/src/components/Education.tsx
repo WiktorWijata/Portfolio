@@ -38,9 +38,6 @@ function Education() {
               <div
                 key={index}
                 className="relative pr-12"
-                style={{
-                  animation: `fadeIn 0.6s ease-out ${index * 0.2}s both`
-                }}
               >
                 {/* Timeline dot */}
                 <div
@@ -59,6 +56,9 @@ function Education() {
                   style={{
                     border: '1px solid rgba(255, 248, 231, 0.15)',
                     backgroundColor: 'rgba(255, 248, 231, 0.03)',
+                    animation: `fadeIn 0.6s ease-out ${index * 0.2}s both`,
+                    transform: 'translateZ(0)',
+                    WebkitTransform: 'translateZ(0)',
                     transformOrigin: 'right center'
                   }}
                 >

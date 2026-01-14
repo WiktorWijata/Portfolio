@@ -1,12 +1,9 @@
 import type { TimelineItemProps } from './TimelineItem.types';
 
-export function TimelineItem({ children, className = '', animationDelay = 0 }: TimelineItemProps) {
+export function TimelineItem({ children, className = '' }: TimelineItemProps) {
   return (
     <div
       className={`relative pl-12 ${className}`}
-      style={{
-        animation: `fadeIn 0.6s ease-out ${animationDelay}s both`
-      }}
     >
       {/* Timeline dot */}
       <div
