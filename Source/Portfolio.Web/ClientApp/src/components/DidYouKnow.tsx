@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { SectionTitle, Tile, IconButton } from '../design-system/components';
-import { useScrollReveal } from '../design-system/hooks';
+import { useScrollReveal, fadeIn } from '../design-system/hooks';
 import { IconButtonSize } from '../design-system/components/IconButton/IconButton.consts';
 
 interface Fact {
@@ -81,7 +81,8 @@ function DidYouKnow() {
                     className="text-center flex flex-col justify-center items-center"
                     style={{
                       minHeight: '320px',
-                      padding: '3rem'
+                      padding: '3rem',
+                      ...fadeIn({ duration: 0.6, delay: 0.2 })
                     }}
                   >
                     <div className="text-6xl mb-6">{fact.icon}</div>

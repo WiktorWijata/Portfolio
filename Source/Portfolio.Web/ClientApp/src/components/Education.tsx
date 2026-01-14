@@ -1,4 +1,4 @@
-import { useScrollReveal } from '../design-system/hooks';
+import { useScrollReveal, fadeInStagger } from '../design-system/hooks';
 import { education } from '../data';
 
 function Education() {
@@ -56,7 +56,7 @@ function Education() {
                   style={{
                     border: '1px solid rgba(255, 248, 231, 0.15)',
                     backgroundColor: 'rgba(255, 248, 231, 0.03)',
-                    animation: `fadeIn 0.6s ease-out ${index * 0.2}s both`,
+                    ...fadeInStagger(index, { staggerDelay: 0.2, duration: 0.6 }),
                     transform: 'translateZ(0)',
                     WebkitTransform: 'translateZ(0)',
                     transformOrigin: 'right center'

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { SectionTitle, Button } from '../design-system/components';
-import { useScrollReveal } from '../design-system/hooks';
+import { useScrollReveal, fadeInStagger } from '../design-system/hooks';
 import { technologies } from '../data';
 
 type Category = 'all' | 'frontend' | 'backend' | 'mobile' | 'database' | 'devops' | 'design' | 'others';
@@ -73,7 +73,7 @@ function Skills() {
                 backgroundColor: 'rgba(255, 248, 231, 0.03)',
                 backdropFilter: 'blur(8px)',
                 WebkitBackdropFilter: 'blur(8px)',
-                animation: `fadeIn 0.4s ease-out ${index * 0.05}s both`
+                ...fadeInStagger(index, { staggerDelay: 0.05, duration: 0.4 })
               }}
             >
               <div className="w-16 h-16 flex items-center justify-center">

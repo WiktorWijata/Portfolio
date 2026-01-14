@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { SectionTitle, Tile, Tag, IconButton, Button, Icon, IconName, IconSize } from '../design-system/components';
-import { useScrollReveal } from '../design-system/hooks';
+import { useScrollReveal, fadeInStagger } from '../design-system/hooks';
 import { IconButtonSize } from '../design-system/components/IconButton/IconButton.consts';
 import { projects } from '../data';
 
@@ -27,7 +27,7 @@ function Projects() {
                 index >= 3 && !showAllProjects ? 'opacity-0 scale-95' : 'opacity-100 scale-100'
               }`}
               style={{
-                animation: `fadeIn 0.4s ease-out ${index * 0.1}s both`
+                ...fadeInStagger(index, { staggerDelay: 0.1, duration: 0.4 })
               }}
             >
               <h3 className="text-2xl font-bold text-gray-200 mb-3">

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { SectionTitle, Tag, Button, Tile, Timeline, TimelineItem } from '../design-system/components';
-import { useScrollReveal } from '../design-system/hooks';
+import { useScrollReveal, fadeInStagger } from '../design-system/hooks';
 import { experiences } from '../data';
 
 function Experience() {
@@ -26,7 +26,7 @@ function Experience() {
                   className="transition-all duration-500 relative"
                   style={{
                     transformOrigin: 'left center',
-                    animation: `fadeIn 0.6s ease-out ${index * 0.2}s both`
+                    ...fadeInStagger(index, { staggerDelay: 0.2, duration: 0.6 })
                   }}
                 >
                   <Tag variant="date">
