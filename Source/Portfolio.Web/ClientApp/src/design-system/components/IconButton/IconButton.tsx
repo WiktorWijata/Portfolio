@@ -23,7 +23,7 @@ export function IconButton({
     style,
   } = useButton({
     disabled,
-    className: `${iconButtonSizeClasses[size]} flex items-center justify-center ${buttonRadius} backdrop-blur-sm transition-all duration-300 ${!disabled ? 'hover:scale-110' : 'opacity-60 cursor-not-allowed'} ${className}`,
+    className: `${iconButtonSizeClasses[size]} flex items-center justify-center ${buttonRadius} backdrop-blur-sm transition-all duration-300 ${disabled ? 'opacity-60 cursor-not-allowed' : ''} ${className}`,
     onClick,
     colors,
   });

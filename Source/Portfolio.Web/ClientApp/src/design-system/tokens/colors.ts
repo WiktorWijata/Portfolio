@@ -3,10 +3,10 @@ export const colors = {
   // Primary (Purple)
   primary: {
     bg: 'rgba(168, 85, 247, 0.1)',
-    bgHover: 'rgba(168, 85, 247, 0.2)',
+    bgHover: 'rgba(168, 85, 247, 0.5)',
     bgActive: 'rgba(168, 85, 247, 0.3)',
     border: 'rgba(168, 85, 247, 0.4)',
-    borderHover: 'rgba(168, 85, 247, 0.6)',
+    borderHover: 'rgba(168, 85, 247, 1)',
     borderGlow: 'rgba(168, 85, 247, 0.8)',
     text: '#e9d5ff',
   },

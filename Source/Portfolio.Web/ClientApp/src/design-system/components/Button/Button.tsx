@@ -23,7 +23,7 @@ export function Button({
     style,
   } = useButton({
     disabled,
-    className: `${buttonRadius} font-medium transition-all duration-300 ${sizeClasses} ${!disabled ? 'hover:scale-105' : 'opacity-60 cursor-not-allowed'} ${className}`,
+    className: `${buttonRadius} font-medium transition-all duration-300 ${sizeClasses} ${disabled ? 'opacity-60 cursor-not-allowed' : ''} ${className}`,
     onClick,
     colors,
   });
@@ -35,8 +35,9 @@ export function Button({
       disabled={isDisabled}
       className={computedClassName}
       style={{
-        ...style,
-        backdropFilter: 'blur(10px)'
+        backdropFilter: 'blur(10px)',
+        WebkitBackdropFilter: 'blur(10px)',
+        ...style
       }}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
