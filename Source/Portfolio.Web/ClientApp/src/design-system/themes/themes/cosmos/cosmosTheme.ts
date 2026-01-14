@@ -17,16 +17,16 @@ export const cosmosTheme: Theme = {
       glow: '0 0 15px rgba(168, 85, 247, 0.4)',
     },
     neutral: {
-      border: 'rgba(255, 248, 231, 0.15)',
-      bg: 'rgba(255, 248, 231, 0.03)',
+      border: 'rgba(229, 231, 235, 0.15)',
+      bg: 'transparent',
       bgDark: 'rgba(0, 0, 0, 0.3)',
       bgDarkFocus: 'rgba(0, 0, 0, 0.5)',
       bgDarkest: 'rgba(0, 0, 0, 0.95)',
     },
     text: {
-      primary: 'text-gray-200',
-      secondary: 'text-gray-300',
-      muted: 'text-gray-400',
+      primary: '#e5e7eb',    // gray-200
+      secondary: '#d1d5db',  // gray-300
+      muted: '#9ca3af',      // gray-400
     },
     gradient: {
       title: 'linear-gradient(to right, #6b21a8, #a855f7, #c084fc, #e9d5ff)',

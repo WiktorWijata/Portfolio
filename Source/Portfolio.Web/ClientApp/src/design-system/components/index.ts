@@ -2,6 +2,8 @@ export { Tile } from './Tile';
 export { Button } from './Button';
 export { SectionTitle } from './SectionTitle';
 export { Tag } from './Tag';
+export { Text, TextSize, TextVariant, TextWeight, TextAlign, TextAs } from './Text';
+export type { TextProps, TextSizeType, TextVariantType, TextWeightType, TextAlignType, TextAsType } from './Text';
 export { Icon, IconName, IconSize } from './Icon';
 export { IconButton } from './IconButton';
 export { Input } from './Input';

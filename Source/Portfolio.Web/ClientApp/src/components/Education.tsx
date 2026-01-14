@@ -1,3 +1,4 @@
+import { SectionTitle, Tag, Text, TextSize, TextVariant, TextWeight, TextAs } from '../design-system/components';
 import { useScrollReveal, fadeInStagger } from '../design-system/hooks';
 import { useTheme } from '../design-system/themes';
 import { education } from '../data';
@@ -9,19 +10,7 @@ function Education() {
   return (
     <section id="education" ref={elementRef} className={`py-20 px-4 ${className}`}>
       <div className="container mx-auto px-0">
-        <h2 className="text-3xl md:text-4xl font-bold text-center mb-16">
-          <span 
-            style={{
-              background: 'linear-gradient(to right, #6b21a8, #a855f7, #c084fc, #e9d5ff)',
-              WebkitBackgroundClip: 'text',
-              backgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              display: 'inline-block'
-            }}
-          >
-            Edukacja i certyfikaty
-          </span>
-        </h2>
+        <SectionTitle>Edukacja i certyfikaty</SectionTitle>
 
         <div className="w-[1406px] mx-auto relative px-0">
           {/* Vertical timeline line */}
@@ -30,7 +19,7 @@ function Education() {
             style={{
               top: '-60px',
               height: 'calc(100% + 120px)',
-              background: 'linear-gradient(to bottom, #6b21a8, #a855f7, #c084fc, #e9d5ff)',
+              background: currentTheme.colors.gradient.title,
               maskImage: 'linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%)',
               WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%)'
             }}
@@ -47,9 +36,9 @@ function Education() {
                   style={{
                     top: '50%',
                     transform: 'translateY(-50%)',
-                    borderColor: '#a855f7',
-                    backgroundColor: '#1a0a2e',
-                    boxShadow: '0 0 20px rgba(168, 85, 247, 0.6)'
+                    borderColor: currentTheme.colors.primary.borderHover,
+                    backgroundColor: currentTheme.colors.neutral.bgDarkest,
+                    boxShadow: currentTheme.colors.primary.glow
                   }}
                 ></div>
                 {/* Content card */}
@@ -64,19 +53,15 @@ function Education() {
                     transformOrigin: 'right center'
                   }}
                 >
-                  <span
-                    className="absolute top-4 right-4 text-gray-300 text-sm font-semibold px-2 py-1 rounded backdrop-blur-sm"
-                    style={{
-                      border: `1px solid ${currentTheme.colors.neutral.border}`,
-                      backgroundColor: currentTheme.colors.neutral.bg
-                    }}
-                  >
-                    {edu.period}
-                  </span>
+                  <Tag variant="date">{edu.period}</Tag>
                   <div className="flex items-center gap-3 mb-1">
-                    <h3 className="text-xl font-bold text-gray-200">{edu.degree}</h3>
+                    <Text as={TextAs.H3} size={TextSize.MD} variant={TextVariant.PRIMARY} weight={TextWeight.BOLD}>
+                      {edu.degree}
+                    </Text>
                   </div>
-                  <p className="text-base text-purple-400 font-medium">{edu.school}</p>
+                  <Text size={TextSize.SM} variant={TextVariant.ACCENT} weight={TextWeight.MEDIUM}>
+                    {edu.school}
+                  </Text>
                 </div>
               </div>
             ))}
