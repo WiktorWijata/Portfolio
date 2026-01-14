@@ -1,9 +1,29 @@
 import { useState } from 'react';
-import { SectionTitle, Tag, Button, Tile, Timeline, TimelineItem } from '../design-system/components';
+import { 
+  SectionTitle, 
+  Tag, 
+  TagVariant, 
+  Button, 
+  Tile, 
+  Timeline, 
+  TimelineItem, 
+  Text, 
+  TextAs, 
+  TextVariant, 
+  TextSize, 
+  Collapsible,
+  List,
+  TagGroup,
+  Icon,
+  IconName,
+  IconSize
+} from '../design-system/components';
 import { useScrollReveal, fadeInStagger } from '../design-system/hooks';
+import { useTheme } from '../design-system/themes';
 import { experiences } from '../data';
 
 function Experience() {
+  const { currentTheme } = useTheme();
   const { elementRef, className } = useScrollReveal({ delay: 200 });
   const [expandedCards, setExpandedCards] = useState<{ [key: number]: boolean }>({});
 
@@ -29,46 +49,30 @@ function Experience() {
                     ...fadeInStagger(index, { staggerDelay: 0.2, duration: 0.6 })
                   }}
                 >
-                  <Tag variant="date">
+                  <Tag variant={TagVariant.DATE}>
                     {exp.period}
                   </Tag>
-                  <div className="flex items-center gap-3 mb-1">
-                    <h3 className="text-xl font-bold text-gray-200">{exp.position}</h3>
-                  </div>
-                  <p 
-                    className="text-base text-purple-400 font-medium"
-                    style={{
-                      marginBottom: expandedCards[index] ? '16px' : '0',
-                      transition: 'margin-bottom 0.5s ease-in-out'
-                    }}
-                  >
+                  <Text className="mb-1" as={TextAs.H3} size={TextSize.MD}>
+                    {exp.position}
+                  </Text>
+                  <Text variant={TextVariant.ACCENT} size={TextSize.SM}>
                     {exp.company}
-                  </p>
-                  <div 
-                    style={{
-                      maxHeight: expandedCards[index] ? '500px' : '0',
-                      overflow: 'hidden',
-                      transition: 'max-height 0.5s ease-in-out',
-                      marginBottom: expandedCards[index] ? '16px' : '0'
-                    }}
-                  >
-                    <ul className="space-y-2">
-                      {exp.description.map((desc, descIndex) => (
-                        <li key={descIndex} className="text-gray-400 text-sm flex items-start">
-                          <span className="text-purple-400 mr-2 mt-1">▹</span>
-                          <span>{desc}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
+                  </Text>
+                  <Collapsible isOpen={expandedCards[index]}>
+                    <List 
+                      items={exp.description}
+                      bullet={<Icon name={IconName.CHEVRON_RIGHT} size={IconSize.XS} color={currentTheme.colors.primary.borderHover} />}
+                      contentVariant={TextVariant.SECONDARY}
+                      size={TextSize.XS}
+                      className="mt-4"
+                    />
+                  </Collapsible>
                   <div className="flex flex-wrap gap-2 mt-4 items-center">
-                    <div className="flex flex-wrap gap-2 flex-1">
-                      {exp.technologies.map((tech, techIndex) => (
-                        <Tag key={techIndex} variant="neutral">
-                          {tech}
-                        </Tag>
-                      ))}
-                    </div>
+                    <TagGroup 
+                      items={exp.technologies} 
+                      variant={TagVariant.NEUTRAL}
+                      className="flex-1"
+                    />
                     {exp.description.length > 0 && (
                       <Button
                         onClick={() => toggleCard(index)}

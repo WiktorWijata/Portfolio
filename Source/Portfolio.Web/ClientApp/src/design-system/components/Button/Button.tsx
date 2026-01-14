@@ -7,6 +7,7 @@ export function Button({
   children, 
   onClick, 
   disabled = false,
+  isActive = false,
   className = '',
   type = 'button',
   variant = 'primary'
@@ -23,6 +24,7 @@ export function Button({
     style,
   } = useButton({
     disabled,
+    isActive,
     className: `${buttonRadius} font-medium transition-all duration-300 ${sizeClasses} ${disabled ? 'opacity-60 cursor-not-allowed' : ''} ${className}`,
     onClick,
   });

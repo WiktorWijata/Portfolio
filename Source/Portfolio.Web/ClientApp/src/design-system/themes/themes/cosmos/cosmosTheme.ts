@@ -30,6 +30,7 @@ export const cosmosTheme: Theme = {
     },
     gradient: {
       title: 'linear-gradient(to right, #6b21a8, #a855f7, #c084fc, #e9d5ff)',
+      timeline: 'linear-gradient(to bottom, #6b21a8, #a855f7, #c084fc, #e9d5ff)',
     },
   },
 };

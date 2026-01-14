@@ -1,5 +1,14 @@
 import { useState } from 'react';
-import { SectionTitle, Button } from '../design-system/components';
+import { 
+  SectionTitle, 
+  Button, 
+  Text, 
+  TextSize, 
+  TextVariant, 
+  TextWeight, 
+  ToggleButtonGroup, 
+  Collapsible 
+} from '../design-system/components';
 import { useScrollReveal, fadeInStagger } from '../design-system/hooks';
 import { useTheme } from '../design-system/themes';
 import { technologies } from '../data';
@@ -13,14 +22,14 @@ function Skills() {
   const [isExpanded, setIsExpanded] = useState(false);
 
   const categories = [
-    { id: 'all' as Category, label: 'Wszystkie' },
-    { id: 'frontend' as Category, label: 'Frontend' },
-    { id: 'backend' as Category, label: 'Backend' },
-    { id: 'mobile' as Category, label: 'Mobile' },
-    { id: 'database' as Category, label: 'Database' },
-    { id: 'devops' as Category, label: 'DevOps' },
-    { id: 'design' as Category, label: 'Design' },
-    { id: 'others' as Category, label: 'Inne' }
+    { value: 'all' as Category, label: 'Wszystkie' },
+    { value: 'frontend' as Category, label: 'Frontend' },
+    { value: 'backend' as Category, label: 'Backend' },
+    { value: 'mobile' as Category, label: 'Mobile' },
+    { value: 'database' as Category, label: 'Database' },
+    { value: 'devops' as Category, label: 'DevOps' },
+    { value: 'design' as Category, label: 'Design' },
+    { value: 'others' as Category, label: 'Inne' }
   ];
 
   const filteredTechnologies = activeCategory === 'all' 
@@ -36,95 +45,76 @@ function Skills() {
           Umiejętności i technologie
         </SectionTitle>
         
-        {/* Category filters */}
-        <div className="flex flex-wrap justify-center gap-3 mb-12">
-          {categories.map((category) => {
-            const isActive = activeCategory === category.id;
-            return (
-              <button
-                key={category.id}
-                onClick={() => setActiveCategory(category.id)}
-                className="px-6 py-2 rounded-lg backdrop-blur-sm transition-all font-medium"
-                style={{
-                  border: `1px solid ${isActive ? currentTheme.colors.primary.borderGlow : currentTheme.colors.neutral.border}`,
-                  backgroundColor: isActive ? currentTheme.colors.primary.bgActive : currentTheme.colors.neutral.bg,
-                  boxShadow: isActive ? currentTheme.colors.primary.glow : 'none',
-                  color: isActive ? currentTheme.colors.text.secondary : currentTheme.colors.text.muted
-                }}
-                onMouseEnter={(e) => {
-                  if (!isActive) {
-                    e.currentTarget.style.color = currentTheme.colors.text.secondary;
-                  }
-                }}
-                onMouseLeave={(e) => {
-                  if (!isActive) {
-                    e.currentTarget.style.color = currentTheme.colors.text.muted;
-                  }
-                }}
-              >
-                {category.label}
-              </button>
-            );
-          })}
+        <div className="flex flex-wrap justify-center mb-12">
+          <ToggleButtonGroup
+            value={activeCategory}
+            onChange={setActiveCategory}
+            options={categories}
+          />
         </div>
         
         <div className="w-[1406px] mx-auto mt-8">
-          <div 
-            key={activeCategory}
-            className="flex flex-wrap justify-center gap-8 overflow-hidden transition-all duration-700 ease-in-out py-6"
-            style={{
-              maxHeight: isExpanded ? '2000px' : '192px'
-            }}
+          <Collapsible 
+            isOpen={isExpanded} 
+            maxHeight="2000px"
+            minHeight="192px"
+            duration={0.7}
           >
-            {filteredTechnologies.map((tech, index) => (
             <div 
-              key={`${activeCategory}-${tech.name}`}
-              className={`flex flex-col items-center gap-3 p-6 w-40 rounded-lg hover:scale-110 group transition-all duration-500 ${
-                index >= 7 && !isExpanded ? 'opacity-0 scale-95' : 'opacity-100 scale-100'
-              }`}
-              style={{ 
-                border: `1px solid ${currentTheme.colors.neutral.border}`,
-                backgroundColor: currentTheme.colors.neutral.bg,
-                backdropFilter: 'blur(8px)',
-                WebkitBackdropFilter: 'blur(8px)',
-                ...fadeInStagger(index, { staggerDelay: 0.05, duration: 0.4 })
-              }}
+              key={activeCategory} 
+              className="flex flex-wrap justify-center gap-8 py-6"
             >
-              <div className="w-16 h-16 flex items-center justify-center">
-                {tech.icon ? (
-                  <img 
-                    src={tech.icon} 
-                    alt={tech.name}
-                    className="w-full h-full object-contain filter brightness-90 group-hover:brightness-110 transition-all"
-                  />
-                ) : (
-                  <div className="text-4xl font-bold" style={{ color: currentTheme.colors.primary.borderHover }}>&lt;/&gt;</div>
-                )}
-              </div>
-              <span 
-                className="text-sm font-medium transition-colors" 
-                style={{ color: currentTheme.colors.text.muted }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.color = currentTheme.colors.text.secondary;
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.color = currentTheme.colors.text.muted;
-                }}
-              >
-                {tech.name}
-              </span>
+              {filteredTechnologies.map((tech, index) => (
+                <div 
+                  key={`${activeCategory}-${tech.name}`}
+                  className={`flex flex-col items-center gap-3 p-6 w-40 rounded-lg hover:scale-110 group transition-all duration-500 ${
+                    index >= 7 && !isExpanded ? 'opacity-0 scale-95' : 'opacity-100 scale-100'
+                  }`}
+                  style={{ 
+                    border: `1px solid ${currentTheme.colors.neutral.border}`,
+                    backgroundColor: currentTheme.colors.neutral.bg,
+                    backdropFilter: 'blur(8px)',
+                    WebkitBackdropFilter: 'blur(8px)',
+                    ...fadeInStagger(index, { staggerDelay: 0.05, duration: 0.4 })
+                  }}
+                >
+                  <div className="w-16 h-16 flex items-center justify-center">
+                    {tech.icon ? (
+                      <img 
+                        src={tech.icon} 
+                        alt={tech.name}
+                        className="w-full h-full object-contain filter brightness-90 group-hover:brightness-110 transition-all"
+                      />
+                    ) : (
+                      <Text 
+                        size={TextSize.XL} 
+                        variant={TextVariant.ACCENT} 
+                        weight={TextWeight.BOLD}
+                      >
+                        &lt;/&gt;
+                      </Text>
+                    )}
+                  </div>
+                  <Text 
+                    size={TextSize.XS} 
+                    variant={TextVariant.MUTED} 
+                    weight={TextWeight.MEDIUM}
+                    hover
+                  >
+                    {tech.name}
+                  </Text>
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
+          </Collapsible>
         
-        {/* Show More/Less Button */}
-        {hasMoreThanOneRow && (
-          <div className="flex justify-center mt-8">
-            <Button onClick={() => setIsExpanded(!isExpanded)}>
-              {isExpanded ? 'Pokaż mniej' : 'Pokaż więcej'}
-            </Button>
-          </div>
-        )}
+          {hasMoreThanOneRow && (
+            <div className="flex justify-center mt-8">
+              <Button onClick={() => setIsExpanded(!isExpanded)}>
+                {isExpanded ? 'Pokaż mniej' : 'Pokaż więcej'}
+              </Button>
+            </div>
+          )}
         </div>
       </div>
     </section>

@@ -3,7 +3,7 @@ import type { MouseEvent } from 'react';
 import type { UseButtonOptions } from './useButton.types';
 import { useTheme } from '../../themes';
 
-export function useButton({ disabled, loading, className, onClick }: UseButtonOptions) {
+export function useButton({ disabled, loading, isActive = false, className, onClick }: UseButtonOptions) {
   const { currentTheme } = useTheme();
   const colors = currentTheme.colors;
   // Bazowe klasy dla przycisku
@@ -38,14 +38,22 @@ export function useButton({ disabled, loading, className, onClick }: UseButtonOp
   };
 
   const handleMouseLeave = (e: MouseEvent<HTMLElement>) => {
-    e.currentTarget.style.backgroundColor = colors.primary.bg;
-    e.currentTarget.style.borderColor = colors.primary.border;
+    if (isActive) {
+      e.currentTarget.style.backgroundColor = colors.primary.bgActive;
+      e.currentTarget.style.borderColor = colors.primary.borderGlow;
+      e.currentTarget.style.boxShadow = colors.primary.glow;
+    } else {
+      e.currentTarget.style.backgroundColor = colors.primary.bg;
+      e.currentTarget.style.borderColor = colors.primary.border;
+      e.currentTarget.style.boxShadow = 'none';
+    }
   };
 
   const style = {
-    border: `1px solid ${colors.primary.border}`,
-    backgroundColor: colors.primary.bg,
-    color: colors.primary.text,
+    border: `1px solid ${isActive ? colors.primary.borderGlow : colors.primary.border}`,
+    backgroundColor: isActive ? colors.primary.bgActive : colors.primary.bg,
+    color: isActive ? colors.text.secondary : colors.primary.text,
+    boxShadow: isActive ? colors.primary.glow : 'none',
   };
 
   return {

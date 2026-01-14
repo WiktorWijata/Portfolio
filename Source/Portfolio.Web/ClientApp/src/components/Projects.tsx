@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { SectionTitle, Tile, Tag, IconButton, Button, Icon, IconName, IconSize } from '../design-system/components';
+import { SectionTitle, Tile, Tag, TagVariant, TagGroup, IconButton, Button, Icon, IconName, IconSize } from '../design-system/components';
 import { useScrollReveal, fadeInStagger } from '../design-system/hooks';
 import { IconButtonSize } from '../design-system/components/IconButton/IconButton.consts';
 import { projects } from '../data';
@@ -35,13 +35,10 @@ function Projects() {
               </h3>
               
               <div className="mb-4">
-                <div className="flex flex-wrap gap-2">
-                  {project.technologies.map((tech, techIndex) => (
-                    <Tag key={techIndex} variant="neutral">
-                      {tech}
-                    </Tag>
-                  ))}
-                </div>
+                <TagGroup 
+                  items={project.technologies}
+                  variant={TagVariant.NEUTRAL}
+                />
               </div>
               
               <p className="text-gray-400 mb-4">

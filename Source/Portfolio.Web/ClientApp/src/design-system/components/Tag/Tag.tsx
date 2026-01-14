@@ -1,14 +1,12 @@
 import { radius } from '../../tokens';
 import { useTheme } from '../../themes';
 import type { TagProps } from './Tag.types';
+import { TagVariant, tagVariantClasses } from './Tag.consts';
 
-export function Tag({ children, variant = 'neutral', className = '' }: TagProps) {
+export function Tag({ children, variant = TagVariant.NEUTRAL, className = '' }: TagProps) {
   const { currentTheme } = useTheme();
   const baseClasses = `font-semibold text-gray-300 backdrop-blur-sm`;
-  
-  const variantClasses = variant === 'date' 
-    ? 'absolute top-4 right-4 text-sm px-2 py-1'
-    : 'px-2 py-1 text-xs';
+  const variantClasses = tagVariantClasses[variant];
   
   return (
     <span 

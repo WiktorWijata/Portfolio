@@ -1,15 +1,15 @@
 import { useState } from 'react';
 import { useTheme } from '../../themes';
+import { Alignment } from '../../tokens';
 import type { TextProps } from './Text.types';
 import { 
   TextSize, 
   TextVariant, 
-  TextWeight, 
-  TextAlign,
+  TextWeight,
   TextAs,
   textSizeClasses, 
-  textWeightClasses, 
-  textAlignClasses,
+  textWeightClasses,
+  textAlignmentClasses,
   getTextVariantColor
 } from './Text.consts';
 
@@ -18,13 +18,18 @@ export function Text({
   size = TextSize.SM,
   variant = TextVariant.PRIMARY,
   weight = TextWeight.NORMAL,
-  align = TextAlign.LEFT,
+  align = Alignment.LEFT,
   as = TextAs.P,
   className = '',
   hover = false,
+  style: customStyle,
 }: TextProps) {
   const { currentTheme } = useTheme();
   const [isHovered, setIsHovered] = useState(false);
+
+  const sizeClass = textSizeClasses[size];
+  const weightClass = textWeightClasses[weight];
+  const alignClass = textAlignmentClasses[align];
 
   const getColor = () => {
     if (hover && isHovered) {
@@ -34,9 +39,9 @@ export function Text({
   };
 
   const classes = [
-    textSizeClasses[size],
-    textWeightClasses[weight],
-    textAlignClasses[align],
+    sizeClass,
+    weightClass,
+    alignClass,
     hover ? 'transition-colors cursor-pointer' : '',
     className,
   ]
@@ -45,6 +50,7 @@ export function Text({
 
   const style = {
     color: getColor(),
+    ...customStyle,
   };
 
   const Component = as as keyof JSX.IntrinsicElements;

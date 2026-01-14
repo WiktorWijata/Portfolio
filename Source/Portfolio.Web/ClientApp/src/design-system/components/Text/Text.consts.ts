@@ -26,15 +26,6 @@ export const TextWeight = {
 
 export type TextWeightType = typeof TextWeight[keyof typeof TextWeight];
 
-export const TextAlign = {
-  LEFT: 'LEFT',
-  CENTER: 'CENTER',
-  RIGHT: 'RIGHT',
-  JUSTIFY: 'JUSTIFY',
-} as const;
-
-export type TextAlignType = typeof TextAlign[keyof typeof TextAlign];
-
 export const TextAs = {
   P: 'p',
   SPAN: 'span',
@@ -66,12 +57,14 @@ export const textWeightClasses: Record<TextWeightType, string> = {
   [TextWeight.BOLD]: 'font-bold',
 };
 
-// Mapowanie wyrównania na klasy Tailwind
-export const textAlignClasses: Record<TextAlignType, string> = {
-  [TextAlign.LEFT]: 'text-left',
-  [TextAlign.CENTER]: 'text-center',
-  [TextAlign.RIGHT]: 'text-right',
-  [TextAlign.JUSTIFY]: 'text-justify',
+// Mapowanie wyrównania tekstu na klasy Tailwind (specyficzne dla Text)
+import { Alignment, type AlignmentType } from '../../tokens';
+
+export const textAlignmentClasses: Record<AlignmentType, string> = {
+  [Alignment.LEFT]: 'text-left',
+  [Alignment.CENTER]: 'text-center',
+  [Alignment.RIGHT]: 'text-right',
+  [Alignment.JUSTIFY]: 'text-justify',
 };
 
 // Mapowanie wariantów kolorów - wymaga currentTheme
