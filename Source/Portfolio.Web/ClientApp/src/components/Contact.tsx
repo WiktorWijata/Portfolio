@@ -1,12 +1,10 @@
 import { useState } from 'react';
 import type { FormEvent } from 'react';
-import { SectionTitle, Tile, IconButton, Input, Textarea, Button, Icon, IconName, IconSize } from '../design-system/components';
+import { SectionTitle, Tile, IconButton, Input, Textarea, Button, Icon, IconName, IconSize, Text, TextSize, TextVariant, TextWeight, TextAs, Alignment, Link, LinkVariant, Toast, ToastVariant } from '../design-system/components';
 import { useScrollReveal } from '../design-system/hooks';
-import { useTheme } from '../design-system/themes';
 import { IconButtonSize } from '../design-system/components/IconButton/IconButton.consts';
 
 function Contact() {
-  const { currentTheme } = useTheme();
   const { elementRef, className } = useScrollReveal({ delay: 300 });
   const [formData, setFormData] = useState({
     name: '',
@@ -43,12 +41,23 @@ function Contact() {
           {/* Contact Info */}
           <div className="mb-12">
             <div className="text-center mb-8">
-              <h3 className="text-2xl font-bold text-gray-200 mb-4">
+              <Text 
+                as={TextAs.H3} 
+                size={TextSize.LG} 
+                weight={TextWeight.BOLD} 
+                variant={TextVariant.PRIMARY}
+                align={Alignment.CENTER}
+                className="mb-4"
+              >
                 Skontaktuj się ze mną
-              </h3>
-              <p className="text-gray-400 leading-relaxed">
+              </Text>
+              <Text 
+                variant={TextVariant.MUTED}
+                align={Alignment.CENTER}
+                className="leading-relaxed"
+              >
                 Szukasz doświadczonego backend developera? Chętnie porozmawiam o Twoim projekcie!
-              </p>
+              </Text>
             </div>
 
             <div className="flex justify-between gap-8">
@@ -57,15 +66,22 @@ function Contact() {
                   <Icon name={IconName.GITHUB} size={IconSize.LG} />
                 </IconButton>
                 <div>
-                  <div className="font-semibold text-gray-300 text-lg mb-1">GitHub</div>
-                  <a 
+                  <Text 
+                    size={TextSize.MD} 
+                    weight={TextWeight.SEMIBOLD} 
+                    variant={TextVariant.PRIMARY}
+                    className="mb-1"
+                  >
+                    GitHub
+                  </Text>
+                  <Link 
                     href="https://github.com/twoj-profil" 
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-gray-400 hover:text-purple-300 transition-colors text-base"
+                    variant={LinkVariant.CONTACT}
                   >
                     github.com/twoj-profil
-                  </a>
+                  </Link>
                 </div>
               </Tile>
 
@@ -74,15 +90,22 @@ function Contact() {
                   <Icon name={IconName.LINKEDIN} size={IconSize.LG} />
                 </IconButton>
                 <div>
-                  <div className="font-semibold text-gray-300 text-lg mb-1">LinkedIn</div>
-                  <a 
+                  <Text 
+                    size={TextSize.MD} 
+                    weight={TextWeight.SEMIBOLD} 
+                    variant={TextVariant.PRIMARY}
+                    className="mb-1"
+                  >
+                    LinkedIn
+                  </Text>
+                  <Link 
                     href="https://linkedin.com/in/twoj-profil" 
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-gray-400 hover:text-purple-300 transition-colors text-base"
+                    variant={LinkVariant.CONTACT}
                   >
                     /in/twoj-profil
-                  </a>
+                  </Link>
                 </div>
               </Tile>
 
@@ -91,26 +114,27 @@ function Contact() {
                   <Icon name={IconName.EMAIL} size={IconSize.LG} />
                 </IconButton>
                 <div>
-                  <div className="font-semibold text-gray-300 text-lg mb-1">Email</div>
-                  <a 
+                  <Text 
+                    size={TextSize.MD} 
+                    weight={TextWeight.SEMIBOLD} 
+                    variant={TextVariant.PRIMARY}
+                    className="mb-1"
+                  >
+                    Email
+                  </Text>
+                  <Link 
                     href="mailto:twoj@email.com" 
-                    className="text-gray-400 hover:text-purple-300 transition-colors text-base"
+                    variant={LinkVariant.CONTACT}
                   >
                     twoj@email.com
-                  </a>
+                  </Link>
                 </div>
               </Tile>
             </div>
           </div>
 
           {/* Contact Form */}
-          <div 
-            className="rounded-lg p-8 backdrop-blur-sm overflow-visible"
-            style={{
-              border: `1px solid ${currentTheme.colors.neutral.border}`,
-              backgroundColor: currentTheme.colors.neutral.bg
-            }}
-          >
+          <Tile className="p-8">
             <form onSubmit={handleSubmit} className="space-y-5">
               <Input
                 id="name"
@@ -152,13 +176,11 @@ function Contact() {
                 {status === 'sending' ? 'Wysyłanie...' : 'Wyślij wiadomość'}
               </Button>
 
-              {status === 'success' && (
-                <div className="text-green-400 text-center font-semibold">
-                  ✓ Wiadomość wysłana pomyślnie!
-                </div>
-              )}
+              <Toast variant={ToastVariant.SUCCESS} show={status === 'success'}>
+                Wiadomość wysłana pomyślnie!
+              </Toast>
             </form>
-          </div>
+          </Tile>
         </div>
       </div>
     </section>

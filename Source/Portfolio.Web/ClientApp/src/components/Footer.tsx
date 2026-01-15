@@ -1,4 +1,4 @@
-import { Icon, IconName, IconSize, Link, LinkVariant } from '../design-system/components';
+import { Icon, IconName, IconSize, Link, LinkVariant, Text, TextVariant, TextSize, Alignment } from '../design-system/components';
 
 function Footer() {
   const currentYear = new Date().getFullYear();
@@ -8,8 +8,10 @@ function Footer() {
       <div className="container mx-auto px-6">
         <div className="flex flex-col md:flex-row items-center justify-between gap-4">
           {/* Copyright */}
-          <div className="text-gray-400 text-center md:text-left">
-            <p>&copy; {currentYear} Backend Developer Portfolio. Wszystkie prawa zastrzeżone.</p>
+          <div className="text-center md:text-left">
+            <Text variant={TextVariant.MUTED} size={TextSize.SM}>
+              &copy; {currentYear} Backend Developer Portfolio. Wszystkie prawa zastrzeżone.
+            </Text>
           </div>
 
           {/* Social Links */}
@@ -45,8 +47,10 @@ function Footer() {
         </div>
 
         {/* Tech Stack Badge */}
-        <div className="text-center mt-6 text-gray-500 text-sm">
-          <p>Zbudowane z React, TypeScript & Tailwind CSS</p>
+        <div className="text-center mt-6">
+          <Text variant={TextVariant.MUTED} size={TextSize.XS} align={Alignment.CENTER}>
+            Zbudowane z React, TypeScript & Tailwind CSS
+          </Text>
         </div>
       </div>
     </footer>

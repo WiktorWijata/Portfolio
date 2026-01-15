@@ -26,3 +26,5 @@ export { TagGroup } from './TagGroup';
 export type { TagGroupProps } from './TagGroup';
 export { Carousel, CarouselItem } from './Carousel';
 export type { CarouselProps, CarouselItemProps } from './Carousel';
+export { Toast, ToastVariant } from './Toast';
+export type { ToastProps, ToastVariantType } from './Toast';
