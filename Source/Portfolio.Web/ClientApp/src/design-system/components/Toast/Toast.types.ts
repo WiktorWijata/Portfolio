@@ -6,4 +6,6 @@ export interface ToastProps {
   variant?: ToastVariantType;
   className?: string;
   show?: boolean;
+  duration?: number;
+  onClose?: () => void;
 }

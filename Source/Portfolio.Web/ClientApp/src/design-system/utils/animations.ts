@@ -34,3 +34,27 @@ export function fadeInStagger(
 ): CSSProperties {
   return fadeIn({ delay: index * staggerDelay, duration, easing });
 }
+
+/**
+ * Generates CSS animation style for slide-in from right effect
+ * @param duration - Animation duration in seconds (default: 0.3)
+ * @param easing - Animation easing function (default: 'ease-out')
+ * @returns CSSProperties object with animation property
+ */
+export function slideInRight({ duration = 0.3, easing = 'ease-out' }: Omit<FadeInOptions, 'delay'> = {}): CSSProperties {
+  return {
+    animation: `slideInRight ${duration}s ${easing}`
+  };
+}
+
+/**
+ * Generates CSS animation style for slide-out to right effect
+ * @param duration - Animation duration in seconds (default: 0.3)
+ * @param easing - Animation easing function (default: 'ease-in')
+ * @returns CSSProperties object with animation property
+ */
+export function slideOutRight({ duration = 0.3, easing = 'ease-in' }: Omit<FadeInOptions, 'delay'> = {}): CSSProperties {
+  return {
+    animation: `slideOutRight ${duration}s ${easing}`
+  };
+}

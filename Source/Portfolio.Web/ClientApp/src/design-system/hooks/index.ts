@@ -1,3 +1,4 @@
 export { useButton } from './useButton';
 export { useScrollReveal } from './useScrollReveal';
-export { fadeIn, fadeInStagger } from '../utils/animations';
+export { useToast } from './useToast';
+export { fadeIn, fadeInStagger, slideInRight, slideOutRight } from '../utils/animations';

@@ -1,17 +1,18 @@
 import { useState } from 'react';
 import type { FormEvent } from 'react';
-import { SectionTitle, Tile, IconButton, Input, Textarea, Button, Icon, IconName, IconSize, Text, TextSize, TextVariant, TextWeight, TextAs, Alignment, Link, LinkVariant, Toast, ToastVariant } from '../design-system/components';
-import { useScrollReveal } from '../design-system/hooks';
+import { SectionTitle, Tile, IconButton, Input, Textarea, Button, Icon, IconName, IconSize, Text, TextSize, TextVariant, TextWeight, TextAs, Alignment, Link, LinkVariant, ToastVariant } from '../design-system/components';
+import { useScrollReveal, useToast } from '../design-system/hooks';
 import { IconButtonSize } from '../design-system/components/IconButton/IconButton.consts';
 
 function Contact() {
   const { elementRef, className } = useScrollReveal({ delay: 300 });
+  const { showToast, ToastComponent } = useToast();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     message: ''
   });
-  const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
+  const [status, setStatus] = useState<'idle' | 'sending'>('idle');
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -20,9 +21,9 @@ function Contact() {
     // Tutaj możesz dodać integrację z backendem
     // Na razie symulujemy wysyłanie
     setTimeout(() => {
-      setStatus('success');
+      setStatus('idle');
       setFormData({ name: '', email: '', message: '' });
-      setTimeout(() => setStatus('idle'), 3000);
+      showToast('Wiadomość wysłana pomyślnie!', ToastVariant.SUCCESS);
     }, 1000);
   };
 
@@ -34,7 +35,9 @@ function Contact() {
   };
 
   return (
-    <section id="contact" ref={elementRef} className={`py-20 ${className}`}>
+    <>
+      <ToastComponent />
+      <section id="contact" ref={elementRef} className={`py-20 ${className}`}>
       <div className="container mx-auto px-6">
         <SectionTitle>Kontakt</SectionTitle>
         <div className="w-[1406px] mx-auto">
@@ -175,15 +178,12 @@ function Contact() {
               >
                 {status === 'sending' ? 'Wysyłanie...' : 'Wyślij wiadomość'}
               </Button>
-
-              <Toast variant={ToastVariant.SUCCESS} show={status === 'success'}>
-                Wiadomość wysłana pomyślnie!
-              </Toast>
             </form>
           </Tile>
         </div>
       </div>
     </section>
+    </>
   );
 };
 

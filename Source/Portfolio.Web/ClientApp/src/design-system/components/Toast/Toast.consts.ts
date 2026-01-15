@@ -7,7 +7,7 @@ export const ToastVariant = {
 
 export type ToastVariantType = typeof ToastVariant[keyof typeof ToastVariant];
 
-export const toastVariantColors: Record<ToastVariantType, string> = {
+export const toastVariantBorderColors: Record<ToastVariantType, string> = {
   [ToastVariant.SUCCESS]: '#4ade80',
   [ToastVariant.ERROR]: '#f87171',
   [ToastVariant.INFO]: '#60a5fa',
