@@ -28,3 +28,5 @@ export { Carousel, CarouselItem } from './Carousel';
 export type { CarouselProps, CarouselItemProps } from './Carousel';
 export { Toast, ToastVariant } from './Toast';
 export type { ToastProps, ToastVariantType } from './Toast';
+export { CodeEditor } from './CodeEditor/CodeEditor';
+export type { CodeEditorProps } from './CodeEditor/CodeEditor.types';

@@ -3,3 +3,4 @@ export * from './technologies';
 export * from './experiences';
 export * from './education';
 export * from './facts';
+export * from './hero';

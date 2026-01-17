@@ -1,6 +1,6 @@
 import { ThemeProvider } from './design-system/themes';
 import { MainLayout } from './components/MainLayout';
-import Hero from './components/Hero';
+import Hero from './components/Hero/Hero';
 import Skills from './components/Skills';
 import Projects from './components/Projects';
 import Experience from './components/Experience';
