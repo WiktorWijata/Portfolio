@@ -1,8 +1,4 @@
-export interface Technology {
-  name: string;
-  icon: string;
-  category: string;
-}
+import type { Technology } from './types';
 
 export const technologies: Technology[] = [
   { name: 'C#', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg', category: 'backend' },
