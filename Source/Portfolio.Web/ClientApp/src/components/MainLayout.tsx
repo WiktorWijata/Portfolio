@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import Navigation from './Navigation';
+import { Navigation } from './Navigation/Navigation';
 import Footer from './Footer';
 import ScrollToTop from './ScrollToTop';
 
@@ -7,7 +7,7 @@ interface MainLayoutProps {
   children: ReactNode;
 }
 
-function MainLayout({ children }: MainLayoutProps) {
+export function MainLayout({ children }: MainLayoutProps) {
   return (
     <>
       <Navigation />
@@ -19,5 +19,3 @@ function MainLayout({ children }: MainLayoutProps) {
     </>
   );
 }
-
-export default MainLayout;

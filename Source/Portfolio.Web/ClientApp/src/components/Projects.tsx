@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { SectionTitle, Tile, Tag, TagVariant, TagGroup, IconButton, Button, Icon, IconName, IconSize } from '../design-system/components';
+import { SectionTitle, Tile, TagVariant, TagGroup, IconButton, Button, Icon, IconName, IconSize } from '../design-system/components';
 import { useScrollReveal, fadeInStagger } from '../design-system/hooks';
 import { IconButtonSize } from '../design-system/components/IconButton/IconButton.consts';
 import { projects } from '../data';

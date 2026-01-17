@@ -21,6 +21,7 @@ export const cosmosTheme: Theme = {
       bg: 'transparent',
       bgDark: 'rgba(0, 0, 0, 0.3)',
       bgDarkFocus: 'rgba(0, 0, 0, 0.5)',
+      bgDarker: 'rgba(0, 0, 0, 0.7)',
       bgDarkest: 'rgba(0, 0, 0, 0.95)',
     },
     text: {

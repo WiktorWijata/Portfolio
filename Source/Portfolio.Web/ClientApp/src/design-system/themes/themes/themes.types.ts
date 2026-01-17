@@ -16,6 +16,7 @@ export interface ThemeColors {
     bg: string;
     bgDark: string;
     bgDarkFocus: string;
+    bgDarker: string;
     bgDarkest: string;
   };
   text: {

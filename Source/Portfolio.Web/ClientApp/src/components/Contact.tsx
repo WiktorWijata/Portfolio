@@ -18,8 +18,6 @@ function Contact() {
     e.preventDefault();
     setStatus('sending');
     
-    // Tutaj możesz dodać integrację z backendem
-    // Na razie symulujemy wysyłanie
     setTimeout(() => {
       setStatus('idle');
       setFormData({ name: '', email: '', message: '' });
