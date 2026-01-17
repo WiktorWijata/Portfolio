@@ -1,84 +1,80 @@
+import { Button, Icon, IconName, IconSize, Tile, Text, TextSize, TextVariant, TextWeight, TextAs, Alignment } from '../design-system/components';
+import { useTheme } from '../design-system/themes';
+
 function Hero() {
+  const { currentTheme } = useTheme();
+  
   return (
     <section id="home" className="min-h-screen flex items-center justify-center relative">
-      {/* Przycisk Projekty */}
       <div className="absolute top-24 left-1/2 transform -translate-x-1/2 z-10 flex flex-col items-center gap-16">
-        <a 
-          href="#projects" 
-          className="inline-flex items-center gap-2 px-12 py-3 rounded-lg font-medium transition-all duration-300 hover:scale-105"
-          style={{ 
-            border: '1px solid rgba(168, 85, 247, 0.4)',
-            backgroundColor: 'rgba(168, 85, 247, 0.1)',
-            color: '#e9d5ff',
-            backdropFilter: 'blur(10px)'
+        <Button
+          onClick={() => {
+            const element = document.querySelector('#projects');
+            element?.scrollIntoView({ behavior: 'smooth' });
           }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.backgroundColor = 'rgba(168, 85, 247, 0.2)';
-            e.currentTarget.style.borderColor = 'rgba(168, 85, 247, 0.6)';
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.backgroundColor = 'rgba(168, 85, 247, 0.1)';
-            e.currentTarget.style.borderColor = 'rgba(168, 85, 247, 0.4)';
-          }}
+          className="px-12"
         >
           Projekty
-        </a>
+        </Button>
         
-        {/* Cytat pod przyciskiem */}
-        <blockquote className="text-gray-400 text-4xl" style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>
+        <Text 
+          as={TextAs.DIV} 
+          size={TextSize.XL} 
+          variant={TextVariant.MUTED}
+          className="leading-relaxed"
+          style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
+        >
           – Nie da się? ...ludzie w kosmos latają.
-        </blockquote>
+        </Text>
         
-        {/* Ramki z foto i opisem */}
         <div className="flex gap-6 mt-1">
-          {/* Lewa ramka - FOTO */}
-          <div 
-            className="w-[900px] min-h-[550px] flex items-center justify-center rounded backdrop-blur-sm overflow-hidden"
-            style={{ 
-              border: '1px solid rgba(255, 248, 231, 0.15)',
-              backgroundColor: 'rgba(255, 248, 231, 0.03)'
-            }}
-          >
-            <img 
-              src="/src/assets/developer.png" 
-              alt="Developer" 
-              className="w-full h-full object-cover"
-            />
-          </div>
+          <Tile 
+            className="w-[900px] min-h-[550px] flex items-center justify-center overflow-hidden p-0"
+            imageUrl="/src/assets/developer.png"
+          />
           
-          {/* Prawa ramka - Opis */}
-          <div 
-            className="w-[484px] min-h-[550px] flex items-start justify-center p-8 rounded backdrop-blur-sm"
-            style={{ 
-              border: '1px solid rgba(255, 248, 231, 0.15)',
-              backgroundColor: 'rgba(255, 248, 231, 0.03)'
-            }}
-          >
+          <Tile className="w-[500px] min-h-[550px] flex items-start justify-center">
             <div className="flex flex-col gap-8 mt-8">
-              <h2 className="text-gray-300 text-5xl font-semibold flex items-center gap-4">
-                <svg className="w-10 h-10 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-                </svg>
+              <Text 
+                as={TextAs.H2} 
+                size={TextSize.XL} 
+                variant={TextVariant.SECONDARY} 
+                weight={TextWeight.SEMIBOLD}
+                className="flex items-center gap-4"
+              >
+                <Icon name={IconName.CODE} size={IconSize.XL} color={currentTheme.colors.primary.borderHover} />
                 .NET Developer
-              </h2>
-              <p className="text-gray-400 text-2xl leading-relaxed font-semibold text-justify">
+              </Text>
+              <Text 
+                size={TextSize.LG} 
+                variant={TextVariant.MUTED} 
+                weight={TextWeight.SEMIBOLD}
+                align={Alignment.JUSTIFY}
+                className="leading-relaxed"
+              >
                 Witaj, mam na imię Wiktor a to jest moja wizytówka.
-              </p>
-              <p className="text-gray-400 text-lg leading-relaxed">
+              </Text>
+              <Text 
+                variant={TextVariant.MUTED}
+                className="leading-relaxed"
+              >
                 Z 7-letnim doświadczeniem w branży IT specjalizuję się w tworzeniu wydajnych aplikacji backendowych w ekosystemie .NET. 
                 Pasjonuję się czystym kodem, architekturą systemów oraz rozwiązywaniem złożonych problemów technicznych.
-              </p>
-              <p className="text-gray-400 text-lg leading-relaxed">
+              </Text>
+              <Text 
+                variant={TextVariant.MUTED}
+                className="leading-relaxed"
+              >
                 Moje doświadczenie obejmuje projektowanie RESTful API, optymalizację baz danych, 
                 implementację wzorców projektowych oraz budowanie skalowalnych rozwiązań chmurowych. 
                 Zawsze staram się pisać kod, który jest nie tylko funkcjonalny, ale także czytelny i łatwy w utrzymaniu.
-              </p>
+              </Text>
             </div>
-          </div>
+          </Tile>
         </div>
       </div>
     </section>
   );
-};
+}
 
 export default Hero;

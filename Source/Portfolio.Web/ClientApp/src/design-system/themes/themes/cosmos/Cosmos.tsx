@@ -1,30 +1,11 @@
 import { useEffect, useState } from 'react';
+import type { Comet, CosmosProps, Star } from './Cosmos.types';
+import { CosmosVariant } from './Cosmos.types';
 
-interface Dot {
-  x: number;
-  y: number;
-  originalX: number;
-  originalY: number;
-  size: number;
-  duration: number;
-  delay: number;
-  depth: number; // 0-1, gdzie 1 to najbliżej (najjaśniejsze)
-}
-
-interface Comet {
-  id: number;
-  startX: number;
-  startY: number;
-  endX: number;
-  endY: number;
-  duration: number;
-  tailLength: number;
-}
-
-function BackgroundEffect() {
+export function Cosmos({ variant = CosmosVariant.STARS_WITH_COMETS }: CosmosProps) {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [comets, setComets] = useState<Comet[]>([]);
-  const [dots, setDots] = useState<Dot[]>(() =>
+  const [dots, setDots] = useState<Star[]>(() =>
     [...Array(150)].map(() => {
       const x = Math.random() * 100;
       const y = Math.random() * 100;
@@ -43,15 +24,27 @@ function BackgroundEffect() {
   );
 
   useEffect(() => {
+    let animationFrameId: number;
+    let lastMouseX = 0;
+    let lastMouseY = 0;
+
     const handleMouseMove = (e: MouseEvent) => {
-      setMousePosition({
-        x: e.clientX,
-        y: e.clientY,
-      });
+      lastMouseX = e.clientX;
+      lastMouseY = e.clientY;
+    };
+
+    const updateDots = () => {
+      setMousePosition({ x: lastMouseX, y: lastMouseY });
+      animationFrameId = requestAnimationFrame(updateDots);
     };
 
     window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
+    animationFrameId = requestAnimationFrame(updateDots);
+
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+      cancelAnimationFrame(animationFrameId);
+    };
   }, []);
 
   // Generowanie komet w losowych odstępach czasu
@@ -98,7 +91,6 @@ function BackgroundEffect() {
 
         const newComet: Comet = { id, startX, startY, endX, endY, duration, tailLength };
 
-        // Usuń kometę po zakończeniu animacji
         setTimeout(() => {
           setComets(current => current.filter(c => c.id !== id));
         }, duration * 1000);
@@ -128,43 +120,66 @@ function BackgroundEffect() {
   };
   
   useEffect(() => {
+    let animationFrameId: number;
     const maxDistance = 200;
 
-    setDots(prevDots =>
-      prevDots.map(dot => {
-        const dotX = (dot.originalX * window.innerWidth) / 100;
-        const dotY = (dot.originalY * window.innerHeight) / 100;
-        const distance = getDistance(mousePosition.x, mousePosition.y, dotX, dotY);
+    const animate = () => {
+      setDots(prevDots =>
+        prevDots.map(dot => {
+          const dotX = (dot.originalX * window.innerWidth) / 100;
+          const dotY = (dot.originalY * window.innerHeight) / 100;
+          const distance = getDistance(mousePosition.x, mousePosition.y, dotX, dotY);
 
-        // Tylko bliższe gwiazdy (depth > 0.4) reagują na kursor
-        if (distance < maxDistance && distance > 0 && dot.depth > 0.4) {
-          // Siła zależy od głębokości - bliższe gwiazdy mocniej reagują
-          const pullStrength = 0.6 * dot.depth;
-          const pullAmount = ((maxDistance - distance) / maxDistance) * pullStrength;
-          
-          // Przesuń kropkę w kierunku kursora
-          const newX = dot.originalX + (((mousePosition.x - dotX) / window.innerWidth) * 100) * pullAmount;
-          const newY = dot.originalY + (((mousePosition.y - dotY) / window.innerHeight) * 100) * pullAmount;
+          if (distance < maxDistance && distance > 0 && dot.depth > 0.4) {
+            const pullStrength = 0.6 * dot.depth;
+            const pullAmount = ((maxDistance - distance) / maxDistance) * pullStrength;
 
-          return { ...dot, x: newX, y: newY };
-        }
+            const newX = dot.originalX + (((mousePosition.x - dotX) / window.innerWidth) * 100) * pullAmount;
+            const newY = dot.originalY + (((mousePosition.y - dotY) / window.innerHeight) * 100) * pullAmount;
 
-        // Wróć do oryginalnej pozycji
-        return {
-          ...dot,
-          x: dot.x + (dot.originalX - dot.x) * 0.1,
-          y: dot.y + (dot.originalY - dot.y) * 0.1,
-        };
-      })
-    );
+            return { ...dot, x: newX, y: newY };
+          }
+
+          return {
+            ...dot,
+            x: dot.x + (dot.originalX - dot.x) * 0.1,
+            y: dot.y + (dot.originalY - dot.y) * 0.1,
+          };
+        })
+      );
+
+      animationFrameId = requestAnimationFrame(animate);
+    };
+
+    animationFrameId = requestAnimationFrame(animate);
+
+    return () => {
+      cancelAnimationFrame(animationFrameId);
+    };
   }, [mousePosition]);
 
+  if (variant === CosmosVariant.MINIMAL) {
+    return (
+      <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+        <div className="absolute inset-0 opacity-30">
+          <div 
+            className="absolute w-[800px] h-[800px] bg-purple-600/10 rounded-full blur-[120px]"
+            style={{ top: '10%', left: '5%' }}
+          />
+          <div 
+            className="absolute w-[600px] h-[600px] bg-blue-600/10 rounded-full blur-[120px]"
+            style={{ top: '50%', right: '10%' }}
+          />
+        </div>
+      </div>
+    );
+  }
 
+  const showComets = variant === CosmosVariant.STARS_WITH_COMETS;
 
   return (
     <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
-      {/* Komety */}
-      {comets.map((comet) => {
+      {showComets && comets.map((comet) => {
         const dx = comet.endX - comet.startX;
         const dy = comet.endY - comet.startY;
         const rotation = Math.atan2(dy, dx) * (180 / Math.PI) + 90;
@@ -211,74 +226,6 @@ function BackgroundEffect() {
         );
       })}
 
-      {/* Efekty mgławicy */}
-      {/* <div className="absolute inset-0">
-        <div 
-          className="absolute w-[800px] h-[800px] bg-purple-600/8 rounded-full blur-[100px]"
-          style={{ top: '10%', left: '5%' }}
-        />
-        <div 
-          className="absolute w-[600px] h-[600px] bg-purple-500/6 rounded-full blur-[120px]"
-          style={{ top: '15%', left: '10%' }}
-        />
-        
-        <div 
-          className="absolute w-[700px] h-[700px] bg-blue-600/8 rounded-full blur-[100px]"
-          style={{ top: '50%', right: '10%' }}
-        />
-        <div 
-          className="absolute w-[500px] h-[500px] bg-cyan-500/6 rounded-full blur-[120px]"
-          style={{ top: '55%', right: '15%' }}
-        />
-        
-        <div 
-          className="absolute w-[600px] h-[600px] bg-orange-600/8 rounded-full blur-[100px]"
-          style={{ bottom: '15%', left: '45%' }}
-        />
-        <div 
-          className="absolute w-[400px] h-[400px] bg-red-500/6 rounded-full blur-[120px]"
-          style={{ bottom: '20%', left: '50%' }}
-        />
-        
-        <div 
-          className="absolute w-[550px] h-[550px] bg-pink-600/7 rounded-full blur-[100px]"
-          style={{ top: '40%', left: '30%' }}
-        />
-        
-        <div 
-          className="absolute w-[450px] h-[450px] bg-emerald-600/5 rounded-full blur-[120px]"
-          style={{ bottom: '30%', right: '30%' }}
-        />
-      </div> */}
-
-      {/* SVG dla linii */}
-      {/* <svg className="absolute inset-0 w-full h-full">
-        {dots.map((dot, i) => {
-          const dotX = (dot.x * window.innerWidth) / 100;
-          const dotY = (dot.y * window.innerHeight) / 100;
-          const distance = getDistance(mousePosition.x, mousePosition.y, dotX, dotY);
-          const maxDistance = 150; // Maksymalna odległość dla pokazania linii
-
-          if (distance < maxDistance) {
-            const opacity = (1 - distance / maxDistance) * 0.5;
-            return (
-              <line
-                key={i}
-                x1={dotX}
-                y1={dotY}
-                x2={mousePosition.x}
-                y2={mousePosition.y}
-                stroke="rgb(249, 115, 22)"
-                strokeWidth="1"
-                opacity={opacity}
-              />
-            );
-          }
-          return null;
-        })}
-      </svg> */}
-
-      {/* Animowane kropki w tle */}
       <div className="absolute inset-0">
         {dots.map((dot, i) => {
           const starColor = i % 15 === 0 ? 'bg-blue-100' : 
@@ -292,7 +239,7 @@ function BackgroundEffect() {
           return (
             <div
               key={i}
-              className={`absolute ${starColor} rounded-full transition-all duration-100 ease-out`}
+              className={`absolute ${starColor} rounded-full`}
               style={{
                 left: `${dot.x}%`,
                 top: `${dot.y}%`,
@@ -300,6 +247,8 @@ function BackgroundEffect() {
                 height: `${dot.size}px`,
                 opacity: opacity,
                 boxShadow: glowColor,
+                transform: 'translate3d(0, 0, 0)',
+                willChange: 'transform',
               }}
             />
           );
@@ -308,5 +257,3 @@ function BackgroundEffect() {
     </div>
   );
 }
-
-export default BackgroundEffect;
