@@ -8,15 +8,21 @@ export function MobileMenuToggle({ isOpen, onToggle }: MobileMenuToggleProps) {
       onClick={onToggle}
       size={IconButtonSize.MEDIUM}
       className="md:hidden"
-      style={{
-        transition: 'transform 0.3s ease',
-        transform: isOpen ? 'rotate(90deg)' : 'rotate(0deg)'
-      }}
     >
-      <Icon 
-        name={isOpen ? IconName.CLOSE : IconName.MENU} 
-        size={IconSize.MD}
-      />
+      <div
+        style={{
+          transition: 'transform 0.3s ease',
+          transform: isOpen ? 'rotate(90deg)' : 'rotate(0deg)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center'
+        }}
+      >
+        <Icon 
+          name={isOpen ? IconName.CLOSE : IconName.MENU} 
+          size={IconSize.MD}
+        />
+      </div>
     </IconButton>
   );
 }

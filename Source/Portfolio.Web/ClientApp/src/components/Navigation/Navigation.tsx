@@ -11,7 +11,7 @@ export function Navigation() {
 
   return (
     <React.Fragment>
-      <NavBar rightContent={<LanguageSwitcher />}>
+      <NavBar>
       <div className="flex items-center justify-center h-20 relative">
         {!isMobile && (
           <NavLinkList links={navLinks} onLinkClick={handleNavClick} />
@@ -22,6 +22,10 @@ export function Navigation() {
         )}
       </div>
     </NavBar>
+    
+    <div className="fixed top-5 right-6 z-[70]">
+      <LanguageSwitcher />
+    </div>
     
     <MobileMenu isOpen={isMobileMenuOpen}>
       <NavLinkList 

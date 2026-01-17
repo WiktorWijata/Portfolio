@@ -1,7 +1,7 @@
 import { useTheme } from '../../../../design-system/themes';
 import type { NavBarProps } from './NavBar.types';
 
-export function NavBar({ children, rightContent }: NavBarProps) {
+export function NavBar({ children }: NavBarProps) {
   const { currentTheme } = useTheme();
 
   return (
@@ -17,11 +17,6 @@ export function NavBar({ children, rightContent }: NavBarProps) {
       <div className="container mx-auto px-6">
         {children}
       </div>
-      {rightContent && (
-        <div className="absolute top-5 right-6">
-          {rightContent}
-        </div>
-      )}
     </nav>
   );
 }
