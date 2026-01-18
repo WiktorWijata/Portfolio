@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { SectionTitle } from '../../design-system/components';
-import { useScrollReveal } from '../../design-system/hooks';
+import { useScrollReveal, useToggleWithScroll } from '../../design-system/hooks';
 import { technologies } from '../../data';
 import { SkillsFilter, SkillsGrid, SkillsChips } from './components';
 import type { Category } from './components';
@@ -8,7 +8,7 @@ import type { Category } from './components';
 export default function Skills() {
   const { elementRef, className } = useScrollReveal({ delay: 100 });
   const [activeCategory, setActiveCategory] = useState<Category>('all');
-  const [isExpanded, setIsExpanded] = useState(false);
+  const { isExpanded, handleToggle } = useToggleWithScroll(elementRef);
 
   const filteredTechnologies = activeCategory === 'all' 
     ? technologies 
@@ -34,7 +34,7 @@ export default function Skills() {
           <SkillsGrid
             technologies={filteredTechnologies}
             isExpanded={isExpanded}
-            onToggleExpand={() => setIsExpanded(!isExpanded)}
+            onToggleExpand={handleToggle}
           />
         </div>
       </div>
