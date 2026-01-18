@@ -16,7 +16,8 @@ import {
   TagGroup,
   Icon,
   IconName,
-  IconSize
+  IconSize,
+  Container
 } from '../design-system/components';
 import { useScrollReveal, fadeInStagger } from '../design-system/hooks';
 import { useTheme } from '../design-system/themes';
@@ -36,7 +37,7 @@ function Experience() {
 
   return (
     <section id="experience" ref={elementRef} className={`py-20 px-4 ${className}`}>
-      <div className="container mx-auto px-0">
+      <Container>
         <SectionTitle>Doświadczenie</SectionTitle>
 
         <Timeline>
@@ -87,7 +88,7 @@ function Experience() {
             </TimelineItem>
           ))}
         </Timeline>
-      </div>
+      </Container>
     </section>
   );
 }

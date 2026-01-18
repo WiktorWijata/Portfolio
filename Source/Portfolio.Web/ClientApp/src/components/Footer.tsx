@@ -1,11 +1,11 @@
-import { Icon, IconName, IconSize, Link, LinkVariant, Text, TextVariant, TextSize, Alignment } from '../design-system/components';
+import { Icon, IconName, IconSize, Link, LinkVariant, Text, TextVariant, TextSize, Alignment, Container } from '../design-system/components';
 
 function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
     <footer className="bg-transparent py-8">
-      <div className="container mx-auto px-6">
+      <Container>
         <div className="flex flex-col md:flex-row items-center justify-between gap-4">
           {/* Copyright */}
           <div className="text-center md:text-left">
@@ -52,7 +52,7 @@ function Footer() {
             Zbudowane z React, TypeScript & Tailwind CSS
           </Text>
         </div>
-      </div>
+      </Container>
     </footer>
   );
 };

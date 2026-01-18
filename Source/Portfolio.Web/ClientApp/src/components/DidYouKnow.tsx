@@ -1,4 +1,4 @@
-import { SectionTitle, Tile, Text, TextAs, TextSize, TextWeight, TextVariant, Carousel, CarouselItem } from '../design-system/components';
+import { SectionTitle, Tile, Text, TextAs, TextSize, TextWeight, TextVariant, Carousel, CarouselItem, Container } from '../design-system/components';
 import { useScrollReveal, fadeIn } from '../design-system/hooks';
 import { facts } from '../data/facts';
 
@@ -7,7 +7,7 @@ function DidYouKnow() {
 
   return (
     <section id="didyouknow" ref={elementRef} className={`py-20 px-4 ${className}`}>
-      <div className="container mx-auto px-6">
+      <Container>
         <SectionTitle>Czy wiesz że...?</SectionTitle>
 
         <Carousel className="w-[1406px] mx-auto" padding="px-20" minHeight="320px">
@@ -32,7 +32,7 @@ function DidYouKnow() {
             </CarouselItem>
           ))}
         </Carousel>
-      </div>
+      </Container>
     </section>
   );
 }

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import type { FormEvent } from 'react';
-import { SectionTitle, Tile, IconButton, Input, Textarea, Button, Icon, IconName, IconSize, Text, TextSize, TextVariant, TextWeight, TextAs, Alignment, Link, LinkVariant, ToastVariant } from '../design-system/components';
+import { SectionTitle, Tile, IconButton, Input, Textarea, Button, Icon, IconName, IconSize, Text, TextSize, TextVariant, TextWeight, TextAs, Alignment, Link, LinkVariant, ToastVariant, Container } from '../design-system/components';
 import { useScrollReveal, useToast } from '../design-system/hooks';
 import { IconButtonSize } from '../design-system/components/IconButton/IconButton.consts';
 
@@ -36,7 +36,7 @@ function Contact() {
     <>
       <ToastComponent />
       <section id="contact" ref={elementRef} className={`py-20 ${className}`}>
-      <div className="container mx-auto px-6">
+      <Container>
         <SectionTitle>Kontakt</SectionTitle>
         <div className="w-[1406px] mx-auto">
           {/* Contact Info */}
@@ -179,7 +179,7 @@ function Contact() {
             </form>
           </Tile>
         </div>
-      </div>
+      </Container>
     </section>
     </>
   );

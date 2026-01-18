@@ -1,5 +1,7 @@
 export { Tile } from './Tile';
 export { Button } from './Button';
+export { Container } from './Container';
+export type { ContainerProps } from './Container';
 export { SectionTitle } from './SectionTitle';
 export { Tag, TagVariant } from './Tag';
 export type { TagProps, TagVariantType } from './Tag';
@@ -20,6 +22,8 @@ export { Link, LinkVariant } from './Link';
 export type { LinkProps, LinkVariantType } from './Link';
 export { Collapsible } from './Collapsible';
 export type { CollapsibleProps } from './Collapsible';
+export { ExpandableGrid } from './ExpandableGrid';
+export type { ExpandableGridProps, ResponsiveConfig } from './ExpandableGrid';
 export { List } from './List';
 export type { ListProps } from './List';
 export { TagGroup } from './TagGroup';

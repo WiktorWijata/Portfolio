@@ -1,6 +1,5 @@
-import { Tile, TagGroup, TagVariant } from '../../../../design-system/components';
+import { Tile, TagGroup, TagVariant, Text, TextAs, TextSize, TextWeight, TextVariant } from '../../../../design-system/components';
 import { fadeInStagger } from '../../../../design-system/hooks';
-import { useTheme } from '../../../../design-system/themes';
 import { ProjectActions } from '../ProjectActions';
 import type { ProjectCardProps } from './ProjectCard.types';
 
@@ -15,23 +14,25 @@ export function ProjectCard({
   isVisible,
   className = '' 
 }: ProjectCardProps) {
-  const { currentTheme } = useTheme();
 
   return (
     <Tile
       imageUrl={image}
       imageAlt={title}
-      className={`flex flex-col relative pb-14 transition-all duration-500 ${
+      className={`flex flex-col relative pb-20 transition-all duration-500 ${
         !isVisible ? 'opacity-0 scale-95' : 'opacity-100 scale-100'
       } ${className}`}
       style={fadeInStagger(index, { staggerDelay: 0.1, duration: 0.4 })}
     >
-      <h3 
-        className="text-xl sm:text-2xl font-bold mb-3"
-        style={{ color: currentTheme.colors.text.secondary }}
+      <Text
+        as={TextAs.H3}
+        size={TextSize.MD}
+        weight={TextWeight.BOLD}
+        variant={TextVariant.SECONDARY}
+        className="mb-3 line-clamp-2"
       >
         {title}
-      </h3>
+      </Text>
       
       <div className="mb-4">
         <TagGroup 
@@ -40,17 +41,19 @@ export function ProjectCard({
         />
       </div>
       
-      <p 
-        className="text-sm sm:text-base mb-4 flex-grow"
-        style={{ color: currentTheme.colors.text.muted }}
+      <Text
+        as={TextAs.P}
+        size={TextSize.SM}
+        variant={TextVariant.MUTED}
+        className="mb-4 flex-grow line-clamp-3 lg:line-clamp-2"
       >
         {description}
-      </p>
+      </Text>
       
       <ProjectActions 
         githubLink={githubLink}
         liveLink={liveLink}
-        className="absolute bottom-4 right-4"
+        className="absolute bottom-3 right-4"
       />
     </Tile>
   );

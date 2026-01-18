@@ -47,10 +47,8 @@ export function Cosmos({ variant = CosmosVariant.STARS_WITH_COMETS }: CosmosProp
     };
   }, []);
 
-  // Generowanie komet w losowych odstępach czasu
   useEffect(() => {
     const createComet = () => {
-      // Sprawdź czy nie ma już 15 komet na ekranie
       setComets(prev => {
         if (prev.length >= 15) {
           return prev;
@@ -61,33 +59,33 @@ export function Cosmos({ variant = CosmosVariant.STARS_WITH_COMETS }: CosmosProp
         let startX, startY, endX, endY;
 
         switch (side) {
-          case 0: // Z góry na dół
+          case 0:
             startX = Math.random() * 100;
             startY = -10;
             endX = startX + (Math.random() * 40 - 20);
             endY = 110;
             break;
-          case 1: // Z prawa na lewo
+          case 1:
             startX = 110;
             startY = Math.random() * 100;
             endX = -10;
             endY = startY + (Math.random() * 40 - 20);
             break;
-          case 2: // Z dołu na górę
+          case 2:
             startX = Math.random() * 100;
             startY = 110;
             endX = startX + (Math.random() * 40 - 20);
             endY = -10;
             break;
-          default: // Z lewej na prawo
+          default:
             startX = -10;
             startY = Math.random() * 100;
             endX = 110;
             endY = startY + (Math.random() * 40 - 20);
         }
 
-        const duration = 10 + Math.random() * 8; // 10-18 sekund
-        const tailLength = 40 + Math.random() * 30; // 40-70px
+        const duration = 10 + Math.random() * 8;
+        const tailLength = 40 + Math.random() * 30;
 
         const newComet: Comet = { id, startX, startY, endX, endY, duration, tailLength };
 
@@ -99,11 +97,9 @@ export function Cosmos({ variant = CosmosVariant.STARS_WITH_COMETS }: CosmosProp
       });
     };
 
-    // Pierwsze 2-3 komety szybko
     const firstTimeout = setTimeout(createComet, 1000 + Math.random() * 2000);
     const secondTimeout = setTimeout(createComet, 2000 + Math.random() * 3000);
 
-    // Kolejne komety co 3-6 sekund
     const interval = setInterval(() => {
       createComet();
     }, 3000 + Math.random() * 3000);

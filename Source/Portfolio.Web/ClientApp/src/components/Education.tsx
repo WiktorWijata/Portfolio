@@ -1,4 +1,4 @@
-import { SectionTitle, Tag, TagVariant, Text, TextSize, TextVariant, TextWeight, TextAs, Timeline, TimelineItem, Tile, Alignment } from '../design-system/components';
+import { SectionTitle, Tag, TagVariant, Text, TextSize, TextVariant, TextWeight, TextAs, Timeline, TimelineItem, Tile, Alignment, Container } from '../design-system/components';
 import { useScrollReveal, fadeInStagger } from '../design-system/hooks';
 import { education } from '../data';
 
@@ -7,7 +7,7 @@ function Education() {
 
   return (
     <section id="education" ref={elementRef} className={`py-20 px-4 ${className}`}>
-      <div className="container mx-auto px-0">
+      <Container>
         <SectionTitle>Edukacja i certyfikaty</SectionTitle>
 
         <Timeline align={Alignment.RIGHT}>
@@ -31,7 +31,7 @@ function Education() {
             </TimelineItem>
           ))}
         </Timeline>
-      </div>
+      </Container>
     </section>
   );
 }

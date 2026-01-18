@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { SectionTitle } from '../../design-system/components';
+import { SectionTitle, Container } from '../../design-system/components';
 import { useScrollReveal, useToggleWithScroll } from '../../design-system/hooks';
 import { technologies } from '../../data';
 import { SkillsFilter, SkillsGrid, SkillsChips } from './components';
@@ -16,7 +16,7 @@ export default function Skills() {
 
   return (
     <section id="skills" ref={elementRef} className={`py-20 ${className}`}>
-      <div className="container mx-auto px-4 sm:px-6">
+      <Container>
         <SectionTitle>
           Umiejętności i technologie
         </SectionTitle>
@@ -37,7 +37,7 @@ export default function Skills() {
             onToggleExpand={handleToggle}
           />
         </div>
-      </div>
+      </Container>
     </section>
   );
 }

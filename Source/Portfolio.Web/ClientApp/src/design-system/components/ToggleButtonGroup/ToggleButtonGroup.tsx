@@ -16,16 +16,15 @@ export function ToggleButtonGroup<T = string>({
         const isFirst = index === 0;
         const isLast = index === options.length - 1;
 
-        // Zaokrąglenia dla pierwszego i ostatniego na desktop
         let borderRadiusDesktop = '';
         if (isFirst && isLast) {
-          borderRadiusDesktop = 'lg:rounded-lg'; // Pojedynczy przycisk
+          borderRadiusDesktop = 'lg:rounded-lg';
         } else if (isFirst) {
-          borderRadiusDesktop = 'lg:rounded-l-lg lg:rounded-r-none'; // Pierwszy w grupie
+          borderRadiusDesktop = 'lg:rounded-l-lg lg:rounded-r-none';
         } else if (isLast) {
-          borderRadiusDesktop = 'lg:rounded-r-lg lg:rounded-l-none'; // Ostatni w grupie
+          borderRadiusDesktop = 'lg:rounded-r-lg lg:rounded-l-none';
         } else {
-          borderRadiusDesktop = 'lg:rounded-none'; // Środkowy
+          borderRadiusDesktop = 'lg:rounded-none';
         }
 
         return (

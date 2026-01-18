@@ -26,7 +26,6 @@ export function Sunset({ variant = FireflyVariant.MEDIUM }: FireflyProps) {
           let newSpeedX = firefly.speedX;
           let newSpeedY = firefly.speedY;
 
-          // Bounce off edges
           if (newX <= 0 || newX >= 100) {
             newSpeedX = -firefly.speedX;
             newX = Math.max(0, Math.min(100, newX));
