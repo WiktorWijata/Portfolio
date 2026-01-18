@@ -3,7 +3,7 @@ import { HeroCode, DeveloperImage, DeveloperDescription } from './components';
 import { heroData } from '../../data';
 import developerImage from '../../assets/developer.avif';
 
-function Hero() {
+export default function Hero() {
   function handleProjectsClick() {
     const element = document.querySelector('#projects');
     element?.scrollIntoView({ behavior: 'smooth' });
@@ -42,5 +42,3 @@ function Hero() {
     </section>
   );
 }
-
-export default Hero;

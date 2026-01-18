@@ -5,7 +5,7 @@ import { technologies } from '../../data';
 import { SkillsFilter, SkillsGrid, SkillsChips } from './components';
 import type { Category } from './components';
 
-export function Skills() {
+export default function Skills() {
   const { elementRef, className } = useScrollReveal({ delay: 100 });
   const [activeCategory, setActiveCategory] = useState<Category>('all');
   const [isExpanded, setIsExpanded] = useState(false);
