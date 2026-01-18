@@ -11,6 +11,7 @@ export interface ExpandableGridProps<T> {
   columns: ResponsiveConfig;
   gap?: ResponsiveConfig;
   isExpanded: boolean;
+  visibleCount?: number;
   renderItem: (item: T, index: number, isVisible: boolean) => ReactNode;
   className?: string;
   duration?: number;

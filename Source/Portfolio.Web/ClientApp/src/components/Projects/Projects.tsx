@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { SectionTitle, Container } from '../../design-system/components';
 import { useScrollReveal, useToggleWithScroll } from '../../design-system/hooks';
 import { projects } from '../../data';

@@ -1,11 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
 import type { ExpandableGridProps } from './ExpandableGrid.types';
 
-export function ExpandableGrid<T>({ 
-  items, 
+export function ExpandableGrid<T>({
+  items,
   columns,
   gap = { mobile: 4, tablet: 6, desktop: 8 },
   isExpanded,
+  visibleCount,
   renderItem,
   className = '',
   duration = 0.7
@@ -48,11 +49,6 @@ export function ExpandableGrid<T>({
     };
   }, [items]);
   
-  const gapClass = `gap-${gap.mobile} md:gap-${gap.tablet} lg:gap-${gap.desktop}`;
-  const columnsClass = `grid-cols-${columns.mobile} md:grid-cols-${columns.tablet} lg:grid-cols-${columns.desktop}`;
-  
-  const visibleCount = columns.desktop;
-  
   return (
     <div 
       style={{
@@ -62,11 +58,14 @@ export function ExpandableGrid<T>({
       }}
       className={className}
     >
-      <div 
+      <div
         ref={gridRef}
-        className={`grid ${columnsClass} ${gapClass} py-1.5`}
+        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8 py-1.5"
       >
-        {items.map((item, index) => renderItem(item, index, index < visibleCount || isExpanded))}
+        {items.map((item, index) => {
+          const isVisible = isExpanded || !visibleCount || index < visibleCount;
+          return renderItem(item, index, isVisible);
+        })}
       </div>
     </div>
   );

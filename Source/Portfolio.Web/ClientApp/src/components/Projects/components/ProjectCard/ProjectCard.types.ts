@@ -9,4 +9,3 @@ export interface ProjectCardProps {
   isVisible: boolean;
   className?: string;
 }
-}

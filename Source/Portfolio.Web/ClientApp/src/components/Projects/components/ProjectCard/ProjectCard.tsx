@@ -11,7 +11,6 @@ export function ProjectCard({
   githubLink, 
   liveLink, 
   index,
-  isVisible,
   className = '' 
 }: ProjectCardProps) {
 
@@ -19,9 +18,7 @@ export function ProjectCard({
     <Tile
       imageUrl={image}
       imageAlt={title}
-      className={`flex flex-col relative pb-20 transition-all duration-500 ${
-        !isVisible ? 'opacity-0 scale-95' : 'opacity-100 scale-100'
-      } ${className}`}
+      className={`flex flex-col relative pb-20 ${className}`}
       style={fadeInStagger(index, { staggerDelay: 0.1, duration: 0.4 })}
     >
       <Text
