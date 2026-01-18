@@ -1,4 +1,5 @@
-import { useState, Children, isValidElement, cloneElement, ReactElement } from 'react';
+import { useState, Children, isValidElement, cloneElement } from 'react';
+import type { ReactElement } from 'react';
 import type { CarouselProps, CarouselItemProps } from './Carousel.types';
 import { IconButton } from '../IconButton/IconButton';
 import { Icon } from '../Icon/Icon';
