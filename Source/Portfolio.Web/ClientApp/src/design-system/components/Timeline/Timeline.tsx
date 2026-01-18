@@ -9,7 +9,7 @@ export function Timeline({ children, className = '', align = Alignment.LEFT }: T
   
   return (
     <TimelineProvider value={{ align }}>
-      <div className={`w-[1406px] mx-auto relative px-0 ${className}`}>
+      <div className={`w-full max-w-[1406px] mx-auto relative px-0 ${className}`}>
         <div
           className={`absolute ${linePosition} w-0.5`}
           style={{
