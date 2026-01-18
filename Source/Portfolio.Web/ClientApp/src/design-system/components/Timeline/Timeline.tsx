@@ -15,7 +15,7 @@ export function Timeline({ children, className = '', align = Alignment.LEFT }: T
           style={{
             top: '-60px',
             height: 'calc(100% + 120px)',
-            background: currentTheme.colors.gradient.timeline,
+            background: currentTheme.colors.gradient.title,
             maskImage: 'linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%)',
             WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%)'
           }}

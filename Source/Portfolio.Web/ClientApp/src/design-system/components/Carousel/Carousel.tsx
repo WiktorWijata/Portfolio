@@ -57,21 +57,23 @@ export function Carousel({
 
       {showNavigation && itemCount > 1 && (
         <>
-          <IconButton
-            onClick={prevItem}
-            size={IconButtonSize.MEDIUM}
-            className="absolute left-0 top-1/2 -translate-y-1/2"
-          >
-            <Icon name={IconName.CHEVRON_LEFT} size={IconSize.MD} />
-          </IconButton>
+          <div className="hidden md:block absolute -left-16 top-1/2 -translate-y-1/2">
+            <IconButton
+              onClick={prevItem}
+              size={IconButtonSize.MEDIUM}
+            >
+              <Icon name={IconName.CHEVRON_LEFT} size={IconSize.MD} />
+            </IconButton>
+          </div>
 
-          <IconButton
-            onClick={nextItem}
-            size={IconButtonSize.MEDIUM}
-            className="absolute right-0 top-1/2 -translate-y-1/2"
-          >
-            <Icon name={IconName.CHEVRON_RIGHT} size={IconSize.MD} />
-          </IconButton>
+          <div className="hidden md:block absolute -right-16 top-1/2 -translate-y-1/2">
+            <IconButton
+              onClick={nextItem}
+              size={IconButtonSize.MEDIUM}
+            >
+              <Icon name={IconName.CHEVRON_RIGHT} size={IconSize.MD} />
+            </IconButton>
+          </div>
         </>
       )}
 
