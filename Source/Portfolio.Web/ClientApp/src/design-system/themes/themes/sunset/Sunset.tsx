@@ -51,15 +51,12 @@ export function Sunset({ variant = FireflyVariant.MEDIUM }: FireflyProps) {
 
   return (
     <div className="fixed inset-0 overflow-hidden pointer-events-none">
-      {/* Gradient background */}
       <div
         className="absolute inset-0"
         style={{
           background: 'radial-gradient(ellipse at bottom, #1a0f00 0%, #000000 50%, #000000 100%)',
         }}
       />
-
-      {/* Animated gradient orbs */}
       <div
         className="absolute w-[800px] h-[800px] rounded-full blur-[120px] opacity-20"
         style={{
@@ -79,7 +76,6 @@ export function Sunset({ variant = FireflyVariant.MEDIUM }: FireflyProps) {
         }}
       />
 
-      {/* Fireflies */}
       {fireflies.map((firefly, index) => (
         <div
           key={index}

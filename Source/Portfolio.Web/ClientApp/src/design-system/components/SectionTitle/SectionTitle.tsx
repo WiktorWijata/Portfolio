@@ -5,17 +5,23 @@ export function SectionTitle({ children, className = '' }: SectionTitleProps) {
   const { currentTheme } = useTheme();
   
   return (
-    <h2 className={`text-3xl md:text-4xl font-bold text-center mb-16 ${className}`}>
-      <span 
+    <div className={`flex justify-center mb-16 ${className}`}>
+      <h2 
+        className="text-3xl md:text-4xl font-bold"
         style={{
-          background: currentTheme.colors.gradient.title,
+          backgroundImage: currentTheme.colors.gradient.title,
           WebkitBackgroundClip: 'text',
           WebkitTextFillColor: 'transparent',
-          backgroundClip: 'text'
+          MozBackgroundClip: 'text',
+          MozTextFillColor: 'transparent',
+          backgroundClip: 'text',
+          color: 'transparent',
+          display: 'inline-block',
+          width: 'fit-content'
         }}
       >
         {children}
-      </span>
-    </h2>
+      </h2>
+    </div>
   );
 }

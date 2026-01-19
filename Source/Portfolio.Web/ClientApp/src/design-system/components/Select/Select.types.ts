@@ -12,4 +12,5 @@ export interface SelectProps<T = string> {
   icon?: React.ReactNode;
   className?: string;
   disabled?: boolean;
+  dropdownPosition?: 'up' | 'down';
 }

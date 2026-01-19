@@ -12,7 +12,8 @@ export function Select<T extends string>({
   placeholder,
   icon,
   className = '',
-  disabled = false
+  disabled = false,
+  dropdownPosition = 'down'
 }: SelectProps<T>) {
   const { currentTheme } = useTheme();
   const [isOpen, setIsOpen] = useState(false);
@@ -78,19 +79,20 @@ export function Select<T extends string>({
         {icon}
         {selectedOption?.shortLabel || selectedOption?.label || placeholder || 'Select...'}
         <Icon 
-          name={IconName.CHEVRON_DOWN} 
+          name={dropdownPosition === 'up' ? IconName.CHEVRON_UP : IconName.CHEVRON_DOWN} 
           size={IconSize.XS}
-          className={`transition-transform ${isOpen ? 'rotate-180' : ''}`}
+          className={`transition-transform ${isOpen && dropdownPosition === 'down' ? 'rotate-180' : isOpen && dropdownPosition === 'up' ? 'rotate-180' : ''}`}
         />
       </button>
 
       {isOpen && (
         <div 
-          className={`absolute top-full right-0 mt-2 min-w-[8rem] ${radius.card} backdrop-blur-md overflow-hidden`}
+          className={`absolute ${dropdownPosition === 'up' ? 'bottom-full mb-2' : 'top-full mt-2'} left-0 ${radius.card} backdrop-blur-md overflow-hidden`}
           style={{ 
             border: `1px solid ${currentTheme.colors.neutral.border}`,
             backgroundColor: 'rgba(26, 10, 46, 0.9)',
-            zIndex: 100
+            zIndex: 100,
+            width: 'fit-content'
           }}
         >
           {options.map((option) => (
@@ -98,7 +100,7 @@ export function Select<T extends string>({
               key={option.value}
               type="button"
               onClick={() => handleSelect(option.value)}
-              className={`w-full text-left px-4 py-2 transition-all ${
+              className={`w-full text-left px-4 py-2 whitespace-nowrap transition-all ${
                 value === option.value ? 'text-gray-300' : 'text-gray-400 hover:text-gray-300'
               }`}
               style={value === option.value ? { 

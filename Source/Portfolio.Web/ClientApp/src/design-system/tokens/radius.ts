@@ -1,4 +1,3 @@
-// Border radius values
 export const radius = {
   card: 'rounded-lg',
   button: 'rounded-lg',

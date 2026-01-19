@@ -1,6 +1,4 @@
-// Purple Theme (primary accent)
 export const colors = {
-  // Primary (Purple)
   primary: {
     bg: 'rgba(168, 85, 247, 0.1)',
     bgHover: 'rgba(168, 85, 247, 0.5)',

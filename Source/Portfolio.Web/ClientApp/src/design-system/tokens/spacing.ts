@@ -1,6 +1,4 @@
-// Spacing values
 export const spacing = {
-  // Padding
   cardPadding: 'p-6',
   cardPaddingLarge: 'p-8',
   buttonPaddingX: 'px-8',

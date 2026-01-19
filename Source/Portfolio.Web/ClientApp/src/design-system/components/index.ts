@@ -14,6 +14,8 @@ export { Icon, IconName, IconSize } from './Icon';
 export { IconButton } from './IconButton';
 export { Input } from './Input';
 export { Textarea } from './Textarea';
+export { Label } from './Label';
+export type { LabelProps } from './Label';
 export { Timeline } from './Timeline';
 export { TimelineItem } from './Timeline/TimelineItem';
 export { Select } from './Select';
