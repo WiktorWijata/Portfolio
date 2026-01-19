@@ -7,21 +7,25 @@ import { useResponsive } from './hooks/useResponsive';
 
 export function Navigation() {
   const { isMobileMenuOpen, handleNavClick, toggleMobileMenu } = useNavigation();
-  const { isMobile } = useResponsive();
+  const { isDesktop } = useResponsive();
 
   return (
     <React.Fragment>
-      <NavBar rightContent={<LanguageSwitcher />}>
+      <NavBar>
       <div className="flex items-center justify-center h-20 relative">
-        {!isMobile && (
+        {isDesktop && (
           <NavLinkList links={navLinks} onLinkClick={handleNavClick} />
         )}
 
-        {isMobile && (
+        {!isDesktop && (
           <MobileMenuToggle isOpen={isMobileMenuOpen} onToggle={toggleMobileMenu} />
         )}
       </div>
     </NavBar>
+    
+    <div className="fixed top-5 right-6 z-[70]">
+      <LanguageSwitcher />
+    </div>
     
     <MobileMenu isOpen={isMobileMenuOpen}>
       <NavLinkList 

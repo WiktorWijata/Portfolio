@@ -1,13 +1,15 @@
 import type { ReactNode } from 'react';
 import { Navigation } from './Navigation/Navigation';
 import Footer from './Footer';
-import ScrollToTop from './ScrollToTop';
+import { useScrollToTop } from '../design-system/hooks';
 
 interface MainLayoutProps {
   children: ReactNode;
 }
 
 export function MainLayout({ children }: MainLayoutProps) {
+  const ScrollToTopButton = useScrollToTop();
+
   return (
     <>
       <Navigation />
@@ -15,7 +17,7 @@ export function MainLayout({ children }: MainLayoutProps) {
         {children}
       </main>
       <Footer />
-      <ScrollToTop />
+      {ScrollToTopButton}
     </>
   );
 }

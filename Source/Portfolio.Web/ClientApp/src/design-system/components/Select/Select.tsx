@@ -90,7 +90,7 @@ export function Select<T extends string>({
           style={{ 
             border: `1px solid ${currentTheme.colors.neutral.border}`,
             backgroundColor: 'rgba(26, 10, 46, 0.9)',
-            zIndex: 50
+            zIndex: 100
           }}
         >
           {options.map((option) => (

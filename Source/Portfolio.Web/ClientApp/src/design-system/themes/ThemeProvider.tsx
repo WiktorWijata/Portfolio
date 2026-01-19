@@ -8,7 +8,6 @@ interface ThemeProviderProps {
 }
 
 export function ThemeProvider({ children }: ThemeProviderProps) {
-  // Initialize with saved theme immediately
   const [themeId, setThemeId] = useState<string>(() => {
     const savedTheme = localStorage.getItem('portfolio-theme');
     return (savedTheme && themes[savedTheme]) ? savedTheme : defaultTheme.id;

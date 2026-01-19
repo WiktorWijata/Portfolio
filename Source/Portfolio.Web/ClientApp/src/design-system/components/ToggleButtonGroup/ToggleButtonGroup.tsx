@@ -10,28 +10,29 @@ export function ToggleButtonGroup<T = string>({
   const { currentTheme } = useTheme();
 
   return (
-    <div className={`inline-flex ${className}`} role="group">
+    <div className={`flex flex-wrap gap-2 justify-center lg:inline-flex lg:gap-0 ${className}`} role="group">
       {options.map((option, index) => {
         const isActive = value === option.value;
         const isFirst = index === 0;
         const isLast = index === options.length - 1;
 
-        // Zaokrąglenia dla pierwszego i ostatniego
-        let borderRadius = '';
+        let borderRadiusDesktop = '';
         if (isFirst && isLast) {
-          borderRadius = 'rounded-lg'; // Pojedynczy przycisk
+          borderRadiusDesktop = 'lg:rounded-lg';
         } else if (isFirst) {
-          borderRadius = 'rounded-l-lg'; // Pierwszy w grupie
+          borderRadiusDesktop = 'lg:rounded-l-lg lg:rounded-r-none';
         } else if (isLast) {
-          borderRadius = 'rounded-r-lg'; // Ostatni w grupie
+          borderRadiusDesktop = 'lg:rounded-r-lg lg:rounded-l-none';
+        } else {
+          borderRadiusDesktop = 'lg:rounded-none';
         }
 
         return (
           <button
             key={String(option.value)}
             onClick={() => onChange(option.value)}
-            className={`px-6 py-2 font-medium backdrop-blur-sm transition-all ${borderRadius} ${
-              !isLast ? '-mr-px' : ''
+            className={`px-3 sm:px-4 lg:px-6 py-2 font-medium backdrop-blur-sm transition-all rounded-lg ${borderRadiusDesktop} text-sm sm:text-base ${
+              !isLast ? 'lg:-mr-px' : ''
             }`}
             style={{
               border: `1px solid ${isActive ? currentTheme.colors.primary.borderGlow : currentTheme.colors.neutral.border}`,

@@ -1,0 +1,43 @@
+import { useState } from 'react';
+import { SectionTitle, Container } from '../../design-system/components';
+import { useScrollReveal, useToggleWithScroll } from '../../design-system/hooks';
+import { technologies } from '../../data';
+import { SkillsFilter, SkillsGrid, SkillsChips } from './components';
+import type { Category } from './components';
+
+export default function Skills() {
+  const { elementRef, className } = useScrollReveal({ delay: 100 });
+  const [activeCategory, setActiveCategory] = useState<Category>('all');
+  const { isExpanded, handleToggle } = useToggleWithScroll(elementRef);
+
+  const filteredTechnologies = activeCategory === 'all' 
+    ? technologies 
+    : technologies.filter(tech => tech.category === activeCategory);
+
+  return (
+    <section id="skills" ref={elementRef} className={`py-20 ${className}`}>
+      <Container>
+        <SectionTitle>
+          Umiejętności i technologie
+        </SectionTitle>
+        
+        <SkillsFilter
+          activeCategory={activeCategory}
+          onCategoryChange={setActiveCategory}
+        />
+        
+        <div className="block lg:hidden">
+          <SkillsChips technologies={filteredTechnologies} />
+        </div>
+
+        <div className="hidden lg:block">
+          <SkillsGrid
+            technologies={filteredTechnologies}
+            isExpanded={isExpanded}
+            onToggleExpand={handleToggle}
+          />
+        </div>
+      </Container>
+    </section>
+  );
+}

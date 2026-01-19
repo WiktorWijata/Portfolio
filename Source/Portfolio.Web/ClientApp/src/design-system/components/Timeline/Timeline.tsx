@@ -9,13 +9,13 @@ export function Timeline({ children, className = '', align = Alignment.LEFT }: T
   
   return (
     <TimelineProvider value={{ align }}>
-      <div className={`w-[1406px] mx-auto relative px-0 ${className}`}>
+      <div className={`w-full max-w-[1406px] mx-auto relative px-0 ${className}`}>
         <div
           className={`absolute ${linePosition} w-0.5`}
           style={{
             top: '-60px',
             height: 'calc(100% + 120px)',
-            background: currentTheme.colors.gradient.timeline,
+            background: currentTheme.colors.gradient.title,
             maskImage: 'linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%)',
             WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%)'
           }}
