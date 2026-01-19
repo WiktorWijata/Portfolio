@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
-import { IconButton, Icon, IconName, IconSize } from '../design-system/components';
-import { IconButtonSize } from '../design-system/components/IconButton/IconButton.consts';
+import { IconButton, Icon, IconName, IconSize } from '../../components';
+import { IconButtonSize } from '../../components/IconButton/IconButton.consts';
 
-function ScrollToTop() {
+export function useScrollToTop() {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -28,7 +28,7 @@ function ScrollToTop() {
     });
   };
 
-  return (
+  const ScrollToTopButton = (
     <div
       className={`fixed bottom-8 right-8 z-50 transition-all duration-300 ${
         isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-16 pointer-events-none'
@@ -43,6 +43,6 @@ function ScrollToTop() {
       </IconButton>
     </div>
   );
-}
 
-export default ScrollToTop;
+  return ScrollToTopButton;
+}

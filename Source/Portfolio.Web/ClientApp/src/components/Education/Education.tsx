@@ -1,8 +1,8 @@
-import { SectionTitle, Tag, TagVariant, Text, TextSize, TextVariant, TextWeight, TextAs, Timeline, TimelineItem, Tile, Alignment, Container } from '../design-system/components';
-import { useScrollReveal, fadeInStagger } from '../design-system/hooks';
-import { education } from '../data';
+import { SectionTitle, Tag, TagVariant, Text, TextSize, TextVariant, TextWeight, TextAs, Timeline, TimelineItem, Tile, Alignment, Container } from '../../design-system/components';
+import { useScrollReveal, fadeInStagger } from '../../design-system/hooks';
+import { education } from '../../data';
 
-function Education() {
+export default function Education() {
   const { elementRef, className } = useScrollReveal({ delay: 200 });
 
   return (
@@ -35,5 +35,3 @@ function Education() {
     </section>
   );
 }
-
-export default Education;

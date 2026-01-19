@@ -1,14 +1,9 @@
 import { useState, useCallback } from 'react';
 import type { JSX } from 'react';
-import type { ToastVariantType } from '../components/Toast/Toast.consts';
-import { ToastVariant } from '../components/Toast/Toast.consts';
-import { Toast } from '../components/Toast/Toast';
-
-interface ToastState {
-  show: boolean;
-  message: string;
-  variant: ToastVariantType;
-}
+import type { ToastVariantType } from '../../components/Toast/Toast.consts';
+import { ToastVariant } from '../../components/Toast/Toast.consts';
+import { Toast } from '../../components/Toast/Toast';
+import type { ToastState } from './useToast.types';
 
 export function useToast() {
   const [toast, setToast] = useState<ToastState>({

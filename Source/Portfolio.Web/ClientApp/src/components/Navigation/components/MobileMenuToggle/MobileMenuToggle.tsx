@@ -7,7 +7,6 @@ export function MobileMenuToggle({ isOpen, onToggle }: MobileMenuToggleProps) {
     <IconButton
       onClick={onToggle}
       size={IconButtonSize.MEDIUM}
-      className="md:hidden"
     >
       <div
         style={{

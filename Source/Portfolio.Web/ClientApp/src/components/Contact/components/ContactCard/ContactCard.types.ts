@@ -1,9 +1,5 @@
-import { IconName } from '../../../../design-system/components';
+import type { SocialLink } from '../../../../data/socialLinks';
 
-export interface ContactCardProps {
-  icon: IconName;
+export interface ContactCardProps extends SocialLink {
   title: string;
-  href: string;
-  text: string;
-  external?: boolean;
 }
