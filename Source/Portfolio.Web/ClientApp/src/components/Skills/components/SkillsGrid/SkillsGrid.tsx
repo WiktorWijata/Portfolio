@@ -1,6 +1,6 @@
 import { Button, Collapsible } from '../../../../design-system/components';
 import { SkillCard } from '../SkillCard/SkillCard';
-import { SKILLS_GRID_CONFIG } from '../../Skills.consts';
+import { SkillsGridConfig } from '../../Skills.consts';
 import type { SkillsGridProps } from './SkillsGrid.types';
 
 export function SkillsGrid({ 
@@ -8,7 +8,7 @@ export function SkillsGrid({
   isExpanded, 
   onToggleExpand 
 }: SkillsGridProps) {
-  const { DESKTOP_MIN_HEIGHT, DESKTOP_VISIBLE_COUNT, COLLAPSIBLE_MAX_HEIGHT, COLLAPSIBLE_DURATION } = SKILLS_GRID_CONFIG;
+  const { DESKTOP_MIN_HEIGHT, DESKTOP_VISIBLE_COUNT, COLLAPSIBLE_MAX_HEIGHT, COLLAPSIBLE_DURATION } = SkillsGridConfig;
   const hasMoreThanOneRow = technologies.length > DESKTOP_VISIBLE_COUNT;
 
   return (

@@ -1,7 +1,7 @@
-import { Text, TextVariant, TextSize, Container, Select, Label } from '../../design-system/components';
+import { Text, TextVariant, TextSize, Container, Select, Label, DropdownPosition } from '../../design-system/components';
 import { SOCIAL_LINKS } from '../../data/socialLinks';
 import { FooterSocialLinks } from './components';
-import { FOOTER_TEXT } from './Footer.consts';
+import { FooterText } from './Footer.consts';
 import { useTheme } from '../../design-system/themes';
 
 function Footer() {
@@ -24,14 +24,14 @@ function Footer() {
                 value={currentTheme.id} 
                 onChange={setTheme} 
                 options={themeOptions}
-                dropdownPosition="up"
+                dropdownPosition={DropdownPosition.UP}
                 className="!py-1.5 !px-3 text-sm"
               />
             </div>
             
             <div className="text-center md:text-left">
               <Text variant={TextVariant.MUTED} size={TextSize.SM}>
-                &copy; {currentYear} {FOOTER_TEXT.copyright}
+                &copy; {currentYear} {FooterText.COPYRIGHT}
               </Text>
             </div>
           </div>
@@ -41,7 +41,7 @@ function Footer() {
 
         <div className="text-center md:text-left mt-6">
           <Text variant={TextVariant.MUTED} size={TextSize.XS}>
-            {FOOTER_TEXT.techStack}
+            {FooterText.TECH_STACK}
           </Text>
         </div>
       </Container>

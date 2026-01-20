@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { SectionTitle, Container, ToastVariant } from '../../design-system/components';
 import { useScrollReveal, useToast } from '../../design-system/hooks';
 import { ContactInfo, ContactForm } from './components';
-import { CONTACT_TEXT, CONTACT_DATA } from './Contact.consts';
+import { ContactText, ContactData } from './Contact.consts';
 import type { ContactFormData } from './components/ContactForm/ContactForm.types';
 
 function Contact() {
@@ -28,9 +28,9 @@ function Contact() {
           <SectionTitle>Kontakt</SectionTitle>
           <div className="w-full max-w-[1406px] mx-auto">
             <ContactInfo 
-              header={CONTACT_TEXT.header}
-              description={CONTACT_TEXT.description}
-              cards={CONTACT_DATA}
+              header={ContactText.HEADER}
+              description={ContactText.DESCRIPTION}
+              cards={ContactData}
             />
             
             <ContactForm 

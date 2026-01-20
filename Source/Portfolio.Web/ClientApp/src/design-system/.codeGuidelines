@@ -1,0 +1,452 @@
+# Design System Guidelines
+
+> **For AI Assistants & Developers**  
+> This document contains design system-specific rules and conventions.
+
+## Design System Overview
+Custom React + TypeScript component library with theme system.
+
+**Tech Stack:**
+- React 19.2.0 (strict mode)
+- TypeScript ~5.9.3 with `erasableSyntaxOnly`
+- Tailwind CSS 4.0.14 for utilities
+
+---
+
+## TypeScript Rules
+
+### No Enums - Use Const Objects
+❌ **NEVER use TypeScript enums** (erasableSyntaxOnly doesn't support them)
+
+✅ **Always use const object pattern:**
+```typescript
+export const TextVariant = {
+  PRIMARY: 'PRIMARY',
+  SECONDARY: 'SECONDARY',
+  MUTED: 'MUTED',
+} as const;
+
+export type TextVariantType = typeof TextVariant[keyof typeof TextVariant];
+```
+
+**Key rules:**
+- Object name: PascalCase (e.g., `TextVariant`)
+- Keys: UPPER_CASE matching values
+- Values: UPPER_CASE strings
+- Export both object and type
+- Always add `as const`
+
+---
+
+## Naming Conventions
+
+### Constants
+Use **PascalCase** for objects with **UPPER_CASE** keys:
+
+```typescript
+// ✅ CORRECT
+export const ContactText = {
+  HEADER: 'Contact me',
+  DESCRIPTION: 'Get in touch'
+};
+
+export const SkillsGridConfig = {
+  DESKTOP_MIN_HEIGHT: '190px',
+  VISIBLE_COUNT: 7,
+  DURATION: 0.7
+} as const;
+
+// ❌ WRONG
+export const CONTACT_TEXT = {
+  header: 'Contact me',  // lowercase keys
+  description: 'Get in touch'
+};
+```
+
+### Components
+- Component names: PascalCase (e.g., `Button`, `SectionTitle`)
+- Component files: PascalCase matching component name
+- Props interfaces: `{ComponentName}Props`
+- Types files: `{ComponentName}.types.ts`
+- Consts files: `{ComponentName}.consts.ts`
+
+---
+
+## Design System Structure
+
+```
+design-system/
+├── components/          # UI Components (21 components)
+│   ├── Button/
+│   │   ├── Button.tsx
+│   │   ├── Button.types.ts
+│   │   └── index.ts
+│   ├── Text/
+│   │   ├── Text.tsx
+│   │   ├── Text.types.ts
+│   │   ├── Text.consts.ts    # TextSize, TextVariant, TextWeight, TextAs
+│   │   └── index.ts
+│   └── ...
+├── hooks/              # 6 custom hooks
+│   ├── useButton/
+│   ├── useAnimation/
+│   └── ...
+├── themes/             # Theme system
+│   ├── ThemeProvider.tsx
+│   ├── themes/
+│   │   ├── cosmos/     # Cosmos theme
+│   │   ├── sunset/     # Sunset theme
+│   │   ├── vscode-dark/
+│   │   ├── vs2022-dark/
+│   │   └── rider-dark/
+│   └── types.ts
+├── tokens/             # Design tokens
+│   ├── spacing.ts
+│   ├── radius.ts
+│   ├── alignment.ts
+│   └── colors.ts
+├── utils/              # Utility functions
+└── index.ts            # Main export
+```
+
+---
+
+## Existing Variant Patterns
+
+All components with variants follow this pattern:
+
+### Text Component (Reference Implementation)
+```typescript
+// Text.consts.ts
+export const TextSize = {
+  XS: 'XS', SM: 'SM', MD: 'MD', LG: 'LG', XL: 'XL'
+} as const;
+
+export const TextVariant = {
+  PRIMARY: 'PRIMARY', SECONDARY: 'SECONDARY', MUTED: 'MUTED', ACCENT: 'ACCENT'
+} as const;
+
+export const TextWeight = {
+  NORMAL: 'NORMAL', MEDIUM: 'MEDIUM', SEMIBOLD: 'SEMIBOLD', BOLD: 'BOLD'
+} as const;
+
+export const TextAs = {
+  P: 'P', SPAN: 'SPAN', DIV: 'DIV', H1: 'H1', H2: 'H2', H3: 'H3', H4: 'H4', H5: 'H5', H6: 'H6'
+} as const;
+
+// Usage
+<Text 
+  variant={TextVariant.PRIMARY} 
+  size={TextSize.MD} 
+  weight={TextWeight.BOLD}
+  as={TextAs.H2}
+>
+  Content
+</Text>
+```
+
+### Other Components with Variants
+- **Link**: `LinkVariant` (NAV, TEXT, CONTACT)
+- **Tag**: `TagVariant` (NEUTRAL, DATE)
+- **Toast**: `ToastVariant` (SUCCESS, ERROR, INFO, WARNING)
+- **IconButton**: `IconButtonSize` (SMALL, MEDIUM, LARGE)
+- **Select**: `DropdownPosition` (UP, DOWN)
+- **Icon**: `IconName`, `IconSize` (XS, SM, MD, LG, XL)
+
+---
+
+## Component Exports
+
+### Component index.ts
+Export component, types, and consts:
+
+```typescript
+export { Button } from './Button';
+export type { ButtonProps } from './Button.types';
+export { ButtonVariant, ButtonSize } from './Button.consts';
+export type { ButtonVariantType, ButtonSizeType } from './Button.consts';
+```
+
+### Main design-system index.ts
+Re-export everything for easy imports:
+
+```typescript
+export { Button, ButtonVariant, ButtonSize } from './Button';
+export type { ButtonProps, ButtonVariantType, ButtonSizeType } from './Button';
+```
+
+---
+
+## Theme System
+
+### Using Theme Colors
+**ALWAYS use `currentTheme.colors` - NEVER hardcode colors:**
+
+```typescript
+// ✅ CORRECT
+const { currentTheme } = useTheme();
+
+<div style={{ 
+  color: currentTheme.colors.text.primary,
+  backgroundColor: currentTheme.colors.neutral.bg,
+  borderColor: currentTheme.colors.primary.border
+}} />
+
+// ❌ WRONG
+<div style={{ 
+  color: '#ffffff',
+  backgroundColor: 'rgba(26, 10, 46, 0.9)'
+}} />
+```
+
+### Theme Colors Structure
+```typescript
+currentTheme.colors = {
+  primary: {
+    main, light, dark,
+    bg, bgHover, bgActive,
+    border, borderHover, borderGlow,
+    text, glow
+  },
+  neutral: {
+    bg, bgDark, border
+  },
+  text: {
+    primary, secondary, muted
+  },
+  gradient: {
+    title, card
+  }
+}
+```
+
+---
+
+## Imports
+
+### Import Order for Components
+1. React/external libraries
+2. Design system components/hooks
+3. Local component imports
+4. Types
+5. Constants
+
+```typescript
+import { useState } from 'react';
+import { useTheme } from '../../themes';
+import { Button } from '../Button';
+import type { ComponentProps } from './Component.types';
+import { ComponentVariant } from './Component.consts';
+```
+
+### Always Use Named Imports
+```typescript
+// ✅ CORRECT
+import { Button, Text, useTheme } from '../..';
+
+// ❌ WRONG
+import * as DS from '../..';
+```
+
+---
+
+## Code Style
+
+### No Comments
+Remove all comments from code unless absolutely necessary for complex logic.
+
+### Boolean Props
+Simple boolean props are OK:
+```typescript
+disabled?: boolean;
+isActive?: boolean;
+```
+
+But orientation/position/direction should use const objects:
+```typescript
+// ❌ WRONG
+isVertical?: boolean;
+
+// ✅ CORRECT
+export const Orientation = {
+  HORIZONTAL: 'HORIZONTAL',
+  VERTICAL: 'VERTICAL',
+} as const;
+
+orientation?: OrientationType;
+```
+
+---
+
+## Files to Check
+
+When making changes to design-system components:
+
+1. **Component file** (.tsx)
+2. **Types file** (.types.ts)
+3. **Consts file** (.consts.ts) - if variants exist
+4. **Component index.ts** - update exports
+5. **Main index.ts** (`design-system/components/index.ts`) - update re-exports
+6. **All usage locations** - grep search for component usage
+
+---
+
+## Active Themes
+
+Current themes in design system:
+
+### 1. Cosmos (default)
+- Space theme with 150 moving stars
+- Stars have autonomous movement with boundary collision
+- Comets animation
+- Deep purple color palette
+
+### 2. Sunset
+- Warm gradient background
+- Fireflies with floating animation
+- Orange/pink color scheme
+
+### 3. VS Code Dark
+- Code symbols animation (35 floating symbols)
+- VS Code color palette
+- Primary: #007acc, Background: #1e1e1e
+
+All themes use consistent color structure:
+```typescript
+theme.colors = {
+  primary: {
+    main, light, dark,
+    bg, bgHover, bgActive,
+    border, borderHover, borderGlow,
+    text, glow
+  },
+  neutral: { bg, bgDark, border },
+  text: { primary, secondary, muted },
+  gradient: { title, card }
+}
+```
+
+---
+
+## Component Inventory
+
+### Layout & Structure (4)
+- Container
+- SectionTitle
+- Divider
+- Collapsible
+
+### Forms & Input (5)
+- Button
+- Input
+- Textarea
+- Select
+- Label
+
+### Content Display (8)
+- Text
+- Link
+- Tag
+- TagGroup
+- List
+- Timeline
+- TimelineItem
+- Tile
+
+### Interactive (4)
+- IconButton
+- Carousel
+- Toast
+- ExpandableGrid
+
+### Specialized
+- CodeEditor
+- Icon
+
+---
+
+## Creating New Components
+
+### Component File Structure
+
+1. Create folder: `components/{ComponentName}/`
+2. Create files:
+   - `{ComponentName}.tsx` - implementation
+   - `{ComponentName}.types.ts` - props interface
+   - `{ComponentName}.consts.ts` - variants/sizes (if needed)
+   - `index.ts` - exports
+3. If has variants → use const object pattern
+4. Use theme colors via `useTheme()`, never hardcode
+5. Export from component `index.ts`
+6. Add re-exports to `components/index.ts`
+7. Update design-system `README.md`
+
+**Example component structure:**
+```typescript
+// Button.tsx
+import { useTheme } from '../../themes';
+import { ButtonVariant } from './Button.consts';
+import type { ButtonProps } from './Button.types';
+
+export function Button({ variant = ButtonVariant.PRIMARY }: ButtonProps) {
+  const { currentTheme } = useTheme();
+  return <button style={{ color: currentTheme.colors.primary.main }}>...</button>;
+}
+
+// Button.types.ts
+import type { ButtonVariantType } from './Button.consts';
+
+export interface ButtonProps {
+  variant?: ButtonVariantType;
+  children: React.ReactNode;
+  onClick?: () => void;
+}
+
+// Button.consts.ts
+export const ButtonVariant = {
+  PRIMARY: 'PRIMARY',
+  SECONDARY: 'SECONDARY',
+} as const;
+
+export type ButtonVariantType = typeof ButtonVariant[keyof typeof ButtonVariant];
+
+// index.ts
+export { Button } from './Button';
+export { ButtonVariant } from './Button.consts';
+export type { ButtonProps, ButtonVariantType } from './Button.types';
+```
+
+---
+
+## Common Mistakes to Avoid
+
+1. ❌ Using TypeScript enums
+2. ❌ Hardcoding colors instead of using theme
+3. ❌ Inline string union types for variants
+4. ❌ UPPER_CASE const names with camelCase keys
+5. ❌ lowercase variant values
+6. ❌ Not exporting types from index files
+7. ❌ Forgetting `as const` on const objects
+8. ❌ Using boolean props for orientation/direction
+
+---
+
+## Tools & Commands
+
+**Search for usage:**
+```bash
+# Find all usages of a component
+grep -r "ComponentName" src/
+```
+
+**Check for hardcoded colors:**
+```bash
+# Find potential hardcoded colors
+grep -r "#[0-9a-fA-F]\{6\}" src/components/
+grep -r "rgba(" src/components/
+```
+
+**Find all consts files:**
+```bash
+find src/ -name "*.consts.ts"
+```

@@ -1,4 +1,4 @@
-export const FOOTER_TEXT = {
-  copyright: 'Backend Developer Portfolio. Wszystkie prawa zastrzeżone.',
-  techStack: 'Zbudowane z React, TypeScript & Tailwind CSS'
+export const FooterText = {
+  COPYRIGHT: 'Backend Developer Portfolio. Wszystkie prawa zastrzeżone.',
+  TECH_STACK: 'Zbudowane z React, TypeScript & Tailwind CSS'
 };

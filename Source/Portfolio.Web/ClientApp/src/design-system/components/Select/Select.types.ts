@@ -1,3 +1,5 @@
+import type { DropdownPositionType } from './Select.consts';
+
 export interface SelectOption<T = string> {
   value: T;
   label: string;
@@ -12,5 +14,5 @@ export interface SelectProps<T = string> {
   icon?: React.ReactNode;
   className?: string;
   disabled?: boolean;
-  dropdownPosition?: 'up' | 'down';
+  dropdownPosition?: DropdownPositionType;
 }

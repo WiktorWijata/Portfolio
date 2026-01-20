@@ -8,7 +8,9 @@ export interface Star {
   size: number;
   duration: number;
   delay: number;
-  depth: number; // 0-1, gdzie 1 to najbliżej (najjaśniejsze)
+  depth: number;
+  speedX: number;
+  speedY: number;
 }
 
 export interface Comet {

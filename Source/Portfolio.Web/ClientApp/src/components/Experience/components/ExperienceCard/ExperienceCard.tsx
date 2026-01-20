@@ -16,7 +16,7 @@ import {
 } from '../../../../design-system/components';
 import { fadeInStagger } from '../../../../design-system/hooks';
 import { useTheme } from '../../../../design-system/themes';
-import { EXPERIENCE_ANIMATION_CONFIG } from '../../Experience.consts';
+import { ExperienceAnimationConfig } from '../../Experience.consts';
 import type { ExperienceCardProps } from './ExperienceCard.types';
 
 export function ExperienceCard({ 
@@ -37,8 +37,8 @@ export function ExperienceCard({
       style={{
         transformOrigin: 'left center',
         ...fadeInStagger(index, { 
-          staggerDelay: EXPERIENCE_ANIMATION_CONFIG.staggerDelay, 
-          duration: EXPERIENCE_ANIMATION_CONFIG.duration 
+          staggerDelay: ExperienceAnimationConfig.STAGGER_DELAY, 
+          duration: ExperienceAnimationConfig.DURATION 
         })
       }}
     >

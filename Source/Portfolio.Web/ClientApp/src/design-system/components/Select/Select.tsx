@@ -3,6 +3,7 @@ import { radius } from '../../tokens';
 import { useButton } from '../../hooks';
 import { useTheme } from '../../themes';
 import type { SelectProps } from './Select.types';
+import { DropdownPosition } from './Select.consts';
 import { Icon, IconName, IconSize } from '../Icon';
 
 export function Select<T extends string>({ 
@@ -13,7 +14,7 @@ export function Select<T extends string>({
   icon,
   className = '',
   disabled = false,
-  dropdownPosition = 'down'
+  dropdownPosition = DropdownPosition.DOWN
 }: SelectProps<T>) {
   const { currentTheme } = useTheme();
   const [isOpen, setIsOpen] = useState(false);
@@ -79,18 +80,18 @@ export function Select<T extends string>({
         {icon}
         {selectedOption?.shortLabel || selectedOption?.label || placeholder || 'Select...'}
         <Icon 
-          name={dropdownPosition === 'up' ? IconName.CHEVRON_UP : IconName.CHEVRON_DOWN} 
+          name={dropdownPosition === DropdownPosition.UP ? IconName.CHEVRON_UP : IconName.CHEVRON_DOWN} 
           size={IconSize.XS}
-          className={`transition-transform ${isOpen && dropdownPosition === 'down' ? 'rotate-180' : isOpen && dropdownPosition === 'up' ? 'rotate-180' : ''}`}
+          className={`transition-transform ${isOpen && dropdownPosition === DropdownPosition.DOWN ? 'rotate-180' : isOpen && dropdownPosition === DropdownPosition.UP ? 'rotate-180' : ''}`}
         />
       </button>
 
       {isOpen && (
         <div 
-          className={`absolute ${dropdownPosition === 'up' ? 'bottom-full mb-2' : 'top-full mt-2'} left-0 ${radius.card} backdrop-blur-md overflow-hidden`}
+          className={`absolute ${dropdownPosition === DropdownPosition.UP ? 'bottom-full mb-2' : 'top-full mt-2'} left-0 ${radius.card} backdrop-blur-md overflow-hidden`}
           style={{ 
             border: `1px solid ${currentTheme.colors.neutral.border}`,
-            backgroundColor: 'rgba(26, 10, 46, 0.9)',
+            backgroundColor: currentTheme.colors.neutral.bgDark,
             zIndex: 100,
             width: 'fit-content'
           }}
@@ -100,21 +101,24 @@ export function Select<T extends string>({
               key={option.value}
               type="button"
               onClick={() => handleSelect(option.value)}
-              className={`w-full text-left px-4 py-2 whitespace-nowrap transition-all ${
-                value === option.value ? 'text-gray-300' : 'text-gray-400 hover:text-gray-300'
-              }`}
+              className="w-full text-left px-4 py-2 whitespace-nowrap transition-all"
               style={value === option.value ? { 
-                backgroundColor: 'rgba(255, 248, 231, 0.08)',
-                border: '1px solid rgba(255, 248, 231, 0.2)'
-              } : {}}
+                backgroundColor: currentTheme.colors.primary.bg,
+                border: `1px solid ${currentTheme.colors.primary.border}`,
+                color: currentTheme.colors.text.primary
+              } : {
+                color: currentTheme.colors.text.muted
+              }}
               onMouseEnter={(e) => {
                 if (value !== option.value) {
-                  e.currentTarget.style.backgroundColor = 'rgba(255, 248, 231, 0.05)';
+                  e.currentTarget.style.backgroundColor = currentTheme.colors.primary.bg;
+                  e.currentTarget.style.color = currentTheme.colors.text.secondary;
                 }
               }}
               onMouseLeave={(e) => {
                 if (value !== option.value) {
                   e.currentTarget.style.backgroundColor = 'transparent';
+                  e.currentTarget.style.color = currentTheme.colors.text.muted;
                 }
               }}
             >

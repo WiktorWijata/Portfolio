@@ -1,11 +1,11 @@
 import { Button, ExpandableGrid } from '../../../../design-system/components';
 import { useMediaQuery } from '../../../../design-system/hooks';
 import { ProjectCard } from '../ProjectCard';
-import { PROJECTS_GRID_CONFIG } from '../../Projects.consts';
+import { ProjectsGridConfig } from '../../Projects.consts';
 import type { ProjectsGridProps } from './ProjectsGrid.types';
 
 export function ProjectsGrid({ projects, isExpanded, onToggleExpand }: ProjectsGridProps) {
-  const { COLLAPSIBLE_DURATION } = PROJECTS_GRID_CONFIG;
+  const { COLLAPSIBLE_DURATION } = ProjectsGridConfig;
   
   const isDesktop = useMediaQuery('(min-width: 1024px)');
   const isTablet = useMediaQuery('(min-width: 768px)');
