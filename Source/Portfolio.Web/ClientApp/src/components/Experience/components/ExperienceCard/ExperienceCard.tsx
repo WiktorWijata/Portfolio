@@ -85,7 +85,7 @@ export function ExperienceCard({
             variant="small"
             className="-mr-2"
           >
-            {isExpanded ? 'Pokaż mniej' : 'Pokaż więcej'}
+            {isExpanded ? t('buttons.showLess') : t('buttons.showMore')}
           </Button>
         )}
       </div>
