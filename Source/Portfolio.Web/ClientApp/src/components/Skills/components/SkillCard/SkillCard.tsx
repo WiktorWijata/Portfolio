@@ -1,6 +1,7 @@
 import { Text, TextSize, TextVariant, TextWeight } from '../../../../design-system/components';
 import { fadeInStagger } from '../../../../design-system/hooks';
 import { useTheme } from '../../../../design-system/themes';
+import { getSkillIcon } from '../../utils/getSkillIcon';
 import type { SkillCardProps } from './SkillCard.types';
 import { SKILL_CARD_CONFIG } from './SkillCard.types';
 
@@ -8,6 +9,7 @@ const { STAGGER_DELAY, ANIMATION_DURATION, BACKDROP_BLUR } = SKILL_CARD_CONFIG;
 
 export function SkillCard({ name, icon, index, isVisible }: SkillCardProps) {
   const { currentTheme } = useTheme();
+  const iconUrl = getSkillIcon(name, icon);
 
   return (
     <div 
@@ -23,21 +25,20 @@ export function SkillCard({ name, icon, index, isVisible }: SkillCardProps) {
       }}
     >
       <div className="w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 flex items-center justify-center">
-        {icon ? (
-          <img 
-            src={icon} 
-            alt={name}
-            className="w-full h-full object-contain brightness-90 group-hover:brightness-110 transition-all"
-          />
-        ) : (
-          <Text 
-            size={TextSize.XL} 
-            variant={TextVariant.ACCENT} 
-            weight={TextWeight.BOLD}
-          >
-            &lt;/&gt;
-          </Text>
-        )}
+        <img 
+          src={iconUrl} 
+          alt={name}
+          className="w-full h-full object-contain brightness-90 group-hover:brightness-110 transition-all"
+          onError={(e) => {
+            // Fallback to code icon if image fails to load
+            e.currentTarget.style.display = 'none';
+            const fallback = document.createElement('div');
+            fallback.innerHTML = '&lt;/&gt;';
+            fallback.className = 'text-xl sm:text-2xl font-bold';
+            fallback.style.color = currentTheme.colors.text.primary;
+            e.currentTarget.parentElement?.appendChild(fallback);
+          }}
+        />
       </div>
       <Text 
         size={TextSize.XS} 

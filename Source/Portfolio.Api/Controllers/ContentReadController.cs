@@ -9,7 +9,7 @@ namespace RescuePC.Portfolio.Api.Controllers
     {
         [HttpGet("content")]
         [ProducesResponseType(typeof(ContentDto), 200)]
-        public IActionResult GetContent() 
+        public IActionResult GetContent(string languageCode)
         {
             return this.Ok(new ContentDto());
         }

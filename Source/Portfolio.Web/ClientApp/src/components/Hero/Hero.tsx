@@ -1,9 +1,13 @@
 import { Button, Container, Tile } from '../../design-system/components';
 import { HeroCode, DeveloperDescription } from './components';
-import { heroData } from '../../data';
+import { useContent } from '../../api';
+import { useTranslation } from 'react-i18next';
 import developerImage from '../../assets/developer.avif';
 
 export default function Hero() {
+  const { content } = useContent();
+  const { t } = useTranslation();
+
   function handleProjectsClick() {
     const element = document.querySelector('#projects');
     element?.scrollIntoView({ behavior: 'smooth' });
@@ -17,25 +21,25 @@ export default function Hero() {
             onClick={handleProjectsClick}
             className="px-8 lg:px-12"
           >
-            {heroData.buttonText}
+            {t('buttons.viewProjects')}
           </Button>
           
           <HeroCode 
-            quote={heroData.motto}
+            quote={content?.hero?.motto || ''}
             className="w-full lg:w-auto"
           />
           
           <div className="w-full flex flex-col lg:flex-row lg:items-stretch gap-4 lg:gap-6">
             <Tile 
               imageUrl={developerImage}
-              imageAlt={heroData.image.alt}
+              imageAlt={content?.hero?.aboutMe?.title || ''}
               className="w-full min-h-[400px] lg:min-h-[550px] lg:w-[60%]"
             />
             
             <DeveloperDescription 
-              title={heroData.developer.title}
-              greeting={heroData.developer.greeting}
-              paragraphs={heroData.developer.paragraphs}
+              title={content?.hero?.aboutMe?.title || ''}
+              greeting={content?.hero?.aboutMe?.greeting || ''}
+              paragraphs={content?.hero?.aboutMe?.description || []}
               className="lg:w-[40%]"
             />
           </div>

@@ -7,17 +7,17 @@ export function ProjectCard({
   title, 
   description, 
   technologies, 
-  image, 
-  githubLink, 
-  liveLink, 
+  imageUrl, 
+  codeUrl, 
+  liveUrl, 
   index,
   className = '' 
 }: ProjectCardProps) {
 
   return (
     <Tile
-      imageUrl={image}
-      imageAlt={title}
+      imageUrl={imageUrl || undefined}
+      imageAlt={title || undefined}
       className={`flex flex-col relative pb-20 ${className}`}
       style={fadeInStagger(index, { staggerDelay: 0.1, duration: 0.4 })}
     >
@@ -33,7 +33,7 @@ export function ProjectCard({
       
       <div className="mb-4">
         <TagGroup 
-          items={technologies}
+          items={technologies || []}
           variant={TagVariant.NEUTRAL}
         />
       </div>
@@ -48,8 +48,8 @@ export function ProjectCard({
       </Text>
       
       <ProjectActions 
-        githubLink={githubLink}
-        liveLink={liveLink}
+        githubLink={codeUrl || undefined}
+        liveLink={liveUrl || undefined}
         className="absolute bottom-3 right-4"
       />
     </Tile>

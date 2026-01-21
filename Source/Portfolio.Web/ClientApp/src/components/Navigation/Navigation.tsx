@@ -1,12 +1,23 @@
 import { LinkVariant } from '../../design-system/components';
 import { NavBar, NavLinkList, LanguageSwitcher, MobileMenuToggle, MobileMenu } from './components';
-import { navLinks } from '../../data/navigation';
 import { useNavigation } from './hooks/useNavigation';
 import { useResponsive } from './hooks/useResponsive';
+import { useTranslation } from 'react-i18next';
 
 export function Navigation() {
   const { isMobileMenuOpen, handleNavClick, toggleMobileMenu } = useNavigation();
   const { isDesktop } = useResponsive();
+  const { t } = useTranslation();
+
+  const navLinks = [
+    { href: '#home', label: t('navigation.home') },
+    { href: '#skills', label: t('navigation.skills') },
+    { href: '#projects', label: t('navigation.projects') },
+    { href: '#experience', label: t('navigation.experience') },
+    { href: '#education', label: t('navigation.education') },
+    { href: '#did-you-know', label: t('navigation.didYouKnow') },
+    { href: '#contact', label: t('navigation.contact') },
+  ];
 
   return (
     <>

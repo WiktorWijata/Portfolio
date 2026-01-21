@@ -1,5 +1,9 @@
-import type { NavLinkItem } from '../../../../data/navigation';
 import type { LinkVariantType } from '../../../../design-system/components';
+
+export interface NavLinkItem {
+  href: string;
+  label: string;
+}
 
 export interface NavLinkListProps {
   links: NavLinkItem[];

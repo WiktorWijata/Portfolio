@@ -1,0 +1,52 @@
+{
+  "common": {
+    "all": "All",
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "noData": "No data",
+    "present": "Present"
+  },
+  "navigation": {
+    "home": "Home",
+    "about": "About",
+    "experience": "Experience",
+    "education": "Education & Certifications",
+    "projects": "Projects",
+    "skills": "Skills & Technologies",
+    "contact": "Contact",
+    "didYouKnow": "Did you know"
+  },
+  "buttons": {
+    "showMore": "Show more",
+    "showLess": "Show less",
+    "sendMessage": "Send message",
+    "downloadCv": "Download CV",
+    "viewProject": "View project",
+    "viewCode": "View code",
+    "viewProjects": "Projects"
+  },
+  "contact": {
+    "header": "Get in touch",
+    "description": "Looking for an experienced backend developer? I'd be happy to discuss your project!"
+  },
+  "footer": {
+    "copyright": "Backend Developer Portfolio. All rights reserved.",
+    "techStack": "Built with React, TypeScript & Tailwind CSS",
+    "themeLabel": "Theme:"
+  },
+  "form": {
+    "nameLabel": "Name",
+    "namePlaceholder": "John Doe",
+    "emailLabel": "Email",
+    "emailPlaceholder": "john@example.com",
+    "messageLabel": "Message",
+    "messagePlaceholder": "Your message...",
+    "sending": "Sending...",
+    "send": "Send message"
+  },
+  "themes": {
+    "cosmos": "Cosmos",
+    "sunset": "Sunset",
+    "vscode-dark": "VS Code Dark"
+  }
+}

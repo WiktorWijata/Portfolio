@@ -3,8 +3,10 @@ import { useMediaQuery } from '../../../../design-system/hooks';
 import { ProjectCard } from '../ProjectCard';
 import { ProjectsGridConfig } from '../../Projects.consts';
 import type { ProjectsGridProps } from './ProjectsGrid.types';
+import { useTranslation } from 'react-i18next';
 
 export function ProjectsGrid({ projects, isExpanded, onToggleExpand }: ProjectsGridProps) {
+  const { t } = useTranslation();
   const { COLLAPSIBLE_DURATION } = ProjectsGridConfig;
   
   const isDesktop = useMediaQuery('(min-width: 1024px)');
@@ -25,12 +27,7 @@ export function ProjectsGrid({ projects, isExpanded, onToggleExpand }: ProjectsG
         renderItem={(project, index, isVisible) => (
           <ProjectCard
             key={index}
-            title={project.title}
-            description={project.description}
-            technologies={project.technologies}
-            image={project.image}
-            githubLink={project.githubLink}
-            liveLink={project.liveLink}
+            {...project}
             index={index}
             isVisible={isVisible}
           />
@@ -40,7 +37,7 @@ export function ProjectsGrid({ projects, isExpanded, onToggleExpand }: ProjectsG
       {hasMoreProjects && (
         <div className="flex justify-center mt-4">
           <Button onClick={onToggleExpand}>
-            {isExpanded ? 'Pokaż mniej' : 'Pokaż więcej'}
+            {isExpanded ? t('buttons.showLess') : t('buttons.showMore')}
           </Button>
         </div>
       )}

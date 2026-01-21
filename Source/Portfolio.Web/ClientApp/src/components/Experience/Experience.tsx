@@ -1,10 +1,13 @@
 import { useState } from 'react';
 import { SectionTitle, Container } from '../../design-system/components';
 import { useScrollReveal } from '../../design-system/hooks';
-import { experiences } from '../../data';
+import { useContent } from '../../api';
+import { useTranslation } from 'react-i18next';
 import { ExperienceList } from './components';
 
 function Experience() {
+  const { content } = useContent();
+  const { t } = useTranslation();
   const { elementRef, className } = useScrollReveal({ delay: 200 });
   const [expandedCards, setExpandedCards] = useState<{ [key: number]: boolean }>({});
 
@@ -15,13 +18,17 @@ function Experience() {
     }));
   };
 
+  if (!content) {
+    return null;
+  }
+
   return (
     <section id="experience" ref={elementRef} className={`py-20 ${className}`}>
       <Container>
-        <SectionTitle>Doświadczenie</SectionTitle>
+        <SectionTitle>{t('navigation.experience')}</SectionTitle>
         
         <ExperienceList
-          experiences={experiences}
+          experiences={content.experiences || []}
           expandedCards={expandedCards}
           onToggleCard={toggleCard}
         />

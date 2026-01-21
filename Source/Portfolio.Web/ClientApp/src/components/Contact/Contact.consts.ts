@@ -1,4 +1,8 @@
-import { SOCIAL_LINKS } from '../../data/socialLinks';
+const SOCIAL_LINKS = [
+  { name: 'GitHub', url: 'https://github.com', icon: 'github' },
+  { name: 'LinkedIn', url: 'https://linkedin.com', icon: 'linkedin' },
+  { name: 'Email', url: 'mailto:contact@example.com', icon: 'email' }
+];
 
 export const ContactText = {
   HEADER: 'Skontaktuj się ze mną',
@@ -6,6 +10,9 @@ export const ContactText = {
 };
 
 export const ContactData = SOCIAL_LINKS.map(link => ({
-  ...link,
-  title: link.name
+  icon: link.icon,
+  title: link.name,
+  href: link.url,
+  text: link.url.replace('mailto:', '').replace('https://', ''),
+  external: !link.url.startsWith('mailto:')
 }));

@@ -1,0 +1,52 @@
+{
+  "common": {
+    "all": "Wszystkie",
+    "loading": "Ładowanie...",
+    "error": "Wystąpił błąd",
+    "noData": "Brak danych",
+    "present": "Obecnie"
+  },
+  "navigation": {
+    "home": "Start",
+    "about": "O mnie",
+    "experience": "Doświadczenie",
+    "education": "Edukacja i certyfikaty",
+    "projects": "Projekty",
+    "skills": "Umiejętności i technologie",
+    "contact": "Kontakt",
+    "didYouKnow": "Ciekawostki"
+  },
+  "buttons": {
+    "showMore": "Pokaż więcej",
+    "showLess": "Pokaż mniej",
+    "sendMessage": "Wyślij wiadomość",
+    "downloadCv": "Pobierz CV",
+    "viewProject": "Zobacz projekt",
+    "viewCode": "Zobacz kod",
+    "viewProjects": "Projekty"
+  },
+  "contact": {
+    "header": "Skontaktuj się ze mną",
+    "description": "Szukasz doświadczonego backend developera? Chętnie porozmawiam o Twoim projekcie!"
+  },
+  "footer": {
+    "copyright": "Backend Developer Portfolio. Wszystkie prawa zastrzeżone.",
+    "techStack": "Zbudowane z React, TypeScript & Tailwind CSS",
+    "themeLabel": "Motyw:"
+  },
+  "form": {
+    "nameLabel": "Imię",
+    "namePlaceholder": "Jan Kowalski",
+    "emailLabel": "Email",
+    "emailPlaceholder": "jan@example.com",
+    "messageLabel": "Wiadomość",
+    "messagePlaceholder": "Twoja wiadomość...",
+    "sending": "Wysyłanie...",
+    "send": "Wyślij wiadomość"
+  },
+  "themes": {
+    "cosmos": "Kosmos",
+    "sunset": "Zachód słońca",
+    "vscode-dark": "VS Code Dark"
+  }
+}

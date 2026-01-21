@@ -1,8 +1,8 @@
 import { ToggleButtonGroup } from '../../../../design-system/components';
-import { categories } from '../../../../data';
 import type { SkillsFilterProps } from './SkillsFilter.types';
 
 export function SkillsFilter({ 
+  categories,
   activeCategory, 
   onCategoryChange 
 }: SkillsFilterProps) {

@@ -10,6 +10,6 @@ namespace RescuePC.Portfolio.Api.Contracts
         public IEnumerable<ExperienceDto> Experiences { get; set; }
         public IEnumerable<EducationDto> Educations { get; set; }
         public IEnumerable<FactDto> Facts { get; set; }
-        public ContactDto Contact { get; set; }
+        public IEnumerable<ContactDto> Contact { get; set; }
     }
 }
