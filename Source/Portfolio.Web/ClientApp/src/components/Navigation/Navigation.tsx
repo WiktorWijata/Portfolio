@@ -1,4 +1,3 @@
-import React from 'react';
 import { LinkVariant } from '../../design-system/components';
 import { NavBar, NavLinkList, LanguageSwitcher, MobileMenuToggle, MobileMenu } from './components';
 import { navLinks } from '../../data/navigation';
@@ -10,7 +9,7 @@ export function Navigation() {
   const { isDesktop } = useResponsive();
 
   return (
-    <React.Fragment>
+    <>
       <NavBar>
       <div className="flex items-center justify-center h-20 relative">
         {isDesktop && (
@@ -36,6 +35,6 @@ export function Navigation() {
         className="py-3 px-2"
       />
     </MobileMenu>
-    </React.Fragment>
+    </>
   );
-};
+}

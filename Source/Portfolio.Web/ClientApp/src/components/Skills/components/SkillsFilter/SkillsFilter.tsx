@@ -7,7 +7,7 @@ export function SkillsFilter({
   onCategoryChange 
 }: SkillsFilterProps) {
   return (
-    <div className="flex flex-wrap justify-center mb-12">
+    <div className="flex justify-center mb-12">
       <ToggleButtonGroup
         value={activeCategory}
         onChange={onCategoryChange}

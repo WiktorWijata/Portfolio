@@ -5,7 +5,7 @@ import type { ContactInfoProps } from './ContactInfo.types';
 export function ContactInfo({ header, description, cards }: ContactInfoProps) {
   return (
     <div className="mb-12">
-      <div className="text-center mb-8">
+      <div className="mb-8">
         <Text 
           as={TextAs.H3} 
           size={TextSize.LG} 

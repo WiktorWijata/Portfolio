@@ -14,12 +14,12 @@ function Footer() {
   }));
 
   return (
-    <footer className="bg-transparent py-8">
+    <footer className="py-8">
       <Container>
         <div className="flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="flex flex-col gap-4 w-full md:w-auto">
             <div className="flex items-center gap-3">
-              <Label htmlFor="theme-select" className="!mb-0 !inline-block whitespace-nowrap">Motyw:</Label>
+              <Label htmlFor="theme-select" className="!mb-0 whitespace-nowrap">Motyw:</Label>
               <Select 
                 value={currentTheme.id} 
                 onChange={setTheme} 

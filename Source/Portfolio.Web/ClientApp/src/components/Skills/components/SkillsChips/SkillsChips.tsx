@@ -14,7 +14,7 @@ export function SkillsChips({ technologies }: SkillsChipsProps) {
               <img 
                 src={tech.icon} 
                 alt={tech.name}
-                className="w-6 h-6 object-contain inline-block"
+                className="w-6 h-6 object-contain"
               />
             )}
             <span className="whitespace-nowrap">

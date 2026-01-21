@@ -1,5 +1,5 @@
-import { Button, Container } from '../../design-system/components';
-import { HeroCode, DeveloperImage, DeveloperDescription } from './components';
+import { Button, Container, Tile } from '../../design-system/components';
+import { HeroCode, DeveloperDescription } from './components';
 import { heroData } from '../../data';
 import developerImage from '../../assets/developer.avif';
 
@@ -10,7 +10,7 @@ export default function Hero() {
   }
 
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center relative">
+    <section id="home" className="min-h-screen flex items-center justify-center">
       <Container>
         <div className="w-full flex flex-col items-center gap-8 lg:gap-16 pt-12 lg:pt-16">
           <Button
@@ -22,14 +22,14 @@ export default function Hero() {
           
           <HeroCode 
             quote={heroData.motto}
-            className="w-full lg:w-auto lg:max-w-full"
+            className="w-full lg:w-auto"
           />
           
           <div className="w-full flex flex-col lg:flex-row lg:items-stretch gap-4 lg:gap-6">
-            <DeveloperImage 
+            <Tile 
               imageUrl={developerImage}
               imageAlt={heroData.image.alt}
-              className="lg:w-[60%]"
+              className="w-full min-h-[400px] lg:min-h-[550px] lg:w-[60%]"
             />
             
             <DeveloperDescription 

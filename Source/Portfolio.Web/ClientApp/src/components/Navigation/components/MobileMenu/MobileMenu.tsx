@@ -1,4 +1,5 @@
 import { useTheme } from '../../../../design-system/themes';
+import { Container } from '../../../../design-system/components';
 import type { MobileMenuProps } from './MobileMenu.types';
 
 export function MobileMenu({ isOpen, children }: MobileMenuProps) {
@@ -6,7 +7,7 @@ export function MobileMenu({ isOpen, children }: MobileMenuProps) {
 
   return (
     <div 
-      className="py-6 mx-4 fixed top-20 left-0 right-0 z-[60] transition-all duration-300"
+      className="py-6 fixed top-20 inset-x-4 z-[60] transition-all duration-500 ease-in-out"
       style={{
         backgroundColor: currentTheme.colors.neutral.bgDark,
         backdropFilter: 'blur(16px)',
@@ -15,13 +16,12 @@ export function MobileMenu({ isOpen, children }: MobileMenuProps) {
         borderRadius: '12px',
         transform: isOpen ? 'translateY(0)' : 'translateY(-20px)',
         opacity: isOpen ? 1 : 0,
-        pointerEvents: isOpen ? 'auto' : 'none',
         visibility: isOpen ? 'visible' : 'hidden'
       }}
     >
-      <div className="container mx-auto px-6">
+      <Container>
         {children}
-      </div>
+      </Container>
     </div>
   );
 }
