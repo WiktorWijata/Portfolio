@@ -42,7 +42,8 @@
     "messageLabel": "Wiadomość",
     "messagePlaceholder": "Twoja wiadomość...",
     "sending": "Wysyłanie...",
-    "send": "Wyślij wiadomość"
+    "send": "Wyślij wiadomość",
+    "successMessage": "Wiadomość wysłana pomyślnie!"
   },
   "themes": {
     "cosmos": "Kosmos",

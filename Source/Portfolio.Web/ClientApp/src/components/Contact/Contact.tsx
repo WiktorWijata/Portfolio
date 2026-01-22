@@ -19,7 +19,7 @@ function Contact() {
     
     setTimeout(() => {
       setStatus('idle');
-      showToast('Wiadomość wysłana pomyślnie!', ToastVariant.SUCCESS);
+      showToast(t('form.successMessage'), ToastVariant.SUCCESS);
     }, 1000);
   };
 

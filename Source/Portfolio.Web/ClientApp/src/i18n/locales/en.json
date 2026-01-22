@@ -42,7 +42,8 @@
     "messageLabel": "Message",
     "messagePlaceholder": "Your message...",
     "sending": "Sending...",
-    "send": "Send message"
+    "send": "Send message",
+    "successMessage": "Message sent successfully!"
   },
   "themes": {
     "cosmos": "Cosmos",
