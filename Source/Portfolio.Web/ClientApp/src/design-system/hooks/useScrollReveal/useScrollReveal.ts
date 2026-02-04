@@ -37,8 +37,8 @@ export function useScrollReveal(options: UseScrollRevealOptions = {}) {
 
   const className = `transition-all duration-1000 ease-out ${
     isVisible 
-      ? 'translate-y-0' 
-      : 'translate-y-16'
+      ? 'opacity-100 translate-y-0' 
+      : 'opacity-0 translate-y-16'
   }`;
 
   return { elementRef, className, isVisible };
