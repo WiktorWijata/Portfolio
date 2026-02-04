@@ -356,6 +356,7 @@ export const mockContentEN: ContentDto = {
         { name: 'C#', icon: null },
         { name: '.NET', icon: null },
         { name: 'ASP.NET Core', icon: null },
+        { name: 'Entity Framework', icon: null }
       ]
     },
     {

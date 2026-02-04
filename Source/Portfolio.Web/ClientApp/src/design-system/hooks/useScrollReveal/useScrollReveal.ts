@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, useMemo } from 'react';
 import type { UseScrollRevealOptions } from './useScrollReveal.types';
 
 export function useScrollReveal(options: UseScrollRevealOptions = {}) {
@@ -8,12 +8,15 @@ export function useScrollReveal(options: UseScrollRevealOptions = {}) {
 
   useEffect(() => {
     const element = elementRef.current;
+    if (!element) return;
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             setTimeout(() => {
               setIsVisible(true);
+              observer.unobserve(element);
             }, delay);
           }
         });
@@ -24,22 +27,20 @@ export function useScrollReveal(options: UseScrollRevealOptions = {}) {
       }
     );
 
-    if (element) {
-      observer.observe(element);
-    }
+    observer.observe(element);
 
     return () => {
-      if (element) {
-        observer.unobserve(element);
-      }
+      observer.unobserve(element);
     };
   }, [delay, threshold, rootMargin]);
 
-  const className = `transition-all duration-1000 ease-out ${
-    isVisible 
-      ? 'opacity-100 translate-y-0' 
-      : 'opacity-0 translate-y-16'
-  }`;
+  const className = useMemo(
+    () =>
+      `transition-opacity transition-transform duration-1000 ease-out ${
+        isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-16'
+      }`,
+    [isVisible]
+  );
 
   return { elementRef, className, isVisible };
 }

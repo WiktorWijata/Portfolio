@@ -1,5 +1,5 @@
 import { SectionTitle, Tag, TagVariant, Text, TextSize, TextVariant, TextWeight, TextAs, Timeline, TimelineItem, Tile, Alignment, Container } from '../../design-system/components';
-import { useScrollReveal, fadeInStagger } from '../../design-system/hooks';
+import { useScrollReveal } from '../../design-system/hooks';
 import { useContent } from '../../api';
 import { useTranslation } from 'react-i18next';
 
@@ -31,13 +31,7 @@ export default function Education() {
 
             return (
               <TimelineItem key={index}>
-                <Tile
-                  className="transition-all duration-500 relative"
-                  style={{
-                    transformOrigin: 'right center',
-                    ...fadeInStagger(index, { staggerDelay: 0.2, duration: 0.6 })
-                  }}
-                >
+                <Tile className="p-6 relative">
                   <Tag variant={TagVariant.DATE}>{period}</Tag>
                   <Text as={TextAs.H3} size={TextSize.MD} weight={TextWeight.BOLD} className="mb-1">
                     {edu.degree} - {edu.field}

@@ -14,9 +14,8 @@ import {
   IconName,
   IconSize
 } from '../../../../design-system/components';
-import { fadeInStagger } from '../../../../design-system/hooks';
+
 import { useTheme } from '../../../../design-system/themes';
-import { ExperienceAnimationConfig } from '../../Experience.consts';
 import { useTranslation } from 'react-i18next';
 import type { ExperienceCardProps } from './ExperienceCard.types';
 
@@ -26,8 +25,7 @@ export function ExperienceCard({
   startDate,
   endDate,
   achivements, 
-  technologies, 
-  index, 
+  technologies,
   isExpanded, 
   onToggle 
 }: ExperienceCardProps) {
@@ -45,16 +43,7 @@ export function ExperienceCard({
   const period = `${startYear || ''} - ${endYear || ''}`.trim();
 
   return (
-    <Tile
-      className="transition-all duration-500 relative"
-      style={{
-        transformOrigin: 'left center',
-        ...fadeInStagger(index, { 
-          staggerDelay: ExperienceAnimationConfig.STAGGER_DELAY, 
-          duration: ExperienceAnimationConfig.DURATION 
-        })
-      }}
-    >
+    <Tile className="p-6 relative">
       <Tag variant={TagVariant.DATE}>
         {period}
       </Tag>

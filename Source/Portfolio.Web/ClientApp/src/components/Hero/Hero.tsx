@@ -30,11 +30,13 @@ export default function Hero() {
           />
           
           <div className="w-full flex flex-col lg:flex-row lg:items-stretch gap-4 lg:gap-6">
-            <Tile 
-              imageUrl={developerImage}
-              imageAlt={content?.hero?.aboutMe?.title || ''}
-              className="w-full min-h-[400px] lg:min-h-[550px] lg:w-[60%]"
-            />
+            <Tile className="w-full min-h-[400px] lg:min-h-[550px] lg:w-[60%] p-0 overflow-hidden">
+              <img 
+                src={developerImage} 
+                alt={content?.hero?.aboutMe?.title || ''}
+                className="w-full h-full object-cover"
+              />
+            </Tile>
             
             <DeveloperDescription 
               title={content?.hero?.aboutMe?.title || ''}

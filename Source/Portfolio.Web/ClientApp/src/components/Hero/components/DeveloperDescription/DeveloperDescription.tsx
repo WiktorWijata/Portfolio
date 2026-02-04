@@ -11,7 +11,7 @@ export function DeveloperDescription({
   const { currentTheme } = useTheme();
 
   return (
-    <Tile className={`w-full min-h-[400px] lg:min-h-[550px] ${className}`}>
+    <Tile className={`p-6 w-full min-h-[400px] lg:min-h-[550px] ${className}`}>
       <div className="flex flex-col gap-6 lg:gap-8 mt-6 lg:mt-8">
         <Text 
           as={TextAs.H2} 

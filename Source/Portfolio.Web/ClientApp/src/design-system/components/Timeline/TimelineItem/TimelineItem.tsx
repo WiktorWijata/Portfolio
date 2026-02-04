@@ -13,7 +13,6 @@ export function TimelineItem({ children, className = '' }: TimelineItemProps) {
     <div
       className={`relative ${padding} ${className}`}
     >
-      {/* Timeline dot */}
       <div
         className={`absolute ${dotPosition} w-6 h-6 rounded-full border-4`}
         style={{

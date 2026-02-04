@@ -1,14 +1,16 @@
-import { Tile, IconButton, Icon, IconSize, Text, TextSize, TextWeight, TextVariant, Link, LinkVariant } from '../../../../design-system/components';
+import { Tile, IconButton, Icon, IconSize, IconName, Text, TextSize, TextWeight, TextVariant, Link, LinkVariant } from '../../../../design-system/components';
+import type { IconNameType } from '../../../../design-system/components/Icon/Icon.types';
 import { IconButtonSize } from '../../../../design-system/components/IconButton/IconButton.consts';
 import type { ContactCardProps } from './ContactCard.types';
 
 export function ContactCard({ contact }: ContactCardProps) {
   const displayValue = contact.value?.replace(/^(https?:\/\/)?(www\.)?(mailto:)/i, '') || '';
+  const iconName = (contact.type || IconName.EMAIL) as IconNameType;
 
   return (
-    <Tile hover className="flex items-center gap-6 p-4 md:p-6">
+    <Tile className="flex items-center gap-6 p-4 md:p-6">
       <IconButton size={IconButtonSize.LARGE}>
-        <Icon name={contact.type as any} size={IconSize.LG} />
+        <Icon name={iconName} size={IconSize.LG} />
       </IconButton>
       <div>
         <Link 

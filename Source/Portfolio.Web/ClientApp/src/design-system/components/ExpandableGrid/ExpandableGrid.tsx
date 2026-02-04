@@ -49,6 +49,8 @@ export function ExpandableGrid<T>({
     };
   }, [items]);
   
+  const gridClassName = `grid grid-cols-${columns.mobile} md:grid-cols-${columns.tablet} lg:grid-cols-${columns.desktop} gap-${gap.mobile} md:gap-${gap.tablet} lg:gap-${gap.desktop} py-1.5`;
+  
   return (
     <div 
       style={{
@@ -60,7 +62,7 @@ export function ExpandableGrid<T>({
     >
       <div
         ref={gridRef}
-        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8 py-1.5"
+        className={gridClassName}
       >
         {items.map((item, index) => {
           const isVisible = isExpanded || !visibleCount || index < visibleCount;

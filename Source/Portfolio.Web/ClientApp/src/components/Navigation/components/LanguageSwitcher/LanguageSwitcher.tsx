@@ -1,10 +1,6 @@
 import { Icon, IconName, IconSize, Select } from '../../../../design-system/components';
 import { useTranslation } from 'react-i18next';
-
-const AVAILABLE_LANGUAGES = [
-  { code: 'pl', nativeName: 'Polski', shortLabel: 'PL' },
-  { code: 'en', nativeName: 'English', shortLabel: 'EN' }
-];
+import { AVAILABLE_LANGUAGES } from './LanguageSwitcher.consts';
 
 export function LanguageSwitcher() {
   const { i18n } = useTranslation();
