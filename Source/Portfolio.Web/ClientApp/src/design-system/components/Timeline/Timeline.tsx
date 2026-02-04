@@ -19,7 +19,7 @@ export function Timeline({ children, className = '', align = Alignment.LEFT }: T
             maskImage: 'linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%)',
             WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%)'
           }}
-        ></div>
+        />
         <div className="space-y-12">
           {children}
         </div>

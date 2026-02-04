@@ -4,6 +4,8 @@ import { FactCardConfig, FactAnimationConfig } from '../../DidYouKnow.consts';
 import type { FactCardProps } from './FactCard.types';
 
 export function FactCard({ fact }: FactCardProps) {
+  const factIcon = '🚀'; // Default icon, can be customized based on fact.id or added to DTO
+  
   return (
     <Tile
       className="text-center flex flex-col justify-center items-center p-6 md:p-10 lg:p-12"
@@ -15,7 +17,7 @@ export function FactCard({ fact }: FactCardProps) {
         })
       }}
     >
-      <div className="text-6xl mb-6">{fact.icon}</div>
+      <div className="text-6xl mb-6">{factIcon}</div>
       <Text as={TextAs.H3} size={TextSize.LG} weight={TextWeight.BOLD} className="mb-4">
         {fact.title}
       </Text>

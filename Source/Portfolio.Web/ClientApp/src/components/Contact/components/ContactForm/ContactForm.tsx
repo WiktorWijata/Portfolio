@@ -2,8 +2,10 @@ import { useState } from 'react';
 import type { FormEvent } from 'react';
 import { Tile, Input, Textarea, Button } from '../../../../design-system/components';
 import type { ContactFormProps, ContactFormData } from './ContactForm.types';
+import { useTranslation } from 'react-i18next';
 
 export function ContactForm({ onSubmit, isSubmitting = false }: ContactFormProps) {
+  const { t } = useTranslation();
   const [formData, setFormData] = useState<ContactFormData>({
     name: '',
     email: '',
@@ -30,8 +32,8 @@ export function ContactForm({ onSubmit, isSubmitting = false }: ContactFormProps
           name="name"
           value={formData.name}
           onChange={handleChange}
-          label="Imię"
-          placeholder="Jan Kowalski"
+          label={t('form.nameLabel')}
+          placeholder={t('form.namePlaceholder')}
           required
         />
 
@@ -41,8 +43,8 @@ export function ContactForm({ onSubmit, isSubmitting = false }: ContactFormProps
           type="email"
           value={formData.email}
           onChange={handleChange}
-          label="Email"
-          placeholder="jan@example.com"
+          label={t('form.emailLabel')}
+          placeholder={t('form.emailPlaceholder')}
           required
         />
 
@@ -51,8 +53,8 @@ export function ContactForm({ onSubmit, isSubmitting = false }: ContactFormProps
           name="message"
           value={formData.message}
           onChange={handleChange}
-          label="Wiadomość"
-          placeholder="Twoja wiadomość..."
+          label={t('form.messageLabel')}
+          placeholder={t('form.messagePlaceholder')}
           rows={5}
           required
         />
@@ -62,7 +64,7 @@ export function ContactForm({ onSubmit, isSubmitting = false }: ContactFormProps
           disabled={isSubmitting}
           className="w-full"
         >
-          {isSubmitting ? 'Wysyłanie...' : 'Wyślij wiadomość'}
+          {isSubmitting ? t('form.sending') : t('form.send')}
         </Button>
       </form>
     </Tile>

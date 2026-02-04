@@ -11,6 +11,7 @@ export { Alignment, type AlignmentType } from '../tokens';
 export { ToggleButtonGroup } from './ToggleButtonGroup';
 export type { ToggleButtonGroupProps, ToggleButtonGroupOption } from './ToggleButtonGroup';
 export { Icon, IconName, IconSize } from './Icon';
+export type { IconNameType } from './Icon';
 export { IconButton } from './IconButton';
 export { Input } from './Input';
 export { Textarea } from './Textarea';

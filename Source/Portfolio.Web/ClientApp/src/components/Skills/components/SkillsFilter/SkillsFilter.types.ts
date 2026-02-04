@@ -1,6 +1,7 @@
-export type Category = 'all' | 'frontend' | 'backend' | 'mobile' | 'database' | 'devops' | 'design' | 'others';
+export type Category = string;
 
 export interface SkillsFilterProps {
+  categories: { value: Category; label: string }[];
   activeCategory: Category;
   onCategoryChange: (category: Category) => void;
 }

@@ -1,9 +1,5 @@
-export interface Fact {
-  icon: string;
-  title: string;
-  description: string;
-}
+import type { FactDto } from '../../../../api';
 
 export interface FactCardProps {
-  fact: Fact;
+  fact: FactDto;
 }

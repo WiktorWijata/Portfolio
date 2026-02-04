@@ -1,13 +1,13 @@
 import { ToggleButtonGroup } from '../../../../design-system/components';
-import { categories } from '../../../../data';
 import type { SkillsFilterProps } from './SkillsFilter.types';
 
 export function SkillsFilter({ 
+  categories,
   activeCategory, 
   onCategoryChange 
 }: SkillsFilterProps) {
   return (
-    <div className="flex flex-wrap justify-center mb-12">
+    <div className="flex justify-center mb-12">
       <ToggleButtonGroup
         value={activeCategory}
         onChange={onCategoryChange}

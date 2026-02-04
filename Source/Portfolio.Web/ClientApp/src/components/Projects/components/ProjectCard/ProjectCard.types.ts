@@ -1,10 +1,6 @@
-export interface ProjectCardProps {
-  title: string;
-  description: string;
-  technologies: string[];
-  image?: string;
-  githubLink?: string;
-  liveLink?: string;
+import type { ProjectDto } from '../../../../api';
+
+export interface ProjectCardProps extends ProjectDto {
   index: number;
   isVisible: boolean;
   className?: string;

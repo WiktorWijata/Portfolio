@@ -10,8 +10,10 @@ export function ExperienceList({ experiences, expandedCards, onToggleCard }: Exp
           <ExperienceCard
             position={exp.position}
             company={exp.company}
-            period={exp.period}
+            startDate={exp.startDate}
+            endDate={exp.endDate}
             description={exp.description}
+            achivements={exp.achivements}
             technologies={exp.technologies}
             index={index}
             isExpanded={expandedCards[index] || false}

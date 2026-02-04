@@ -1,4 +1,8 @@
-import type { Technology } from '../../../../data/types';
+export interface Technology {
+  name: string;
+  category: string;
+  icon?: string;
+}
 
 export interface SkillsGridProps {
   technologies: Technology[];

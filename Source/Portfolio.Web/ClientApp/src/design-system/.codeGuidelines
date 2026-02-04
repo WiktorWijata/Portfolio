@@ -70,6 +70,13 @@ export const CONTACT_TEXT = {
 - Types files: `{ComponentName}.types.ts`
 - Consts files: `{ComponentName}.consts.ts`
 
+### Hooks
+- Hook names: camelCase with `use` prefix (e.g., `useResponsive`, `useNavigation`)
+- Hook files: camelCase matching hook name
+- Types files: `{hookName}.types.ts` - **REQUIRED** if hook exports custom types
+- Consts files: `{hookName}.consts.ts` - **REQUIRED** if hook uses const objects (variants, configs, etc.)
+- Each hook in its own folder with `index.ts`
+
 ---
 
 ## Design System Structure
@@ -89,7 +96,18 @@ design-system/
 │   └── ...
 ├── hooks/              # 6 custom hooks
 │   ├── useButton/
+│   │   ├── useButton.ts
+│   │   ├── useButton.types.ts  # If hook exports types
+│   │   ├── useButton.consts.ts # If hook has const objects
+│   │   └── index.ts
 │   ├── useAnimation/
+│   │   ├── useAnimation.ts
+│   │   └── index.ts
+│   ├── useResponsive/
+│   │   ├── useResponsive.ts
+│   │   ├── useResponsive.types.ts
+│   │   ├── useResponsive.consts.ts  # Breakpoint, BreakpointQueries
+│   │   └── index.ts
 │   └── ...
 ├── themes/             # Theme system
 │   ├── ThemeProvider.tsx
@@ -418,6 +436,60 @@ export type { ButtonProps, ButtonVariantType } from './Button.types';
 
 ---
 
+## Creating New Hooks
+
+### Hook File Structure
+
+1. Create folder: `hooks/{hookName}/`
+2. Create files:
+   - `{hookName}.ts` - implementation
+   - `{hookName}.types.ts` - **REQUIRED if hook exports custom types**
+   - `{hookName}.consts.ts` - **REQUIRED if hook uses const objects**
+   - `index.ts` - exports
+3. Export hook, types, and consts from `index.ts`
+4. Add re-exports to `hooks/index.ts`
+
+**Example hook structure:**
+```typescript
+// useResponsive.ts
+import { useState, useEffect } from 'react';
+import { Breakpoint, BreakpointQueries } from './useResponsive.consts';
+import type { BreakpointType } from './useResponsive.types';
+
+export function useResponsive() {
+  const [breakpoint, setBreakpoint] = useState<BreakpointType>(Breakpoint.DESKTOP);
+  // ... implementation
+  return { breakpoint, isMobile, isTablet, isDesktop };
+}
+
+// useResponsive.consts.ts
+export const Breakpoint = {
+  MOBILE: 'MOBILE',
+  TABLET: 'TABLET',
+  DESKTOP: 'DESKTOP'
+} as const;
+
+export type BreakpointType = typeof Breakpoint[keyof typeof Breakpoint];
+
+export const BreakpointQueries = {
+  MOBILE: '(max-width: 768px)',
+  TABLET: '(min-width: 769px) and (max-width: 1024px)',
+  DESKTOP: '(min-width: 1025px)'
+} as const;
+
+// useResponsive.types.ts
+import type { Breakpoint } from './useResponsive.consts';
+
+export type BreakpointType = typeof Breakpoint[keyof typeof Breakpoint];
+
+// index.ts
+export { useResponsive } from './useResponsive';
+export { Breakpoint } from './useResponsive.consts';
+export type { BreakpointType } from './useResponsive.types';
+```
+
+---
+
 ## Common Mistakes to Avoid
 
 1. ❌ Using TypeScript enums
@@ -428,6 +500,8 @@ export type { ButtonProps, ButtonVariantType } from './Button.types';
 6. ❌ Not exporting types from index files
 7. ❌ Forgetting `as const` on const objects
 8. ❌ Using boolean props for orientation/direction
+9. ❌ Hooks without `.types.ts` file when they export custom types
+10. ❌ Placing hook implementation directly in `hooks/` folder instead of `hooks/{hookName}/`
 
 ---
 

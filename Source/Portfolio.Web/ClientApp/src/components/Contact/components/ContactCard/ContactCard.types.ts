@@ -1,5 +1,5 @@
-import type { SocialLink } from '../../../../data/socialLinks';
+import type { ContactDto } from '../../../../api/models';
 
-export interface ContactCardProps extends SocialLink {
-  title: string;
+export interface ContactCardProps {
+  contact: ContactDto;
 }

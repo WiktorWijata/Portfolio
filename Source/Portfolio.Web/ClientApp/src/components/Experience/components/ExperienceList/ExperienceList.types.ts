@@ -1,13 +1,7 @@
-export interface Experience {
-  position: string;
-  company: string;
-  period: string;
-  description: string[];
-  technologies: string[];
-}
+import type { ExperienceDto } from '../../../../api';
 
 export interface ExperienceListProps {
-  experiences: Experience[];
+  experiences: ExperienceDto[];
   expandedCards: { [key: number]: boolean };
   onToggleCard: (index: number) => void;
 }

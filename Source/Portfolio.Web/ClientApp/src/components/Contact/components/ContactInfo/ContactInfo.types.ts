@@ -1,7 +1,7 @@
-import type { ContactCardProps } from '../ContactCard/ContactCard.types';
+import type { ContactDto } from '../../../../api/models';
 
 export interface ContactInfoProps {
   header: string;
   description: string;
-  cards: ContactCardProps[];
+  contacts: ContactDto[];
 }

@@ -17,19 +17,32 @@ import {
 import { fadeInStagger } from '../../../../design-system/hooks';
 import { useTheme } from '../../../../design-system/themes';
 import { ExperienceAnimationConfig } from '../../Experience.consts';
+import { useTranslation } from 'react-i18next';
 import type { ExperienceCardProps } from './ExperienceCard.types';
 
 export function ExperienceCard({ 
   position, 
   company, 
-  period, 
-  description, 
+  startDate,
+  endDate,
+  achivements, 
   technologies, 
   index, 
   isExpanded, 
   onToggle 
 }: ExperienceCardProps) {
   const { currentTheme } = useTheme();
+  const { t } = useTranslation();
+
+  const getYear = (dateString: string | null | undefined): string => {
+    if (!dateString) return '';
+    const date = new Date(dateString);
+    return isNaN(date.getTime()) ? '' : date.getFullYear().toString();
+  };
+
+  const startYear = getYear(startDate);
+  const endYear = endDate ? getYear(endDate) : t('common.present');
+  const period = `${startYear || ''} - ${endYear || ''}`.trim();
 
   return (
     <Tile
@@ -53,7 +66,7 @@ export function ExperienceCard({
       </Text>
       <Collapsible isOpen={isExpanded}>
         <List 
-          items={description}
+          items={achivements || []}
           bullet={<Icon name={IconName.CHEVRON_RIGHT} size={IconSize.XS} color={currentTheme.colors.primary.borderHover} />}
           contentVariant={TextVariant.SECONDARY}
           size={TextSize.XS}
@@ -62,17 +75,17 @@ export function ExperienceCard({
       </Collapsible>
       <div className="flex flex-wrap gap-2 mt-4 items-center">
         <TagGroup 
-          items={technologies} 
+          items={technologies || []} 
           variant={TagVariant.NEUTRAL}
           className="flex-1"
         />
-        {description.length > 0 && (
+        {achivements && achivements.length > 0 && (
           <Button
             onClick={onToggle}
             variant="small"
             className="-mr-2"
           >
-            {isExpanded ? 'Pokaż mniej' : 'Pokaż więcej'}
+            {isExpanded ? t('buttons.showLess') : t('buttons.showMore')}
           </Button>
         )}
       </div>

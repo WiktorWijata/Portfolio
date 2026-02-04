@@ -1,9 +1,6 @@
-export interface ExperienceCardProps {
-  position: string;
-  company: string;
-  period: string;
-  description: string[];
-  technologies: string[];
+import type { ExperienceDto } from '../../../../api';
+
+export interface ExperienceCardProps extends ExperienceDto {
   index: number;
   isExpanded: boolean;
   onToggle: () => void;
