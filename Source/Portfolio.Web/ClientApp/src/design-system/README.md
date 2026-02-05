@@ -45,6 +45,20 @@ pnpm add @vitrum/ui
 }
 ```
 
+> Peer dependencies are **not** installed automatically. Make sure you have React 19.2.0+ installed in your project.
+
+### Dependencies
+
+The following dependencies are automatically installed with `@vitrum/ui`:
+
+```json
+{
+  "react-syntax-highlighter": "^16.1.0"
+}
+```
+
+> **Note:** `react-syntax-highlighter` is bundled with the package and used by the `CodeEditor` component.
+
 ---
 
 ## 🚀 Quick Start
