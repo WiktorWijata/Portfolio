@@ -1,8 +1,7 @@
 import { Text, TextAs, TextSize, TextWeight, TextVariant, Alignment } from '../../../../design-system/components';
-import { ContactCard } from '../ContactCard';
 import type { ContactInfoProps } from './ContactInfo.types';
 
-export function ContactInfo({ header, description, contacts }: ContactInfoProps) {
+export function ContactInfo({ header, description }: ContactInfoProps) {
   return (
     <div className="mb-12">
       <div className="mb-8">
@@ -23,12 +22,6 @@ export function ContactInfo({ header, description, contacts }: ContactInfoProps)
         >
           {description}
         </Text>
-      </div>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8 [&>*:nth-child(3)]:md:col-span-2 [&>*:nth-child(3)]:md:justify-self-center [&>*:nth-child(3)]:lg:col-span-1 [&>*:nth-child(3)]:lg:justify-self-stretch">
-        {contacts.map((contact, index) => (
-          <ContactCard key={index} contact={contact} />
-        ))}
       </div>
     </div>
   );

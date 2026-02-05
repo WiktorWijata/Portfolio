@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { SectionTitle, Container } from '../../design-system/components';
-import { useScrollReveal } from '../../design-system/hooks';
 import { useContent } from '../../api';
 import { useTranslation } from 'react-i18next';
 import { ExperienceList } from './components';
@@ -8,7 +7,6 @@ import { ExperienceList } from './components';
 function Experience() {
   const { content } = useContent();
   const { t } = useTranslation();
-  const { elementRef, className } = useScrollReveal({ delay: 200 });
   const [expandedCards, setExpandedCards] = useState<{ [key: number]: boolean }>({});
 
   const toggleCard = (index: number) => {
@@ -23,7 +21,7 @@ function Experience() {
   }
 
   return (
-    <section id="experience" ref={elementRef} className={`py-20 ${className}`}>
+    <section id="experience" className="py-20">
       <Container>
         <SectionTitle>{t('navigation.experience')}</SectionTitle>
         

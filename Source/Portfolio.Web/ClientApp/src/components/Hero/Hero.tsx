@@ -1,8 +1,8 @@
-import { Button, Container, Tile } from '../../design-system/components';
+import { Button, Container } from '../../design-system/components';
 import { HeroCode, DeveloperDescription } from './components';
 import { useContent } from '../../api';
 import { useTranslation } from 'react-i18next';
-import developerImage from '../../assets/developer.avif';
+import avatar from '../../assets/avatar.png';
 
 export default function Hero() {
   const { content } = useContent();
@@ -29,22 +29,24 @@ export default function Hero() {
             className="w-full lg:w-auto"
           />
           
-          <div className="w-full flex flex-col lg:flex-row lg:items-stretch gap-4 lg:gap-6">
-            <Tile className="w-full min-h-[400px] lg:min-h-[550px] lg:w-[60%] p-0 overflow-hidden">
+          
+          <div className="w-full flex flex-col lg:flex-row lg:items-stretch gap-6 lg:gap-12 lg:max-w-5xl lg:mx-auto">            
+            <div className="w-full lg:w-[40%] flex items-center justify-center">                          
               <img 
-                src={developerImage} 
+                src={avatar} 
                 alt={content?.hero?.aboutMe?.title || ''}
-                className="w-full h-full object-cover"
-              />
-            </Tile>
-            
+                className="w-full max-w-[320px] lg:max-w-none object-contain"
+              />              
+            </div>
+
             <DeveloperDescription 
               title={content?.hero?.aboutMe?.title || ''}
               greeting={content?.hero?.aboutMe?.greeting || ''}
               paragraphs={content?.hero?.aboutMe?.description || []}
-              className="lg:w-[40%]"
+              className="lg:w-[60%]"
             />
           </div>
+
         </div>
       </Container>
     </section>

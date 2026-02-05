@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { SectionTitle, Container } from '../../design-system/components';
-import { useScrollReveal, useToggleWithScroll } from '../../design-system/hooks';
+import { useToggleWithScroll } from '../../design-system/hooks';
 import { useContent } from '../../api';
 import { SkillsFilter, SkillsGrid, SkillsChips } from './components';
 import type { Category } from './components';
@@ -9,7 +9,7 @@ import { useTranslation } from 'react-i18next';
 export default function Skills() {
   const { content } = useContent();
   const { t } = useTranslation();
-  const { elementRef, className } = useScrollReveal({ delay: 100 });
+  const elementRef = useRef<HTMLElement>(null);
   const [activeCategory, setActiveCategory] = useState<Category>('all');
   const { isExpanded, handleToggle } = useToggleWithScroll(elementRef);
 
@@ -36,7 +36,7 @@ export default function Skills() {
     : technologies.filter(tech => tech.category === activeCategory);
 
   return (
-    <section id="skills" ref={elementRef} className={`py-20 ${className}`}>
+    <section id="skills" ref={elementRef} className="py-20">
       <Container>
         <SectionTitle>
           {t('navigation.skills')}

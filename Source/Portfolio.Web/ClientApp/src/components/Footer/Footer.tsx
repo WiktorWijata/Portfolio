@@ -1,12 +1,12 @@
-import { Text, TextVariant, TextSize, Container, Select, Label, DropdownPosition } from '../../design-system/components';
+import { Text, TextVariant, TextSize, Container, Select, Label, DropdownPosition, IconName } from '../../design-system/components';
 import { FooterSocialLinks } from './components';
 import { useTheme } from '../../design-system/themes';
 import { useTranslation } from 'react-i18next';
 
 const SOCIAL_LINKS = [
-  { name: 'GitHub', url: 'https://github.com', icon: 'github' },
-  { name: 'LinkedIn', url: 'https://linkedin.com', icon: 'linkedin' },
-  { name: 'Email', url: 'mailto:contact@example.com', icon: 'email' }
+  { name: 'GitHub', url: 'https://github.com', icon: IconName.GITHUB },
+  { name: 'LinkedIn', url: 'https://linkedin.com', icon: IconName.LINKEDIN },
+  { name: 'Email', url: 'mailto:contact@example.com', icon: IconName.EMAIL }
 ];
 
 function Footer() {

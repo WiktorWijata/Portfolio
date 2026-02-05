@@ -7,9 +7,9 @@ export function FooterSocialLinks({ links }: FooterSocialLinksProps) {
       {links.map((link) => (
         <Link
           key={link.name}
-          href={link.href}
-          target={link.external ? "_blank" : undefined}
-          rel={link.external ? "noopener noreferrer" : undefined}
+          href={link.url}
+          target="_blank"
+          rel="noopener noreferrer"
           aria-label={link.name}
           variant={LinkVariant.TEXT}
         >

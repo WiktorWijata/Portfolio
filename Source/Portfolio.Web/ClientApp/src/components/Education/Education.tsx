@@ -1,12 +1,10 @@
 import { SectionTitle, Tag, TagVariant, Text, TextSize, TextVariant, TextWeight, TextAs, Timeline, TimelineItem, Tile, Alignment, Container } from '../../design-system/components';
-import { useScrollReveal } from '../../design-system/hooks';
 import { useContent } from '../../api';
 import { useTranslation } from 'react-i18next';
 
 export default function Education() {
   const { content } = useContent();
   const { t } = useTranslation();
-  const { elementRef, className } = useScrollReveal({ delay: 200 });
 
   const getYear = (dateString: string | null | undefined): string => {
     if (!dateString) return '';
@@ -19,7 +17,7 @@ export default function Education() {
   }
 
   return (
-    <section id="education" ref={elementRef} className={`py-20 ${className}`}>
+    <section id="education" className="py-20">
       <Container>
         <SectionTitle>{t('navigation.education')}</SectionTitle>
 

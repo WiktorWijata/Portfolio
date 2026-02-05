@@ -1,5 +1,4 @@
 import { SectionTitle, Carousel, CarouselItem, Container } from '../../design-system/components';
-import { useScrollReveal } from '../../design-system/hooks';
 import { useContent } from '../../api';
 import { useTranslation } from 'react-i18next';
 import { FactCard } from './components';
@@ -7,14 +6,13 @@ import { FactCard } from './components';
 function DidYouKnow() {
   const { content } = useContent();
   const { t } = useTranslation();
-  const { elementRef, className } = useScrollReveal({ delay: 200 });
 
   if (!content) {
     return null;
   }
 
   return (
-    <section id="didyouknow" ref={elementRef} className={`py-20 ${className}`}>
+    <section id="didyouknow" className="py-20">
       <Container>
         <SectionTitle>{t('navigation.didYouKnow')}</SectionTitle>
 
