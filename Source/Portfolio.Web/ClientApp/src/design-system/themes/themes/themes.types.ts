@@ -30,6 +30,7 @@ export interface ThemeColors {
   };
   shadow: {
     tile: string;
+    toast: string;
   };
 }
 

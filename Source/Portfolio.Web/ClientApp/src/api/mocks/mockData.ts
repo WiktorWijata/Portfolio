@@ -213,8 +213,8 @@ export const mockContentPL: ContentDto = {
       degree: '70-483, 70-486',
       field: 'Microsoft certified solutions associate: Web Applications - certified 2019',
       institution: 'microsoft.com',
-      startDate: '2022-01-01',
-      endDate: '2022-01-01',
+      startDate: '2020-03-01',
+      endDate: '2020-03-01',
     },
     {
       degree: 'Technikum Informatyczne',
