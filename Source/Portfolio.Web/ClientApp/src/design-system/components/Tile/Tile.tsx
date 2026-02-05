@@ -1,4 +1,4 @@
-import { radius } from '../../tokens';
+import { Radius } from '../../tokens';
 import { useTheme } from '../../themes';
 import type { TileProps } from './Tile.types';
 
@@ -11,7 +11,7 @@ export function Tile({
   
   return (
     <div 
-      className={`${radius.card} ${className}`}
+      className={`${Radius.CARD} ${className}`}
       style={{
         border: `1px solid ${currentTheme.colors.neutral.border}`,
         backgroundColor: currentTheme.colors.neutral.bg,

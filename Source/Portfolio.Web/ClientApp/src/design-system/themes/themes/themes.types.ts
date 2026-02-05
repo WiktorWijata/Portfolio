@@ -26,6 +26,7 @@ export interface ThemeColors {
   };
   gradient: {
     title: string;
+    timeline: string;
   };
 }
 

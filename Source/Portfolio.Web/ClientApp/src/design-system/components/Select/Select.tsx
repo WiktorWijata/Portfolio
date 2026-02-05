@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import { radius } from '../../tokens';
+import { Radius } from '../../tokens';
 import { useButton } from '../../hooks';
 import { useTheme } from '../../themes';
 import type { SelectProps } from './Select.types';
@@ -58,7 +58,7 @@ export function Select<T extends string>({
     style: buttonStyle,
   } = useButton({
     disabled,
-    className: `flex items-center gap-2 px-4 py-2 ${radius.button} font-medium transition-all duration-300 ${className}`,
+    className: `flex items-center gap-2 px-4 py-2 ${Radius.BUTTON} font-medium transition-all duration-300 ${className}`,
     onClick: handleToggle,
   });
 
@@ -88,7 +88,7 @@ export function Select<T extends string>({
 
       {isOpen && (
         <div 
-          className={`absolute ${dropdownPosition === DropdownPosition.UP ? 'bottom-full mb-2' : 'top-full mt-2'} left-0 ${radius.card} backdrop-blur-md overflow-hidden`}
+          className={`absolute ${dropdownPosition === DropdownPosition.UP ? 'bottom-full mb-2' : 'top-full mt-2'} left-0 ${Radius.CARD} backdrop-blur-md overflow-hidden`}
           style={{ 
             border: `1px solid ${currentTheme.colors.neutral.border}`,
             backgroundColor: currentTheme.colors.neutral.bgDark,

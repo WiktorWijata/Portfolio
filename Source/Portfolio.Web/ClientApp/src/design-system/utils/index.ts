@@ -1,1 +1,1 @@
-export { fadeIn, fadeInStagger } from './animations';
+export { fadeIn } from './animations';

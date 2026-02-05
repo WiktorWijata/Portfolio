@@ -37,3 +37,5 @@ export { Toast, ToastVariant } from './Toast';
 export type { ToastProps, ToastVariantType } from './Toast';
 export { CodeEditor } from './CodeEditor/CodeEditor';
 export type { CodeEditorProps } from './CodeEditor/CodeEditor.types';
+export { CircularProgress } from './CircularProgress';
+export type { CircularProgressProps } from './CircularProgress';

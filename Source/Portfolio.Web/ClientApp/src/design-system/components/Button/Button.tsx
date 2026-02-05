@@ -1,5 +1,5 @@
 
-import { radius } from '../../tokens';
+import { Radius } from '../../tokens';
 import type { ButtonProps } from './Button.types';
 import { useButton } from '../../hooks'
 
@@ -13,7 +13,7 @@ export function Button({
   variant = 'primary'
 }: ButtonProps) {
   const sizeClasses = variant === 'small' ? 'px-3 py-1.5 text-sm' : 'px-8 py-3';
-  const buttonRadius = radius.button;
+  const buttonRadius = Radius.BUTTON;
 
   const {
     computedClassName,

@@ -1,4 +1,4 @@
-import { radius } from '../../tokens';
+import { Radius } from '../../tokens';
 import { useTheme } from '../../themes';
 import type { TagProps } from './Tag.types';
 import { TagVariant, tagVariantClasses } from './Tag.consts';
@@ -10,7 +10,7 @@ export function Tag({ children, variant = TagVariant.NEUTRAL, className = '' }: 
   
   return (
     <span 
-      className={`${radius.tag} ${baseClasses} ${variantClasses} ${className}`}
+      className={`${Radius.TAG} ${baseClasses} ${variantClasses} ${className}`}
       style={{
         border: `1px solid ${currentTheme.colors.neutral.border}`,
         backgroundColor: currentTheme.colors.neutral.bg

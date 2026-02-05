@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { radius } from '../../tokens';
+import { Radius } from '../../tokens';
 import { useTheme } from '../../themes';
 import { slideInRight, slideOutRight } from '../../utils/animations';
 import type { ToastProps } from './Toast.types';
@@ -43,7 +43,7 @@ export function Toast({
 
   return (
     <div
-      className={`fixed top-8 right-8 z-50 ${radius.card} backdrop-blur-sm font-semibold shadow-lg transition-all duration-300 overflow-hidden ${className}`}
+      className={`fixed top-8 right-8 z-50 ${Radius.CARD} backdrop-blur-sm font-semibold shadow-lg transition-all duration-300 overflow-hidden ${className}`}
       style={{
         border: `1px solid ${borderColor}`,
         backgroundColor: `${borderColor}13`,

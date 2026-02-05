@@ -1,4 +1,4 @@
-import { radius } from '../../tokens';
+import { Radius } from '../../tokens';
 import type { IconButtonProps } from './IconButton.types';
 import { useButton } from '../../hooks';
 import { iconButtonSizeClasses, IconButtonSize } from './IconButton.consts';
@@ -13,7 +13,7 @@ export function IconButton({
   rel,
   disabled = false
 }: IconButtonProps) {
-  const buttonRadius = radius.button;
+  const buttonRadius = Radius.BUTTON;
   const {
     computedClassName,
     isDisabled,

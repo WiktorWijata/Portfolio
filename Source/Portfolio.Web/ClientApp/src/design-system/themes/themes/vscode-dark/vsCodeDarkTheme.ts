@@ -31,6 +31,7 @@ export const vsCodeDarkTheme: Theme = {
     },
     gradient: {
       title: 'linear-gradient(to right, #569cd6, #4ec9b0, #dcdcaa, #ce9178)',
+      timeline: 'linear-gradient(to bottom, #569cd6, #4ec9b0, #dcdcaa, #ce9178)',
     },
   },
 };

@@ -1,654 +1,58 @@
-# Design System Documentation
+# Vitrum UI
 
-## Overview
+> A modern, glassmorphic React component library built with TypeScript and Tailwind CSS
 
-Comprehensive design system for the Portfolio application built with React, TypeScript, and Tailwind CSS. Provides reusable components, hooks, themes, and utilities for consistent UI development.
+[![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)](https://github.com/yourusername/vitrum-ui)
+[![React](https://img.shields.io/badge/React-19.2.0-61DAFB?logo=react)](https://react.dev/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.9.3-3178C6?logo=typescript)](https://www.typescriptlang.org/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind-4.0.14-06B6D4?logo=tailwindcss)](https://tailwindcss.com/)
 
-## Table of Contents
+## 🌟 Overview
 
-- [Components](#components)
-- [Hooks](#hooks)
-- [Themes](#themes)
-- [Tokens](#tokens)
-- [Utils](#utils)
+Vitrum UI is a comprehensive design system featuring glassmorphism effects, dynamic theming, and a rich set of accessible React components. Built with performance and developer experience in mind, it provides a consistent, beautiful foundation for modern web applications.
+
+### Key Features
+
+- 🎨 **Dynamic Theming** - Multiple pre-built themes with animated backgrounds
+- 🪟 **Glassmorphism** - Modern glass effect components with backdrop blur
+- 🎯 **Type-Safe** - Full TypeScript support with strict typing
+- ⚡ **Performance** - Zero runtime CSS-in-JS overhead, Tailwind JIT compilation
+- ♿ **Accessible** - WCAG compliant components
+- 🎭 **Animated** - Smooth transitions and micro-interactions
+- 📦 **Tree-Shakeable** - Import only what you need
 
 ---
 
-## Components
+## 📦 Installation
 
-### Layout Components
+```bash
+# npm
+npm install @vitrum/ui
 
-#### Container
-Provides consistent horizontal padding and max-width for content sections.
+# yarn
+yarn add @vitrum/ui
 
-**Props:**
-- `children: ReactNode` - Content to be wrapped
-- `className?: string` - Additional CSS classes
-
-**Usage:**
-```tsx
-<Container>
-  <SectionTitle>My Section</SectionTitle>
-</Container>
+# pnpm
+pnpm add @vitrum/ui
 ```
 
-**Features:**
-- 5% horizontal padding (`px-[5%]`)
-- Centered with `mx-auto`
-- Responsive max-width
+### Peer Dependencies
 
----
-
-#### Tile
-Card-like container with optional hover effects and background image.
-
-**Props:**
-- `children: ReactNode`
-- `hover?: boolean` - Enable hover scale effect
-- `imageUrl?: string` - Background image URL
-- `imageAlt?: string` - Image alt text
-- `className?: string`
-
-**Usage:**
-```tsx
-<Tile hover imageUrl="/image.jpg">
-  <h3>Card Title</h3>
-  <p>Card content</p>
-</Tile>
-```
-
-**Features:**
-- Theme-aware styling
-- Optional hover animation
-- Optional background image with overlay
-- Consistent border radius and padding
-
----
-
-### Navigation Components
-
-#### Link
-Styled anchor element with multiple variants.
-
-**Props:**
-- `children: ReactNode`
-- `href: string`
-- `variant?: LinkVariant` - TEXT | CONTACT | FOOTER | PRIMARY
-- `target?: string`
-- `rel?: string`
-- `className?: string`
-
-**Variants:**
-- `TEXT` - Underline animation on hover
-- `CONTACT` - Styled for contact cards
-- `FOOTER` - Muted footer links
-- `PRIMARY` - Bold primary links
-
-**Usage:**
-```tsx
-<Link href="#section" variant={LinkVariant.TEXT}>
-  Navigate
-</Link>
+```json
+{
+  "react": "^19.2.0",
+  "react-dom": "^19.2.0"
+}
 ```
 
 ---
 
-#### Button
-Primary action button with theme support.
+## 🚀 Quick Start
 
-**Props:**
-- `children: ReactNode`
-- `onClick?: () => void`
-- `type?: 'button' | 'submit' | 'reset'`
-- `variant?: 'default' | 'small'`
-- `disabled?: boolean`
-- `className?: string`
+### 1. Wrap your app with ThemeProvider
 
-**Usage:**
 ```tsx
-<Button onClick={handleClick} variant="small">
-  Click Me
-</Button>
-```
-
-**Features:**
-- Theme-aware colors
-- Hover and active states
-- Disabled state styling
-- Size variants
-
----
-
-#### IconButton
-Circular button for icons.
-
-**Props:**
-- `children: ReactNode` (typically Icon component)
-- `onClick?: () => void`
-- `href?: string`
-- `size?: IconButtonSize` - SMALL | MEDIUM | LARGE
-- `target?: string`
-- `rel?: string`
-- `disabled?: boolean`
-- `className?: string`
-
-**Usage:**
-```tsx
-<IconButton size={IconButtonSize.MEDIUM} onClick={handleClick}>
-  <Icon name={IconName.GITHUB} size={IconSize.MD} />
-</IconButton>
-```
-
----
-
-### Display Components
-
-#### Icon
-SVG icon component with multiple sizes and names.
-
-**Props:**
-- `name: IconName` - GITHUB | LINKEDIN | EMAIL | MENU | CLOSE | CHEVRON_UP | CHEVRON_DOWN | CHEVRON_LEFT | CHEVRON_RIGHT
-- `size?: IconSize` - XS | SM | MD | LG | XL
-- `color?: string`
-- `className?: string`
-
-**Usage:**
-```tsx
-<Icon name={IconName.GITHUB} size={IconSize.LG} />
-```
-
----
-
-#### Text
-Typography component with consistent styling.
-
-**Props:**
-- `children: ReactNode`
-- `as?: TextAs` - P | H1 | H2 | H3 | H4 | H5 | H6 | SPAN | DIV
-- `size?: TextSize` - XS | SM | MD | LG | XL | XXL
-- `weight?: TextWeight` - NORMAL | MEDIUM | SEMIBOLD | BOLD
-- `variant?: TextVariant` - PRIMARY | SECONDARY | MUTED | ACCENT
-- `align?: Alignment` - LEFT | CENTER | RIGHT
-- `className?: string`
-
-**Usage:**
-```tsx
-<Text as={TextAs.H2} size={TextSize.XL} weight={TextWeight.BOLD}>
-  Heading Text
-</Text>
-```
-
----
-
-#### SectionTitle
-Standardized section heading with gradient effect.
-
-**Props:**
-- `children: ReactNode`
-- `className?: string`
-
-**Usage:**
-```tsx
-<SectionTitle>About Me</SectionTitle>
-```
-
-**Features:**
-- Gradient text effect from theme
-- Consistent sizing and spacing
-- Responsive font size
-
----
-
-#### Tag
-Small label component for technologies, dates, etc.
-
-**Props:**
-- `children: ReactNode`
-- `variant?: TagVariant` - PRIMARY | SECONDARY | ACCENT | NEUTRAL | DATE
-- `className?: string`
-
-**Usage:**
-```tsx
-<Tag variant={TagVariant.PRIMARY}>React</Tag>
-```
-
----
-
-#### TagGroup
-Renders a collection of tags.
-
-**Props:**
-- `items: string[]`
-- `variant?: TagVariant`
-- `className?: string`
-
-**Usage:**
-```tsx
-<TagGroup items={['React', 'TypeScript', 'Tailwind']} variant={TagVariant.NEUTRAL} />
-```
-
----
-
-### Form Components
-
-#### Input
-Text input field with label and theme styling.
-
-**Props:**
-- `id: string`
-- `name: string`
-- `value: string`
-- `onChange: (e: ChangeEvent<HTMLInputElement>) => void`
-- `type?: string` - Default 'text'
-- `label: string`
-- `placeholder?: string`
-- `required?: boolean`
-- `className?: string`
-
-**Usage:**
-```tsx
-<Input
-  id="email"
-  name="email"
-  type="email"
-  value={formData.email}
-  onChange={handleChange}
-  label="Email"
-  placeholder="your@email.com"
-  required
-/>
-```
-
----
-
-#### Textarea
-Multi-line text input.
-
-**Props:**
-- `id: string`
-- `name: string`
-- `value: string`
-- `onChange: (e: ChangeEvent<HTMLTextAreaElement>) => void`
-- `label: string`
-- `placeholder?: string`
-- `rows?: number`
-- `required?: boolean`
-- `className?: string`
-
-**Usage:**
-```tsx
-<Textarea
-  id="message"
-  name="message"
-  value={formData.message}
-  onChange={handleChange}
-  label="Message"
-  rows={5}
-/>
-```
-
----
-
-#### Select
-Dropdown selection component.
-
-**Props:**
-- `value: string`
-- `onChange: (value: string) => void`
-- `options: SelectOption[]`
-- `className?: string`
-
-**Usage:**
-```tsx
-<Select
-  value={theme}
-  onChange={setTheme}
-  options={[
-    { value: 'sunset', label: 'Sunset' },
-    { value: 'cosmos', label: 'Cosmos' }
-  ]}
-/>
-```
-
----
-
-#### ToggleButtonGroup
-Group of toggle buttons for single selection.
-
-**Props:**
-- `options: ToggleOption[]`
-- `value: string`
-- `onChange: (value: string) => void`
-- `className?: string`
-
-**Usage:**
-```tsx
-<ToggleButtonGroup
-  value={language}
-  onChange={setLanguage}
-  options={[
-    { value: 'pl', label: 'PL' },
-    { value: 'en', label: 'EN' }
-  ]}
-/>
-```
-
----
-
-### Complex Components
-
-#### Collapsible
-Expandable container with smooth height transition.
-
-**Props:**
-- `isOpen: boolean`
-- `children: ReactNode`
-- `className?: string`
-
-**Usage:**
-```tsx
-<Collapsible isOpen={isExpanded}>
-  <List items={details} />
-</Collapsible>
-```
-
----
-
-#### ExpandableGrid
-Responsive grid that shows one row initially, expandable to show all.
-
-**Props:**
-- `items: T[]`
-- `columns: ResponsiveConfig` - { mobile, tablet, desktop }
-- `gap?: ResponsiveConfig`
-- `isExpanded: boolean`
-- `visibleCount?: number`
-- `renderItem: (item: T, index: number, isVisible: boolean) => ReactNode`
-- `className?: string`
-- `duration?: number`
-
-**Usage:**
-```tsx
-<ExpandableGrid
-  items={projects}
-  columns={{ mobile: 1, tablet: 2, desktop: 3 }}
-  gap={{ mobile: 4, tablet: 6, desktop: 8 }}
-  isExpanded={isExpanded}
-  visibleCount={visibleCount}
-  renderItem={(project, index, isVisible) => (
-    <ProjectCard {...project} isVisible={isVisible} />
-  )}
-/>
-```
-
-**Features:**
-- Measures first row height dynamically
-- Responsive columns
-- Smooth expand/collapse animation
-- Overflow control
-
----
-
-#### Carousel
-Slideshow component with navigation and dots.
-
-**Props:**
-- `children: ReactNode` (CarouselItem components)
-- `padding?: string`
-- `minHeight?: string`
-- `showDots?: boolean`
-- `showNavigation?: boolean`
-- `duration?: number` - Transition duration in ms
-- `className?: string`
-
-**Usage:**
-```tsx
-<Carousel padding="px-4" minHeight="320px">
-  <CarouselItem>
-    <FactCard fact={fact1} />
-  </CarouselItem>
-  <CarouselItem>
-    <FactCard fact={fact2} />
-  </CarouselItem>
-</Carousel>
-```
-
-**Features:**
-- Swipeable slides
-- Navigation arrows (hidden on mobile)
-- Progress dots
-- Smooth transitions
-
----
-
-#### Timeline
-Vertical timeline with gradient line.
-
-**Props:**
-- `children: ReactNode` (TimelineItem components)
-- `className?: string`
-- `align?: Alignment` - LEFT | RIGHT
-
-**Usage:**
-```tsx
-<Timeline align={Alignment.LEFT}>
-  <TimelineItem>
-    <ExperienceCard {...experience} />
-  </TimelineItem>
-</Timeline>
-```
-
-**Features:**
-- Gradient vertical line
-- Dot indicators
-- Left/right alignment
-- Responsive width
-
----
-
-#### List
-Bulleted or numbered list with custom styling.
-
-**Props:**
-- `items: string[]`
-- `bullet?: ReactNode` - Custom bullet component
-- `contentVariant?: TextVariant`
-- `size?: TextSize`
-- `className?: string`
-
-**Usage:**
-```tsx
-<List
-  items={['Item 1', 'Item 2', 'Item 3']}
-  bullet={<Icon name={IconName.CHEVRON_RIGHT} size={IconSize.XS} />}
-  contentVariant={TextVariant.SECONDARY}
-  size={TextSize.SM}
-/>
-```
-
----
-
-#### Toast
-Notification component with multiple variants.
-
-**Props:**
-- `message: string`
-- `variant?: ToastVariant` - SUCCESS | ERROR | INFO | WARNING
-- `duration?: number` - Auto-hide duration in ms
-- `onClose: () => void`
-
-**Usage:**
-```tsx
-// Use via useToast hook
-const { showToast, ToastComponent } = useToast();
-
-showToast('Success!', ToastVariant.SUCCESS);
-
-return <ToastComponent />;
-```
-
----
-
-#### CodeEditor
-Syntax-highlighted code display.
-
-**Props:**
-- `code: string`
-- `className?: string`
-
-**Usage:**
-```tsx
-<CodeEditor code={`const greeting = "Hello World";`} />
-```
-
----
-
-## Hooks
-
-### useButton
-Provides button state management and styling.
-
-**Returns:**
-- `computedClassName: string`
-- `isDisabled: boolean`
-- `handleClick: () => void`
-- `handleMouseEnter: () => void`
-- `handleMouseLeave: () => void`
-- `style: CSSProperties`
-
-**Usage:**
-Used internally by Button and IconButton components.
-
----
-
-### useMediaQuery
-Detects media query matches reactively.
-
-**Parameters:**
-- `query: string` - CSS media query
-
-**Returns:**
-- `boolean` - Whether query matches
-
-**Usage:**
-```tsx
-const isDesktop = useMediaQuery('(min-width: 1024px)');
-const isTablet = useMediaQuery('(min-width: 768px)');
-
-const visibleCount = isDesktop ? 3 : isTablet ? 2 : 1;
-```
-
----
-
-### useScrollReveal
-Triggers fade-in animation on scroll into view.
-
-**Parameters:**
-- `options?: { delay?: number }` - Animation delay in ms
-
-**Returns:**
-- `elementRef: RefObject<HTMLElement>`
-- `className: string` - Animation classes
-
-**Usage:**
-```tsx
-const { elementRef, className } = useScrollReveal({ delay: 200 });
-
-return (
-  <section ref={elementRef} className={className}>
-    Content
-  </section>
-);
-```
-
----
-
-### useScrollToTop
-Provides scroll-to-top button with visibility control.
-
-**Returns:**
-- `ReactNode` - Rendered button element
-
-**Usage:**
-```tsx
-const ScrollToTopButton = useScrollToTop();
-
-return (
-  <Layout>
-    {children}
-    {ScrollToTopButton}
-  </Layout>
-);
-```
-
-**Features:**
-- Appears when scrolled past 300px
-- Smooth scroll to top
-- Fade and slide animations
-
----
-
-### useToggleWithScroll
-Toggle state with scroll-to-element on collapse.
-
-**Parameters:**
-- `elementRef: RefObject<HTMLElement>`
-- `options?: { scrollDelay?, scrollBehavior?, scrollBlock? }`
-
-**Returns:**
-- `isExpanded: boolean`
-- `handleToggle: () => void`
-
-**Usage:**
-```tsx
-const elementRef = useRef<HTMLElement>(null);
-const { isExpanded, handleToggle } = useToggleWithScroll(elementRef);
-
-return (
-  <section ref={elementRef}>
-    <ExpandableGrid isExpanded={isExpanded} />
-    <Button onClick={handleToggle}>
-      {isExpanded ? 'Show Less' : 'Show More'}
-    </Button>
-  </section>
-);
-```
-
----
-
-### useToast
-Provides toast notification functionality.
-
-**Returns:**
-- `showToast: (message: string, variant?: ToastVariant) => void`
-- `ToastComponent: ReactNode`
-
-**Usage:**
-```tsx
-const { showToast, ToastComponent } = useToast();
-
-const handleSuccess = () => {
-  showToast('Form submitted successfully!', ToastVariant.SUCCESS);
-};
-
-return (
-  <>
-    <ToastComponent />
-    <Button onClick={handleSuccess}>Submit</Button>
-  </>
-);
-```
-
----
-
-## Themes
-
-### ThemeProvider
-Context provider for theme management.
-
-**Usage:**
-```tsx
-import { ThemeProvider } from './design-system/themes';
+import { ThemeProvider } from '@vitrum/ui/themes';
 
 function App() {
   return (
@@ -659,52 +63,100 @@ function App() {
 }
 ```
 
----
+### 2. Start using components
 
-### useTheme
-Access current theme and theme controls.
-
-**Returns:**
-- `currentTheme: Theme` - Active theme object
-- `themes: Theme[]` - Available themes
-- `setTheme: (id: string) => void`
-
-**Usage:**
 ```tsx
-const { currentTheme, themes, setTheme } = useTheme();
+import { Button, Text, Tile, TextSize, TextVariant } from '@vitrum/ui/components';
 
-<div style={{ backgroundColor: currentTheme.colors.neutral.bg }}>
-  <Select
-    value={currentTheme.id}
-    onChange={setTheme}
-    options={themes.map(t => ({ value: t.id, label: t.name }))}
-  />
-</div>
+function MyComponent() {
+  return (
+    <Tile>
+      <Text size={TextSize.LG} variant={TextVariant.PRIMARY}>
+        Welcome to Vitrum UI
+      </Text>
+      <Button onClick={() => alert('Hello!')}>
+        Click Me
+      </Button>
+    </Tile>
+  );
+}
 ```
 
 ---
 
+## 🏗️ Architecture
+
+### Project Structure
+
+```
+design-system/
+├── components/          # UI Components
+│   ├── Button/
+│   ├── Text/
+│   ├── Tile/
+│   └── ...
+├── hooks/              # React Hooks
+│   ├── useButton/
+│   ├── useTheme/
+│   └── ...
+├── themes/             # Theme System
+│   ├── themes/
+│   │   ├── cosmos/
+│   │   ├── sunset/
+│   │   └── vscode-dark/
+│   └── ThemeProvider.tsx
+├── tokens/             # Design Tokens
+│   ├── radius.ts
+│   └── alignment.ts
+└── utils/              # Utilities
+    └── animations.ts
+```
+
+### Design Principles
+
+1. **Const Objects over Enums** - Following `erasableSyntaxOnly` TypeScript config
+2. **Theme-First** - All colors come from the active theme
+3. **Composable** - Small, focused components that work together
+4. **Consistent API** - Predictable prop patterns across components
+
+---
+
+## 🎨 Theming System
+
 ### Available Themes
 
-#### Sunset
-Warm orange and purple gradient theme with firefly animations.
+#### 🌌 Cosmos (Default)
+Deep space theme with animated stars and shooting comets.
+
+```tsx
+import { useTheme } from '@vitrum/ui/hooks';
+
+function ThemeSwitcher() {
+  const { setTheme } = useTheme();
+  return <button onClick={() => setTheme('cosmos')}>Cosmos</button>;
+}
+```
 
 **Colors:**
-- Primary: Orange (#FF6B35)
-- Secondary: Purple (#9B59B6)
-- Gradients: Sunset-inspired
+- Primary: Purple (#a855f7)
+- Animated Background: Stars + Comets
+- Gradient: Purple spectrum
 
----
-
-#### Cosmos
-Cool blue and purple space theme with stars animation.
+#### 🌅 Sunset
+Warm gradient theme with floating fireflies.
 
 **Colors:**
-- Primary: Blue (#3498DB)
-- Secondary: Deep purple (#8E44AD)
-- Gradients: Galaxy-inspired
+- Primary: Orange (#ff6b00)
+- Animated Background: Fireflies
+- Gradient: Orange to pink
 
----
+#### 💻 VS Code Dark
+Developer-inspired theme with floating code symbols.
+
+**Colors:**
+- Primary: Blue (#007acc)
+- Animated Background: Code symbols
+- Gradient: VS Code color palette
 
 ### Theme Structure
 
@@ -715,173 +167,697 @@ interface Theme {
   background: ComponentType<{ variant?: any }>;
   colors: {
     primary: {
-      text: string;
       bg: string;
+      bgHover: string;
+      bgActive: string;
       border: string;
       borderHover: string;
+      borderGlow: string;
+      text: string;
       glow: string;
     };
-    secondary: { ... };
-    neutral: { ... };
-    text: { ... };
+    neutral: {
+      border: string;
+      bg: string;
+      bgDark: string;
+      bgDarkFocus: string;
+      bgDarker: string;
+      bgDarkest: string;
+    };
+    text: {
+      primary: string;
+      secondary: string;
+      muted: string;
+    };
     gradient: {
       title: string;
+      timeline: string;
     };
   };
 }
 ```
 
----
+### Using Theme Colors
 
-## Tokens
+**Always use theme colors, never hardcode:**
 
-### Alignment
-```typescript
-enum Alignment {
-  LEFT = 'text-left',
-  CENTER = 'text-center',
-  RIGHT = 'text-right'
+```tsx
+import { useTheme } from '@vitrum/ui/hooks';
+
+function MyComponent() {
+  const { currentTheme } = useTheme();
+  
+  return (
+    <div style={{ 
+      color: currentTheme.colors.text.primary,
+      borderColor: currentTheme.colors.primary.border 
+    }}>
+      Theme-aware content
+    </div>
+  );
 }
 ```
 
-### Radius
-```typescript
-const radius = {
-  tile: 'rounded-xl',
-  button: 'rounded-full'
-};
-```
-
 ---
 
-## Utils
+## 🧩 Components
 
-### Animations
+### Layout Components
 
-#### fadeIn
-```typescript
-fadeIn({ duration?: number, delay?: number }): CSSProperties
-```
+#### Container
+Provides consistent horizontal padding and max-width.
 
-Creates fade-in animation style.
-
-**Usage:**
 ```tsx
-<div style={fadeIn({ duration: 0.6, delay: 0.2 })}>
-  Content
-</div>
-```
+import { Container } from '@vitrum/ui/components';
 
----
-
-#### fadeInStagger
-```typescript
-fadeInStagger(index: number, { staggerDelay?: number, duration?: number }): CSSProperties
-```
-
-Creates staggered fade-in animation for list items.
-
-**Usage:**
-```tsx
-{items.map((item, index) => (
-  <div key={index} style={fadeInStagger(index, { staggerDelay: 0.1 })}>
-    {item}
-  </div>
-))}
-```
-
----
-
-#### slideInRight
-```typescript
-slideInRight({ duration?: number, delay?: number }): CSSProperties
-```
-
-Slide in from right animation.
-
----
-
-#### slideOutRight
-```typescript
-slideOutRight({ duration?: number }): CSSProperties
-```
-
-Slide out to right animation.
-
----
-
-## Best Practices
-
-### Component Usage
-
-1. **Always use design-system components** instead of raw HTML
-2. **Use Container** for all section wrappers
-3. **Use Text component** instead of `<p>`, `<h1>`, etc.
-4. **Apply theme colors** via `useTheme` hook
-
-### Responsive Design
-
-1. Use **responsive configs** for grids: `{ mobile, tablet, desktop }`
-2. Use **useMediaQuery** for conditional logic
-3. Test on all breakpoints: <768px (mobile), 768-1024px (tablet), >1024px (desktop)
-
-### Performance
-
-1. **Avoid inline styles** when possible
-2. Use **CSS transitions** over JavaScript animations
-3. **Memoize expensive computations** in custom components
-
-### Accessibility
-
-1. Always provide **aria-label** for icon-only buttons
-2. Use **semantic HTML** via Text `as` prop
-3. Ensure **keyboard navigation** works
-4. Maintain **sufficient color contrast**
-
----
-
-## Migration Guide
-
-### From Raw HTML to Design System
-
-**Before:**
-```tsx
-<div className="container mx-auto px-6">
-  <h2 className="text-3xl font-bold mb-4">Title</h2>
-  <p className="text-gray-600">Description</p>
-  <button onClick={handleClick}>Click</button>
-</div>
-```
-
-**After:**
-```tsx
 <Container>
-  <Text as={TextAs.H2} size={TextSize.XL} weight={TextWeight.BOLD} className="mb-4">
-    Title
-  </Text>
-  <Text variant={TextVariant.MUTED}>
-    Description
-  </Text>
-  <Button onClick={handleClick}>Click</Button>
+  <YourContent />
 </Container>
 ```
 
+#### Tile
+Card-like container with glassmorphism effect.
+
+```tsx
+import { Tile } from '@vitrum/ui/components';
+
+<Tile className="p-6">
+  <h2>Card Content</h2>
+</Tile>
+```
+
+**Features:**
+- Automatic backdrop blur
+- Theme-aware borders and backgrounds
+- Optional hover effects
+
+#### SectionTitle
+Consistent section headings with gradient effects.
+
+```tsx
+import { SectionTitle } from '@vitrum/ui/components';
+
+<SectionTitle>My Section</SectionTitle>
+```
+
 ---
 
-## Contributing
+### Typography
 
-When adding new components:
+#### Text
+Flexible text component with multiple variants.
 
-1. Create component folder: `components/ComponentName/`
-2. Include: `ComponentName.tsx`, `ComponentName.types.ts`, `index.ts`
-3. Export from `components/index.ts`
-4. Update this documentation
-5. Ensure theme compatibility
-6. Add TypeScript types
-7. Test responsive behavior
+```tsx
+import { Text, TextSize, TextVariant, TextWeight, TextAs } from '@vitrum/ui/components';
+
+<Text 
+  size={TextSize.LG}
+  variant={TextVariant.PRIMARY}
+  weight={TextWeight.BOLD}
+  as={TextAs.H1}
+>
+  Heading Text
+</Text>
+```
+
+**Props:**
+- `size` - XS | SM | MD | LG | XL
+- `variant` - PRIMARY | SECONDARY | MUTED | ACCENT
+- `weight` - NORMAL | MEDIUM | SEMIBOLD | BOLD
+- `as` - P | SPAN | DIV | H1-H6
+- `align` - LEFT | CENTER | RIGHT | JUSTIFY
 
 ---
 
-## Support
+### Interactive Components
 
-For questions or issues with the design system, please refer to this documentation or contact the development team.
+#### Button
+Primary action button with theme integration.
+
+```tsx
+import { Button } from '@vitrum/ui/components';
+
+<Button 
+  onClick={handleClick}
+  disabled={isLoading}
+  variant="primary"
+>
+  Submit
+</Button>
+```
+
+**Features:**
+- Automatic hover/focus states from theme
+- Loading state support
+- Glassmorphic background
+
+#### IconButton
+Icon-only button for compact interfaces.
+
+```tsx
+import { IconButton, Icon, IconName, IconSize } from '@vitrum/ui/components';
+
+<IconButton 
+  onClick={handleClick}
+  size={IconButtonSize.MEDIUM}
+>
+  <Icon name={IconName.SETTINGS} size={IconSize.SM} />
+</IconButton>
+```
+
+#### Link
+Styled anchor with multiple variants.
+
+```tsx
+import { Link, LinkVariant } from '@vitrum/ui/components';
+
+<Link 
+  href="#section"
+  variant={LinkVariant.PRIMARY}
+>
+  Learn More
+</Link>
+```
+
+---
+
+### Form Components
+
+#### Input
+Text input with theme integration.
+
+```tsx
+import { Input } from '@vitrum/ui/components';
+
+<Input
+  label="Email"
+  type="email"
+  value={email}
+  onChange={(e) => setEmail(e.target.value)}
+  placeholder="you@example.com"
+  required
+/>
+```
+
+#### Textarea
+Multi-line text input.
+
+```tsx
+import { Textarea } from '@vitrum/ui/components';
+
+<Textarea
+  label="Message"
+  value={message}
+  onChange={(e) => setMessage(e.target.value)}
+  rows={5}
+/>
+```
+
+#### Select
+Dropdown select with custom styling.
+
+```tsx
+import { Select } from '@vitrum/ui/components';
+
+<Select
+  options={[
+    { value: 'en', label: 'English' },
+    { value: 'pl', label: 'Polski' }
+  ]}
+  value={language}
+  onChange={setLanguage}
+  placeholder="Choose language"
+/>
+```
+
+#### Label
+Form label component.
+
+```tsx
+import { Label } from '@vitrum/ui/components';
+
+<Label htmlFor="email" required>
+  Email Address
+</Label>
+```
+
+---
+
+### Display Components
+
+#### Tag & TagGroup
+Display tags with variants.
+
+```tsx
+import { Tag, TagGroup, TagVariant } from '@vitrum/ui/components';
+
+// Single tag
+<Tag variant={TagVariant.PRIMARY}>React</Tag>
+
+// Tag group
+<TagGroup 
+  items={['React', 'TypeScript', 'Tailwind']}
+  variant={TagVariant.NEUTRAL}
+/>
+```
+
+**Variants:** PRIMARY | SECONDARY | ACCENT | NEUTRAL
+
+#### Timeline
+Vertical timeline with items.
+
+```tsx
+import { Timeline, TimelineItem } from '@vitrum/ui/components';
+import { Alignment } from '@vitrum/ui/tokens';
+
+<Timeline align={Alignment.LEFT}>
+  <TimelineItem date="2024" title="Event 1">
+    Description
+  </TimelineItem>
+  <TimelineItem date="2025" title="Event 2">
+    Description
+  </TimelineItem>
+</Timeline>
+```
+
+**Features:**
+- Gradient line from theme
+- Left or right alignment
+- Responsive design
+
+#### List
+Styled list component.
+
+```tsx
+import { List } from '@vitrum/ui/components';
+
+<List
+  items={['Item 1', 'Item 2', 'Item 3']}
+  ordered={false}
+/>
+```
+
+#### Icon
+SVG icon component.
+
+```tsx
+import { Icon, IconName, IconSize } from '@vitrum/ui/components';
+
+<Icon 
+  name={IconName.CHECK}
+  size={IconSize.MD}
+/>
+```
+
+---
+
+### Advanced Components
+
+#### Carousel
+Image/content carousel with navigation.
+
+```tsx
+import { Carousel, CarouselItem } from '@vitrum/ui/components';
+
+<Carousel showDots showNavigation>
+  <CarouselItem>Slide 1</CarouselItem>
+  <CarouselItem>Slide 2</CarouselItem>
+  <CarouselItem>Slide 3</CarouselItem>
+</Carousel>
+```
+
+#### ExpandableGrid
+Grid that expands on interaction.
+
+```tsx
+import { ExpandableGrid } from '@vitrum/ui/components';
+
+<ExpandableGrid
+  items={items}
+  renderItem={(item) => <ItemCard {...item} />}
+  initialRows={2}
+/>
+```
+
+#### Collapsible
+Expandable/collapsible content.
+
+```tsx
+import { Collapsible } from '@vitrum/ui/components';
+
+<Collapsible title="Click to expand">
+  Hidden content here
+</Collapsible>
+```
+
+#### CodeEditor
+Syntax-highlighted code display.
+
+```tsx
+import { CodeEditor } from '@vitrum/ui/components';
+
+<CodeEditor
+  code={`const hello = "world";`}
+  language="javascript"
+/>
+```
+
+#### CircularProgress
+Circular progress indicator.
+
+```tsx
+import { CircularProgress } from '@vitrum/ui/components';
+
+<CircularProgress value={75} size={100} />
+```
+
+#### Toast
+Notification toast.
+
+```tsx
+import { Toast, ToastVariant } from '@vitrum/ui/components';
+
+<Toast 
+  variant={ToastVariant.SUCCESS}
+  show={showToast}
+  onClose={() => setShowToast(false)}
+>
+  Operation successful!
+</Toast>
+```
+
+#### ToggleButtonGroup
+Group of toggle buttons.
+
+```tsx
+import { ToggleButtonGroup } from '@vitrum/ui/components';
+
+<ToggleButtonGroup
+  options={[
+    { value: 'grid', label: 'Grid' },
+    { value: 'list', label: 'List' }
+  ]}
+  value={view}
+  onChange={setView}
+/>
+```
+
+---
+
+## 🪝 Hooks
+
+### useTheme
+Access and modify the current theme.
+
+```tsx
+import { useTheme } from '@vitrum/ui/hooks';
+
+function ThemeSelector() {
+  const { currentTheme, setTheme, availableThemes } = useTheme();
+  
+  return (
+    <select 
+      value={currentTheme.id}
+      onChange={(e) => setTheme(e.target.value)}
+    >
+      {availableThemes.map(theme => (
+        <option key={theme.id} value={theme.id}>
+          {theme.name}
+        </option>
+      ))}
+    </select>
+  );
+}
+```
+
+### useButton
+Hook for button behavior and styling.
+
+```tsx
+import { useButton } from '@vitrum/ui/hooks';
+
+function CustomButton({ onClick, disabled, className }) {
+  const {
+    computedClassName,
+    handleClick,
+    handleMouseEnter,
+    handleMouseLeave,
+    style
+  } = useButton({ disabled, className, onClick });
+  
+  return (
+    <button
+      onClick={handleClick}
+      className={computedClassName}
+      style={style}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+    >
+      Click me
+    </button>
+  );
+}
+```
+
+### useMediaQuery
+React hook for responsive behavior.
+
+```tsx
+import { useMediaQuery } from '@vitrum/ui/hooks';
+
+function ResponsiveComponent() {
+  const isMobile = useMediaQuery('(max-width: 768px)');
+  
+  return <div>{isMobile ? 'Mobile' : 'Desktop'}</div>;
+}
+```
+
+### useScrollToTop
+Smooth scroll to top functionality.
+
+```tsx
+import { useScrollToTop } from '@vitrum/ui/hooks';
+
+function ScrollButton() {
+  const { scrollToTop, isVisible } = useScrollToTop();
+  
+  if (!isVisible) return null;
+  
+  return <button onClick={scrollToTop}>↑ Top</button>;
+}
+```
+
+### useToast
+Toast notification management.
+
+```tsx
+import { useToast } from '@vitrum/ui/hooks';
+import { ToastVariant } from '@vitrum/ui/components';
+
+function MyComponent() {
+  const { showToast } = useToast();
+  
+  const handleSuccess = () => {
+    showToast('Success!', ToastVariant.SUCCESS);
+  };
+  
+  return <button onClick={handleSuccess}>Show Toast</button>;
+}
+```
+
+### useToggleWithScroll
+Toggle state that syncs with scroll position.
+
+```tsx
+import { useToggleWithScroll } from '@vitrum/ui/hooks';
+
+function Navigation() {
+  const [isOpen, toggle] = useToggleWithScroll();
+  
+  return (
+    <nav>
+      <button onClick={toggle}>Menu</button>
+      {isOpen && <MobileMenu />}
+    </nav>
+  );
+}
+```
+
+---
+
+## 🎭 Design Tokens
+
+### Radius
+Border radius tokens for consistent roundness.
+
+```tsx
+import { Radius } from '@vitrum/ui/tokens';
+
+<div className={Radius.CARD}>
+  {/* rounded-lg */}
+</div>
+```
+
+**Available tokens:**
+- `Radius.CARD` - `rounded-lg`
+- `Radius.BUTTON` - `rounded-lg`
+- `Radius.TAG` - `rounded`
+- `Radius.FULL` - `rounded-full`
+- `Radius.INPUT` - `rounded-lg`
+
+### Alignment
+Text alignment tokens.
+
+```tsx
+import { Alignment } from '@vitrum/ui/tokens';
+
+<Text align={Alignment.CENTER}>
+  Centered text
+</Text>
+```
+
+**Available tokens:**
+- `Alignment.LEFT`
+- `Alignment.CENTER`
+- `Alignment.RIGHT`
+- `Alignment.JUSTIFY`
+
+---
+
+## ✨ Animations
+
+### fadeIn
+Fade in animation utility.
+
+```tsx
+import { fadeIn } from '@vitrum/ui/utils';
+
+<div style={fadeIn({ delay: 0.2, duration: 0.6 })}>
+  Animated content
+</div>
+```
+
+### slideInRight / slideOutRight
+Slide animations for toasts and modals.
+
+```tsx
+import { slideInRight, slideOutRight } from '@vitrum/ui/utils';
+
+<div style={isClosing ? slideOutRight() : slideInRight()}>
+  Sliding content
+</div>
+```
+
+---
+
+## 📖 Best Practices
+
+### 1. Always Use Theme Colors
+
+❌ **Don't:**
+```tsx
+<div style={{ color: '#ffffff' }}>Text</div>
+```
+
+✅ **Do:**
+```tsx
+const { currentTheme } = useTheme();
+<div style={{ color: currentTheme.colors.text.primary }}>Text</div>
+```
+
+### 2. Use Const Objects, Not Enums
+
+❌ **Don't:**
+```tsx
+enum Size {
+  SMALL = 'sm',
+  LARGE = 'lg'
+}
+```
+
+✅ **Do:**
+```tsx
+export const Size = {
+  SMALL: 'SMALL',
+  LARGE: 'LARGE'
+} as const;
+
+export type SizeType = typeof Size[keyof typeof Size];
+```
+
+### 3. Import Named Exports
+
+❌ **Don't:**
+```tsx
+import * as UI from '@vitrum/ui';
+```
+
+✅ **Do:**
+```tsx
+import { Button, Text } from '@vitrum/ui/components';
+import { useTheme } from '@vitrum/ui/hooks';
+```
+
+### 4. Use Design Tokens
+
+❌ **Don't:**
+```tsx
+<div className="rounded-lg">...</div>
+```
+
+✅ **Do:**
+```tsx
+<div className={Radius.CARD}>...</div>
+```
+
+---
+
+## 🛠️ Development
+
+### Prerequisites
+
+- Node.js 18+
+- React 19.2.0+
+- TypeScript 5.9.3+
+
+### Tech Stack
+
+- **React 19.2.0** - UI library
+- **TypeScript 5.9.3** - Type safety with `erasableSyntaxOnly`
+- **Tailwind CSS 4.0.14** - Utility-first CSS with JIT
+- **Vite** - Build tool and dev server
+
+### TypeScript Configuration
+
+This project uses `erasableSyntaxOnly` which means:
+- ✅ Use const objects with `as const`
+- ❌ No TypeScript enums
+- ✅ Export both values and types
+
+---
+
+## 📄 License
+
+MIT License - feel free to use in your projects!
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome! Please follow the existing patterns:
+
+1. Components in PascalCase folders
+2. Const objects for variants/enums
+3. Theme colors only, no hardcoded colors
+4. Full TypeScript typing
+5. Consistent prop naming
+
+---
+
+## 📮 Support
+
+For issues, questions, or contributions, please visit our [GitHub repository](https://github.com/yourusername/vitrum-ui).
+
+---
+
+**Built with ❤️ using React, TypeScript, and Tailwind CSS**
