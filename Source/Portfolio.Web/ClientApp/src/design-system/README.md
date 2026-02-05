@@ -224,7 +224,7 @@ function MyComponent() {
 
 ### Layout Components
 
-#### Container
+#### <span style="color: #a855f7;">Container</span>
 Provides consistent horizontal padding and max-width.
 
 ```tsx
@@ -235,7 +235,7 @@ import { Container } from '@vitrum/ui/components';
 </Container>
 ```
 
-#### Tile
+#### <span style="color: #a855f7;">Tile</span>
 Card-like container with glassmorphism effect.
 
 ```tsx
@@ -251,7 +251,7 @@ import { Tile } from '@vitrum/ui/components';
 - Theme-aware borders and backgrounds
 - Optional hover effects
 
-#### SectionTitle
+#### <span style="color: #a855f7;">SectionTitle</span>
 Consistent section headings with gradient effects.
 
 ```tsx
@@ -264,7 +264,7 @@ import { SectionTitle } from '@vitrum/ui/components';
 
 ### Typography
 
-#### Text
+#### <span style="color: #a855f7;">Text</span>
 Flexible text component with multiple variants.
 
 ```tsx
@@ -291,7 +291,7 @@ import { Text, TextSize, TextVariant, TextWeight, TextAs } from '@vitrum/ui/comp
 
 ### Interactive Components
 
-#### Button
+#### <span style="color: #a855f7;">Button</span>
 Primary action button with theme integration.
 
 ```tsx
@@ -311,7 +311,7 @@ import { Button } from '@vitrum/ui/components';
 - Loading state support
 - Glassmorphic background
 
-#### IconButton
+#### <span style="color: #a855f7;">IconButton</span>
 Icon-only button for compact interfaces.
 
 ```tsx
@@ -325,7 +325,7 @@ import { IconButton, Icon, IconName, IconSize } from '@vitrum/ui/components';
 </IconButton>
 ```
 
-#### Link
+#### <span style="color: #a855f7;">Link</span>
 Styled anchor with multiple variants.
 
 ```tsx
@@ -343,7 +343,7 @@ import { Link, LinkVariant } from '@vitrum/ui/components';
 
 ### Form Components
 
-#### Input
+#### <span style="color: #a855f7;">Input</span>
 Text input with theme integration.
 
 ```tsx
@@ -359,7 +359,7 @@ import { Input } from '@vitrum/ui/components';
 />
 ```
 
-#### Textarea
+#### <span style="color: #a855f7;">Textarea</span>
 Multi-line text input.
 
 ```tsx
@@ -373,7 +373,7 @@ import { Textarea } from '@vitrum/ui/components';
 />
 ```
 
-#### Select
+#### <span style="color: #a855f7;">Select</span>
 Dropdown select with custom styling.
 
 ```tsx
@@ -390,7 +390,7 @@ import { Select } from '@vitrum/ui/components';
 />
 ```
 
-#### Label
+#### <span style="color: #a855f7;">Label</span>
 Form label component.
 
 ```tsx
@@ -405,7 +405,7 @@ import { Label } from '@vitrum/ui/components';
 
 ### Display Components
 
-#### Tag & TagGroup
+#### <span style="color: #a855f7;">Tag & TagGroup</span>
 Display tags with variants.
 
 ```tsx
@@ -423,7 +423,7 @@ import { Tag, TagGroup, TagVariant } from '@vitrum/ui/components';
 
 **Variants:** PRIMARY | SECONDARY | ACCENT | NEUTRAL
 
-#### Timeline
+#### <span style="color: #a855f7;">Timeline</span>
 Vertical timeline with items.
 
 ```tsx
@@ -445,7 +445,7 @@ import { Alignment } from '@vitrum/ui/tokens';
 - Left or right alignment
 - Responsive design
 
-#### List
+#### <span style="color: #a855f7;">List</span>
 Styled list component.
 
 ```tsx
@@ -457,7 +457,7 @@ import { List } from '@vitrum/ui/components';
 />
 ```
 
-#### Icon
+#### <span style="color: #a855f7;">Icon</span>
 SVG icon component.
 
 ```tsx
@@ -473,7 +473,7 @@ import { Icon, IconName, IconSize } from '@vitrum/ui/components';
 
 ### Advanced Components
 
-#### Carousel
+#### <span style="color: #a855f7;">Carousel</span>
 Image/content carousel with navigation.
 
 ```tsx
@@ -486,7 +486,7 @@ import { Carousel, CarouselItem } from '@vitrum/ui/components';
 </Carousel>
 ```
 
-#### ExpandableGrid
+#### <span style="color: #a855f7;">ExpandableGrid</span>
 Grid that expands on interaction.
 
 ```tsx
@@ -499,7 +499,7 @@ import { ExpandableGrid } from '@vitrum/ui/components';
 />
 ```
 
-#### Collapsible
+#### <span style="color: #a855f7;">Collapsible</span>
 Expandable/collapsible content.
 
 ```tsx
@@ -510,7 +510,7 @@ import { Collapsible } from '@vitrum/ui/components';
 </Collapsible>
 ```
 
-#### CodeEditor
+#### <span style="color: #a855f7;">CodeEditor</span>
 Syntax-highlighted code display.
 
 ```tsx
@@ -522,7 +522,7 @@ import { CodeEditor } from '@vitrum/ui/components';
 />
 ```
 
-#### CircularProgress
+#### <span style="color: #a855f7;">CircularProgress</span>
 Circular progress indicator.
 
 ```tsx
@@ -531,7 +531,7 @@ import { CircularProgress } from '@vitrum/ui/components';
 <CircularProgress value={75} size={100} />
 ```
 
-#### Toast
+#### <span style="color: #a855f7;">Toast</span>
 Notification toast.
 
 ```tsx
@@ -546,7 +546,7 @@ import { Toast, ToastVariant } from '@vitrum/ui/components';
 </Toast>
 ```
 
-#### ToggleButtonGroup
+#### <span style="color: #a855f7;">ToggleButtonGroup</span>
 Group of toggle buttons.
 
 ```tsx
