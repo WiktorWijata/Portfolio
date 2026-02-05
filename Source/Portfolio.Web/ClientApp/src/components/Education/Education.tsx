@@ -6,10 +6,14 @@ export default function Education() {
   const { content } = useContent();
   const { t } = useTranslation();
 
-  const getYear = (dateString: string | null | undefined): string => {
+  const formatDate = (dateString: string | null | undefined): string => {
     if (!dateString) return '';
     const date = new Date(dateString);
-    return isNaN(date.getTime()) ? '' : date.getFullYear().toString();
+    if (isNaN(date.getTime())) return '';
+    
+    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+    const year = date.getFullYear();
+    return `${year}-${month}`;
   };
 
   if (!content) {
@@ -23,9 +27,9 @@ export default function Education() {
 
         <Timeline align={Alignment.RIGHT}>
           {content.educations?.map((edu, index) => {
-            const startYear = getYear(edu.startDate);
-            const endYear = getYear(edu.endDate);
-            const period = startYear && endYear ? `${startYear} - ${endYear}` : '';
+            const startDate = formatDate(edu.startDate);
+            const endDate = formatDate(edu.endDate);
+            const period = startDate && endDate ? `${startDate} — ${endDate}` : '';
 
             return (
               <TimelineItem key={index}>

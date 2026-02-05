@@ -32,15 +32,19 @@ export function ExperienceCard({
   const { currentTheme } = useTheme();
   const { t } = useTranslation();
 
-  const getYear = (dateString: string | null | undefined): string => {
+  const formatDate = (dateString: string | null | undefined): string => {
     if (!dateString) return '';
     const date = new Date(dateString);
-    return isNaN(date.getTime()) ? '' : date.getFullYear().toString();
+    if (isNaN(date.getTime())) return '';
+    
+    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+    const year = date.getFullYear();
+    return `${year}-${month}`;
   };
 
-  const startYear = getYear(startDate);
-  const endYear = endDate ? getYear(endDate) : t('common.present');
-  const period = `${startYear || ''} - ${endYear || ''}`.trim();
+  const startDateFormatted = formatDate(startDate);
+  const endDateFormatted = endDate ? formatDate(endDate) : t('common.present');
+  const period = `${startDateFormatted || ''} — ${endDateFormatted || ''}`.trim();
 
   return (
     <Tile className="p-6 relative">

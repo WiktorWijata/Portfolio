@@ -24,7 +24,7 @@ export function SkillsGrid({
         <div className="flex flex-wrap justify-center gap-4 sm:gap-6 lg:gap-8 py-6">
           {technologies.map((tech, index) => (
             <SkillCard
-              key={tech.name}
+              key={`${tech.name}-${tech.category}-${index}`}
               name={tech.name || ''}
               icon={tech.icon || ''}
               index={index}

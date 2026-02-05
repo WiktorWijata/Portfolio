@@ -12,7 +12,7 @@ function Experience() {
   const toggleCard = (index: number) => {
     setExpandedCards(prev => ({
       ...prev,
-      [index]: !prev[index]
+      [index]: !(prev[index] ?? true)
     }));
   };
 

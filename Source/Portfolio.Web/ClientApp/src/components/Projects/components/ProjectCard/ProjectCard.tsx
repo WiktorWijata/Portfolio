@@ -46,7 +46,7 @@ export function ProjectCard({
           as={TextAs.P}
           size={TextSize.SM}
           variant={TextVariant.MUTED}
-          className="mb-4 flex-grow line-clamp-3 lg:line-clamp-2"
+          className="mb-4 flex-grow"
         >
           {description}
         </Text>

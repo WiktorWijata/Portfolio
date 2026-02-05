@@ -14,7 +14,7 @@ export default function Hero() {
   }
 
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center">
+    <section id="home" className="min-h-screen flex items-center justify-center py-20">
       <Container>
         <div className="w-full flex flex-col items-center gap-8 lg:gap-16 pt-12 lg:pt-16">
           <Button
