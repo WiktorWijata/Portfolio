@@ -116,7 +116,7 @@ export const mockContentPL: ContentDto = {
   projects: [
     {
       title: '@vitrum/ui',
-      description: 'Autorski design-system stworzony w React i TypeScript, wykorzystywany w moich projektach frontendowych. Zawiera zestaw wielokrotnie używanych komponentów UI, motywów kolorystycznych oraz narzędzi do budowy responsywnych interfejsów.',
+      description: 'Autorski design-system stworzony w React i TypeScript w stylu glass-morphism, wykorzystywany w moich projektach frontendowych. Zawiera zestaw wielokrotnie używanych komponentów UI, motywów kolorystycznych oraz narzędzi do budowy responsywnych interfejsów.',
       technologies: ['React', 'TypeScript', 'Tailwind CSS'],
       imageUrl: vitrum,
       codeUrl: 'https://github.com/WiktorWijata/Portfolio/tree/develop/Source/Portfolio.Web/ClientApp/src/design-system'

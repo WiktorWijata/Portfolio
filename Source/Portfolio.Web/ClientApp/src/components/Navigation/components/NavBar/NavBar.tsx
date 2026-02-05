@@ -12,7 +12,8 @@ export function NavBar({ children }: NavBarProps) {
         borderBottom: `1px solid ${currentTheme.colors.neutral.border}`,
         backgroundColor: currentTheme.colors.neutral.bg,
         backdropFilter: 'blur(4px)',
-        WebkitBackdropFilter: 'blur(4px)'
+        WebkitBackdropFilter: 'blur(4px)',
+        boxShadow: currentTheme.colors.shadow.tile
       }}
     >
       <Container className="!px-6">

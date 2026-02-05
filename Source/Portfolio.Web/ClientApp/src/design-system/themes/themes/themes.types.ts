@@ -28,6 +28,9 @@ export interface ThemeColors {
     title: string;
     timeline: string;
   };
+  shadow: {
+    tile: string;
+  };
 }
 
 export interface Theme {

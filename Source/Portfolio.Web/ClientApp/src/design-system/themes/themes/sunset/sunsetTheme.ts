@@ -33,5 +33,8 @@ export const sunsetTheme: Theme = {
       title: 'linear-gradient(to right, #ea580c, #f97316, #fb923c, #fdba74)',
       timeline: 'linear-gradient(to bottom, #ea580c, #f97316, #fb923c, #fdba74)',
     },
+    shadow: {
+      tile: '0 10px 15px -3px rgba(0, 0, 0, 0.2), 0 4px 6px -2px rgba(0, 0, 0, 0.1)',
+    },
   },
 };

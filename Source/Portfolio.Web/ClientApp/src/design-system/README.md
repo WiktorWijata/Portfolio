@@ -207,6 +207,9 @@ interface Theme {
       title: string;
       timeline: string;
     };
+    shadow: {
+      tile: string;
+    };
   };
 }
 ```
@@ -224,7 +227,8 @@ function MyComponent() {
   return (
     <div style={{ 
       color: currentTheme.colors.text.primary,
-      borderColor: currentTheme.colors.primary.border 
+      borderColor: currentTheme.colors.primary.border,
+      boxShadow: currentTheme.colors.shadow.tile
     }}>
       Theme-aware content
     </div>

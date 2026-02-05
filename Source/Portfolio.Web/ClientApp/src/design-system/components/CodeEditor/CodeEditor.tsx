@@ -22,6 +22,7 @@ export const CodeEditor = memo(function CodeEditor({
         border: `1px solid ${currentTheme.colors.neutral.border}`,
         backdropFilter: 'blur(8px)',
         WebkitBackdropFilter: 'blur(8px)',
+        boxShadow: currentTheme.colors.shadow.tile,
         fontFamily: MonospaceFont
       }}
     >

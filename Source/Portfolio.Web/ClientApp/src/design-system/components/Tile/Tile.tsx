@@ -17,6 +17,7 @@ export function Tile({
         backgroundColor: currentTheme.colors.neutral.bg,
         backdropFilter: 'blur(8px)',
         WebkitBackdropFilter: 'blur(8px)',
+        boxShadow: currentTheme.colors.shadow.tile,
         transform: 'translateZ(0)',
         WebkitTransform: 'translateZ(0)',
         ...style
