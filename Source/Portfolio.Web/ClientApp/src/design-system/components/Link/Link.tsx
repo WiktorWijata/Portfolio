@@ -1,3 +1,4 @@
+import { useTheme } from '../../themes';
 import type { LinkProps } from './Link.types';
 import { LinkVariant, linkVariantClasses } from './Link.consts';
 
@@ -8,12 +9,21 @@ export function Link({
   variant = LinkVariant.NAV,
   ...props 
 }: LinkProps) {
-  const baseClasses = 'text-gray-400 hover:text-gray-300 transition-colors';
+  const { currentTheme } = useTheme();
 
   return (
     <a
       href={href}
-      className={`${baseClasses} ${linkVariantClasses[variant]} ${className}`}
+      className={`transition-colors ${linkVariantClasses[variant]} ${className}`}
+      style={{
+        color: currentTheme.colors.text.secondary,
+      }}
+      onMouseEnter={(e) => {
+        e.currentTarget.style.color = currentTheme.colors.primary.borderHover;
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.color = currentTheme.colors.text.secondary;
+      }}
       {...props}
     >
       {children}

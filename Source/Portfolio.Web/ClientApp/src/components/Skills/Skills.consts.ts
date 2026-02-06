@@ -1,4 +1,4 @@
-export const SKILLS_GRID_CONFIG = {
+export const SkillsGridConfig = {
   DESKTOP_MIN_HEIGHT: '190px',
   DESKTOP_VISIBLE_COUNT: 7,
   COLLAPSIBLE_MAX_HEIGHT: '2000px',

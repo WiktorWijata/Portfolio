@@ -1,14 +1,16 @@
 import { Button, Collapsible } from '../../../../design-system/components';
 import { SkillCard } from '../SkillCard/SkillCard';
-import { SKILLS_GRID_CONFIG } from '../../Skills.consts';
+import { SkillsGridConfig } from '../../Skills.consts';
 import type { SkillsGridProps } from './SkillsGrid.types';
+import { useTranslation } from 'react-i18next';
 
 export function SkillsGrid({ 
   technologies, 
   isExpanded, 
   onToggleExpand 
 }: SkillsGridProps) {
-  const { DESKTOP_MIN_HEIGHT, DESKTOP_VISIBLE_COUNT, COLLAPSIBLE_MAX_HEIGHT, COLLAPSIBLE_DURATION } = SKILLS_GRID_CONFIG;
+  const { t } = useTranslation();
+  const { DESKTOP_MIN_HEIGHT, DESKTOP_VISIBLE_COUNT, COLLAPSIBLE_MAX_HEIGHT, COLLAPSIBLE_DURATION } = SkillsGridConfig;
   const hasMoreThanOneRow = technologies.length > DESKTOP_VISIBLE_COUNT;
 
   return (
@@ -22,9 +24,9 @@ export function SkillsGrid({
         <div className="flex flex-wrap justify-center gap-4 sm:gap-6 lg:gap-8 py-6">
           {technologies.map((tech, index) => (
             <SkillCard
-              key={tech.name}
-              name={tech.name}
-              icon={tech.icon}
+              key={`${tech.name}-${tech.category}-${index}`}
+              name={tech.name || ''}
+              icon={tech.icon || ''}
               index={index}
               isVisible={index < DESKTOP_VISIBLE_COUNT || isExpanded}
             />
@@ -35,7 +37,7 @@ export function SkillsGrid({
       {hasMoreThanOneRow && (
         <div className="flex justify-center mt-8">
           <Button onClick={onToggleExpand}>
-            {isExpanded ? 'Pokaż mniej' : 'Pokaż więcej'}
+            {isExpanded ? t('buttons.showLess') : t('buttons.showMore')}
           </Button>
         </div>
       )}

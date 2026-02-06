@@ -9,16 +9,18 @@ export function Cosmos({ variant = CosmosVariant.STARS_WITH_COMETS }: CosmosProp
     [...Array(150)].map(() => {
       const x = Math.random() * 100;
       const y = Math.random() * 100;
-      const depth = Math.random(); // Losowa głębokość 0-1
+      const depth = Math.random();
       return {
         x,
         y,
         originalX: x,
         originalY: y,
-        size: 1.5 + depth * 3, // Większe gwiazdy są bliżej
+        size: 1.5 + depth * 3,
         duration: 5 + Math.random() * 10,
         delay: Math.random() * 3,
         depth,
+        speedX: (Math.random() - 0.5) * 0.1,
+        speedY: (Math.random() - 0.5) * 0.1,
       };
     })
   );
@@ -109,6 +111,38 @@ export function Cosmos({ variant = CosmosVariant.STARS_WITH_COMETS }: CosmosProp
       clearTimeout(secondTimeout);
       clearInterval(interval);
     };
+  }, []);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setDots((prev) =>
+        prev.map((dot) => {
+          let newX = dot.originalX + dot.speedX;
+          let newY = dot.originalY + dot.speedY;
+          let newSpeedX = dot.speedX;
+          let newSpeedY = dot.speedY;
+
+          if (newX <= 0 || newX >= 100) {
+            newSpeedX = -dot.speedX;
+            newX = Math.max(0, Math.min(100, newX));
+          }
+          if (newY <= 0 || newY >= 100) {
+            newSpeedY = -dot.speedY;
+            newY = Math.max(0, Math.min(100, newY));
+          }
+
+          return {
+            ...dot,
+            originalX: newX,
+            originalY: newY,
+            speedX: newSpeedX,
+            speedY: newSpeedY,
+          };
+        })
+      );
+    }, 50);
+
+    return () => clearInterval(interval);
   }, []);
 
   const getDistance = (x1: number, y1: number, x2: number, y2: number) => {

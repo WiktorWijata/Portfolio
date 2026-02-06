@@ -1,4 +1,5 @@
 import { useTheme } from '../../../../design-system/themes';
+import { Container } from '../../../../design-system/components';
 import type { NavBarProps } from './NavBar.types';
 
 export function NavBar({ children }: NavBarProps) {
@@ -6,17 +7,18 @@ export function NavBar({ children }: NavBarProps) {
 
   return (
     <nav 
-      className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
+      className="fixed top-0 inset-x-0 z-50"
       style={{ 
         borderBottom: `1px solid ${currentTheme.colors.neutral.border}`,
         backgroundColor: currentTheme.colors.neutral.bg,
         backdropFilter: 'blur(4px)',
-        WebkitBackdropFilter: 'blur(4px)'
+        WebkitBackdropFilter: 'blur(4px)',
+        boxShadow: currentTheme.colors.shadow.tile
       }}
     >
-      <div className="container mx-auto px-6">
+      <Container className="!px-6">
         {children}
-      </div>
+      </Container>
     </nav>
   );
 }

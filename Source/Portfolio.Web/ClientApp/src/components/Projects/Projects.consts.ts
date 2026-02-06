@@ -1,4 +1,4 @@
-export const PROJECTS_GRID_CONFIG = {
+export const ProjectsGridConfig = {
   VISIBLE_COUNT: 3,
   COLLAPSIBLE_MAX_HEIGHT: '3000px',
   COLLAPSIBLE_MIN_HEIGHT: '530px',

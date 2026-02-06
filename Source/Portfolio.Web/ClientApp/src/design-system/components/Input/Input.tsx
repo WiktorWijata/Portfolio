@@ -1,5 +1,5 @@
 import type { FocusEvent } from 'react';
-import { radius } from '../../tokens';
+import { Radius } from '../../tokens';
 import { useTheme } from '../../themes';
 import type { InputProps } from './Input.types';
 
@@ -41,7 +41,7 @@ export function Input({
         onChange={onChange}
         required={required}
         placeholder={placeholder}
-        className={`w-full px-4 py-3 ${radius.input} focus:outline-none transition-all text-gray-300`}
+        className={`w-full px-4 py-3 ${Radius.INPUT} focus:outline-none transition-all text-gray-300`}
         style={{
           border: `1px solid ${colors.neutral.border}`,
           backgroundColor: colors.neutral.bgDark

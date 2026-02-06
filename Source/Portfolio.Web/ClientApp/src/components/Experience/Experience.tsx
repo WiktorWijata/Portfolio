@@ -1,27 +1,32 @@
 import { useState } from 'react';
 import { SectionTitle, Container } from '../../design-system/components';
-import { useScrollReveal } from '../../design-system/hooks';
-import { experiences } from '../../data';
+import { useContent } from '../../api';
+import { useTranslation } from 'react-i18next';
 import { ExperienceList } from './components';
 
 function Experience() {
-  const { elementRef, className } = useScrollReveal({ delay: 200 });
+  const { content } = useContent();
+  const { t } = useTranslation();
   const [expandedCards, setExpandedCards] = useState<{ [key: number]: boolean }>({});
 
   const toggleCard = (index: number) => {
     setExpandedCards(prev => ({
       ...prev,
-      [index]: !prev[index]
+      [index]: !(prev[index] ?? true)
     }));
   };
 
+  if (!content) {
+    return null;
+  }
+
   return (
-    <section id="experience" ref={elementRef} className={`py-20 ${className}`}>
+    <section id="experience" className="py-20">
       <Container>
-        <SectionTitle>Doświadczenie</SectionTitle>
+        <SectionTitle>{t('navigation.experience')}</SectionTitle>
         
         <ExperienceList
-          experiences={experiences}
+          experiences={content.experiences || []}
           expandedCards={expandedCards}
           onToggleCard={toggleCard}
         />

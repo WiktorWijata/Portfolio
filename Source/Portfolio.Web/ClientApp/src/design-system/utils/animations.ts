@@ -20,22 +20,6 @@ export function fadeIn({ delay = 0, duration = 0.6, easing = 'ease-out' }: FadeI
 }
 
 /**
- * Generates CSS animation style for staggered fade-in effect
- * Useful for animating lists or grids with a cascading effect
- * @param index - Item index for stagger calculation
- * @param staggerDelay - Delay between each item in seconds (default: 0.1)
- * @param duration - Animation duration in seconds (default: 0.4)
- * @param easing - Animation easing function (default: 'ease-out')
- * @returns CSSProperties object with animation property
- */
-export function fadeInStagger(
-  index: number, 
-  { staggerDelay = 0.1, duration = 0.4, easing = 'ease-out' }: Omit<FadeInOptions, 'delay'> & { staggerDelay?: number } = {}
-): CSSProperties {
-  return fadeIn({ delay: index * staggerDelay, duration, easing });
-}
-
-/**
  * Generates CSS animation style for slide-in from right effect
  * @param duration - Animation duration in seconds (default: 0.3)
  * @param easing - Animation easing function (default: 'ease-out')
