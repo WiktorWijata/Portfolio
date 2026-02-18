@@ -1,0 +1,20 @@
+name: Pipeline
+
+on:
+  push:
+    branches: ['feature/**']
+  pull_request:
+    branches: [develop, main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build Docker image
+        run: |
+          docker build \
+            -f Deployment/Docker/Dockerfiles/Portfolio.Web.Dockerfile \
+            -t portfolio-web:ci \
+            .
