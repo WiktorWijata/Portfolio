@@ -51,7 +51,7 @@ jobs:
           host: ${{ secrets.VPS_HOST }}
           username: ${{ secrets.VPS_USER }}
           key: ${{ secrets.VPS_SSH_KEY }}
-          source: "Deployment/Envs/Prod/docker-compose.yml,Deployment/Envs/Prod/Caddyfile"
+          source: "Deployment/Envs/Prod/docker-compose.yml"
           target: /opt/portfolio-prod
           strip_components: 3
 
@@ -62,6 +62,7 @@ jobs:
           username: ${{ secrets.VPS_USER }}
           key: ${{ secrets.VPS_SSH_KEY }}
           script: |
+            docker network create portfolio 2>/dev/null || true
             cd /opt/portfolio-prod
             docker compose pull
             docker compose up -d
