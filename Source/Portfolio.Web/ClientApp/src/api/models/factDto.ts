@@ -10,4 +10,6 @@ export interface FactDto {
   title?: string | null;
   /** @nullable */
   description?: string | null;
+  /** @nullable */
+  icon?: string | null;
 }

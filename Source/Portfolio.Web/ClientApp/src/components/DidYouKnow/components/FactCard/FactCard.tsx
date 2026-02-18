@@ -4,7 +4,7 @@ import { FactCardConfig, FactAnimationConfig } from '../../DidYouKnow.consts';
 import type { FactCardProps } from './FactCard.types';
 
 export function FactCard({ fact }: FactCardProps) {
-  const factIcon = '🚀'; // Default icon, can be customized based on fact.id or added to DTO
+  const factIcon = fact.icon ?? '💡';
   
   return (
     <Tile
@@ -21,7 +21,7 @@ export function FactCard({ fact }: FactCardProps) {
       <Text as={TextAs.H3} size={TextSize.LG} weight={TextWeight.BOLD} className="mb-4">
         {fact.title}
       </Text>
-      <Text variant={TextVariant.MUTED} size={TextSize.MD} className="leading-relaxed max-w-2xl">
+      <Text variant={TextVariant.MUTED} size={TextSize.MD} className="leading-loose max-w-4xl">
         {fact.description}
       </Text>
     </Tile>

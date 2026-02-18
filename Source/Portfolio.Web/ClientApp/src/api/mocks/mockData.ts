@@ -1,5 +1,4 @@
 import type { ContentDto } from '../models';
-import developerImage from '../../assets/developer.avif';
 import portfolioImage from '../../assets/projects/portfolio.png';
 import vitrum from '../../assets/projects/vitrum.png';
 
@@ -226,28 +225,54 @@ export const mockContentPL: ContentDto = {
   ],
   facts: [
     {
-      title: 'Pierwszy program w wieku 12 lat',
-      description: 'Moja przygoda z programowaniem rozpoczęła się od prostej gry w Visual Basic. Od tamtej pory kod towarzyszył mi każdego dnia.'
+      title: 'Smakowity sum',
+      description: 'Sum ma najwięcej kubków smakowych ze wszystkich zwierząt — ma ich ponad 27 000!',
+      icon: '🐟'
     },
     {
-      title: 'Ponad 100,000 linii kodu',
-      description: 'W ciągu kariery napisałem ponad 100 tysięcy linii kodu w C# i TypeScript, rozwiązując problemy od prostych formularzy po złożone systemy enterprise.'
+      title: 'Myszka Miki i listy',
+      description: 'W 1933 roku Myszka Miki, postać z kreskówek, otrzymała 800 000 listów od fanów.',
+      icon: '📬'
     },
     {
-      title: 'Nocny maraton debugowania',
-      description: 'Najdłuższa sesja debugowania trwała 14 godzin. Problem? Literówka w nazwie zmiennej środowiskowej. Od tamtej pory zawsze sprawdzam konfigurację jako pierwsze.'
+      title: 'Wenusjański dzień',
+      description: 'Na Wenus dzień trwa dłużej niż rok, czyli planeta obraca się wolniej niż okrąża Słońce.',
+      icon: '🪐'
     },
     {
-      title: 'Miłośnik automatyzacji',
-      description: 'Jeśli coś robię więcej niż 3 razy, piszę do tego skrypt. Zaoszczędziłem już setki godzin dzięki automatyzacji powtarzalnych zadań.'
+      title: 'Miód nie psuje się nigdy',
+      description: 'W egipskich grobowcach liczących ponad 3000 lat odkryto miód, który nadal był jadalny. Dzięki niskiej zawartości wody i właściwościom antybakteryjnym miód praktycznie nie ma terminu ważności.',
+      icon: '🍯'
     },
     {
-      title: 'Open source contributor',
-      description: 'Regularnie contributuję do projektów open source. Uwielbiam dzielić się wiedzą i pomagać społeczności developerskiej.'
+      title: 'Ośmiornica z trzema sercami',
+      description: 'Ośmiornica ma trzy serca i niebieską krew. Dwa serca pompują krew do skrzeli, a trzecie do reszty ciała. Krew jest niebieska ze względu na hemocyjaninę zawierającą miedź zamiast żelaza.',
+      icon: '🐙'
     },
     {
-      title: 'Kawa to paliwo',
-      description: 'Średnio 4 kawy dziennie. Najlepsza kawa to ta wypita podczas rozwiązywania trudnego problemu o 3 nad ranem.'
+      title: 'Piorun uderza 100 razy na sekundę',
+      description: 'W każdej chwili na Ziemi szaleje ok. 2000 burz. W ich wyniku pioruny uderzają w powierzchnię Ziemi średnio 100 razy na każdą sekundę — łącznie ok. 8,6 miliona razy dziennie.',
+      icon: '⚡'
+    },
+    {
+      title: 'Księżyc oddala się od Ziemi',
+      description: 'Księżyc oddala się od Ziemi o około 3,8 cm rocznie. Za miliard lat będzie tak daleko, że całkowite zaćmienia Słońca nie będą już możliwe.',
+      icon: '🌙'
+    },
+    {
+      title: 'Gorąca woda zamarza szybciej',
+      description: 'Gorąca woda może zamarznąć szybciej niż zimna — zjawisko to nazywa się efektem Mpemby. Zaobserwował je już Arystoteles, a jego pełne wyjaśnienie naukowe wciąż jest przedmiotem dyskusji.',
+      icon: '🧊'
+    },
+    {
+      title: 'Mrówki nigdy nie śpią',
+      description: 'Mrówki nie mają typowego snu. Zamiast spać kilka godzin, drzemią setkach krótkich drzemek po ok. 1 minucie przez całą dobę — łącznie śpią ok. 4-5 godzin, ale rozłożonych na cały dzień.',
+      icon: '🐜'
+    },
+    {
+      title: 'Odciski języka są unikalne',
+      description: 'Podobnie jak odciski palców, odcisk języka każdego człowieka jest całkowicie unikalny. Układ brodawek i kształt języka nie powtarza się u żadnych dwóch osób na świecie.',
+      icon: '👅'
     }
   ],
   contact: [
@@ -276,144 +301,176 @@ export const mockContentEN: ContentDto = {
   hero: {
     motto: 'Can\'t be done? People fly to space.',
     aboutMe: {
-      title: '.NET Developer',
-      greeting: 'Hello, my name is Wiktor and this is my portfolio.',
+      title: ' Console.WriteLine("Hello World");',
+      greeting: 'Hi, my name is Wiktor, and I\'m glad you stopped by.',
       description: [
-        'With 7 years of experience in IT, I specialize in creating efficient backend applications in the .NET ecosystem. I am passionate about clean code, system architecture, and solving complex technical problems.',
-        'My experience includes designing RESTful APIs, database optimization, implementing design patterns, and building scalable cloud solutions. I always strive to write code that is not only functional but also readable and easy to maintain.'
+        'Since you\'re here, let me tell you a bit about myself.',
+        'It\'s been over 7 years since I started my journey with programming. Since then, I have specialized in building efficient backend applications in the .NET ecosystem. I am passionate about writing clean code, system architecture, and solving complex technical problems.',
+        'The greatest satisfaction comes to me when my work can solve real problems.'
       ]
     }
   },
   experiences: [
     {
-      company: 'Company Name 1',
-      position: 'Senior .NET Developer',
-      startDate: '2022-01-01',
+      company: 'mLeasing Sp. z o.o.',
+      position: '.NET Developer',
+      startDate: '2021-11-01',
       endDate: null,
       description: 'Designing and developing web applications in .NET technology',
       achivements: [
-        'Implementation of REST API and integrations with external systems',
-        'Optimization of application and database performance'
+        'Creating and maintaining web applications using .NET technology (backend and frontend)',
+        'Creating and maintaining applications in the Microsoft Azure cloud environment',
+        'Working with SQL Server / Oracle DB / MongoDB databases — maintaining and developing database structures (tables, indexes, relationships), query optimization',
+        'Integration with external systems and implementing inter-service communication',
+        'Working with asynchronous messaging (RabbitMQ/MassTransit)',
+        'Configuring and maintaining CI/CD pipelines in Azure DevOps (build, tests, deployments)',
+        'Analyzing, diagnosing, and resolving issues reported by users and the QA team',
+        'Writing unit and integration tests',
+        'Conducting code reviews and maintaining code quality and consistency in accordance with established standards',
+        'Participating in sprint planning, task estimation, and technical solution design',
+        'Creating technical documentation (C4 model)'
       ],
-      technologies: ['C#', '.NET', 'React', 'PostgreSQL', 'Docker']
+      technologies: ['C#', '.NET', 'TypeScript', 'React', 'Aurelia', 'Knockout.js', 'Blazor', 'MSSQL', 'Oracle DB', 'MongoDB', 'RESTful API', 'RabbitMQ', 'MassTransit', 'Docker', 'Kubernetes', 'Azure DevOps', 'xUnit', 'NUnit', 'Azure', 'Application Insights']
     },
     {
-      company: 'Company Name 2',
+      company: 'LSI Software S.A.',
       position: '.NET Developer',
-      startDate: '2020-01-01',
-      endDate: '2022-01-01',
-      description: 'Development of business applications in the .NET ecosystem',
+      startDate: '2019-01-01',
+      endDate: '2021-11-01',
       achivements: [
-        'Creating user interfaces in React',
-        'Collaboration with the team using Agile/Scrum methodology'
+        'Co-creating and developing an ERP system, including implementing new functionalities, integration with REST/SOAP services, and supporting business users',
+        'Designing, developing, and maintaining desktop applications using WPF and .NET Core with MVVM architecture',
+        'Creating dynamic and responsive user interfaces in XAML',
+        'Creating a desktop application (WinForms) allowing users to publish and manage their own REST/SOAP services through a graphical interface',
+        'Integration with external systems (e.g., PayU, Pyszne.pl, UberEats)',
+        'Working with SQL Server databases (query optimization, migrations, maintenance)',
+        'Support in building web applications with ASP.NET MVC and .NET Core',
+        'Analyzing, diagnosing, and resolving issues reported by users and the QA team',
+        'Writing unit and integration tests and maintaining application stability',
+        'Conducting code reviews and maintaining code quality and consistency in accordance with team standards',
+        'Participating in sprint planning, task estimation, and technical solution design',
+        'Creating technical documentation',
       ],
-      technologies: ['C#', 'ASP.NET Core', 'JavaScript', 'MSSQL', 'Azure']
+      technologies: ['C#', 'XAML', '.NET', 'WPF', 'WinForms', 'ASP.NET MVC', 'MSSQL', 'PostgreSQL', 'RESTful API', 'SOAP', 'Jira', 'NUnit']
     },
     {
-      company: 'Company Name 3',
-      position: 'Junior .NET Developer',
-      startDate: '2018-01-01',
-      endDate: '2020-01-01',
-      description: 'Maintenance and development of existing .NET applications',
+      company: 'GECOS Sp. z o.o.',
+      position: 'C#/SQL Programmer',
+      startDate: '2018-09-01',
+      endDate: '2019-01-01',
       achivements: [
-        'Team support in daily development tasks',
-        'Writing unit tests and technical documentation'
+        'Creating add-ons and applications for the Comarch CDN XL system',
+        'Providing programming support for clients using Comarch systems, including functionality development and issue resolution',
+        'Integrating applications with existing Comarch system modules and adapting them to client business requirements',
+        'Analyzing user reports, diagnosing, and fixing system bugs',
+        'Creating and updating technical documentation and user manuals'
       ],
-      technologies: ['C#', '.NET', 'WinForms', 'MSSQL']
+      technologies: ['C#', 'XAML', '.NET', 'WPF', 'WinForms', 'MSSQL']
+    },
+    {
+      company: 'Moje Bambino Sp. z o.o. Sp. k.',
+      position: 'Analytics Specialist',
+      startDate: '2016-09-01',
+      endDate: '2018-09-01',
+      achivements: [
+        'Creating sales reports using Excel and SQL queries/stored procedures',
+        'Designing and developing applications supporting product pricing and creation of sales catalogs',
+        'Integrating data from various sources to ensure accurate and up-to-date information for sales teams',
+        'Analyzing business needs and adapting applications and reports to client requirements',
+        'Optimizing SQL queries and database structures to improve report generation performance'
+      ],
+      technologies: ['VBA', 'VB.NET', 'C#', 'XAML', '.NET', 'WPF', 'WinForms', 'MSSQL']
     }
   ],
   educations: [
     {
-      degree: 'Computer Science Engineer',
-      field: 'Computer Science',
-      institution: 'University Name 1',
-      startDate: '2018-01-01',
+      degree: 'AZ-204',
+      field: 'Microsoft certified: Azure Developer Associate',
+      institution: 'microsoft.com',
+      startDate: '2022-01-01',
       endDate: '2022-01-01',
-      description: null
     },
     {
-      degree: 'IT Technician',
-      field: 'Computer Science',
-      institution: 'University Name 2',
-      startDate: '2014-01-01',
-      endDate: '2018-01-01',
-      description: null
-    }
+      degree: '70-483, 70-486',
+      field: 'Microsoft certified solutions associate: Web Applications - certified 2019',
+      institution: 'microsoft.com',
+      startDate: '2020-03-01',
+      endDate: '2020-03-01',
+    },
+    {
+      degree: 'IT Vocational School',
+      field: 'IT Technician',
+      institution: 'Zespół Szkół Ponadgimazjalnych nr 1 w Opocznie',
+      startDate: '2008-09-01',
+      endDate: '2011-04-01',
+    },
   ],
   projects: [
     {
-      title: 'E-commerce management system',
-      description: 'Scalable e-commerce platform handling thousands of transactions daily',
-      technologies: ['ASP.NET Core', 'SQL Server', 'Redis', 'Docker', 'Azure'],
-      imageUrl: developerImage,
-      codeUrl: 'https://github.com/example/ecommerce',
-      liveUrl: 'https://example-ecommerce.com'
+      title: '@vitrum/ui',
+      description: 'A custom design system built in React and TypeScript with a glass-morphism style, used in my frontend projects. Contains a set of reusable UI components, color themes, and tools for building responsive interfaces.',
+      technologies: ['React', 'TypeScript', 'Tailwind CSS'],
+      imageUrl: vitrum,
+      codeUrl: 'https://github.com/WiktorWijata/Portfolio/tree/develop/Source/Portfolio.Web/ClientApp/src/design-system'
     },
     {
-      title: 'API for IoT applications',
-      description: 'Efficient API for collecting and processing data from IoT devices',
-      technologies: ['.NET 8', 'MongoDB', 'RabbitMQ', 'SignalR', 'Kubernetes'],
-      imageUrl: developerImage,
-      codeUrl: 'https://github.com/example/iot-api',
-      liveUrl: 'https://example-iot.com'
-    },
-    {
-      title: 'Business reporting system',
-      description: 'Comprehensive system for generating and analyzing business reports',
-      technologies: ['Python', 'FastAPI', 'PostgreSQL', 'Celery', 'Docker'],
-      imageUrl: developerImage,
-      codeUrl: 'https://github.com/example/reports',
-      liveUrl: 'https://example-reports.com'
-    },
-    {
-      title: 'System integration platform',
-      description: 'Middleware connecting various enterprise systems through APIs',
-      technologies: ['Spring Boot', 'Kafka', 'PostgreSQL', 'Redis', 'AWS'],
-      imageUrl: developerImage,
-      codeUrl: 'https://github.com/example/integration',
-      liveUrl: 'https://example-integration.com'
-    },
-    {
-      title: 'Mobile task management app',
-      description: 'Cross-platform mobile app with real-time synchronization',
-      technologies: ['React Native', 'TypeScript', 'Firebase', 'Redux', 'Node.js'],
-      imageUrl: developerImage,
-      codeUrl: 'https://github.com/example/mobile-tasks',
-      liveUrl: 'https://example-tasks.com'
-    },
-    {
-      title: 'CMS system for publishing',
-      description: 'Advanced content management system with publication workflow',
-      technologies: ['ASP.NET Core', 'Blazor', 'Entity Framework', 'Azure', 'SQL Server'],
-      imageUrl: developerImage,
-      codeUrl: 'https://github.com/example/cms',
-      liveUrl: 'https://example-cms.com'
+      title: 'Portfolio',
+      description: 'A portfolio website showcasing my skills, experience, and projects. The site content is managed by a custom CMS.',
+      technologies: ['C#', '.NET 10', 'MSSQL', 'React', 'TypeScript', 'Tailwind CSS', 'Docker', 'Kubernetes'],
+      imageUrl: portfolioImage,
+      codeUrl: 'https://github.com/WiktorWijata/Portfolio/tree/develop/Source/Portfolio.Web/ClientApp'
     }
   ],
   facts: [
     {
-      title: 'First program at age 12',
-      description: 'My programming journey started with a simple game in Visual Basic. Since then, code has been with me every day.'
+      title: 'Tasty catfish',
+      description: 'The catfish has more taste buds than any other animal — over 27,000 of them!',
+      icon: '🐟'
     },
     {
-      title: 'Over 100,000 lines of code',
-      description: 'Throughout my career, I have written over 100 thousand lines of code in C# and TypeScript, solving problems from simple forms to complex enterprise systems.'
+      title: 'Mickey Mouse and fan mail',
+      description: 'In 1933, Mickey Mouse, the cartoon character, received 800,000 fan letters.',
+      icon: '📬'
     },
     {
-      title: 'Night debugging marathon',
-      description: 'The longest debugging session lasted 14 hours. The problem? A typo in an environment variable name. Since then, I always check configuration first.'
+      title: 'A Venusian day',
+      description: 'A day on Venus lasts longer than a year — the planet rotates slower than it orbits the Sun.',
+      icon: '🪐'
     },
     {
-      title: 'Automation enthusiast',
-      description: 'If I do something more than 3 times, I write a script for it. I have saved hundreds of hours through automating repetitive tasks.'
+      title: 'Honey never expires',
+      description: 'Honey found in Egyptian tombs over 3,000 years old was still edible. Thanks to its low water content and antibacterial properties, honey has virtually no expiration date.',
+      icon: '🍯'
     },
     {
-      title: 'Open source contributor',
-      description: 'I regularly contribute to open source projects. I love sharing knowledge and helping the developer community.'
+      title: 'Octopus has three hearts',
+      description: 'An octopus has three hearts and blue blood. Two hearts pump blood to the gills, while the third pumps it to the rest of the body. The blood is blue because it contains copper-based hemocyanin instead of iron.',
+      icon: '🐙'
     },
     {
-      title: 'Coffee is fuel',
-      description: 'Average 4 coffees per day. The best coffee is the one drunk while solving a difficult problem at 3 AM.'
+      title: 'Lightning strikes 100 times per second',
+      description: 'At any given moment, about 2,000 thunderstorms are active on Earth. As a result, lightning strikes the surface about 100 times every second — roughly 8.6 million times per day.',
+      icon: '⚡'
+    },
+    {
+      title: 'The Moon is drifting away',
+      description: 'The Moon moves away from Earth by about 3.8 cm per year. In about a billion years, it will be so far away that total solar eclipses will no longer be possible.',
+      icon: '🌙'
+    },
+    {
+      title: 'Hot water can freeze faster',
+      description: 'Hot water can freeze faster than cold water — a phenomenon known as the Mpemba effect. It was observed by Aristotle, and its full scientific explanation is still debated today.',
+      icon: '🧊'
+    },
+    {
+      title: 'Ants never sleep',
+      description: 'Ants do not have a conventional sleep cycle. Instead of sleeping for several hours, they take hundreds of short naps of about 1 minute throughout the day — totaling around 4-5 hours of rest spread across 24 hours.',
+      icon: '🐜'
+    },
+    {
+      title: 'Tongue prints are unique',
+      description: 'Just like fingerprints, every person\'s tongue print is completely unique. The pattern of papillae and the shape of the tongue is never the same in any two people in the world.',
+      icon: '👅'
     }
   ],
   skillsCategories: [
@@ -422,34 +479,94 @@ export const mockContentEN: ContentDto = {
       skills: [
         { name: 'C#', icon: null },
         { name: '.NET Core', icon: null },
-        { name: 'EF Core', icon: null }
+        { name: 'EF Core', icon: null },
+        { name: 'VB.NET', icon: null },
+        { name: 'NHibernate', icon: null },
+        { name: 'SignalR', icon: null}
       ]
     },
     {
       name: 'Frontend',
       skills: [
+        { name: 'HTML5', icon: null },
+        { name: 'CSS3', icon: null },
         { name: 'React', icon: null },
+        { name: 'Aurelia', icon: 'https://cdn.simpleicons.org/aurelia' },
+        { name: 'Knockout.js', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/knockout/knockout-plain-wordmark.svg' },
+        { name: 'Blazor', icon: null },
         { name: 'TypeScript', icon: null },
         { name: 'JavaScript', icon: null },
-        { name: 'Tailwind CSS', icon: null }
+        { name: 'Tailwind CSS', icon: null },
+        { name: 'Bootstrap', icon: null }
+      ]
+    },
+    {
+      name: 'Desktop',
+      skills: [
+        { name: 'WPF', icon: null },
+        { name: 'WinForms', icon: null }
       ]
     },
     {
       name: 'Database',
       skills: [
-        { name: 'SQL Server', icon: null },
+        { name: 'MSSQL', icon: null },
+        { name: 'Azure SQL', icon: null },
         { name: 'PostgreSQL', icon: null },
+        { name: 'Oracle DB', icon: null },
         { name: 'MongoDB', icon: null },
-        { name: 'Redis', icon: null }
+        { name: 'Redis', icon: null },
+        { name: 'Apache Solr', icon: 'https://cdn.simpleicons.org/apachesolr' }
+      ]
+    },
+    {
+      name: 'API & Messaging',
+      skills: [
+        { name: 'REST API', icon: null },
+        { name: 'SOAP', icon: null },
+        { name: 'Masstransit', icon: null },
+        { name: 'RabbitMQ', icon: null }
+      ]
+    },
+    {
+      name: 'CI/CD',
+      skills: [
+        { name: 'Azure DevOps Pipelines', icon: null },
+        { name: 'GitHub Actions', icon: null },
+        { name: 'Docker', icon: null },
+        { name: 'Kubernetes', icon: null },
+        { name: 'SonarQube', icon: null },
+        { name: 'NuGet', icon: null }
+      ]
+    },
+    {
+      name: 'Version Control',
+      skills: [
+        { name: 'Git', icon: null },
+        { name: 'Github', icon: 'https://cdn.simpleicons.org/github/white' },
+        { name: 'GitLab', icon: null },
+        { name: 'SVN', icon: null }
+      ]
+    },
+    {
+      name: 'Testing',
+      skills: [
+        { name: 'xUnit', icon: null },
+        { name: 'NUnit', icon: null }
       ]
     },
     {
       name: 'Tools',
       skills: [
-        { name: 'Docker', icon: null },
-        { name: 'Azure', icon: null },
-        { name: 'Git', icon: null },
-        { name: 'Kubernetes', icon: null }
+        { name: 'Visual Studio', icon: null },
+        { name: 'VS Code', icon: null },
+        { name: 'Rider', icon: null },
+        { name: 'Azure DevOps', icon: null },
+        { name: 'Jira', icon: null },
+        { name: 'Postman', icon: null },
+        { name: 'Swagger', icon: null },
+        { name: 'Figma', icon: null },
+        { name: 'Gimp', icon: null },
       ]
     }
   ],
