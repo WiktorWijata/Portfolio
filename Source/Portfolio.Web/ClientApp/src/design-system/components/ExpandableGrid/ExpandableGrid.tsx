@@ -3,8 +3,8 @@ import type { ExpandableGridProps } from './ExpandableGrid.types';
 
 export function ExpandableGrid<T>({
   items,
-  columns,
-  gap = { mobile: 4, tablet: 6, desktop: 8 },
+  columns: _columns,
+  gap: _gap = { mobile: 4, tablet: 6, desktop: 8 },
   isExpanded,
   visibleCount,
   renderItem,

@@ -1,5 +1,23 @@
+import type { SVGProps, ReactElement } from 'react';
 import type { IconProps, IconSizeType } from './Icon.types';
 import { IconSize } from './Icon.types';
+import {
+  GithubIcon,
+  LinkedinIcon,
+  EmailIcon,
+  ExternalLinkIcon,
+  CodeIcon,
+  GlobeIcon,
+  LanguageIcon,
+  ChevronDownIcon,
+  ChevronLeftIcon,
+  ChevronRightIcon,
+  ChevronUpIcon,
+  MenuIcon,
+  CloseIcon,
+} from '../../assets/icons';
+
+type SvgProps = SVGProps<SVGSVGElement>;
 
 const sizeClasses: Record<IconSizeType, string> = {
   [IconSize.XS]: 'w-4 h-4',
@@ -9,26 +27,38 @@ const sizeClasses: Record<IconSizeType, string> = {
   [IconSize.XL]: 'w-10 h-10'
 };
 
+const iconComponents: Record<string, (props: SvgProps) => ReactElement> = {
+  'github': GithubIcon,
+  'linkedin': LinkedinIcon,
+  'email': EmailIcon,
+  'external-link': ExternalLinkIcon,
+  'code': CodeIcon,
+  'globe': GlobeIcon,
+  'language': LanguageIcon,
+  'chevron-down': ChevronDownIcon,
+  'chevron-left': ChevronLeftIcon,
+  'chevron-right': ChevronRightIcon,
+  'chevron-up': ChevronUpIcon,
+  'menu': MenuIcon,
+  'close': CloseIcon
+};
+
 export function Icon({ name, size = IconSize.MD, color = 'white', className = '' }: IconProps) {
   const sizeClass = sizeClasses[size];
   const combinedClassName = `${sizeClass} ${className}`.trim();
 
-  const iconPath = `/src/design-system/assets/icons/${name}.svg`;
+  const IconComponent = iconComponents[name];
+
+  if (!IconComponent) {
+    console.warn(`Icon "${name}" not found`);
+    return null;
+  }
 
   return (
-    <div 
+    <IconComponent
       className={combinedClassName}
-      style={{ 
-        WebkitMaskImage: `url(${iconPath})`,
-        maskImage: `url(${iconPath})`,
-        WebkitMaskRepeat: 'no-repeat',
-        maskRepeat: 'no-repeat',
-        WebkitMaskPosition: 'center',
-        maskPosition: 'center',
-        WebkitMaskSize: 'contain',
-        maskSize: 'contain',
-        backgroundColor: color
-      }}
+      style={{ color }}
+      aria-hidden="true"
     />
   );
 }

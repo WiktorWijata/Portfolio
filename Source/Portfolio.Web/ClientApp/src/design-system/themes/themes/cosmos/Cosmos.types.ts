@@ -1,4 +1,6 @@
-import type { DynamicBackgroundComponent } from "../DynamicBackground.types";
+import type { ComponentType } from 'react';
+
+export type DynamicBackgroundComponent = ComponentType<{ variant?: any }>; // eslint-disable-line @typescript-eslint/no-explicit-any
 
 export interface Star {
   x: number;
@@ -31,6 +33,6 @@ export const CosmosVariant = {
 
 export type CosmosVariant = typeof CosmosVariant[keyof typeof CosmosVariant];
 
-export interface CosmosProps extends DynamicBackgroundComponent {
+export interface CosmosProps {
   variant?: CosmosVariant;
 }
