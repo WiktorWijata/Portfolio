@@ -1,9 +1,23 @@
 <Solution>
-  <Folder Name="/Source/">
-    <Project Path="Source/Portfolio.Web/Protfolio.Web.csproj" />
+  <Folder Name="/Deployment/" />
+  <Folder Name="/Deployment/Docker/" />
+  <Folder Name="/Deployment/Docker/Dockerfiles/">
+    <File Path="Deployment/Docker/Dockerfiles/Portfolio.Web.Dockerfile" />
   </Folder>
+  <Folder Name="/Deployment/Envs/" />
+  <Folder Name="/Deployment/Envs/Local/">
+    <File Path="Deployment/Envs/Local/docker-compose.yml" />
+    <File Path="Deployment/Envs/Local/README.md" />
+  </Folder>
+  <Folder Name="/Deployment/Envs/Local/Scripts/">
+    <File Path="Deployment/Envs/Local/Scripts/run.ps1" />
+  </Folder>
+  <Folder Name="/Source/" />
   <Folder Name="/Source/Api/">
     <Project Path="Source/Portfolio.Api.Contracts/Portfolio.Api.Contracts.csproj" Id="076b1432-a874-4777-82ed-a67de2628eeb" />
     <Project Path="Source/Portfolio.Api/Portfolio.Api.csproj" />
+  </Folder>
+  <Folder Name="/Source/Web/">
+    <Project Path="Source/Portfolio.Web/Portfolio.Web.csproj" />
   </Folder>
 </Solution>

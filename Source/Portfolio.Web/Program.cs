@@ -1,23 +1,27 @@
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddSpaStaticFiles(configuration =>
-{
-    configuration.RootPath = "ClientApp/dist";
-});
-
 var app = builder.Build();
 
-app.UseStaticFiles();
-app.UseSpaStaticFiles();
-
-app.UseSpa(spa =>
+// Configure static files middleware with proper caching
+var staticFileOptions = new StaticFileOptions
 {
-    spa.Options.SourcePath = "ClientApp";
-
-    if (app.Environment.IsDevelopment())
+    OnPrepareResponse = ctx =>
     {
-        spa.UseProxyToSpaDevelopmentServer("http://localhost:5173");
+        // Cache static assets for 1 year (immutable files with hash in name)
+        if (ctx.Context.Request.Path.StartsWithSegments("/assets"))
+        {
+            ctx.Context.Response.Headers.Append("Cache-Control", "public,max-age=31536000,immutable");
+        }
+        // Cache other static files for 1 hour
+        else
+        {
+            ctx.Context.Response.Headers.Append("Cache-Control", "public,max-age=3600");
+        }
     }
-});
+};
+
+app.UseStaticFiles(staticFileOptions);
+
+app.MapFallbackToFile("index.html");
 
 app.Run();

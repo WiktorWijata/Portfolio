@@ -1,0 +1,3 @@
+dev.wiktorwijata.com {
+    reverse_proxy portfolio-web-dev:8080
+}

@@ -361,3 +361,7 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+
+**/ClientApp/build/
+# AI context files (local only)
+Deployment/ai_todo_summary.md

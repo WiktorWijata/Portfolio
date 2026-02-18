@@ -11,6 +11,8 @@ export function ProjectActions({ githubLink, liveLink, className = '' }: Project
         <IconButton
           href={githubLink}
           size={IconButtonSize.SMALL}
+          target="_blank"
+          rel="noopener noreferrer"
         >
           <Icon name={IconName.GITHUB} size={IconSize.SM} />
         </IconButton>
@@ -19,6 +21,8 @@ export function ProjectActions({ githubLink, liveLink, className = '' }: Project
         <IconButton
           href={liveLink}
           size={IconButtonSize.SMALL}
+          target="_blank"
+          rel="noopener noreferrer"
         >
           <Icon name={IconName.EXTERNAL_LINK} size={IconSize.SM} />
         </IconButton>

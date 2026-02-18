@@ -13,12 +13,11 @@ export function SectionTitle({ children, className = '' }: SectionTitleProps) {
           WebkitBackgroundClip: 'text',
           WebkitTextFillColor: 'transparent',
           MozBackgroundClip: 'text',
-          MozTextFillColor: 'transparent',
           backgroundClip: 'text',
           color: 'transparent',
           display: 'inline-block',
           width: 'fit-content'
-        }}
+        } as React.CSSProperties}
       >
         {children}
       </h2>

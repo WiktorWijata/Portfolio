@@ -13,7 +13,6 @@ export default function Skills() {
   const [activeCategory, setActiveCategory] = useState<Category>('all');
   const { isExpanded, handleToggle } = useToggleWithScroll(elementRef);
 
-  // Generate categories from API data
   const categories = [
     { value: 'all' as Category, label: t('common.all') },
     ...(content?.skillsCategories?.map(cat => ({
@@ -22,7 +21,6 @@ export default function Skills() {
     })) || [])
   ];
 
-  // Flatten skills from categories to technologies array
   const technologies = content?.skillsCategories?.flatMap(category => 
     category.skills?.map(skill => ({
       name: skill.name || '',
@@ -31,7 +29,7 @@ export default function Skills() {
     })) || []
   ) || [];
 
-  const filteredTechnologies = activeCategory === 'all' 
+  const filteredTechnologies = activeCategory === 'all'
     ? technologies 
     : technologies.filter(tech => tech.category === activeCategory);
 

@@ -1,2 +1,2 @@
 export { ExperienceList } from './ExperienceList';
-export type { ExperienceListProps, Experience } from './ExperienceList.types';
+export type { ExperienceListProps } from './ExperienceList.types';

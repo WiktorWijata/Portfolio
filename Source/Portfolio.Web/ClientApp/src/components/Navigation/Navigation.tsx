@@ -15,7 +15,7 @@ export function Navigation() {
     { href: '#projects', label: t('navigation.projects') },
     { href: '#experience', label: t('navigation.experience') },
     { href: '#education', label: t('navigation.education') },
-    { href: '#did-you-know', label: t('navigation.didYouKnow') },
+    { href: '#didyouknow', label: t('navigation.didYouKnow') },
     { href: '#contact', label: t('navigation.contact') },
   ];
 
