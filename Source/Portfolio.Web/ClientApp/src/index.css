@@ -1,70 +1,210 @@
 @import "tailwindcss";
 
-:root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+* {
+  scroll-behavior: smooth;
 }
 
 body {
+  font-family: 'Onest', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  background-color: #0a0015;
+  color: #ffffff;
   margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
+}
+
+#root {
+  width: 100%;
   min-height: 100vh;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px) translateZ(0);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) translateZ(0);
+  }
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
+@keyframes slideUp {
+  from {
+    opacity: 1;
+    transform: translateY(0);
   }
-  a:hover {
-    color: #747bff;
+  to {
+    opacity: 0;
+    transform: translateY(-20px);
   }
-  button {
-    background-color: #f9f9f9;
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideOutRight {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+}
+
+@keyframes toastProgress {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.2;
+  }
+  25% {
+    transform: translate(30px, -30px) scale(1.2);
+    opacity: 0.4;
+  }
+  50% {
+    transform: translate(-20px, 20px) scale(0.8);
+    opacity: 0.3;
+  }
+  75% {
+    transform: translate(40px, 10px) scale(1.1);
+    opacity: 0.35;
+  }
+}
+
+@keyframes comet-fly {
+  0% {
+    transform: translate(0, 0) rotate(var(--rotation));
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  40% {
+    opacity: 1;
+  }
+  60% {
+    transform: translate(calc(var(--dx) * 0.5vw), calc(var(--dy) * 0.5vh)) rotate(var(--rotation));
+    opacity: 0;
+  }
+  100% {
+    transform: translate(calc(var(--dx) * 0.5vw), calc(var(--dy) * 0.5vh)) rotate(var(--rotation));
+    opacity: 0;
+  }
+}
+
+@keyframes flame1 {
+  0%, 100% {
+    transform: scaleY(1) scaleX(1);
+    filter: blur(40px);
+  }
+  50% {
+    transform: scaleY(1.2) scaleX(0.95);
+    filter: blur(50px);
+  }
+}
+
+@keyframes flame2 {
+  0%, 100% {
+    transform: scaleY(0.9) scaleX(1.05);
+    filter: blur(45px);
+  }
+  50% {
+    transform: scaleY(1.15) scaleX(0.9);
+    filter: blur(55px);
+  }
+}
+
+@keyframes flame3 {
+  0%, 100% {
+    transform: scaleY(1.1) scaleX(0.9);
+    filter: blur(50px);
+  }
+  50% {
+    transform: scaleY(0.95) scaleX(1.1);
+    filter: blur(60px);
+  }
+}
+
+@keyframes bgMove1 {
+  0%, 100% {
+    transform: translate(-40%, -40%) scale(1);
+    opacity: 1;
+  }
+  33% {
+    transform: translate(-35%, -45%) scale(1.1);
+    opacity: 0.9;
+  }
+  66% {
+    transform: translate(-45%, -35%) scale(0.95);
+    opacity: 0.95;
+  }
+}
+
+@keyframes bgMove2 {
+  0%, 100% {
+    transform: translate(40%, -40%) scale(1);
+    opacity: 1;
+  }
+  40% {
+    transform: translate(45%, -35%) scale(1.05);
+    opacity: 0.85;
+  }
+  70% {
+    transform: translate(35%, -45%) scale(0.9);
+    opacity: 0.95;
+  }
+}
+
+@keyframes bgMove3 {
+  0%, 100% {
+    transform: translate(-30%, 30%) scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: translate(-35%, 35%) scale(1.15);
+    opacity: 0.9;
+  }
+}
+
+@keyframes bgMove4 {
+  0%, 100% {
+    transform: translate(35%, 35%) scale(1);
+    opacity: 1;
+  }
+  45% {
+    transform: translate(30%, 40%) scale(0.95);
+    opacity: 0.85;
+  }
+  80% {
+    transform: translate(40%, 30%) scale(1.08);
+    opacity: 0.92;
   }
 }

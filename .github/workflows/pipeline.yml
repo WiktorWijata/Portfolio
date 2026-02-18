@@ -1,0 +1,19 @@
+name: Pipeline
+
+on:
+  workflow_dispatch:
+  pull_request:
+    branches: [develop, master]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build Docker image
+        run: |
+          docker build \
+            -f Deployment/Docker/Dockerfiles/Portfolio.Web.Dockerfile \
+            -t portfolio-web:ci \
+            .

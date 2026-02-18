@@ -1,0 +1,32 @@
+services:
+  web:
+    image: ghcr.io/wiktorwijata/portfolio-web:${WEB_TAG:-develop}
+    container_name: portfolio-web-dev
+    restart: unless-stopped
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:8080
+    networks:
+      - portfolio-dev
+
+  caddy:
+    image: caddy:2-alpine
+    container_name: caddy-dev
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile
+      - caddy_data:/data
+      - caddy_config:/config
+    networks:
+      - portfolio-dev
+
+volumes:
+  caddy_data:
+  caddy_config:
+
+networks:
+  portfolio-dev:
+    driver: bridge

@@ -1,0 +1,36 @@
+﻿# .NET
+**/bin/
+**/obj/
+**/*.user
+**/*.suo
+**/.vs/
+**/.vscode/
+
+# Node
+**/node_modules/
+**/dist/
+**/build/
+**/.vite/
+**/npm-debug.log*
+**/yarn-error.log*
+
+# Tests
+**/*Tests/
+**/*.Tests/
+
+# Git
+.git/
+.gitignore
+.gitattributes
+
+# Deployment
+Deployment/
+.github/
+
+# IDE
+**/.idea/
+**/*.swp
+
+# OS
+.DS_Store
+Thumbs.db

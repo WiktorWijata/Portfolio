@@ -1,0 +1,29 @@
+name: Rollback
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Środowisko'
+        required: true
+        type: choice
+        options: [dev, prod]
+      image_tag:
+        description: 'Tag obrazu (np. 20260218143000-abc1234 lub develop)'
+        required: true
+
+jobs:
+  rollback:
+    runs-on: ubuntu-latest
+    steps:
+      - name: SSH rollback na VPS
+        uses: appleboy/ssh-action@v1
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          script: |
+            cd /opt/portfolio-${{ inputs.environment }}
+            export WEB_TAG=${{ inputs.image_tag }}
+            docker compose up -d
+            docker image prune -f
