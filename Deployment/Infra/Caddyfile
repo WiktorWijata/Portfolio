@@ -1,7 +1,0 @@
-wiktorwijata.com {
-    reverse_proxy portfolio-web-prod:8080
-}
-
-dev.wiktorwijata.com {
-    reverse_proxy portfolio-web-dev:8080
-}
