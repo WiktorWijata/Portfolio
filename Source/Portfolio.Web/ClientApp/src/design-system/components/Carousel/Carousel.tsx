@@ -43,43 +43,16 @@ export function Carousel({
 
   return (
     <div className={`relative ${className}`}>
-      <div className="overflow-hidden">
-        <div 
-          className="flex transition-transform ease-in-out"
-          style={{
-            transform: `translateX(-${currentIndex * 100}%)`,
-            transitionDuration: `${duration}ms`,
-            minHeight
-          }}
-        >
-          {childrenWithProps}
-        </div>
-      </div>
-
-      {showNavigation && itemCount > 1 && (
-        <>
-          <div className="hidden md:block absolute -left-16 top-1/2 -translate-y-1/2">
+      {showDots && itemCount > 1 && (
+        <div className="flex justify-center items-center gap-3 mb-8">
+          {showNavigation && (
             <IconButton
               onClick={prevItem}
-              size={IconButtonSize.MEDIUM}
+              size={IconButtonSize.SMALL}
             >
-              <Icon name={IconName.CHEVRON_LEFT} size={IconSize.MD} />
+              <Icon name={IconName.CHEVRON_LEFT} size={IconSize.SM} />
             </IconButton>
-          </div>
-
-          <div className="hidden md:block absolute -right-16 top-1/2 -translate-y-1/2">
-            <IconButton
-              onClick={nextItem}
-              size={IconButtonSize.MEDIUM}
-            >
-              <Icon name={IconName.CHEVRON_RIGHT} size={IconSize.MD} />
-            </IconButton>
-          </div>
-        </>
-      )}
-
-      {showDots && itemCount > 1 && (
-        <div className="flex justify-center gap-3 mt-8">
+          )}
           {items.map((_, index) => (
             <button
               key={index}
@@ -94,8 +67,30 @@ export function Carousel({
               aria-label={`Go to slide ${index + 1}`}
             />
           ))}
+          {showNavigation && (
+            <IconButton
+              onClick={nextItem}
+              size={IconButtonSize.SMALL}
+            >
+              <Icon name={IconName.CHEVRON_RIGHT} size={IconSize.SM} />
+            </IconButton>
+          )}
         </div>
       )}
+
+      <div className="overflow-hidden">
+        <div 
+          className="flex transition-transform ease-in-out"
+          style={{
+            transform: `translateX(-${currentIndex * 100}%)`,
+            transitionDuration: `${duration}ms`,
+            minHeight
+          }}
+        >
+          {childrenWithProps}
+        </div>
+      </div>
+
     </div>
   );
 }

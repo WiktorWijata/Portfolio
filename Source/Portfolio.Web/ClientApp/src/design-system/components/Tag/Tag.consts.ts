@@ -6,6 +6,6 @@ export const TagVariant = {
 export type TagVariantType = typeof TagVariant[keyof typeof TagVariant];
 
 export const tagVariantClasses: Record<TagVariantType, string> = {
-  [TagVariant.DATE]: 'absolute top-4 right-4 text-sm px-2 py-1',
+  [TagVariant.DATE]: 'block w-fit mb-2 lg:absolute lg:top-4 lg:right-4 lg:mb-0 text-sm px-2 py-1',
   [TagVariant.NEUTRAL]: 'px-2 py-1 text-xs',
 };
