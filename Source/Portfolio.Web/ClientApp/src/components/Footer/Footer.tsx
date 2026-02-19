@@ -1,18 +1,29 @@
 import { Text, TextVariant, TextSize, Container, Select, Label, DropdownPosition, IconName } from '../../design-system/components';
+import type { IconNameType } from '../../design-system/components';
 import { FooterSocialLinks } from './components';
 import { useTheme } from '../../design-system/themes';
 import { useTranslation } from 'react-i18next';
+import { useContent } from '../../api/useContent';
+import type { ContactDto } from '../../api/models';
+import type { SocialLink } from './components/FooterSocialLinks/FooterSocialLinks.types';
 
-const SOCIAL_LINKS = [
-  { name: 'GitHub', url: 'https://github.com', icon: IconName.GITHUB },
-  { name: 'LinkedIn', url: 'https://linkedin.com', icon: IconName.LINKEDIN },
-  { name: 'Email', url: 'mailto:contact@example.com', icon: IconName.EMAIL }
-];
+const CONTACT_TYPE_TO_ICON: Record<string, IconNameType> = {
+  github: IconName.GITHUB,
+  linkedin: IconName.LINKEDIN,
+  email: IconName.EMAIL,
+};
+
+function contactToSocialLink(contact: ContactDto): SocialLink | null {
+  const icon = CONTACT_TYPE_TO_ICON[contact.type?.toLowerCase() ?? ''];
+  if (!icon || !contact.value || !contact.title) return null;
+  return { name: contact.title, url: contact.value, icon };
+}
 
 function Footer() {
   const currentYear = new Date().getFullYear();
   const { currentTheme, availableThemes, setTheme } = useTheme();
   const { t } = useTranslation();
+  const { content } = useContent();
 
   const themeOptions = availableThemes.map(theme => ({
     value: theme.id,
@@ -42,7 +53,7 @@ function Footer() {
             </div>
           </div>
 
-          <FooterSocialLinks links={SOCIAL_LINKS} />
+          <FooterSocialLinks links={(content?.contact ?? []).map(contactToSocialLink).filter(Boolean) as SocialLink[]} />
         </div>
 
         <div className="text-center md:text-left mt-6">
