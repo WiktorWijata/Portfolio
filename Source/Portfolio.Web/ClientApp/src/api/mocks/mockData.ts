@@ -284,13 +284,13 @@ export const mockContentPL: ContentDto = {
     },
     { 
       type: 'linkedin', 
-      value: 'https://linkedin.com/in/wiktorwijata',
+      value: 'https://www.linkedin.com/in/wiktor-wijata-a72082149/',
       title: 'LinkedIn',
       isExternal: true
     },
     { 
       type: 'email', 
-      value: 'mailto:wiktor.wijata@example.com',
+      value: 'mailto:wiktorwijata@gmail.com',
       title: 'Email',
       isExternal: false
     }
@@ -579,13 +579,13 @@ export const mockContentEN: ContentDto = {
     },
     { 
       type: 'linkedin', 
-      value: 'https://linkedin.com/in/wiktorwijata',
+      value: 'https://www.linkedin.com/in/wiktor-wijata-a72082149/',
       title: 'LinkedIn',
       isExternal: true
     },
     { 
       type: 'email', 
-      value: 'mailto:wiktor.wijata@example.com',
+      value: 'mailto:wiktorwijata@gmail.com',
       title: 'Email',
       isExternal: false
     }
