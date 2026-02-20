@@ -23,7 +23,7 @@ jobs:
           username: ${{ secrets.VPS_USER }}
           key: ${{ secrets.VPS_SSH_KEY }}
           script: |
-            cd /opt/portfolio-${{ inputs.environment }}
+            cd /opt/environments/${{ inputs.environment }}/apps/portfolio
             export WEB_TAG=${{ inputs.image_tag }}
             docker compose up -d
             docker image prune -f

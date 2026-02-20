@@ -62,7 +62,7 @@ jobs:
           username: ${{ secrets.VPS_USER }}
           key: ${{ secrets.VPS_SSH_KEY }}
           source: "Deployment/Envs/Dev/docker-compose.yml"
-          target: /opt/portfolio-dev
+          target: /opt/environments/dev/apps/portfolio
           strip_components: 3
 
       - name: SSH deploy na DEV VPS
@@ -72,8 +72,7 @@ jobs:
           username: ${{ secrets.VPS_USER }}
           key: ${{ secrets.VPS_SSH_KEY }}
           script: |
-            docker network create portfolio 2>/dev/null || true
-            cd /opt/portfolio-dev
+            cd /opt/environments/dev/apps/portfolio
             WEB_TAG=${{ needs.build-and-push.outputs.tag }} docker compose pull
             WEB_TAG=${{ needs.build-and-push.outputs.tag }} docker compose up -d
             docker image prune -f
