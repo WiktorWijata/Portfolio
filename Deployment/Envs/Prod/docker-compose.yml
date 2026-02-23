@@ -1,3 +1,5 @@
+name: portfolio-prod
+
 services:
   web:
     image: ghcr.io/wiktorwijata/portfolio-web:${WEB_TAG:-latest}
