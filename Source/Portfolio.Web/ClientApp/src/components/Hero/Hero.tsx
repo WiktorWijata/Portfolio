@@ -21,7 +21,7 @@ export default function Hero() {
           <div className="flex flex-col items-center gap-4 w-fit">
             <Button
               variant={ButtonVariant.OUTLINED}
-              href="/cv.pdf"
+              href="/WIKTOR_WIJATA_NET_DEVELOPER.pdf"
               download
               className="w-full flex items-center justify-center gap-2 whitespace-nowrap"
             >
