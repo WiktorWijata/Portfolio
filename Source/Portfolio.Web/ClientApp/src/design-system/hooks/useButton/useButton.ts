@@ -2,10 +2,12 @@ import { useMemo } from 'react';
 import type { MouseEvent } from 'react';
 import type { UseButtonOptions } from './useButton.types';
 import { useTheme } from '../../themes';
+import { ButtonVariant } from '../../components/Button/Button.consts';
 
-export function useButton({ disabled, loading, isActive = false, className, onClick }: UseButtonOptions) {
+export function useButton({ disabled, loading, isActive = false, className, variant = 'primary', onClick }: UseButtonOptions) {
   const { currentTheme } = useTheme();
   const colors = currentTheme.colors;
+  const isOutlined = variant === ButtonVariant.OUTLINED;
   // Bazowe klasy dla przycisku
   const baseClass = 'inline-flex items-center justify-center font-semibold transition-colors duration-200 focus:outline-none';
 
@@ -43,7 +45,7 @@ export function useButton({ disabled, loading, isActive = false, className, onCl
       e.currentTarget.style.borderColor = colors.primary.borderGlow;
       e.currentTarget.style.boxShadow = colors.primary.glow;
     } else {
-      e.currentTarget.style.backgroundColor = colors.primary.bg;
+      e.currentTarget.style.backgroundColor = isOutlined ? 'transparent' : colors.primary.bg;
       e.currentTarget.style.borderColor = colors.primary.border;
       e.currentTarget.style.boxShadow = 'none';
     }
@@ -51,7 +53,7 @@ export function useButton({ disabled, loading, isActive = false, className, onCl
 
   const style = {
     border: `1px solid ${isActive ? colors.primary.borderGlow : colors.primary.border}`,
-    backgroundColor: isActive ? colors.primary.bgActive : colors.primary.bg,
+    backgroundColor: isActive ? colors.primary.bgActive : (isOutlined ? 'transparent' : colors.primary.bg),
     color: isActive ? colors.text.secondary : colors.primary.text,
     boxShadow: isActive ? colors.primary.glow : 'none',
   };

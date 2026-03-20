@@ -1,7 +1,8 @@
 
 import { Radius } from '../../tokens';
 import type { ButtonProps } from './Button.types';
-import { useButton } from '../../hooks'
+import { ButtonVariant } from './Button.consts';
+import { useButton } from '../../hooks';
 
 export function Button({ 
   children, 
@@ -10,9 +11,11 @@ export function Button({
   isActive = false,
   className = '',
   type = 'button',
-  variant = 'primary'
+  variant = ButtonVariant.PRIMARY,
+  href,
+  download,
 }: ButtonProps) {
-  const sizeClasses = variant === 'small' ? 'px-3 py-1.5 text-sm' : 'px-8 py-3';
+  const sizeClasses = variant === ButtonVariant.SMALL ? 'px-3 py-1.5 text-sm' : 'px-8 py-3';
   const buttonRadius = Radius.BUTTON;
 
   const {
@@ -25,9 +28,29 @@ export function Button({
   } = useButton({
     disabled,
     isActive,
+    variant,
     className: `${buttonRadius} font-medium transition-all duration-300 ${sizeClasses} ${disabled ? 'opacity-60 cursor-not-allowed' : ''} ${className}`,
     onClick,
   });
+
+  if (href) {
+    return (
+      <a
+        href={href}
+        download={download}
+        className={computedClassName}
+        style={{
+          backdropFilter: 'blur(10px)',
+          WebkitBackdropFilter: 'blur(10px)',
+          ...style
+        }}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+      >
+        {children}
+      </a>
+    );
+  }
 
   return (
     <button

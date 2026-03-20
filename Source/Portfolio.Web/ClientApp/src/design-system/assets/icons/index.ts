@@ -7,3 +7,4 @@ export { GlobeIcon } from './GlobeIcon';
 export { LanguageIcon } from './LanguageIcon';
 export { ChevronDownIcon, ChevronLeftIcon, ChevronRightIcon, ChevronUpIcon } from './ChevronIcons';
 export { MenuIcon, CloseIcon } from './NavigationIcons';
+export { DownloadIcon } from './DownloadIcon';

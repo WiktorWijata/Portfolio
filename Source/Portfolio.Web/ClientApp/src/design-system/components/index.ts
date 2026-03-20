@@ -1,5 +1,6 @@
 export { Tile } from './Tile';
-export { Button } from './Button';
+export { Button, ButtonVariant } from './Button';
+export type { ButtonVariantType } from './Button';
 export { Container } from './Container';
 export type { ContainerProps } from './Container';
 export { SectionTitle } from './SectionTitle';

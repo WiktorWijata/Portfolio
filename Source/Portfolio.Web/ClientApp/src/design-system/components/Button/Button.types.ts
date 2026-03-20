@@ -1,4 +1,6 @@
 import type { ReactNode } from "react";
+import type { ButtonVariantType } from './Button.consts';
+import { ButtonVariant } from './Button.consts';
 
 export interface ButtonProps {
   children: ReactNode;
@@ -7,5 +9,10 @@ export interface ButtonProps {
   isActive?: boolean;
   className?: string;
   type?: 'button' | 'submit' | 'reset';
-  variant?: 'primary' | 'small';
+  variant?: ButtonVariantType;
+  href?: string;
+  download?: string | boolean;
 }
+
+export { ButtonVariant };
+export type { ButtonVariantType };
