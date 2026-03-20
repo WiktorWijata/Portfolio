@@ -130,7 +130,7 @@ export const mockContentPL: ContentDto = {
   ],
   experiences: [
     {
-      company: 'mLeasing Sp. z o.o.',
+      company: 'B3 Consulting Poland Sp. z o.o.',
       position: '.NET Developer',
       startDate: '2021-11-01',
       endDate: null,
@@ -312,7 +312,7 @@ export const mockContentEN: ContentDto = {
   },
   experiences: [
     {
-      company: 'mLeasing Sp. z o.o.',
+      company: 'B3 Consulting Poland Sp. z o.o.',
       position: '.NET Developer',
       startDate: '2021-11-01',
       endDate: null,
