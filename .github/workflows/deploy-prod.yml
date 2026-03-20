@@ -20,6 +20,8 @@ jobs:
     permissions:
       contents: read
       packages: write
+    outputs:
+      tag: ${{ steps.version.outputs.TAG }}
     steps:
       - uses: actions/checkout@v4
 
@@ -69,6 +71,6 @@ jobs:
           key: ${{ secrets.VPS_SSH_KEY }}
           script: |
             cd /opt/environments/prod/apps/portfolio
-            docker compose pull
-            docker compose up -d --force-recreate
+            WEB_TAG=${{ needs.build-and-push.outputs.tag }} docker compose pull
+            WEB_TAG=${{ needs.build-and-push.outputs.tag }} docker compose up -d
             docker image prune -f
