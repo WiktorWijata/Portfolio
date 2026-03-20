@@ -72,5 +72,7 @@ jobs:
           script: |
             cd /opt/environments/prod/apps/portfolio
             WEB_TAG=${{ needs.build-and-push.outputs.tag }} docker compose pull
-            WEB_TAG=${{ needs.build-and-push.outputs.tag }} docker compose up -d --force-recreate
+            docker compose down --remove-orphans || true
+            docker rm -f portfolio-web-prod || true
+            WEB_TAG=${{ needs.build-and-push.outputs.tag }} docker compose up -d
             docker image prune -f
