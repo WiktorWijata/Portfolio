@@ -54,12 +54,14 @@ COPY --from=backend-build /app/out ./
 LABEL maintainer="Wiktor Wijata"
 LABEL description="Portfolio.Web - React SPA + .NET Backend"
 
+# Run as non-root user
+RUN adduser --disabled-password --gecos "" appuser && chown -R appuser /app
+USER appuser
+
 # Expose port
 EXPOSE 8080
 
-# Set environment
-ENV ASPNETCORE_URLS=http://+:8080
-ENV ASPNETCORE_ENVIRONMENT=Development
+# Set environment (ASPNETCORE_ENVIRONMENT should be provided at runtime via docker-compose or -e flag)
+ENV ASPNETCORE_HTTP_PORTS=8080
 
-# Entry point
 ENTRYPOINT ["dotnet", "Portfolio.Web.dll"]
