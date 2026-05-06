@@ -55,8 +55,7 @@ LABEL maintainer="Wiktor Wijata"
 LABEL description="Portfolio.Web - React SPA + .NET Backend"
 
 # Run as non-root user
-RUN adduser --disabled-password --gecos "" appuser && chown -R appuser /app
-USER appuser
+RUN useradd --no-create-home --shell /bin/false appuser && chown -R appuser /app
 
 # Expose port
 EXPOSE 8080
