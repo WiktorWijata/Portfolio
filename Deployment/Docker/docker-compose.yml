@@ -1,0 +1,17 @@
+name: portfolio-${ENV_NAME:-dev}
+
+services:
+  web:
+    image: ghcr.io/wiktorwijata/portfolio-web:${WEB_TAG:-dev-latest}
+    container_name: portfolio-web-${ENV_NAME:-dev}
+    restart: unless-stopped
+    environment:
+      - ASPNETCORE_ENVIRONMENT=${ASPNETCORE_ENVIRONMENT:-Development}
+      - ASPNETCORE_HTTP_PORTS=8080
+    networks:
+      - proxy
+
+networks:
+  proxy:
+    name: ${PROXY_NETWORK:-proxy}
+    external: true
