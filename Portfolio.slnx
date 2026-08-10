@@ -1,4 +1,11 @@
 <Solution>
+  <Folder Name="/Database/">
+    <Project Path="Database/Portfolio.Database/Portfolio.Database.sqlproj" Id="8db33174-453a-4c6b-baf6-7bdc54262565">
+      <Build />
+      <Deploy />
+    </Project>
+    <Project Path="Database/Portfolio.DbMigrator/Portfolio.DbMigrator.csproj" Id="71eba49d-9126-4843-a9fe-4f6b31975781" />
+  </Folder>
   <Folder Name="/Deployment/" />
   <Folder Name="/Deployment/Docker/">
     <File Path="Deployment/Docker/docker-compose.yml" />
@@ -7,11 +14,9 @@
     <File Path="Deployment/Docker/Dockerfiles/Portfolio.Web.Dockerfile" />
   </Folder>
   <Folder Name="/Source/" />
-  <Folder Name="/Source/Api/">
-    <Project Path="Source/Portfolio.Api.Contracts/Portfolio.Api.Contracts.csproj" Id="076b1432-a874-4777-82ed-a67de2628eeb" />
-    <Project Path="Source/Portfolio.Api/Portfolio.Api.csproj" />
-  </Folder>
-  <Folder Name="/Source/Web/">
-    <Project Path="Source/Portfolio.Web/Portfolio.Web.csproj" />
+  <Folder Name="/Source/Porfolio/">
+    <Project Path="Source/Portfolio/Portfolio.Api.Contracts/Portfolio.Api.Contracts.csproj" />
+    <Project Path="Source/Portfolio/Portfolio.Api/Portfolio.Api.csproj" />
+    <Project Path="Source/Portfolio/Portfolio.Web/Portfolio.Web.csproj" />
   </Folder>
 </Solution>
