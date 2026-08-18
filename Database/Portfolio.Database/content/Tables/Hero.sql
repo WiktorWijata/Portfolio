@@ -1,0 +1,8 @@
+﻿CREATE TABLE [content].[Hero]
+(
+	[Id]		UNIQUEIDENTIFIER NOT NULL PRIMARY KEY DEFAULT NEWID(),
+	[ContentId] UNIQUEIDENTIFIER NOT NULL,
+	[Motto]		NVARCHAR(1000),
+
+	CONSTRAINT [FK_Hero_Content] FOREIGN KEY ([ContentId]) REFERENCES [content].[Content] ([Id])
+)

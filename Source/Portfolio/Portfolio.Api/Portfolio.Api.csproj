@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Content\Portfolio.Content.Infrastructure\Portfolio.Content.Infrastructure.csproj" />
     <ProjectReference Include="..\Portfolio.Api.Contracts\Portfolio.Api.Contracts.csproj" />
   </ItemGroup>
 

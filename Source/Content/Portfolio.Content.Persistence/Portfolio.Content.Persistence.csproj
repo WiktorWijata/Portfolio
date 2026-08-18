@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\BuildingBlocks\Portfolio.BuildingBlocks.Persistence\Portfolio.BuildingBlocks.Persistence.csproj" />
+    <ProjectReference Include="..\Portfolio.Content.Application\Portfolio.Content.Application.csproj" />
+    <ProjectReference Include="..\Portfolio.Content.Domain\Portfolio.Content.Domain.csproj" />
+  </ItemGroup>
+
+</Project>

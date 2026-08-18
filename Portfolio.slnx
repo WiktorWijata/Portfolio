@@ -1,4 +1,9 @@
 <Solution>
+  <Folder Name="/.github/" />
+  <Folder Name="/.github/workflows/">
+    <File Path=".github/workflows/pipeline.yml" />
+    <File Path=".github/workflows/rollback.yml" />
+  </Folder>
   <Folder Name="/Database/">
     <Project Path="Database/Portfolio.Database/Portfolio.Database.sqlproj" Id="8db33174-453a-4c6b-baf6-7bdc54262565">
       <Build />
@@ -14,6 +19,21 @@
     <File Path="Deployment/Docker/Dockerfiles/Portfolio.Web.Dockerfile" />
   </Folder>
   <Folder Name="/Source/" />
+  <Folder Name="/Source/BuildingBlocks/">
+    <Project Path="Source/BuildingBlocks/Portfolio.BuildingBlocks.Application/Portfolio.BuildingBlocks.Application.csproj" Id="0730fb06-b10f-407e-b586-d41ddfbd7b0b" />
+    <Project Path="Source/BuildingBlocks/Portfolio.BuildingBlocks.Domain/Portfolio.BuildingBlocks.Domain.csproj" Id="9610da7f-6dff-4f79-ba7d-ea24898a2d19" />
+    <Project Path="Source/BuildingBlocks/Portfolio.BuildingBlocks.Intrastructure/Portfolio.BuildingBlocks.Intrastructure.csproj" Id="28fa0cb0-1408-4d91-9648-90b49ec2ad0e" />
+    <Project Path="Source/BuildingBlocks/Portfolio.BuildingBlocks.Persistence/Portfolio.BuildingBlocks.Persistence.csproj" Id="6fbe5473-1a7b-4ccc-b4f6-afc07dec7858" />
+  </Folder>
+  <Folder Name="/Source/Chat/" />
+  <Folder Name="/Source/Content/">
+    <Project Path="Source/Content/Portfolio.Content.Application/Portfolio.Content.Application.csproj" Id="6bfc7dea-3da2-478c-997c-b5f3a2ed291b" />
+    <Project Path="Source/Content/Portfolio.Content.Contracts/Portfolio.Content.Contracts.csproj" />
+    <Project Path="Source/Content/Portfolio.Content.Domain/Portfolio.Content.Domain.csproj" Id="c4cb18ba-0367-4e14-82da-7bde75d42261" />
+    <Project Path="Source/Content/Portfolio.Content.Infrastructure/Portfolio.Content.Infrastructure.csproj" Id="7ed6c3b3-4752-40dd-9862-7f0f4ad7319c" />
+    <Project Path="Source/Content/Portfolio.Content.Persistence/Portfolio.Content.Persistence.csproj" Id="2083a973-1fc4-4d08-94e0-f86c670dbdfc" />
+  </Folder>
+  <Folder Name="/Source/Notifications/" />
   <Folder Name="/Source/Porfolio/">
     <Project Path="Source/Portfolio/Portfolio.Api.Contracts/Portfolio.Api.Contracts.csproj" />
     <Project Path="Source/Portfolio/Portfolio.Api/Portfolio.Api.csproj" />

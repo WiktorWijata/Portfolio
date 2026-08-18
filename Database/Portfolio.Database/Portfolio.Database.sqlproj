@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -56,5 +56,25 @@
   <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
   <ItemGroup>
     <Folder Include="Properties" />
+    <Folder Include="content" />
+    <Folder Include="content\Tables" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="content\content.sql" />
+    <Build Include="content\Tables\Language.sql" />
+    <Build Include="content\Tables\Hero.sql" />
+    <Build Include="content\Tables\AboutMe.sql" />
+    <Build Include="content\Tables\Content.sql" />
+    <Build Include="content\Tables\Experience.sql" />
+    <Build Include="content\Tables\Education.sql" />
+    <Build Include="content\Tables\Fact.sql" />
+    <Build Include="content\Tables\Contact.sql" />
+    <Build Include="content\Tables\AboutMeDescription.sql" />
+    <Build Include="content\Tables\SkillCategory.sql" />
+    <Build Include="content\Tables\Skill.sql" />
+    <Build Include="content\Tables\Project.sql" />
+    <Build Include="content\Tables\Technology.sql" />
+    <Build Include="content\Tables\ExperienceTechnology.sql" />
+    <Build Include="content\Tables\ExperienceAchievement.sql" />
   </ItemGroup>
 </Project>
