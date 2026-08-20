@@ -13,6 +13,7 @@ public static class ServiceCollectionExtensions
             repositories: repos =>
             {
                 repos.AddScoped<ILanguageRepository, LanguageRepository>();
+                repos.AddScoped<IContentRepository, ContentRepository>();
             });
     }
 }

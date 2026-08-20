@@ -1,7 +1,7 @@
-﻿using Porfolio.Content.Contracts;
-using MediatR;
+﻿using Portfolio.Content.Contracts;
 using Portfolio.Content.Contracts.Models;
 using Portfolio.Content.Application.Queries;
+using MediatR;
 
 namespace Portfolio.Content.Infrastructure;
 
@@ -15,5 +15,8 @@ public class ContentModule : IContentModule
     }
 
     public Task<IEnumerable<LanguageDto>> GetLanguages(CancellationToken cancellationToken = default)
-        =>  _mediator.Send(new GetLanguagesQuery(), cancellationToken);    
+        =>  _mediator.Send(new GetLanguagesQuery(), cancellationToken);
+
+    public Task<ContentDto> GetContentByLanguageCode(string languageCode, CancellationToken cancellationToken = default)
+        => _mediator.Send(new GetContentByLanguageCodeQuery(languageCode), cancellationToken);
 }

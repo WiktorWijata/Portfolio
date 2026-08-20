@@ -11,9 +11,9 @@ public class ContentConfiguration : IEntityTypeConfiguration<Domain.Content>
             .WithMany()
             .HasForeignKey(c => c.LanguageCode);
 
-        builder.HasMany(c => c.Skills)
+        builder.HasOne(c => c.Hero)
             .WithOne()
-            .HasForeignKey(s => s.ContentId)
+            .HasForeignKey<Domain.Hero>(h => h.ContentId)
             .OnDelete(DeleteBehavior.Cascade);
     }
 }

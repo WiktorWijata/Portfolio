@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Porfolio.Content.Contracts
+namespace Portfolio.Content.Contracts
 {
     public interface IContentModule
     { 
         Task<IEnumerable<LanguageDto>> GetLanguages(CancellationToken cancellationToken = default);
+        Task<ContentDto> GetContentByLanguageCode(string languageCode, CancellationToken cancellationToken = default);
     }
 }

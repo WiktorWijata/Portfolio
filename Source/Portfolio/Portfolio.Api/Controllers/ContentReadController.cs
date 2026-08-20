@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Porfolio.Content.Contracts;
+using Portfolio.Content.Contracts;
 using Portfolio.Content.Contracts.Models;
-using RescuePC.Portfolio.Api.Contracts;
 
 namespace RescuePC.Portfolio.Api.Controllers;
 
@@ -16,18 +15,19 @@ public class ContentReadController : ControllerBase
         _contentModule = contentModule;
     }
 
-    [HttpGet("content")]
-    [ProducesResponseType(typeof(ContentDto), StatusCodes.Status200OK)]
-    public IActionResult GetContent(string languageCode)
-    {
-        return Ok(new ContentDto());
-    }
-
     [HttpGet("languages")]
     [ProducesResponseType(typeof(IEnumerable<LanguageDto>), StatusCodes.Status200OK)]
     public async Task<IActionResult> GetLanguages(CancellationToken cancellationToken = default)
     {
         var languages = await _contentModule.GetLanguages(cancellationToken);
         return Ok(languages);
+    }
+
+    [HttpGet("content")]
+    [ProducesResponseType(typeof(ContentDto), StatusCodes.Status200OK)]
+    public async Task<IActionResult> GetContent(string languageCode, CancellationToken cancellationToken = default)
+    {
+        var content = await _contentModule.GetContentByLanguageCode(languageCode, cancellationToken);
+        return Ok(content);
     }
 }

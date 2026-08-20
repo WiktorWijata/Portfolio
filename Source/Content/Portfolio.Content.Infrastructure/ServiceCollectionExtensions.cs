@@ -1,5 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using Porfolio.Content.Contracts;
+using Portfolio.Content.Contracts;
 using Portfolio.Content.Application;
 using Portfolio.Content.Application.QueryHandlers;
 using Portfolio.Content.Persistence;

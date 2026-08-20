@@ -73,6 +73,7 @@
     <Build Include="content\Tables\SkillCategory.sql" />
     <Build Include="content\Tables\Skill.sql" />
     <Build Include="content\Tables\Project.sql" />
+    <Build Include="content\Tables\ProjectTechnology.sql" />
     <Build Include="content\Tables\Technology.sql" />
     <Build Include="content\Tables\ExperienceTechnology.sql" />
     <Build Include="content\Tables\ExperienceAchievement.sql" />

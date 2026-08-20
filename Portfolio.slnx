@@ -35,7 +35,6 @@
   </Folder>
   <Folder Name="/Source/Notifications/" />
   <Folder Name="/Source/Porfolio/">
-    <Project Path="Source/Portfolio/Portfolio.Api.Contracts/Portfolio.Api.Contracts.csproj" />
     <Project Path="Source/Portfolio/Portfolio.Api/Portfolio.Api.csproj" />
     <Project Path="Source/Portfolio/Portfolio.Web/Portfolio.Web.csproj" />
   </Folder>
