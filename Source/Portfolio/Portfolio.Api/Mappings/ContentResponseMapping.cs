@@ -17,25 +17,19 @@ public static class ContentResponseMapping
 
             return new ContentResponse
             {
-                Language = content.Language == null
-                    ? null
-                    : new Language
+                Language = new Language
                     {
                         Code = content.Language.Code,
                         Name = content.Language.Name
                     },
-                Hero = content.Hero == null
-                    ? null
-                    : new Hero
+                Hero = new Hero
                     {
                         Motto = content.Hero.Motto,
-                        AboutMe = content.Hero.AboutMe == null
-                            ? null
-                            : new AboutMe
+                        AboutMe = new AboutMe
                             {
-                                Title = content.Hero.AboutMe.Title,
-                                Greeting = content.Hero.AboutMe.Header,
-                                Description = content.Hero.AboutMe.Description
+                                Title = content.Hero.AboutMe?.Title,
+                                Greeting = content.Hero.AboutMe?.Header,
+                                Description = content.Hero.AboutMe?.Description
                             }
                     },
                 SkillsCategories = content.SkillsCategories?.Select(sc => new SkillCategory
