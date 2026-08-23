@@ -11,6 +11,7 @@ public static class AboutMeMapping
             return new AboutMeDto
             {
                 Title = aboutMe.Title,
+                Header = aboutMe.Header,
                 Description = aboutMe.Description.Select(d => d.Description).ToArray(),
             };
         }

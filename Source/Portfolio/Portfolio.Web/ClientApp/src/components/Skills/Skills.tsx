@@ -25,7 +25,7 @@ export default function Skills() {
     category.skills?.map(skill => ({
       name: skill.name || '',
       category: category.name?.toLowerCase() || '',
-      icon: skill.icon || undefined
+      icon: skill.imageUrl || undefined
     })) || []
   ) || [];
 

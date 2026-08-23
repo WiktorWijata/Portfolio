@@ -1,6 +1,6 @@
-import type { ExperienceDto } from '../../../../api';
+import type { Experience } from '../../../../api';
 
-export interface ExperienceCardProps extends ExperienceDto {
+export interface ExperienceCardProps extends Experience {
   index: number;
   isExpanded: boolean;
   onToggle: () => void;

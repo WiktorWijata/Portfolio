@@ -1,11 +1,33 @@
-{
+﻿{
   "openapi": "3.0.1",
   "info": {
     "title": "Portfolio.Api",
     "version": "1.0"
   },
   "paths": {
-    "/api/ContentRead/content": {
+    "/api/content-read/languages": {
+      "get": {
+        "tags": [
+          "ContentRead"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Language"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/content-read/content": {
       "get": {
         "tags": [
           "ContentRead"
@@ -23,19 +45,9 @@
           "200": {
             "description": "OK",
             "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/ContentDto"
-                }
-              },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ContentDto"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ContentDto"
+                  "$ref": "#/components/schemas/ContentResponse"
                 }
               }
             }
@@ -46,7 +58,7 @@
   },
   "components": {
     "schemas": {
-      "AboutMeDto": {
+      "AboutMe": {
         "type": "object",
         "properties": {
           "title": {
@@ -67,7 +79,7 @@
         },
         "additionalProperties": false
       },
-      "ContactDto": {
+      "Contact": {
         "type": "object",
         "properties": {
           "type": {
@@ -78,79 +90,78 @@
             "type": "string",
             "nullable": true
           },
-          "title": {
-            "type": "string",
-            "nullable": true
-          },
           "isExternal": {
             "type": "boolean"
           }
         },
         "additionalProperties": false
       },
-      "ContentDto": {
+      "ContentResponse": {
         "type": "object",
         "properties": {
+          "language": {
+            "$ref": "#/components/schemas/Language"
+          },
           "hero": {
-            "$ref": "#/components/schemas/HeroDto"
+            "$ref": "#/components/schemas/Hero"
           },
           "skillsCategories": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/SkillCategoryDto"
+              "$ref": "#/components/schemas/SkillCategory"
             },
             "nullable": true
           },
           "projects": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/ProjectDto"
+              "$ref": "#/components/schemas/Project"
             },
             "nullable": true
           },
           "experiences": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/ExperienceDto"
+              "$ref": "#/components/schemas/Experience"
             },
             "nullable": true
           },
           "educations": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/EducationDto"
+              "$ref": "#/components/schemas/Education"
             },
             "nullable": true
           },
           "facts": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/FactDto"
+              "$ref": "#/components/schemas/Fact"
             },
             "nullable": true
           },
-          "contact": {
+          "contacts": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/ContactDto"
+              "$ref": "#/components/schemas/Contact"
             },
             "nullable": true
           }
         },
         "additionalProperties": false
       },
-      "EducationDto": {
+      "Education": {
         "type": "object",
         "properties": {
+          "institution": {
+            "type": "string",
+            "nullable": true
+          },
           "degree": {
             "type": "string",
             "nullable": true
           },
           "field": {
-            "type": "string",
-            "nullable": true
-          },
-          "institution": {
             "type": "string",
             "nullable": true
           },
@@ -162,22 +173,18 @@
             "type": "string",
             "format": "date-time",
             "nullable": true
-          },
-          "description": {
-            "type": "string",
-            "nullable": true
           }
         },
         "additionalProperties": false
       },
-      "ExperienceDto": {
+      "Experience": {
         "type": "object",
         "properties": {
-          "position": {
+          "company": {
             "type": "string",
             "nullable": true
           },
-          "company": {
+          "position": {
             "type": "string",
             "nullable": true
           },
@@ -211,7 +218,7 @@
         },
         "additionalProperties": false
       },
-      "FactDto": {
+      "Fact": {
         "type": "object",
         "properties": {
           "title": {
@@ -221,11 +228,15 @@
           "description": {
             "type": "string",
             "nullable": true
+          },
+          "icon": {
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false
       },
-      "HeroDto": {
+      "Hero": {
         "type": "object",
         "properties": {
           "motto": {
@@ -233,12 +244,26 @@
             "nullable": true
           },
           "aboutMe": {
-            "$ref": "#/components/schemas/AboutMeDto"
+            "$ref": "#/components/schemas/AboutMe"
           }
         },
         "additionalProperties": false
       },
-      "ProjectDto": {
+      "Language": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Project": {
         "type": "object",
         "properties": {
           "title": {
@@ -247,13 +272,6 @@
           },
           "description": {
             "type": "string",
-            "nullable": true
-          },
-          "technologies": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
             "nullable": true
           },
           "imageUrl": {
@@ -264,14 +282,35 @@
             "type": "string",
             "nullable": true
           },
-          "liveUrl": {
+          "demoUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "technologies": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Skill": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "imageUrl": {
             "type": "string",
             "nullable": true
           }
         },
         "additionalProperties": false
       },
-      "SkillCategoryDto": {
+      "SkillCategory": {
         "type": "object",
         "properties": {
           "name": {
@@ -281,22 +320,8 @@
           "skills": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/SkillDto"
+              "$ref": "#/components/schemas/Skill"
             },
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "SkillDto": {
-        "type": "object",
-        "properties": {
-          "icon": {
-            "type": "string",
-            "nullable": true
-          },
-          "name": {
-            "type": "string",
             "nullable": true
           }
         },

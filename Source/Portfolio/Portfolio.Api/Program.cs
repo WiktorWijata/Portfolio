@@ -9,6 +9,18 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+const string ClientAppCorsPolicy = "ClientApp";
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(ClientAppCorsPolicy, policy =>
+    {
+        policy.WithOrigins("https://localhost:5001")
+            .AllowAnyHeader()
+            .AllowAnyMethod();
+    });
+});
+
 var connectionString = builder.Configuration.GetConnectionString("Portfolio");
 builder.Services.AddContent(connectionString!);
 
@@ -21,6 +33,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseCors(ClientAppCorsPolicy);
 app.UseAuthorization();
 app.MapControllers();
 app.Run();

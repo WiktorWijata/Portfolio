@@ -1,7 +1,7 @@
-import type { ProjectDto } from '../../../../api';
+import type { Project } from '../../../../api';
 
 export interface ProjectsGridProps {
-  projects: ProjectDto[];
+  projects: Project[];
   isExpanded: boolean;
   onToggleExpand: () => void;
 }

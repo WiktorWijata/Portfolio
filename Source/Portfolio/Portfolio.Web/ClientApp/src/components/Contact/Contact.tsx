@@ -32,7 +32,7 @@ function Contact() {
             <ContactInfo 
               header={t('contact.header')}
               description={t('contact.description')}
-              contacts={content?.contact || []}
+              contacts={content?.contacts || []}
             />
             
             <ContactForm 

@@ -8,6 +8,7 @@ namespace RescuePC.Portfolio.Api.Controllers;
 
 [ApiController]
 [Route("api/content-read")]
+[Produces("application/json")]
 public class ContentReadController : ControllerBase
 {
     private readonly IContentModule _contentModule;

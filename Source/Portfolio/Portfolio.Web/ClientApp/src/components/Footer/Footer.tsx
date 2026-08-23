@@ -4,7 +4,7 @@ import { FooterSocialLinks } from './components';
 import { useTheme } from '../../design-system/themes';
 import { useTranslation } from 'react-i18next';
 import { useContent } from '../../api/useContent';
-import type { ContactDto } from '../../api/models';
+import type { Contact } from '../../api/models';
 import type { SocialLink } from './components/FooterSocialLinks/FooterSocialLinks.types';
 
 const CONTACT_TYPE_TO_ICON: Record<string, IconNameType> = {
@@ -13,10 +13,18 @@ const CONTACT_TYPE_TO_ICON: Record<string, IconNameType> = {
   email: IconName.EMAIL,
 };
 
-function contactToSocialLink(contact: ContactDto): SocialLink | null {
-  const icon = CONTACT_TYPE_TO_ICON[contact.type?.toLowerCase() ?? ''];
-  if (!icon || !contact.value || !contact.title) return null;
-  return { name: contact.title, url: contact.value, icon };
+const CONTACT_TYPE_TO_NAME: Record<string, string> = {
+  github: 'GitHub',
+  linkedin: 'LinkedIn',
+  email: 'Email',
+};
+
+function contactToSocialLink(contact: Contact): SocialLink | null {
+  const type = contact.type?.toLowerCase() ?? '';
+  const icon = CONTACT_TYPE_TO_ICON[type];
+  const name = CONTACT_TYPE_TO_NAME[type];
+  if (!icon || !name || !contact.value) return null;
+  return { name, url: contact.value, icon };
 }
 
 function Footer() {
@@ -53,7 +61,7 @@ function Footer() {
             </div>
           </div>
 
-          <FooterSocialLinks links={(content?.contact ?? []).map(contactToSocialLink).filter(Boolean) as SocialLink[]} />
+          <FooterSocialLinks links={(content?.contacts ?? []).map(contactToSocialLink).filter(Boolean) as SocialLink[]} />
         </div>
 
         <div className="text-center md:text-left mt-6">

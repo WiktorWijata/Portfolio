@@ -1,7 +1,7 @@
-import type { ExperienceDto } from '../../../../api';
+import type { Experience } from '../../../../api';
 
 export interface ExperienceListProps {
-  experiences: ExperienceDto[];
+  experiences: Experience[];
   expandedCards: { [key: number]: boolean };
   onToggleCard: (index: number) => void;
 }

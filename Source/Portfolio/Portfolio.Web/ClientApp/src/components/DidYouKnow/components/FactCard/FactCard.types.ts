@@ -1,5 +1,5 @@
-import type { FactDto } from '../../../../api';
+import type { Fact } from '../../../../api';
 
 export interface FactCardProps {
-  fact: FactDto;
+  fact: Fact;
 }

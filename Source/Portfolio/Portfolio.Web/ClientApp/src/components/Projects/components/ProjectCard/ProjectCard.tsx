@@ -8,7 +8,7 @@ export function ProjectCard({
   technologies, 
   imageUrl, 
   codeUrl, 
-  liveUrl,
+  demoUrl,
   className = '' 
 }: ProjectCardProps) {
 
@@ -53,7 +53,7 @@ export function ProjectCard({
         
         <ProjectActions 
           githubLink={codeUrl || undefined}
-          liveLink={liveUrl || undefined}
+          liveLink={demoUrl || undefined}
           className="absolute bottom-3 right-4"
         />
       </div>

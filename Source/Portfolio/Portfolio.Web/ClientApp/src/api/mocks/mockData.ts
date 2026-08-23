@@ -1,12 +1,12 @@
-import type { ContentDto } from '../models';
+import type { ContentResponse } from '../models';
 import portfolioImage from '../../assets/projects/portfolio.png';
 import vitrum from '../../assets/projects/vitrum.png';
 
-export const mockContentPL: ContentDto = {
+export const mockContentPL: ContentResponse = {
   hero: {
     motto: 'Nie da się? Ludzie w kosmos latają.',
     aboutMe: {
-      title: ' Console.WriteLine("Hello World");',
+      title: 'Console.WriteLine("Hello World");',
       greeting: 'Cześć, mam na imię Wiktor i bardzo mi miło, że mnie odwiedziłeś.',
       description: [
         'Skoro już tu jesteś, pozwól, że opowiem Ci trochę o sobie.',
@@ -19,96 +19,96 @@ export const mockContentPL: ContentDto = {
     {
       name: 'Backend',
       skills: [
-        { name: 'C#', icon: null },
-        { name: '.NET Core', icon: null },
-        { name: 'EF Core', icon: null },
-        { name: 'VB.NET', icon: null },
-        { name: 'NHibernate', icon: null },
-        { name: 'SignalR', icon: null}
+        { name: 'C#', imageUrl: null },
+        { name: '.NET Core', imageUrl: null },
+        { name: 'EF Core', imageUrl: null },
+        { name: 'VB.NET', imageUrl: null },
+        { name: 'NHibernate', imageUrl: null },
+        { name: 'SignalR', imageUrl: null}
       ]
     },
     {
       name: 'Frontend',
       skills: [
-        { name: 'HTML5', icon: null },
-        { name: 'CSS3', icon: null },
-        { name: 'React', icon: null },
-        { name: 'Aurelia', icon: 'https://cdn.simpleicons.org/aurelia' },
-        { name: 'Knockout.js', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/knockout/knockout-plain-wordmark.svg' },
-        { name: 'Blazor', icon: null },
-        { name: 'TypeScript', icon: null },
-        { name: 'JavaScript', icon: null },
-        { name: 'Tailwind CSS', icon: null },
-        { name: 'Bootstrap', icon: null }
+        { name: 'HTML5', imageUrl: null },
+        { name: 'CSS3', imageUrl: null },
+        { name: 'React', imageUrl: null },
+        { name: 'Aurelia', imageUrl: 'https://cdn.simpleicons.org/aurelia' },
+        { name: 'Knockout.js', imageUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/knockout/knockout-plain-wordmark.svg' },
+        { name: 'Blazor', imageUrl: null },
+        { name: 'TypeScript', imageUrl: null },
+        { name: 'JavaScript', imageUrl: null },
+        { name: 'Tailwind CSS', imageUrl: null },
+        { name: 'Bootstrap', imageUrl: null }
       ]
     },
     {
       name: 'Desktop',
       skills: [
-        { name: 'WPF', icon: null },
-        { name: 'WinForms', icon: null }
+        { name: 'WPF', imageUrl: null },
+        { name: 'WinForms', imageUrl: null }
       ]
     },
     {
       name: 'Database',
       skills: [
-        { name: 'MSSQL', icon: null },
-        { name: 'Azure SQL', icon: null },
-        { name: 'PostgreSQL', icon: null },
-        { name: 'Oracle DB', icon: null },
-        { name: 'MongoDB', icon: null },
-        { name: 'Redis', icon: null },
-        { name: 'Apache Solr', icon: 'https://cdn.simpleicons.org/apachesolr' }
+        { name: 'MSSQL', imageUrl: null },
+        { name: 'Azure SQL', imageUrl: null },
+        { name: 'PostgreSQL', imageUrl: null },
+        { name: 'Oracle DB', imageUrl: null },
+        { name: 'MongoDB', imageUrl: null },
+        { name: 'Redis', imageUrl: null },
+        { name: 'Apache Solr', imageUrl: 'https://cdn.simpleicons.org/apachesolr' }
       ]
     },
     {
       name: 'API & Messaging',
       skills: [
-        { name: 'REST API', icon: null },
-        { name: 'SOAP', icon: null },
-        { name: 'Masstransit', icon: null },
-        { name: 'RabbitMQ', icon: null }
+        { name: 'REST API', imageUrl: null },
+        { name: 'SOAP', imageUrl: null },
+        { name: 'Masstransit', imageUrl: null },
+        { name: 'RabbitMQ', imageUrl: null }
       ]
     },
     {
       name: 'CI/CD',
       skills: [
-        { name: 'Azure DevOps Pipelines', icon: null },
-        { name: 'GitHub Actions', icon: null },
-        { name: 'Docker', icon: null },
-        { name: 'Kubernetes', icon: null },
-        { name: 'SonarQube', icon: null },
-        { name: 'NuGet', icon: null }
+        { name: 'Azure DevOps Pipelines', imageUrl: null },
+        { name: 'GitHub Actions', imageUrl: null },
+        { name: 'Docker', imageUrl: null },
+        { name: 'Kubernetes', imageUrl: null },
+        { name: 'SonarQube', imageUrl: null },
+        { name: 'NuGet', imageUrl: null }
       ]
     },
     {
       name: 'Kontrola wersji',
       skills: [
-        { name: 'Git', icon: null },
-        { name: 'Github', icon: 'https://cdn.simpleicons.org/github/white' },
-        { name: 'GitLab', icon: null },
-        { name: 'SVN', icon: null }
+        { name: 'Git', imageUrl: null },
+        { name: 'Github', imageUrl: 'https://cdn.simpleicons.org/github/white' },
+        { name: 'GitLab', imageUrl: null },
+        { name: 'SVN', imageUrl: null }
       ]
     },
     {
       name: 'Testy',
       skills: [
-        { name: 'xUnit', icon: null },
-        { name: 'NUnit', icon: null }
+        { name: 'xUnit', imageUrl: null },
+        { name: 'NUnit', imageUrl: null }
       ]
     },
     {
       name: 'Narzędzia',
       skills: [
-        { name: 'Visual Studio', icon: null },
-        { name: 'VS Code', icon: null },
-        { name: 'Rider', icon: null },
-        { name: 'Azure DevOps', icon: null },
-        { name: 'Jira', icon: null },
-        { name: 'Postman', icon: null },
-        { name: 'Swagger', icon: null },
-        { name: 'Figma', icon: null },
-        { name: 'Gimp', icon: null },
+        { name: 'Visual Studio', imageUrl: null },
+        { name: 'VS Code', imageUrl: null },
+        { name: 'Rider', imageUrl: null },
+        { name: 'Azure DevOps', imageUrl: null },
+        { name: 'Jira', imageUrl: null },
+        { name: 'Postman', imageUrl: null },
+        { name: 'Swagger', imageUrl: null },
+        { name: 'Figma', imageUrl: null },
+        { name: 'Gimp', imageUrl: null },
       ]
     }
   ],
@@ -275,29 +275,26 @@ export const mockContentPL: ContentDto = {
       icon: '👅'
     }
   ],
-  contact: [
+  contacts: [
     { 
       type: 'github', 
       value: 'https://github.com/wiktorwijata',
-      title: 'GitHub',
       isExternal: true
     },
     { 
       type: 'linkedin', 
       value: 'https://www.linkedin.com/in/wiktor-wijata-a72082149/',
-      title: 'LinkedIn',
       isExternal: true
     },
     { 
       type: 'email', 
       value: 'mailto:wiktorwijata@gmail.com',
-      title: 'Email',
       isExternal: false
     }
   ]
 };
 
-export const mockContentEN: ContentDto = {
+export const mockContentEN: ContentResponse = {
   hero: {
     motto: 'Can\'t be done? People fly to space.',
     aboutMe: {
@@ -477,116 +474,113 @@ export const mockContentEN: ContentDto = {
     {
       name: 'Backend',
       skills: [
-        { name: 'C#', icon: null },
-        { name: '.NET Core', icon: null },
-        { name: 'EF Core', icon: null },
-        { name: 'VB.NET', icon: null },
-        { name: 'NHibernate', icon: null },
-        { name: 'SignalR', icon: null}
+        { name: 'C#', imageUrl: null },
+        { name: '.NET Core', imageUrl: null },
+        { name: 'EF Core', imageUrl: null },
+        { name: 'VB.NET', imageUrl: null },
+        { name: 'NHibernate', imageUrl: null },
+        { name: 'SignalR', imageUrl: null}
       ]
     },
     {
       name: 'Frontend',
       skills: [
-        { name: 'HTML5', icon: null },
-        { name: 'CSS3', icon: null },
-        { name: 'React', icon: null },
-        { name: 'Aurelia', icon: 'https://cdn.simpleicons.org/aurelia' },
-        { name: 'Knockout.js', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/knockout/knockout-plain-wordmark.svg' },
-        { name: 'Blazor', icon: null },
-        { name: 'TypeScript', icon: null },
-        { name: 'JavaScript', icon: null },
-        { name: 'Tailwind CSS', icon: null },
-        { name: 'Bootstrap', icon: null }
+        { name: 'HTML5', imageUrl: null },
+        { name: 'CSS3', imageUrl: null },
+        { name: 'React', imageUrl: null },
+        { name: 'Aurelia', imageUrl: 'https://cdn.simpleicons.org/aurelia' },
+        { name: 'Knockout.js', imageUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/knockout/knockout-plain-wordmark.svg' },
+        { name: 'Blazor', imageUrl: null },
+        { name: 'TypeScript', imageUrl: null },
+        { name: 'JavaScript', imageUrl: null },
+        { name: 'Tailwind CSS', imageUrl: null },
+        { name: 'Bootstrap', imageUrl: null }
       ]
     },
     {
       name: 'Desktop',
       skills: [
-        { name: 'WPF', icon: null },
-        { name: 'WinForms', icon: null }
+        { name: 'WPF', imageUrl: null },
+        { name: 'WinForms', imageUrl: null }
       ]
     },
     {
       name: 'Database',
       skills: [
-        { name: 'MSSQL', icon: null },
-        { name: 'Azure SQL', icon: null },
-        { name: 'PostgreSQL', icon: null },
-        { name: 'Oracle DB', icon: null },
-        { name: 'MongoDB', icon: null },
-        { name: 'Redis', icon: null },
-        { name: 'Apache Solr', icon: 'https://cdn.simpleicons.org/apachesolr' }
+        { name: 'MSSQL', imageUrl: null },
+        { name: 'Azure SQL', imageUrl: null },
+        { name: 'PostgreSQL', imageUrl: null },
+        { name: 'Oracle DB', imageUrl: null },
+        { name: 'MongoDB', imageUrl: null },
+        { name: 'Redis', imageUrl: null },
+        { name: 'Apache Solr', imageUrl: 'https://cdn.simpleicons.org/apachesolr' }
       ]
     },
     {
       name: 'API & Messaging',
       skills: [
-        { name: 'REST API', icon: null },
-        { name: 'SOAP', icon: null },
-        { name: 'Masstransit', icon: null },
-        { name: 'RabbitMQ', icon: null }
+        { name: 'REST API', imageUrl: null },
+        { name: 'SOAP', imageUrl: null },
+        { name: 'Masstransit', imageUrl: null },
+        { name: 'RabbitMQ', imageUrl: null }
       ]
     },
     {
       name: 'CI/CD',
       skills: [
-        { name: 'Azure DevOps Pipelines', icon: null },
-        { name: 'GitHub Actions', icon: null },
-        { name: 'Docker', icon: null },
-        { name: 'Kubernetes', icon: null },
-        { name: 'SonarQube', icon: null },
-        { name: 'NuGet', icon: null }
+        { name: 'Azure DevOps Pipelines', imageUrl: null },
+        { name: 'GitHub Actions', imageUrl: null },
+        { name: 'Docker', imageUrl: null },
+        { name: 'Kubernetes', imageUrl: null },
+        { name: 'SonarQube', imageUrl: null },
+        { name: 'NuGet', imageUrl: null }
       ]
     },
     {
       name: 'Version Control',
       skills: [
-        { name: 'Git', icon: null },
-        { name: 'Github', icon: 'https://cdn.simpleicons.org/github/white' },
-        { name: 'GitLab', icon: null },
-        { name: 'SVN', icon: null }
+        { name: 'Git', imageUrl: null },
+        { name: 'Github', imageUrl: 'https://cdn.simpleicons.org/github/white' },
+        { name: 'GitLab', imageUrl: null },
+        { name: 'SVN', imageUrl: null }
       ]
     },
     {
       name: 'Testing',
       skills: [
-        { name: 'xUnit', icon: null },
-        { name: 'NUnit', icon: null }
+        { name: 'xUnit', imageUrl: null },
+        { name: 'NUnit', imageUrl: null }
       ]
     },
     {
       name: 'Tools',
       skills: [
-        { name: 'Visual Studio', icon: null },
-        { name: 'VS Code', icon: null },
-        { name: 'Rider', icon: null },
-        { name: 'Azure DevOps', icon: null },
-        { name: 'Jira', icon: null },
-        { name: 'Postman', icon: null },
-        { name: 'Swagger', icon: null },
-        { name: 'Figma', icon: null },
-        { name: 'Gimp', icon: null },
+        { name: 'Visual Studio', imageUrl: null },
+        { name: 'VS Code', imageUrl: null },
+        { name: 'Rider', imageUrl: null },
+        { name: 'Azure DevOps', imageUrl: null },
+        { name: 'Jira', imageUrl: null },
+        { name: 'Postman', imageUrl: null },
+        { name: 'Swagger', imageUrl: null },
+        { name: 'Figma', imageUrl: null },
+        { name: 'Gimp', imageUrl: null },
       ]
     }
   ],
-  contact: [
+  contacts: [
     { 
       type: 'github', 
       value: 'https://github.com/wiktorwijata',
-      title: 'GitHub',
       isExternal: true
     },
     { 
       type: 'linkedin', 
       value: 'https://www.linkedin.com/in/wiktor-wijata-a72082149/',
-      title: 'LinkedIn',
       isExternal: true
     },
     { 
       type: 'email', 
       value: 'mailto:wiktorwijata@gmail.com',
-      title: 'Email',
       isExternal: false
     }
   ]
