@@ -8,12 +8,12 @@ public class Content : AggregateRoot<Guid>
     public LanguageCode LanguageCode { get; protected set; }
     public required Language Language { get; set; }
     public required Hero Hero { get; set; }
-    public ICollection<Skill>? Skills { get; protected set; }
-    public ICollection<Project>? Projects { get; protected set; }
-    public ICollection<Experience>? Experiences { get; protected set; }
-    public ICollection<Education>? Educations { get; protected set; }
-    public ICollection<Fact>? Facts { get; protected set; }
-    public ICollection<Contact>? Contacts { get; protected set; }
+    public ICollection<Skill> Skills { get; protected set; }
+    public ICollection<Project> Projects { get; protected set; }
+    public ICollection<Experience> Experiences { get; protected set; }
+    public ICollection<Education> Educations { get; protected set; }
+    public ICollection<Fact> Facts { get; protected set; }
+    public ICollection<Contact> Contacts { get; protected set; }
 
     protected Content()
     {

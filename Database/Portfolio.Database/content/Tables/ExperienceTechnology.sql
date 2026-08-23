@@ -1,7 +1,8 @@
 CREATE TABLE [content].[ExperienceTechnology]
 (
-	[ExperienceId]	UNIQUEIDENTIFIER NOT NULL,
-	[TechnologyId]	UNIQUEIDENTIFIER NOT NULL,
+	[ExperienceId]	UNIQUEIDENTIFIER	NOT NULL,
+	[TechnologyId]	UNIQUEIDENTIFIER	NOT NULL,
+	[Order]			INT					NULL,
 
 	CONSTRAINT [PK_ExperienceTechnology] PRIMARY KEY ([ExperienceId], [TechnologyId]),
 	CONSTRAINT [FK_ExperienceTechnology_Experience] FOREIGN KEY ([ExperienceId]) REFERENCES [content].[Experience] ([Id]),

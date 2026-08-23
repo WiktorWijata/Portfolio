@@ -1,7 +1,8 @@
 ﻿CREATE TABLE [content].[ProjectTechnology]
 (
-	[ProjectId]		UNIQUEIDENTIFIER NOT NULL,
-	[TechnologyId]	UNIQUEIDENTIFIER NOT NULL,
+	[ProjectId]		UNIQUEIDENTIFIER	NOT NULL,
+	[TechnologyId]	UNIQUEIDENTIFIER	NOT NULL,
+	[Order]			INT					NULL,
 
 	CONSTRAINT [PK_ProjectTechnology] PRIMARY KEY ([ProjectId], [TechnologyId]),
 	CONSTRAINT [FK_ProjectTechnology_Project] FOREIGN KEY ([ProjectId]) REFERENCES [content].[Project] ([Id]),

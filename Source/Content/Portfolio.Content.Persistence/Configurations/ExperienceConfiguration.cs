@@ -14,10 +14,8 @@ public class ExperienceConfiguration : IEntityTypeConfiguration<Experience>
             .OnDelete(DeleteBehavior.Cascade);
 
         builder.HasMany(e => e.Technologies)
-            .WithMany()
-            .UsingEntity<ExperienceTechnology>(
-                j => j.HasOne<Technology>().WithMany().HasForeignKey(et => et.TechnologyId),
-                j => j.HasOne<Experience>().WithMany().HasForeignKey(et => et.ExperienceId),
-                j => j.HasKey(et => new { et.ExperienceId, et.TechnologyId }));
+            .WithOne()
+            .HasForeignKey(et => et.ExperienceId)
+            .OnDelete(DeleteBehavior.Cascade);
     }
 }

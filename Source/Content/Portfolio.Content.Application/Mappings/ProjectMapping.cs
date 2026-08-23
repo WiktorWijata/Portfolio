@@ -15,7 +15,7 @@ public static class ProjectMapping
                 ImageUrl = project.ImageUrl,
                 CodeUrl = project.CodeUrl,
                 DemoUrl = project.DemoUrl,
-                Technologies = project.Technologies?.Select(t => t.Name).ToArray(),
+                Technologies = project.Technologies?.Select(t => t.Technology.Name).ToArray(),
             };
         }
     }

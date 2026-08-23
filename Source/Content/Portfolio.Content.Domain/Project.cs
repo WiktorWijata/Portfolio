@@ -9,5 +9,6 @@ public class Project
     public string? ImageUrl { get; set; }       
     public string? CodeUrl { get; set; }
     public string? DemoUrl { get; set; }
-    public required ICollection<Technology> Technologies { get; set; }
+    public int? Order { get; set; }
+    public required ICollection<ProjectTechnology> Technologies { get; set; }
 }

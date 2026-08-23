@@ -1,8 +1,9 @@
 CREATE TABLE [content].[ExperienceAchievement]
 (
-	[Id]			UNIQUEIDENTIFIER NOT NULL PRIMARY KEY DEFAULT NEWID(),
-	[ExperienceId]	UNIQUEIDENTIFIER NOT NULL,
-	[Description]	NVARCHAR(1000) NOT NULL,
+	[Id]			UNIQUEIDENTIFIER	NOT NULL PRIMARY KEY DEFAULT NEWID(),
+	[ExperienceId]	UNIQUEIDENTIFIER	NOT NULL,
+	[Description]	NVARCHAR(1000)		NOT NULL,
+	[Order]			INT					NULL,
 
 	CONSTRAINT [FK_ExperienceAchievement_Experience] FOREIGN KEY ([ExperienceId]) REFERENCES [content].[Experience] ([Id])
 )

@@ -15,7 +15,7 @@ public static class ExperienceMapping
                 StartDate = experience.StartDate,
                 EndDate = experience.EndDate,
                 Description = experience.Description,
-                Technologies = experience.Technologies?.Select(t => t.Name).ToArray(),
+                Technologies = experience.Technologies?.Select(t => t.Technology.Name).ToArray(),
                 Achievements = experience.Achievements?.Select(a => a.Description).ToArray(),
             };
         }
