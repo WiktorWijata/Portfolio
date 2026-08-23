@@ -1,6 +1,6 @@
-﻿namespace RescuePC.Portfolio.Api.Contracts
+﻿namespace RescuePC.Portfolio.Api.Contracts.Models
 {
-    public class AboutMeDto
+    public class AboutMe
     {
         public string Title { get; set; }
         public string Greeting { get; set; }

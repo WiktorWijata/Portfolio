@@ -6,3 +6,6 @@ CREATE TABLE [content].[ExperienceAchievement]
 
 	CONSTRAINT [FK_ExperienceAchievement_Experience] FOREIGN KEY ([ExperienceId]) REFERENCES [content].[Experience] ([Id])
 )
+GO
+
+CREATE NONCLUSTERED INDEX [IX_ExperienceAchievement_ExperienceId] ON [content].[ExperienceAchievement] ([ExperienceId])

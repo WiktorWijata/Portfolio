@@ -1,6 +1,9 @@
 using Portfolio.Content.Infrastructure;
+using RescuePC.Software.Logging.Providers.Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Host.AddSerilog();
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();

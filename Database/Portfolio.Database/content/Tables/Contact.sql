@@ -8,3 +8,6 @@ CREATE TABLE [content].[Contact]
 
 	CONSTRAINT [FK_Contact_Content] FOREIGN KEY ([ContentId]) REFERENCES [content].[Content] ([Id])
 )
+GO
+
+CREATE NONCLUSTERED INDEX [IX_Contact_ContentId] ON [content].[Contact] ([ContentId])

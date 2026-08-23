@@ -7,3 +7,6 @@ CREATE TABLE [content].[ExperienceTechnology]
 	CONSTRAINT [FK_ExperienceTechnology_Experience] FOREIGN KEY ([ExperienceId]) REFERENCES [content].[Experience] ([Id]),
 	CONSTRAINT [FK_ExperienceTechnology_Technology] FOREIGN KEY ([TechnologyId]) REFERENCES [content].[Technology] ([Id])
 )
+GO
+
+CREATE NONCLUSTERED INDEX [IX_ExperienceTechnology_TechnologyId] ON [content].[ExperienceTechnology] ([TechnologyId])

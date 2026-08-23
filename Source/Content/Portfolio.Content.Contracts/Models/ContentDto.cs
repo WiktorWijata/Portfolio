@@ -7,7 +7,7 @@ namespace Portfolio.Content.Contracts.Models
         public Guid Id { get; set; }
         public LanguageDto Language { get; set; }
         public HeroDto Hero { get; set; }
-        public SkillDto[] Skills { get; set; }
+        public SkillCategoryDto[] SkillsCategories { get; set; }
         public ProjectDto[] Projects { get; set; }
         public ExperienceDto[] Experiences { get; set; }
         public EducationDto[] Educations { get; set; }

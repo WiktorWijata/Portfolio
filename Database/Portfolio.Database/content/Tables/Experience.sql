@@ -7,6 +7,9 @@
 	[StartDate]		DATE				NOT NULL,
 	[EndDate]		DATE				NULL,
 	[Description]	NVARCHAR(MAX)		NULL,
-	
+
 	CONSTRAINT [FK_Experience_Content] FOREIGN KEY ([ContentId]) REFERENCES [content].[Content] ([Id])
 )
+GO
+
+CREATE NONCLUSTERED INDEX [IX_Experience_ContentId] ON [content].[Experience] ([ContentId])

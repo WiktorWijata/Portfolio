@@ -9,6 +9,6 @@ public class Experience
     public required DateTime StartDate { get; set; }
     public DateTime? EndDate { get; set; }
     public string? Description { get; set; }
-    public ICollection<string>? Achievements { get; set; }
+    public ICollection<ExperienceAchievement>? Achievements { get; set; }
     public ICollection<Technology>? Technologies { get; set; }
 }

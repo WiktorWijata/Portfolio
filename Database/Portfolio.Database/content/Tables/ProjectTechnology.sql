@@ -7,3 +7,6 @@
 	CONSTRAINT [FK_ProjectTechnology_Project] FOREIGN KEY ([ProjectId]) REFERENCES [content].[Project] ([Id]),
 	CONSTRAINT [FK_ProjectTechnology_Technology] FOREIGN KEY ([TechnologyId]) REFERENCES [content].[Technology] ([Id])
 )
+GO
+
+CREATE NONCLUSTERED INDEX [IX_ProjectTechnology_TechnologyId] ON [content].[ProjectTechnology] ([TechnologyId])

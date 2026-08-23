@@ -10,3 +10,6 @@ CREATE TABLE [content].[Education]
 
 	CONSTRAINT [FK_Education_Content] FOREIGN KEY ([ContentId]) REFERENCES [content].[Content] ([Id])
 )
+GO
+
+CREATE NONCLUSTERED INDEX [IX_Education_ContentId] ON [content].[Education] ([ContentId])

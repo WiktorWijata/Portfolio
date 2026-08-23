@@ -1,12 +1,12 @@
-﻿namespace RescuePC.Portfolio.Api.Contracts
+﻿namespace RescuePC.Portfolio.Api.Contracts.Models
 {
-    public class ProjectDto
+    public class Project
     {
         public string Title { get; set; }
         public string Description { get; set; }
-        public string[] Technologies { get; set; }
         public string ImageUrl { get; set; }
         public string CodeUrl { get; set; }
-        public string LiveUrl { get; set; }
+        public string DemoUrl { get; set; }
+        public string[] Technologies { get; set; }
     }
 }

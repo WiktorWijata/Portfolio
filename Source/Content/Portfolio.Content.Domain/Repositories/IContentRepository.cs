@@ -2,5 +2,5 @@
 
 public interface IContentRepository
 {
-    Task<Content> GetContentByLanguageCodeAsync(string languageCode, CancellationToken cancellationToken = default);
+    Task<Content> GetContentByLanguageCodeAsync(LanguageCode languageCode, CancellationToken cancellationToken = default);
 }

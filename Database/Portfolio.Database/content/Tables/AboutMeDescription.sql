@@ -6,3 +6,6 @@
 
 	CONSTRAINT [FK_AboutMeDescription_AboutMe] FOREIGN KEY ([AboutMeId]) REFERENCES [content].[AboutMe] ([Id])
 )
+GO
+
+CREATE NONCLUSTERED INDEX [IX_AboutMeDescription_AboutMeId] ON [content].[AboutMeDescription] ([AboutMeId])

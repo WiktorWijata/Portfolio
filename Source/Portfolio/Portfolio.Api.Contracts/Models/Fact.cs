@@ -1,6 +1,6 @@
-﻿namespace RescuePC.Portfolio.Api.Contracts
+﻿namespace RescuePC.Portfolio.Api.Contracts.Models
 {
-    public class FactDto
+    public class Fact
     {
         public string Title { get; set; }
         public string Description { get; set; }

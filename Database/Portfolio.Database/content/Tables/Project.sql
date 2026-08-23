@@ -10,3 +10,6 @@
 
 	CONSTRAINT [FK_Project_Content] FOREIGN KEY ([ContentId]) REFERENCES [content].[Content] ([Id])
 )
+GO
+
+CREATE NONCLUSTERED INDEX [IX_Project_ContentId] ON [content].[Project] ([ContentId])

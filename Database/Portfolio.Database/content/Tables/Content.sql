@@ -5,3 +5,6 @@ CREATE TABLE [content].[Content]
 
 	CONSTRAINT [FK_Content_Language] FOREIGN KEY ([LanguageCode]) REFERENCES [content].[Language] ([Code])
 )
+GO
+
+CREATE NONCLUSTERED INDEX [IX_Content_LanguageCode] ON [content].[Content] ([LanguageCode])

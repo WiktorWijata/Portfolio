@@ -1,10 +1,9 @@
-﻿namespace RescuePC.Portfolio.Api.Contracts
+﻿namespace RescuePC.Portfolio.Api.Contracts.Models
 {
-    public class ContactDto
+    public class Contact
     {
         public string Type { get; set; }
         public string Value { get; set; }
-        public string Title { get; set; }
         public bool IsExternal { get; set; }
     }
 }

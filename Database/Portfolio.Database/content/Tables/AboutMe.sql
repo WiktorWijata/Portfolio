@@ -7,3 +7,6 @@
 
 	CONSTRAINT [FK_AboutMe_Hero] FOREIGN KEY ([HeroId]) REFERENCES [content].[Hero] ([Id])
 )
+GO
+
+CREATE UNIQUE NONCLUSTERED INDEX [IX_AboutMe_HeroId] ON [content].[AboutMe] ([HeroId])

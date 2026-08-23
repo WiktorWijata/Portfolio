@@ -8,3 +8,6 @@ CREATE TABLE [content].[Fact]
 
 	CONSTRAINT [FK_Fact_Content] FOREIGN KEY ([ContentId]) REFERENCES [content].[Content] ([Id])
 )
+GO
+
+CREATE NONCLUSTERED INDEX [IX_Fact_ContentId] ON [content].[Fact] ([ContentId])
