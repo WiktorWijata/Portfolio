@@ -9,3 +9,8 @@ export interface ToggleButtonGroupProps<T = string> {
   options: ToggleButtonGroupOption<T>[];
   className?: string;
 }
+
+export interface RowEdge {
+    isRowFirst: boolean;
+    isRowLast: boolean;
+}

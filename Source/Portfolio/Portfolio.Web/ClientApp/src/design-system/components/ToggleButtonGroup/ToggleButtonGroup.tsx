@@ -1,5 +1,7 @@
+import { useLayoutEffect, useRef, useState } from 'react';
 import { useTheme } from '../../themes';
-import type { ToggleButtonGroupProps } from './ToggleButtonGroup.types';
+import type { RowEdge, ToggleButtonGroupProps } from './ToggleButtonGroup.types';
+import { computeRowEdges, edgesEqual, getRowRoundingClass, singleRowEdge } from './ToggleButtonGroup.helpers';
 
 export function ToggleButtonGroup<T = string>({
   value,
@@ -8,31 +10,46 @@ export function ToggleButtonGroup<T = string>({
   className = '',
 }: ToggleButtonGroupProps<T>) {
   const { currentTheme } = useTheme();
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  const [rowEdges, setRowEdges] = useState<RowEdge[]>(() =>
+    options.map((_, index) => singleRowEdge(index, options.length))
+  );
+
+  useLayoutEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    const recompute = () => {
+      const next = computeRowEdges(container, options.length);
+      setRowEdges((prev) => (edgesEqual(prev, next) ? prev : next));
+    };
+
+    recompute();
+
+    const resizeObserver = new ResizeObserver(recompute);
+    resizeObserver.observe(container);
+
+    return () => resizeObserver.disconnect();
+  }, [options]);
 
   return (
-    <div className={`flex flex-wrap gap-2 justify-center lg:inline-flex lg:gap-0 ${className}`} role="group">
+    <div
+      ref={containerRef}
+      className={`flex flex-wrap gap-2 justify-center lg:inline-flex lg:flex-wrap lg:gap-x-0 lg:gap-y-2 ${className}`}
+      role="group"
+    >
       {options.map((option, index) => {
         const isActive = value === option.value;
-        const isFirst = index === 0;
-        const isLast = index === options.length - 1;
-
-        let borderRadiusDesktop = '';
-        if (isFirst && isLast) {
-          borderRadiusDesktop = 'lg:rounded-lg';
-        } else if (isFirst) {
-          borderRadiusDesktop = 'lg:rounded-l-lg lg:rounded-r-none';
-        } else if (isLast) {
-          borderRadiusDesktop = 'lg:rounded-r-lg lg:rounded-l-none';
-        } else {
-          borderRadiusDesktop = 'lg:rounded-none';
-        }
+        const edge = rowEdges[index] ?? singleRowEdge(index, options.length);
+        const borderRadiusDesktop = getRowRoundingClass(edge);
 
         return (
           <button
             key={String(option.value)}
             onClick={() => onChange(option.value)}
             className={`px-3 sm:px-4 lg:px-6 py-2 font-medium backdrop-blur-sm transition-all rounded-lg ${borderRadiusDesktop} text-sm sm:text-base ${
-              !isLast ? 'lg:-mr-px' : ''
+              !edge.isRowLast ? 'lg:-mr-px' : ''
             }`}
             style={{
               border: `1px solid ${isActive ? currentTheme.colors.primary.borderGlow : currentTheme.colors.neutral.border}`,
