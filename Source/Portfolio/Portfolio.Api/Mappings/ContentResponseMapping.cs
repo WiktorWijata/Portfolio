@@ -24,7 +24,8 @@ public static class ContentResponseMapping
                     },
                 Hero = new Hero
                     {
-                        Motto = content.Hero.Motto,                        
+                        Motto = content.Hero.Motto,
+                        ImageUrl = content.Hero.ImageUrl,
                         AboutMe = new AboutMe
                             {
                                 Title = content.Hero.AboutMe?.Title,

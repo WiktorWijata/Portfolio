@@ -3,7 +3,6 @@ import { DownloadIcon } from '../../design-system/assets/icons';
 import { HeroCode, DeveloperDescription } from './components';
 import { useContent } from '../../api';
 import { useTranslation } from 'react-i18next';
-import avatar from '../../assets/avatar.png';
 
 export default function Hero() {
   const { content } = useContent();
@@ -45,7 +44,7 @@ export default function Hero() {
           <div className="w-full flex flex-col lg:flex-row lg:items-stretch gap-6 lg:gap-12 lg:max-w-5xl lg:mx-auto">            
             <div className="w-full lg:w-[40%] flex items-center justify-center">                          
               <img 
-                src={avatar} 
+                src={content?.hero?.imageUrl || ''} 
                 alt={content?.hero?.aboutMe?.title || ''}
                 className="w-full max-w-[320px] lg:max-w-none object-contain"
               />              

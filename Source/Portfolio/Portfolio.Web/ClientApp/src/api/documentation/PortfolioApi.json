@@ -243,6 +243,10 @@
             "type": "string",
             "nullable": true
           },
+          "imageUrl": {
+            "type": "string",
+            "nullable": true
+          },
           "aboutMe": {
             "$ref": "#/components/schemas/AboutMe"
           }

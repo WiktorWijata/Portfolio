@@ -379,3 +379,5 @@ Deployment/Docker/.env
 /.idea
 .env
 .env*
+# Explicit production frontend config (not a secret, meant to be committed)
+!Source/Portfolio/Portfolio.Web/ClientApp/.env.production

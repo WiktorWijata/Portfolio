@@ -1,6 +1,4 @@
 import type { ContentResponse } from '../models';
-import portfolioImage from '../../assets/projects/portfolio.png';
-import vitrum from '../../assets/projects/vitrum.png';
 
 export const mockContentPL: ContentResponse = {
   hero: {
@@ -117,14 +115,14 @@ export const mockContentPL: ContentResponse = {
       title: '@vitrum/ui',
       description: 'Autorski design-system stworzony w React i TypeScript w stylu glass-morphism, wykorzystywany w moich projektach frontendowych. Zawiera zestaw wielokrotnie używanych komponentów UI, motywów kolorystycznych oraz narzędzi do budowy responsywnych interfejsów.',
       technologies: ['React', 'TypeScript', 'Tailwind CSS'],
-      imageUrl: vitrum,
+      imageUrl: 'https://files.wiktorwijata.com/vitrum.png',
       codeUrl: 'https://github.com/WiktorWijata/Portfolio/tree/develop/Source/Portfolio.Web/ClientApp/src/design-system'
     },
     {
       title: 'Portfolio',
       description: 'Strona wizytówka prezentująca moje umiejętności, doświadczenie oraz projekty. Treść na stronę zarządzana jest przez autorski CMS.',
       technologies: ['C#','.NET 10', 'MSSQL', 'React', 'TypeScript', 'Tailwind CSS', 'Docker', 'Kubernetes'],
-      imageUrl: portfolioImage,
+      imageUrl: 'https://files.wiktorwijata.com/portfolio.png',
       codeUrl: 'https://github.com/WiktorWijata/Portfolio/tree/develop/Source/Portfolio.Web/ClientApp'
     }
   ],
@@ -407,14 +405,14 @@ export const mockContentEN: ContentResponse = {
       title: '@vitrum/ui',
       description: 'A custom design system built in React and TypeScript with a glass-morphism style, used in my frontend projects. Contains a set of reusable UI components, color themes, and tools for building responsive interfaces.',
       technologies: ['React', 'TypeScript', 'Tailwind CSS'],
-      imageUrl: vitrum,
+      imageUrl: 'https://files.wiktorwijata.com/vitrum.png',
       codeUrl: 'https://github.com/WiktorWijata/Portfolio/tree/develop/Source/Portfolio.Web/ClientApp/src/design-system'
     },
     {
       title: 'Portfolio',
       description: 'A portfolio website showcasing my skills, experience, and projects. The site content is managed by a custom CMS.',
       technologies: ['C#', '.NET 10', 'MSSQL', 'React', 'TypeScript', 'Tailwind CSS', 'Docker', 'Kubernetes'],
-      imageUrl: portfolioImage,
+      imageUrl: 'https://files.wiktorwijata.com/portfolio.png',
       codeUrl: 'https://github.com/WiktorWijata/Portfolio/tree/develop/Source/Portfolio.Web/ClientApp'
     }
   ],

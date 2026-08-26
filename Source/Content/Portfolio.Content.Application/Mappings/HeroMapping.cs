@@ -11,6 +11,7 @@ public static class HeroMapping
             return new HeroDto
             {
                 Motto = hero.Motto,
+                ImageUrl = hero.ImageUrl,
                 AboutMe = hero.AboutMe?.ToDto()
             };
         }

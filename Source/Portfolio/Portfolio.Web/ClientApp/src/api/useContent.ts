@@ -5,13 +5,17 @@ import { mockContentPL, mockContentEN } from './mocks/mockData';
 /**
  * Custom hook for fetching content based on current language.
  * Wraps the generated useGetApiContentReadContent hook with i18n integration.
- * Falls back to mock data if API is not available.
+ *
+ * Mock data is used ONLY when explicitly enabled via VITE_USE_MOCK=true.
+ * When the real API is in use, a failed/errored request is surfaced through
+ * `error` instead of being silently masked by mock data — falling back to
+ * mocks on a real failure would make a broken API look like a working one.
  */
 export function useContent() {
   const { i18n } = useTranslation();
-  
+
   const useMock = import.meta.env.VITE_USE_MOCK === 'true';
-  
+
   const { data, isLoading, error } = useGetApiContentReadContent(
     { languageCode: i18n.language },
     {
@@ -23,13 +27,18 @@ export function useContent() {
     }
   );
 
-  // Fallback to mock data if API fails or is disabled
-  const mockData = i18n.language === 'en' ? mockContentEN : mockContentPL;
-  const content = data?.data || mockData;
+  if (useMock) {
+    const mockData = i18n.language === 'en' ? mockContentEN : mockContentPL;
+    return {
+      content: mockData,
+      isLoading: false,
+      error: null,
+    };
+  }
 
   return {
-    content,
-    isLoading: useMock ? false : isLoading, // Don't show loading state when using mocks
+    content: data?.data,
+    isLoading,
     error: error?.message || null,
   };
 }

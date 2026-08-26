@@ -9,5 +9,7 @@ import type { AboutMe } from './aboutMe';
 export interface Hero {
   /** @nullable */
   motto?: string | null;
+  /** @nullable */
+  imageUrl?: string | null;
   aboutMe?: AboutMe;
 }
