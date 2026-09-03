@@ -11,7 +11,8 @@ export const IconName = {
   CHEVRON_RIGHT: 'chevron-right',
   CHEVRON_UP: 'chevron-up',
   MENU: 'menu',
-  CLOSE: 'close'
+  CLOSE: 'close',
+  ALERT_TRIANGLE: 'alert-triangle'
 } as const;
 
 export type IconNameType = typeof IconName[keyof typeof IconName];

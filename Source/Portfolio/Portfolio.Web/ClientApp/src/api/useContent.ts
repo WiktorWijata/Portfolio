@@ -16,7 +16,7 @@ export function useContent() {
 
   const useMock = import.meta.env.VITE_USE_MOCK === 'true';
 
-  const { data, isLoading, error } = useGetApiContentReadContent(
+  const { data, isLoading, error, refetch } = useGetApiContentReadContent(
     { languageCode: i18n.language },
     {
       query: {
@@ -33,6 +33,7 @@ export function useContent() {
       content: mockData,
       isLoading: false,
       error: null,
+      refetch: () => {},
     };
   }
 
@@ -40,5 +41,6 @@ export function useContent() {
     content: data?.data,
     isLoading,
     error: error?.message || null,
+    refetch,
   };
 }

@@ -15,6 +15,7 @@ import {
   ChevronUpIcon,
   MenuIcon,
   CloseIcon,
+  AlertTriangleIcon,
 } from '../../assets/icons';
 
 type SvgProps = SVGProps<SVGSVGElement>;
@@ -40,7 +41,8 @@ const iconComponents: Record<string, (props: SvgProps) => ReactElement> = {
   'chevron-right': ChevronRightIcon,
   'chevron-up': ChevronUpIcon,
   'menu': MenuIcon,
-  'close': CloseIcon
+  'close': CloseIcon,
+  'alert-triangle': AlertTriangleIcon
 };
 
 export function Icon({ name, size = IconSize.MD, color = 'white', className = '' }: IconProps) {

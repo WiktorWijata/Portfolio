@@ -49,5 +49,12 @@
     "cosmos": "Kosmos",
     "sunset": "Zachód słońca",
     "vscode-dark": "VS Code Dark"
+  },
+  "errors": {
+    "unavailable": {
+      "title": "Strona chwilowo nie działa",
+      "description": "Nie udało się pobrać treści. Sprawdź połączenie z internetem i spróbuj ponownie."
+    },
+    "retry": "Spróbuj ponownie"
   }
 }

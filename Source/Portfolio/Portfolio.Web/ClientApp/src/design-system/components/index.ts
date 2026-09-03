@@ -40,3 +40,5 @@ export { CodeEditor } from './CodeEditor/CodeEditor';
 export type { CodeEditorProps } from './CodeEditor/CodeEditor.types';
 export { CircularProgress } from './CircularProgress';
 export type { CircularProgressProps } from './CircularProgress';
+export { EmptyState } from './EmptyState';
+export type { EmptyStateProps } from './EmptyState';

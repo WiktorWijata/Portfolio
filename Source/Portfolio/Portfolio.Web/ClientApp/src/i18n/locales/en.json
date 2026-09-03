@@ -49,5 +49,12 @@
     "cosmos": "Cosmos",
     "sunset": "Sunset",
     "vscode-dark": "VS Code Dark"
+  },
+  "errors": {
+    "unavailable": {
+      "title": "The page isn't working right now",
+      "description": "We couldn't load the content. Check your connection and try again."
+    },
+    "retry": "Try again"
   }
 }

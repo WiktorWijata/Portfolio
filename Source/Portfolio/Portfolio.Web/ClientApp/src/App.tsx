@@ -1,6 +1,7 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ThemeProvider } from './design-system/themes';
 import { MainLayout } from './components/MainLayout';
+import { ContentBoundary } from './components/ContentBoundary';
 import './i18n/i18n';
 import Hero from './components/Hero';
 import Skills from './components/Skills';
@@ -24,15 +25,17 @@ export function App() {
     <QueryClientProvider client={queryClient}>
       <ThemeProvider>
         <MainLayout>
-            <Hero />
-            <Skills />
-            <Projects />
-            <Experience />
-            <Education />
-            <DidYouKnow />
-            <Contact />
-          </MainLayout>
-        </ThemeProvider>
+            <ContentBoundary>
+              <Hero />
+              <Skills />
+              <Projects />
+              <Experience />
+              <Education />
+              <DidYouKnow />
+              <Contact />
+            </ContentBoundary>            
+         </MainLayout>
+       </ThemeProvider>
     </QueryClientProvider>
   );
 }
