@@ -4,8 +4,8 @@ import { FactCardConfig, FactAnimationConfig } from '../../DidYouKnow.consts';
 import type { FactCardProps } from './FactCard.types';
 
 export function FactCard({ fact }: FactCardProps) {
-  const factIcon = fact.icon ?? '💡';
-  
+  const hasImage = Boolean(fact.imageUrl);
+
   return (
     <Tile
       className="text-center flex flex-col justify-center items-center p-6 md:p-10 lg:p-12 h-full"
@@ -17,7 +17,15 @@ export function FactCard({ fact }: FactCardProps) {
         })
       }}
     >
-      <div className="text-6xl mb-6">{factIcon}</div>
+      {hasImage ? (
+        <img
+          src={fact.imageUrl ?? ''}
+          alt={fact.title ?? 'fact image'}
+          className="w-24 h-24 mb-6 object-contain"
+        />
+      ) : (
+        <div className="text-6xl mb-6">💡</div>
+      )}
       <Text as={TextAs.H3} size={TextSize.LG} weight={TextWeight.BOLD} align={Alignment.CENTER} className="mb-4">
         {fact.title}
       </Text>

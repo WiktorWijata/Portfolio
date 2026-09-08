@@ -73,7 +73,7 @@ public static class ContentResponseMapping
                 {
                     Title = f.Title,
                     Description = f.Description,
-                    Icon = f.Icon
+                    ImageUrl = f.ImageUrl
                 }).ToArray(),
                 Contacts = content.Contacts?.Select(c => new Contact
                 {

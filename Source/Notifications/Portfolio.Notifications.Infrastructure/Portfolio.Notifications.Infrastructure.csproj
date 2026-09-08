@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Portfolio.Notifications.Application\Portfolio.Notifications.Application.csproj" />
+    <ProjectReference Include="..\Portfolio.Notifications.Contracts\Portfolio.Notifications.Contracts.csproj" />
+    <ProjectReference Include="..\Portfolio.Notifications.Persistence\Portfolio.Notifications.Persistence.csproj" />
+  </ItemGroup>
+
+</Project>

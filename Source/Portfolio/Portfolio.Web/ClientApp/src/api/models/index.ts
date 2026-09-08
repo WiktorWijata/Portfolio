@@ -14,6 +14,7 @@ export * from './fact';
 export * from './getApiContentReadContentParams';
 export * from './hero';
 export * from './language';
+export * from './notificationRequest';
 export * from './project';
 export * from './skill';
 export * from './skillCategory';

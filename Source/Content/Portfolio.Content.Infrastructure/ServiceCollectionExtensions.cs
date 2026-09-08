@@ -10,7 +10,7 @@ public static class ServiceCollectionExtensions
 {
     public static void AddContent(this IServiceCollection services, string connectionString)
     {
-        services.AddEntityFrameworkCoreMediatR<ContentDbContext>(typeof(GetLanguagesQueryHandler).Assembly);
+        services.AddContentMediatR<ContentDbContext>(typeof(GetLanguagesQueryHandler).Assembly);
         services.AddEntityFramework(connectionString);
         services.AddScoped<IContentModule, ContentModule>();
     }

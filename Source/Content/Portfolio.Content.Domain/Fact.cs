@@ -6,5 +6,5 @@ public class Fact
     public Guid ContentId { get; set; }
     public required string Title { get; set; }
     public required string Description { get; set; }
-    public string? Icon { get; set; }
+    public string? ImageUrl { get; set; }
 }

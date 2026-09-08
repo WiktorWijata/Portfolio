@@ -4,7 +4,7 @@ CREATE TABLE [content].[Fact]
 	[ContentId]		UNIQUEIDENTIFIER	NOT NULL,
 	[Title]			NVARCHAR(200)		NOT NULL,
 	[Description]	NVARCHAR(MAX)		NOT NULL,
-	[Icon]			NVARCHAR(255)		NULL,
+	[ImageUrl]		NVARCHAR(1000)		NULL,
 
 	CONSTRAINT [FK_Fact_Content] FOREIGN KEY ([ContentId]) REFERENCES [content].[Content] ([Id])
 )

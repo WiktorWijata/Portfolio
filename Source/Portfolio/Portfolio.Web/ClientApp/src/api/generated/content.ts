@@ -5,16 +5,20 @@
  * OpenAPI spec version: 1.0
  */
 import {
+  useMutation,
   useQuery
 } from '@tanstack/react-query';
 import type {
   DataTag,
   DefinedInitialDataOptions,
   DefinedUseQueryResult,
+  MutationFunction,
   QueryClient,
   QueryFunction,
   QueryKey,
   UndefinedInitialDataOptions,
+  UseMutationOptions,
+  UseMutationResult,
   UseQueryOptions,
   UseQueryResult
 } from '@tanstack/react-query';
@@ -29,7 +33,8 @@ import type {
 import type {
   ContentResponse,
   GetApiContentReadContentParams,
-  Language
+  Language,
+  NotificationRequest
 } from '../models';
 
 
@@ -208,3 +213,59 @@ export function useGetApiContentReadContent<TData = Awaited<ReturnType<typeof ge
 
 
 
+export const postApiNotificationSend = (
+    notificationRequest: NotificationRequest, options?: AxiosRequestConfig
+ ): Promise<AxiosResponse<void>> => {
+    
+    
+    return axios.default.post(
+      `/api/notification/send`,
+      notificationRequest,options
+    );
+  }
+
+
+
+export const getPostApiNotificationSendMutationOptions = <TError = AxiosError<unknown>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postApiNotificationSend>>, TError,{data: NotificationRequest}, TContext>, axios?: AxiosRequestConfig}
+): UseMutationOptions<Awaited<ReturnType<typeof postApiNotificationSend>>, TError,{data: NotificationRequest}, TContext> => {
+
+const mutationKey = ['postApiNotificationSend'];
+const {mutation: mutationOptions, axios: axiosOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, axios: undefined};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof postApiNotificationSend>>, {data: NotificationRequest}> = (props) => {
+          const {data} = props ?? {};
+
+          return  postApiNotificationSend(data,axiosOptions)
+        }
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type PostApiNotificationSendMutationResult = NonNullable<Awaited<ReturnType<typeof postApiNotificationSend>>>
+    export type PostApiNotificationSendMutationBody = NotificationRequest
+    export type PostApiNotificationSendMutationError = AxiosError<unknown>
+
+    export const usePostApiNotificationSend = <TError = AxiosError<unknown>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postApiNotificationSend>>, TError,{data: NotificationRequest}, TContext>, axios?: AxiosRequestConfig}
+ , queryClient?: QueryClient): UseMutationResult<
+        Awaited<ReturnType<typeof postApiNotificationSend>>,
+        TError,
+        {data: NotificationRequest},
+        TContext
+      > => {
+
+      const mutationOptions = getPostApiNotificationSendMutationOptions(options);
+
+      return useMutation(mutationOptions, queryClient);
+    }
+    

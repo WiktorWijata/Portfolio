@@ -5,11 +5,11 @@
  * OpenAPI spec version: 1.0
  */
 
-export interface Fact {
+export interface NotificationRequest {
   /** @nullable */
-  title?: string | null;
+  name?: string | null;
   /** @nullable */
-  description?: string | null;
+  email?: string | null;
   /** @nullable */
-  imageUrl?: string | null;
+  message?: string | null;
 }

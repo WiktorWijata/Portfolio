@@ -58,9 +58,10 @@
     <Folder Include="Properties" />
     <Folder Include="content" />
     <Folder Include="content\Tables" />
+    <Folder Include="notification" />
+    <Folder Include="notification\Tables" />
   </ItemGroup>
   <ItemGroup>
-    <Build Include="content\content.sql" />
     <Build Include="content\Tables\Language.sql" />
     <Build Include="content\Tables\Hero.sql" />
     <Build Include="content\Tables\AboutMe.sql" />
@@ -77,5 +78,8 @@
     <Build Include="content\Tables\Technology.sql" />
     <Build Include="content\Tables\ExperienceTechnology.sql" />
     <Build Include="content\Tables\ExperienceAchievement.sql" />
+    <Build Include="notification\Tables\Email.sql" />
+    <Build Include="content\content.sql" />
+    <Build Include="notification\notification.sql" />
   </ItemGroup>
 </Project>

@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using Portfolio.Content.Contracts;
 using RescuePC.Portfolio.Api.Contracts;
 using RescuePC.Portfolio.Api.Contracts.Models;
@@ -34,7 +34,6 @@ public class ContentReadController : ControllerBase
     [ProducesResponseType(typeof(ContentResponse), StatusCodes.Status200OK)]
     public async Task<IActionResult> GetContent(string languageCode, CancellationToken cancellationToken = default)
     {
-        await Task.Delay(3000, cancellationToken);
         var content = await _contentModule.GetContentByLanguageCode(languageCode, cancellationToken);
         return Ok(content.ToResponse());
     }

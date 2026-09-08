@@ -12,7 +12,7 @@ public static class FactMapping
             {
                 Title = fact.Title,
                 Description = fact.Description,
-                Icon = fact.Icon,
+                ImageUrl = fact.ImageUrl,
             };
         }
     }

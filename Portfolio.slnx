@@ -33,7 +33,13 @@
     <Project Path="Source/Content/Portfolio.Content.Infrastructure/Portfolio.Content.Infrastructure.csproj" Id="7ed6c3b3-4752-40dd-9862-7f0f4ad7319c" />
     <Project Path="Source/Content/Portfolio.Content.Persistence/Portfolio.Content.Persistence.csproj" Id="2083a973-1fc4-4d08-94e0-f86c670dbdfc" />
   </Folder>
-  <Folder Name="/Source/Notifications/" />
+  <Folder Name="/Source/Notifications/">
+    <Project Path="Source/Notifications/Portfolio.Notifications.Application/Portfolio.Notifications.Application.csproj" />
+    <Project Path="Source/Notifications/Portfolio.Notifications.Contracts/Portfolio.Notifications.Contracts.csproj" Id="d4d59c99-366d-4a59-bb51-d2d377864be8" />
+    <Project Path="Source/Notifications/Portfolio.Notifications.Domain/Portfolio.Notifications.Domain.csproj" />
+    <Project Path="Source/Notifications/Portfolio.Notifications.Infrastructure/Portfolio.Notifications.Infrastructure.csproj" Id="604575b9-053b-47c1-af3e-cca4294e4b17" />
+    <Project Path="Source/Notifications/Portfolio.Notifications.Persistence/Portfolio.Notifications.Persistence.csproj" Id="e52b5377-5f06-4c6c-b7d0-987c0365a247" />
+  </Folder>
   <Folder Name="/Source/Porfolio/">
     <Project Path="Source/Portfolio/Portfolio.Api.Contracts/Portfolio.Api.Contracts.csproj" />
     <Project Path="Source/Portfolio/Portfolio.Api/Portfolio.Api.csproj" />
