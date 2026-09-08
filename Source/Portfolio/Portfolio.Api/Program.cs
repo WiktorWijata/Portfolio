@@ -1,3 +1,4 @@
+using Hangfire;
 using Portfolio.Content.Infrastructure;
 using Portfolio.Notifications.Infrastructure;
 using RescuePC.Portfolio.Api.Middleware;
@@ -11,6 +12,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddRateLimiting(builder.Configuration);
+builder.Services.AddHangfireJobs(builder.Configuration);
 
 const string ClientAppCorsPolicy = "ClientApp";
 
@@ -34,6 +36,7 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
+    app.UseHangfireDashboard();
 }
 
 app.UseHttpsRedirection();

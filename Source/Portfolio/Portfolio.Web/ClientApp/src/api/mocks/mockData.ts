@@ -225,52 +225,52 @@ export const mockContentPL: ContentResponse = {
     {
       title: 'Smakowity sum',
       description: 'Sum ma najwięcej kubków smakowych ze wszystkich zwierząt — ma ich ponad 27 000!',
-      icon: '🐟'
+      imageUrl: '🐟'
     },
     {
       title: 'Myszka Miki i listy',
       description: 'W 1933 roku Myszka Miki, postać z kreskówek, otrzymała 800 000 listów od fanów.',
-      icon: '📬'
+      imageUrl: '📬'
     },
     {
       title: 'Wenusjański dzień',
       description: 'Na Wenus dzień trwa dłużej niż rok, czyli planeta obraca się wolniej niż okrąża Słońce.',
-      icon: '🪐'
+      imageUrl: '🪐'
     },
     {
       title: 'Miód nie psuje się nigdy',
       description: 'W egipskich grobowcach liczących ponad 3000 lat odkryto miód, który nadal był jadalny. Dzięki niskiej zawartości wody i właściwościom antybakteryjnym miód praktycznie nie ma terminu ważności.',
-      icon: '🍯'
+      imageUrl: '🍯'
     },
     {
       title: 'Ośmiornica z trzema sercami',
       description: 'Ośmiornica ma trzy serca i niebieską krew. Dwa serca pompują krew do skrzeli, a trzecie do reszty ciała. Krew jest niebieska ze względu na hemocyjaninę zawierającą miedź zamiast żelaza.',
-      icon: '🐙'
+      imageUrl: '🐙'
     },
     {
       title: 'Piorun uderza 100 razy na sekundę',
       description: 'W każdej chwili na Ziemi szaleje ok. 2000 burz. W ich wyniku pioruny uderzają w powierzchnię Ziemi średnio 100 razy na każdą sekundę — łącznie ok. 8,6 miliona razy dziennie.',
-      icon: '⚡'
+      imageUrl: '⚡'
     },
     {
       title: 'Księżyc oddala się od Ziemi',
       description: 'Księżyc oddala się od Ziemi o około 3,8 cm rocznie. Za miliard lat będzie tak daleko, że całkowite zaćmienia Słońca nie będą już możliwe.',
-      icon: '🌙'
+      imageUrl: '🌙'
     },
     {
       title: 'Gorąca woda zamarza szybciej',
       description: 'Gorąca woda może zamarznąć szybciej niż zimna — zjawisko to nazywa się efektem Mpemby. Zaobserwował je już Arystoteles, a jego pełne wyjaśnienie naukowe wciąż jest przedmiotem dyskusji.',
-      icon: '🧊'
+      imageUrl: '🧊'
     },
     {
       title: 'Mrówki nigdy nie śpią',
       description: 'Mrówki nie mają typowego snu. Zamiast spać kilka godzin, drzemią setkach krótkich drzemek po ok. 1 minucie przez całą dobę — łącznie śpią ok. 4-5 godzin, ale rozłożonych na cały dzień.',
-      icon: '🐜'
+      imageUrl: '🐜'
     },
     {
       title: 'Odciski języka są unikalne',
       description: 'Podobnie jak odciski palców, odcisk języka każdego człowieka jest całkowicie unikalny. Układ brodawek i kształt języka nie powtarza się u żadnych dwóch osób na świecie.',
-      icon: '👅'
+      imageUrl: '👅'
     }
   ],
   contacts: [
@@ -420,52 +420,52 @@ export const mockContentEN: ContentResponse = {
     {
       title: 'Tasty catfish',
       description: 'The catfish has more taste buds than any other animal — over 27,000 of them!',
-      icon: '🐟'
+      imageUrl: '🐟'
     },
     {
       title: 'Mickey Mouse and fan mail',
       description: 'In 1933, Mickey Mouse, the cartoon character, received 800,000 fan letters.',
-      icon: '📬'
+      imageUrl: '📬'
     },
     {
       title: 'A Venusian day',
       description: 'A day on Venus lasts longer than a year — the planet rotates slower than it orbits the Sun.',
-      icon: '🪐'
+      imageUrl: '🪐'
     },
     {
       title: 'Honey never expires',
       description: 'Honey found in Egyptian tombs over 3,000 years old was still edible. Thanks to its low water content and antibacterial properties, honey has virtually no expiration date.',
-      icon: '🍯'
+      imageUrl: '🍯'
     },
     {
       title: 'Octopus has three hearts',
       description: 'An octopus has three hearts and blue blood. Two hearts pump blood to the gills, while the third pumps it to the rest of the body. The blood is blue because it contains copper-based hemocyanin instead of iron.',
-      icon: '🐙'
+      imageUrl: '🐙'
     },
     {
       title: 'Lightning strikes 100 times per second',
       description: 'At any given moment, about 2,000 thunderstorms are active on Earth. As a result, lightning strikes the surface about 100 times every second — roughly 8.6 million times per day.',
-      icon: '⚡'
+      imageUrl: '⚡'
     },
     {
       title: 'The Moon is drifting away',
       description: 'The Moon moves away from Earth by about 3.8 cm per year. In about a billion years, it will be so far away that total solar eclipses will no longer be possible.',
-      icon: '🌙'
+      imageUrl: '🌙'
     },
     {
       title: 'Hot water can freeze faster',
       description: 'Hot water can freeze faster than cold water — a phenomenon known as the Mpemba effect. It was observed by Aristotle, and its full scientific explanation is still debated today.',
-      icon: '🧊'
+      imageUrl: '🧊'
     },
     {
       title: 'Ants never sleep',
       description: 'Ants do not have a conventional sleep cycle. Instead of sleeping for several hours, they take hundreds of short naps of about 1 minute throughout the day — totaling around 4-5 hours of rest spread across 24 hours.',
-      icon: '🐜'
+      imageUrl: '🐜'
     },
     {
       title: 'Tongue prints are unique',
       description: 'Just like fingerprints, every person\'s tongue print is completely unique. The pattern of papillae and the shape of the tongue is never the same in any two people in the world.',
-      icon: '👅'
+      imageUrl: '👅'
     }
   ],
   skillsCategories: [
