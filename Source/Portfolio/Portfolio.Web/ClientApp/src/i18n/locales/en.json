@@ -43,7 +43,9 @@
     "messagePlaceholder": "Your message...",
     "sending": "Sending...",
     "send": "Send message",
-    "successMessage": "Message sent successfully!"
+    "successMessage": "Message sent successfully!",
+    "rateLimitedMessage": "Your message has already been sent. Wiktor will definitely get back to you!",
+    "errorMessage": "Something went wrong while sending your message. Please try again later."
   },
   "themes": {
     "cosmos": "Cosmos",

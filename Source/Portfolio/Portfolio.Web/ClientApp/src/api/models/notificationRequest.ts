@@ -9,7 +9,7 @@ export interface NotificationRequest {
   /** @nullable */
   name?: string | null;
   /** @nullable */
-  email?: string | null;
+  sender?: string | null;
   /** @nullable */
   message?: string | null;
 }

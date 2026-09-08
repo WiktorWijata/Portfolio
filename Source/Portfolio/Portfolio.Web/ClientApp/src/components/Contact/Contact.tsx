@@ -1,7 +1,9 @@
 import { useState } from 'react';
+import { isAxiosError } from 'axios';
 import { SectionTitle, Container, ToastVariant } from '../../design-system/components';
 import { useToast } from '../../design-system/hooks';
-import { useContent } from '../../api';
+import { useContent, usePostApiNotificationSend } from '../../api';
+import type { NotificationRequest } from '../../api';
 import { ContactInfo, ContactForm } from './components';
 import type { ContactFormData } from './components/ContactForm/ContactForm.types';
 import { useTranslation } from 'react-i18next';
@@ -10,16 +12,33 @@ function Contact() {
   const { content } = useContent();
   const { t } = useTranslation();
   const { showToast, ToastComponent } = useToast();
-  const [status, setStatus] = useState<'idle' | 'sending'>('idle');
+  const [formResetKey, setFormResetKey] = useState(0);
+  const notificationMutation = usePostApiNotificationSend();
 
-  const handleFormSubmit = async (data: ContactFormData) => {
-    setStatus('sending');
-    console.log('Form data:', data);
-    
-    setTimeout(() => {
-      setStatus('idle');
-      showToast(t('form.successMessage'), ToastVariant.SUCCESS);
-    }, 1000);
+  const handleFormSubmit = (data: ContactFormData) => {
+    const payload: NotificationRequest = {
+      name: data.name,
+      sender: data.email,
+      message: data.message,
+    };
+
+    notificationMutation.mutate(
+      { data: payload },
+      {
+        onSuccess: () => {
+          showToast(t('form.successMessage'), ToastVariant.SUCCESS);
+          setFormResetKey((key) => key + 1);
+        },
+        onError: (error) => {
+          if (isAxiosError(error) && error.response?.status === 429) {
+            showToast(t('form.rateLimitedMessage'), ToastVariant.INFO);
+            setFormResetKey((key) => key + 1);
+          } else {
+            showToast(t('form.errorMessage'), ToastVariant.ERROR);
+          }
+        },
+      }
+    );
   };
 
   return (
@@ -36,8 +55,9 @@ function Contact() {
             />
             
             <ContactForm 
+              key={formResetKey}
               onSubmit={handleFormSubmit}
-              isSubmitting={status === 'sending'}
+              isSubmitting={notificationMutation.isPending}
             />
           </div>
         </Container>

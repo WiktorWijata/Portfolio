@@ -43,7 +43,9 @@
     "messagePlaceholder": "Twoja wiadomość...",
     "sending": "Wysyłanie...",
     "send": "Wyślij wiadomość",
-    "successMessage": "Wiadomość wysłana pomyślnie!"
+    "successMessage": "Wiadomość wysłana pomyślnie!",
+    "rateLimitedMessage": "Twoja wiadomość została już wysłana. Wiktor na pewno się odezwie!",
+    "errorMessage": "Nie udało się wysłać wiadomości. Spróbuj ponownie później."
   },
   "themes": {
     "cosmos": "Kosmos",

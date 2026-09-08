@@ -305,7 +305,7 @@
             "type": "string",
             "nullable": true
           },
-          "email": {
+          "sender": {
             "type": "string",
             "nullable": true
           },
