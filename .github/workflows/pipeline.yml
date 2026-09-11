@@ -98,7 +98,7 @@ jobs:
           username: ${{ secrets.VPS_USER }}
           key: ${{ secrets.VPS_SSH_KEY }}
           source: "Deployment/Docker/docker-compose.yml"
-          target: /opt/environments/${{ vars.ENV_NAME }}/apps/portfolio
+          target: /opt/environments/${{ needs.resolve-env.outputs.environment }}/apps/portfolio
           strip_components: 2
 
       - name: Copy API appsettings template to VPS
@@ -108,7 +108,7 @@ jobs:
           username: ${{ secrets.VPS_USER }}
           key: ${{ secrets.VPS_SSH_KEY }}
           source: "Source/Portfolio/Portfolio.Api/appsettings.Production.json"
-          target: /opt/environments/${{ vars.ENV_NAME }}/apps/portfolio/templates/api
+          target: /opt/environments/${{ needs.resolve-env.outputs.environment }}/apps/portfolio/templates/api
           strip_components: 3
 
       - name: Copy DbMigrator appsettings template to VPS
@@ -118,7 +118,7 @@ jobs:
           username: ${{ secrets.VPS_USER }}
           key: ${{ secrets.VPS_SSH_KEY }}
           source: "Database/Portfolio.DbMigrator/appsettings.Production.json"
-          target: /opt/environments/${{ vars.ENV_NAME }}/apps/portfolio/templates/migrator
+          target: /opt/environments/${{ needs.resolve-env.outputs.environment }}/apps/portfolio/templates/migrator
           strip_components: 2
 
       - name: Copy resolve-config script to VPS
@@ -128,7 +128,7 @@ jobs:
           username: ${{ secrets.VPS_USER }}
           key: ${{ secrets.VPS_SSH_KEY }}
           source: "Deployment/Scripts/resolve-config.sh"
-          target: /opt/environments/${{ vars.ENV_NAME }}/apps/portfolio
+          target: /opt/environments/${{ needs.resolve-env.outputs.environment }}/apps/portfolio
           strip_components: 2
 
       - name: Deploy to VPS
@@ -145,10 +145,10 @@ jobs:
           envs: DB_HOST,DB_PORT,DB_PASSWORD,CORS_ALLOWED_ORIGIN
           script: |
             set -e
-            cd /opt/environments/${{ vars.ENV_NAME }}/apps/portfolio
+            cd /opt/environments/${{ needs.resolve-env.outputs.environment }}/apps/portfolio
 
             cat > .env <<EOF
-            ENV_NAME=${{ vars.ENV_NAME }}
+            ENV_NAME=${{ needs.resolve-env.outputs.environment }}
             WEB_TAG=${{ needs.resolve-env.outputs.environment }}-latest
             API_TAG=${{ needs.resolve-env.outputs.environment }}-latest
             MIGRATOR_TAG=${{ needs.resolve-env.outputs.environment }}-latest

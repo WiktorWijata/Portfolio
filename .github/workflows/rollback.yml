@@ -38,7 +38,7 @@ jobs:
           username: ${{ secrets.VPS_USER }}
           key: ${{ secrets.VPS_SSH_KEY }}
           script: |
-            cd /opt/environments/${{ vars.ENV_NAME }}/apps/portfolio
+            cd /opt/environments/${{ github.event.inputs.environment }}/apps/portfolio
             sed -i "s/^${{ steps.resolve.outputs.var_name }}=.*/${{ steps.resolve.outputs.var_name }}=${{ github.event.inputs.image_tag }}/" .env
             docker compose pull
             docker compose up -d
