@@ -16,11 +16,14 @@ builder.Services.AddHangfireJobs(builder.Configuration);
 
 const string ClientAppCorsPolicy = "ClientApp";
 
+var corsAllowedOrigin = builder.Configuration["Cors:AllowedOrigin"]
+    ?? throw new InvalidOperationException("Cors:AllowedOrigin configuration value is not set.");
+
 builder.Services.AddCors(options =>
 {
     options.AddPolicy(ClientAppCorsPolicy, policy =>
     {
-        policy.WithOrigins("https://localhost:5001")
+        policy.WithOrigins(corsAllowedOrigin)
             .AllowAnyHeader()
             .AllowAnyMethod();
     });
