@@ -7,7 +7,7 @@ using RescuePC.Portfolio.Api.Mappings;
 namespace RescuePC.Portfolio.Api.Controllers;
 
 [ApiController]
-[Route("api/content-read")]
+[Route("content-read")]
 [Produces("application/json")]
 public class ContentReadController : ControllerBase
 {

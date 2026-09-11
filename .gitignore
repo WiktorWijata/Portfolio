@@ -381,3 +381,5 @@ Deployment/Docker/.env
 .env*
 # Explicit production frontend config (not a secret, meant to be committed)
 !Source/Portfolio/Portfolio.Web/ClientApp/.env.production
+/Source/Portfolio/Portfolio.Api/appsettings.Development.json
+/Source/Portfolio/Portfolio.Web/appsettings.Development.json

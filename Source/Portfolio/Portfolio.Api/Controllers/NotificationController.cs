@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using Portfolio.Notifications.Contracts;
 using RescuePC.Portfolio.Api.Contracts;
 using RescuePC.Portfolio.Api.Mappings;
@@ -7,7 +7,7 @@ using RescuePC.Portfolio.BuildingBlocks.Application;
 namespace RescuePC.Portfolio.Api.Controllers;
 
 [ApiController]
-[Route("api/notification")]
+[Route("notification")]
 [Produces("application/json")]
 public class NotificationController : ControllerBase
 {

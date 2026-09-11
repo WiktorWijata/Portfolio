@@ -81,5 +81,6 @@
     <Build Include="notification\Tables\Email.sql" />
     <Build Include="content\content.sql" />
     <Build Include="notification\notification.sql" />
+    <None Include="TestData.sql" />
   </ItemGroup>
 </Project>

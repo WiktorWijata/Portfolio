@@ -41,6 +41,8 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UsePathBase("/api");
+
 app.UseRouting();
 
 app.UseCors(ClientAppCorsPolicy);
