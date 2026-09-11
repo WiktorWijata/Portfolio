@@ -152,7 +152,6 @@ jobs:
             WEB_TAG=${{ needs.resolve-env.outputs.environment }}-latest
             API_TAG=${{ needs.resolve-env.outputs.environment }}-latest
             MIGRATOR_TAG=${{ needs.resolve-env.outputs.environment }}-latest
-            ASPNETCORE_ENVIRONMENT=${{ vars.ASPNETCORE_ENVIRONMENT }}
             PROXY_NETWORK=${{ vars.PROXY_NETWORK }}
             EOF
 
