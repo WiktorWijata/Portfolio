@@ -11,7 +11,9 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  IMAGE: ghcr.io/wiktorwijata/portfolio-web
+  WEB_IMAGE: ghcr.io/wiktorwijata/portfolio-web
+  API_IMAGE: ghcr.io/wiktorwijata/portfolio-api
+  MIGRATOR_IMAGE: ghcr.io/wiktorwijata/portfolio-db-migrator
 
 jobs:
   resolve-env:
@@ -40,15 +42,47 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Build and push
+      - name: Provide NuGet.Config with private feed credentials for the Docker build context
+        env:
+          GH_PACKAGES_USERNAME: ${{ github.actor }}
+          GH_PACKAGES_TOKEN: ${{ secrets.GH_PACKAGES_TOKEN }}
+        run: |
+          cp nuget.config Source/nuget.config
+          dotnet nuget update source RescuePC-GitHub \
+            --configfile Source/nuget.config \
+            --username "$GH_PACKAGES_USERNAME" \
+            --password "$GH_PACKAGES_TOKEN" \
+            --store-password-in-clear-text
+
+      - name: Build and push Web
         uses: docker/build-push-action@v5
         with:
           context: .
           file: Deployment/Docker/Dockerfiles/Portfolio.Web.Dockerfile
           push: true
           tags: |
-            ${{ env.IMAGE }}:${{ needs.resolve-env.outputs.environment }}-latest
-            ${{ env.IMAGE }}:${{ needs.resolve-env.outputs.environment }}-${{ github.sha }}
+            ${{ env.WEB_IMAGE }}:${{ needs.resolve-env.outputs.environment }}-latest
+            ${{ env.WEB_IMAGE }}:${{ needs.resolve-env.outputs.environment }}-${{ github.sha }}
+
+      - name: Build and push DbMigrator
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: Deployment/Docker/Dockerfiles/Portfolio.DbMigrator.Dockerfile
+          push: true
+          tags: |
+            ${{ env.MIGRATOR_IMAGE }}:${{ needs.resolve-env.outputs.environment }}-latest
+            ${{ env.MIGRATOR_IMAGE }}:${{ needs.resolve-env.outputs.environment }}-${{ github.sha }}
+
+      - name: Build and push API
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: Deployment/Docker/Dockerfiles/Portfolio.Api.Dockerfile
+          push: true
+          tags: |
+            ${{ env.API_IMAGE }}:${{ needs.resolve-env.outputs.environment }}-latest
+            ${{ env.API_IMAGE }}:${{ needs.resolve-env.outputs.environment }}-${{ github.sha }}
 
   deploy:
     needs: [resolve-env, push]
@@ -67,20 +101,63 @@ jobs:
           target: /opt/environments/${{ vars.ENV_NAME }}/apps/portfolio
           strip_components: 2
 
-      - name: Deploy to VPS
-        uses: appleboy/ssh-action@v1
+      - name: Copy API appsettings template to VPS
+        uses: appleboy/scp-action@v0.1.7
         with:
           host: ${{ secrets.VPS_HOST }}
           username: ${{ secrets.VPS_USER }}
           key: ${{ secrets.VPS_SSH_KEY }}
+          source: "Source/Portfolio/Portfolio.Api/appsettings.Production.json"
+          target: /opt/environments/${{ vars.ENV_NAME }}/apps/portfolio/templates/api
+          strip_components: 3
+
+      - name: Copy DbMigrator appsettings template to VPS
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          source: "Database/Portfolio.DbMigrator/appsettings.Production.json"
+          target: /opt/environments/${{ vars.ENV_NAME }}/apps/portfolio/templates/migrator
+          strip_components: 2
+
+      - name: Copy resolve-config script to VPS
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          source: "Deployment/Scripts/resolve-config.sh"
+          target: /opt/environments/${{ vars.ENV_NAME }}/apps/portfolio
+          strip_components: 2
+
+      - name: Deploy to VPS
+        uses: appleboy/ssh-action@v1
+        env:
+          DB_HOST: ${{ vars.DB_HOST }}
+          DB_PORT: ${{ vars.DB_PORT }}
+          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+          CORS_ALLOWED_ORIGIN: ${{ vars.CORS_ALLOWED_ORIGIN }}
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          envs: DB_HOST,DB_PORT,DB_PASSWORD,CORS_ALLOWED_ORIGIN
           script: |
+            set -e
             cd /opt/environments/${{ vars.ENV_NAME }}/apps/portfolio
+
             cat > .env <<EOF
             ENV_NAME=${{ vars.ENV_NAME }}
             WEB_TAG=${{ needs.resolve-env.outputs.environment }}-latest
+            API_TAG=${{ needs.resolve-env.outputs.environment }}-latest
+            MIGRATOR_TAG=${{ needs.resolve-env.outputs.environment }}-latest
             ASPNETCORE_ENVIRONMENT=${{ vars.ASPNETCORE_ENVIRONMENT }}
             PROXY_NETWORK=${{ vars.PROXY_NETWORK }}
             EOF
+
+            bash resolve-config.sh
+
             docker compose pull
             docker compose up -d
             docker image prune -f
