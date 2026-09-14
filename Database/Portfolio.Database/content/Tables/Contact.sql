@@ -1,0 +1,13 @@
+CREATE TABLE [content].[Contact]
+(
+	[Id]			UNIQUEIDENTIFIER NOT NULL PRIMARY KEY DEFAULT NEWID(),
+	[ContentId]		UNIQUEIDENTIFIER NOT NULL,
+	[Type]			NVARCHAR(50) NOT NULL,
+	[Value]			NVARCHAR(500) NOT NULL,
+	[IsExternal]	BIT NOT NULL,
+
+	CONSTRAINT [FK_Contact_Content] FOREIGN KEY ([ContentId]) REFERENCES [content].[Content] ([Id])
+)
+GO
+
+CREATE NONCLUSTERED INDEX [IX_Contact_ContentId] ON [content].[Contact] ([ContentId])
