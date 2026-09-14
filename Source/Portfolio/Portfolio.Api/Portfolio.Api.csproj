@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+	<RootNamespace>RescuePC.Portfolio.Api</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Hangfire.AspNetCore" Version="1.8.18" />
+    <PackageReference Include="Hangfire.SqlServer" Version="1.8.18" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Content\Portfolio.Content.Infrastructure\Portfolio.Content.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\Notifications\Portfolio.Notifications.Contracts\Portfolio.Notifications.Contracts.csproj" />
+    <ProjectReference Include="..\..\Notifications\Portfolio.Notifications.Infrastructure\Portfolio.Notifications.Infrastructure.csproj" />
+    <ProjectReference Include="..\Portfolio.Api.Contracts\Portfolio.Api.Contracts.csproj" />
+  </ItemGroup>
+
+</Project>

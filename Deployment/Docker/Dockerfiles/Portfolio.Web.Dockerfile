@@ -8,13 +8,13 @@ FROM node:22-alpine AS frontend-build
 WORKDIR /app/clientapp
 
 # Copy package files
-COPY Source/Portfolio.Web/ClientApp/package*.json ./
+COPY Source/Portfolio/Portfolio.Web/ClientApp/package*.json ./
 
 # Install dependencies
 RUN npm ci --prefer-offline --no-audit
 
 # Copy source code
-COPY Source/Portfolio.Web/ClientApp/ ./
+COPY Source/Portfolio/Portfolio.Web/ClientApp/ ./
 
 # Build React app (output to build/)
 RUN npm run build
@@ -26,13 +26,13 @@ FROM mcr.microsoft.com/dotnet/sdk:10.0 AS backend-build
 WORKDIR /app
 
 # Copy project file for restore
-COPY Source/Portfolio.Web/Portfolio.Web.csproj ./Portfolio.Web/
+COPY Source/Portfolio/Portfolio.Web/Portfolio.Web.csproj ./Portfolio.Web/
 
 # Restore dependencies
 RUN dotnet restore Portfolio.Web/Portfolio.Web.csproj
 
 # Copy all source files from Portfolio.Web
-COPY Source/Portfolio.Web/ ./Portfolio.Web/
+COPY Source/Portfolio/Portfolio.Web/ ./Portfolio.Web/
 
 # Copy built React app to wwwroot (from build/ directory)
 COPY --from=frontend-build /app/clientapp/build ./Portfolio.Web/wwwroot/

@@ -1,0 +1,12 @@
+﻿CREATE TABLE [content].[Hero]
+(
+	[Id]		UNIQUEIDENTIFIER NOT NULL PRIMARY KEY DEFAULT NEWID(),
+	[ContentId] UNIQUEIDENTIFIER NOT NULL,
+	[Motto]		NVARCHAR(1000),
+	[ImageUrl]	NVARCHAR(1000)	 NULL,
+
+	CONSTRAINT [FK_Hero_Content] FOREIGN KEY ([ContentId]) REFERENCES [content].[Content] ([Id])
+)
+GO
+
+CREATE UNIQUE NONCLUSTERED INDEX [IX_Hero_ContentId] ON [content].[Hero] ([ContentId])
