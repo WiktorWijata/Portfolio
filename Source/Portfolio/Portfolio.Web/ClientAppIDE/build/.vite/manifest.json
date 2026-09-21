@@ -1,0 +1,31 @@
+{
+  "_ChatLauncher-B1JCatM7.js": {
+    "file": "assets/ChatLauncher-B1JCatM7.js",
+    "name": "ChatLauncher",
+    "css": [
+      "assets/ChatLauncher-C-yCinTF.css"
+    ]
+  },
+  "_ChatLauncher-C-yCinTF.css": {
+    "file": "assets/ChatLauncher-C-yCinTF.css",
+    "src": "_ChatLauncher-C-yCinTF.css"
+  },
+  "docs.html": {
+    "file": "assets/docs-DpLiU5Gq.js",
+    "name": "docs",
+    "src": "docs.html",
+    "isEntry": true,
+    "imports": [
+      "_ChatLauncher-B1JCatM7.js"
+    ]
+  },
+  "index.html": {
+    "file": "assets/main-dJLAbUI5.js",
+    "name": "main",
+    "src": "index.html",
+    "isEntry": true,
+    "imports": [
+      "_ChatLauncher-B1JCatM7.js"
+    ]
+  }
+}

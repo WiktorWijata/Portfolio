@@ -1,0 +1,6 @@
+export const RAIL_LABEL = 'Skróty'
+export const RAIL_EXPLORER_TITLE = 'FILES'
+export const RAIL_TERMINAL_TITLE = 'TERMINAL'
+export const RAIL_TERMINAL_LABEL = 'Terminal'
+export const RAIL_CHAT_TITLE = 'CZAT'
+export const RAIL_CHAT_LABEL = 'Czat'

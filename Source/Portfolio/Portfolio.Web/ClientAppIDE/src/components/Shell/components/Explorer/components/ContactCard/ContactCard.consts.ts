@@ -1,0 +1,5 @@
+export const CONTACT_CARD_LABEL = 'Współpraca'
+export const CONTACT_CARD_STATUS = 'Otwarty na współpracę'
+export const CONTACT_CARD_TITLE = 'Porozmawiajmy o Twoim projekcie.'
+export const CONTACT_CARD_TEXT = 'Rozwój aplikacji .NET, integracje i architektura systemów.'
+export const CONTACT_CARD_ACTION = 'Przejdź do kontaktu'

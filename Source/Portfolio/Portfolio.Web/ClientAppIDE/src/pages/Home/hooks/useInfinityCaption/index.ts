@@ -1,0 +1,1 @@
+export { useInfinityCaption } from './useInfinityCaption'
