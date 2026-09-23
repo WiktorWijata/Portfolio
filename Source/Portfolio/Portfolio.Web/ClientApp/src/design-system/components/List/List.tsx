@@ -1,38 +1,14 @@
-import { Text, TextSize, TextVariant } from '../Text';
-import type { ListProps } from './List.types';
+import { PanelBar } from '../../internal/PanelBar'
+import { ListSearchRow } from './components/ListSearchRow'
+import { type ListProps } from './List.types'
 
-export function List({ 
-  items,
-  bullet = '▹',
-  bulletVariant = TextVariant.ACCENT,
-  contentVariant = TextVariant.SECONDARY,
-  size = TextSize.XS,
-  spacing = 'space-y-2',
-  className = ''
-}: ListProps) {
+/** List container with an optional header bar (label + counter) and an optional search row. */
+export function List({ header, count, searchable = false, searchProps, className = '', children, ...rest }: ListProps) {
   return (
-    <ul className={`${spacing} ${className}`}>
-      {items.map((item, index) => (
-        <li key={index} className="flex items-start">
-          {typeof bullet === 'string' ? (
-            <Text 
-              variant={bulletVariant} 
-              size={size} 
-              className="mr-2 mt-1"
-            >
-              {bullet}
-            </Text>
-          ) : (
-            <span className="mr-2 mt-1">{bullet}</span>
-          )}
-          <Text 
-            variant={contentVariant} 
-            size={size}
-          >
-            {item}
-          </Text>
-        </li>
-      ))}
-    </ul>
-  );
+    <div className={['bg-surface-panel', className].join(' ')} {...rest}>
+      {header && <PanelBar title={header} count={count} />}
+      {searchable && <ListSearchRow {...searchProps} />}
+      <ul className="flex flex-col @max-[700px]:flex-row @max-[700px]:flex-wrap">{children}</ul>
+    </div>
+  )
 }

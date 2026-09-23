@@ -26,12 +26,12 @@
     <Project Path="Source/BuildingBlocks/Portfolio.BuildingBlocks.Persistence/Portfolio.BuildingBlocks.Persistence.csproj" Id="6fbe5473-1a7b-4ccc-b4f6-afc07dec7858" />
   </Folder>
   <Folder Name="/Source/Chat/" />
-  <Folder Name="/Source/Content/">
-    <Project Path="Source/Content/Portfolio.Content.Application/Portfolio.Content.Application.csproj" Id="6bfc7dea-3da2-478c-997c-b5f3a2ed291b" />
-    <Project Path="Source/Content/Portfolio.Content.Contracts/Portfolio.Content.Contracts.csproj" />
-    <Project Path="Source/Content/Portfolio.Content.Domain/Portfolio.Content.Domain.csproj" Id="c4cb18ba-0367-4e14-82da-7bde75d42261" />
-    <Project Path="Source/Content/Portfolio.Content.Infrastructure/Portfolio.Content.Infrastructure.csproj" Id="7ed6c3b3-4752-40dd-9862-7f0f4ad7319c" />
-    <Project Path="Source/Content/Portfolio.Content.Persistence/Portfolio.Content.Persistence.csproj" Id="2083a973-1fc4-4d08-94e0-f86c670dbdfc" />
+  <Folder Name="/Source/Profile/">
+    <Project Path="Source/Profile/Portfolio.Profile.Application/Portfolio.Profile.Application.csproj" Id="6bfc7dea-3da2-478c-997c-b5f3a2ed291b" />
+    <Project Path="Source/Profile/Portfolio.Profile.Contracts/Portfolio.Profile.Contracts.csproj" />
+    <Project Path="Source/Profile/Portfolio.Profile.Domain/Portfolio.Profile.Domain.csproj" Id="c4cb18ba-0367-4e14-82da-7bde75d42261" />
+    <Project Path="Source/Profile/Portfolio.Profile.Infrastructure/Portfolio.Profile.Infrastructure.csproj" Id="7ed6c3b3-4752-40dd-9862-7f0f4ad7319c" />
+    <Project Path="Source/Profile/Portfolio.Profile.Persistence/Portfolio.Profile.Persistence.csproj" Id="2083a973-1fc4-4d08-94e0-f86c670dbdfc" />
   </Folder>
   <Folder Name="/Source/Notifications/">
     <Project Path="Source/Notifications/Portfolio.Notifications.Application/Portfolio.Notifications.Application.csproj" />

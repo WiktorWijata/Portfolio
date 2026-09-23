@@ -1,6 +1,6 @@
-import type { ContentResponse } from '../models';
+import type { ProfileResponse } from '../models'
 
-export const mockContentPL: ContentResponse = {
+export const mockProfilePL: ProfileResponse = {
   hero: {
     motto: 'Nie da się? Ludzie w kosmos latają.',
     aboutMe: {
@@ -9,9 +9,9 @@ export const mockContentPL: ContentResponse = {
       description: [
         'Skoro już tu jesteś, pozwól, że opowiem Ci trochę o sobie.',
         'Odkąd zacząłem swoją przygodę z programowaniem minęło już ponad 7 lat. Od tego czasu specjalizuję się w tworzeniu wydajnych aplikacji backendowych w ekosystemie .NET. Pasjonuje mnie pisanie czystego kodu, architektura systemów oraz rozwiązywanie złożonych problemów technicznych.',
-        'Najwięszką satysafakcję sprawia mi kiedy za pomocą mojej pracy mogę rozwiązać realne problemy.'
-      ]
-    }
+        'Najwięszką satysafakcję sprawia mi kiedy za pomocą mojej pracy mogę rozwiązać realne problemy.',
+      ],
+    },
   },
   skillsCategories: [
     {
@@ -22,8 +22,8 @@ export const mockContentPL: ContentResponse = {
         { name: 'EF Core', imageUrl: null },
         { name: 'VB.NET', imageUrl: null },
         { name: 'NHibernate', imageUrl: null },
-        { name: 'SignalR', imageUrl: null}
-      ]
+        { name: 'SignalR', imageUrl: null },
+      ],
     },
     {
       name: 'Frontend',
@@ -32,20 +32,23 @@ export const mockContentPL: ContentResponse = {
         { name: 'CSS3', imageUrl: null },
         { name: 'React', imageUrl: null },
         { name: 'Aurelia', imageUrl: 'https://cdn.simpleicons.org/aurelia' },
-        { name: 'Knockout.js', imageUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/knockout/knockout-plain-wordmark.svg' },
+        {
+          name: 'Knockout.js',
+          imageUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/knockout/knockout-plain-wordmark.svg',
+        },
         { name: 'Blazor', imageUrl: null },
         { name: 'TypeScript', imageUrl: null },
         { name: 'JavaScript', imageUrl: null },
         { name: 'Tailwind CSS', imageUrl: null },
-        { name: 'Bootstrap', imageUrl: null }
-      ]
+        { name: 'Bootstrap', imageUrl: null },
+      ],
     },
     {
       name: 'Desktop',
       skills: [
         { name: 'WPF', imageUrl: null },
-        { name: 'WinForms', imageUrl: null }
-      ]
+        { name: 'WinForms', imageUrl: null },
+      ],
     },
     {
       name: 'Database',
@@ -56,8 +59,8 @@ export const mockContentPL: ContentResponse = {
         { name: 'Oracle DB', imageUrl: null },
         { name: 'MongoDB', imageUrl: null },
         { name: 'Redis', imageUrl: null },
-        { name: 'Apache Solr', imageUrl: 'https://cdn.simpleicons.org/apachesolr' }
-      ]
+        { name: 'Apache Solr', imageUrl: 'https://cdn.simpleicons.org/apachesolr' },
+      ],
     },
     {
       name: 'API & Messaging',
@@ -65,8 +68,8 @@ export const mockContentPL: ContentResponse = {
         { name: 'REST API', imageUrl: null },
         { name: 'SOAP', imageUrl: null },
         { name: 'Masstransit', imageUrl: null },
-        { name: 'RabbitMQ', imageUrl: null }
-      ]
+        { name: 'RabbitMQ', imageUrl: null },
+      ],
     },
     {
       name: 'CI/CD',
@@ -76,8 +79,8 @@ export const mockContentPL: ContentResponse = {
         { name: 'Docker', imageUrl: null },
         { name: 'Kubernetes', imageUrl: null },
         { name: 'SonarQube', imageUrl: null },
-        { name: 'NuGet', imageUrl: null }
-      ]
+        { name: 'NuGet', imageUrl: null },
+      ],
     },
     {
       name: 'Kontrola wersji',
@@ -85,15 +88,15 @@ export const mockContentPL: ContentResponse = {
         { name: 'Git', imageUrl: null },
         { name: 'Github', imageUrl: 'https://cdn.simpleicons.org/github/white' },
         { name: 'GitLab', imageUrl: null },
-        { name: 'SVN', imageUrl: null }
-      ]
+        { name: 'SVN', imageUrl: null },
+      ],
     },
     {
       name: 'Testy',
       skills: [
         { name: 'xUnit', imageUrl: null },
-        { name: 'NUnit', imageUrl: null }
-      ]
+        { name: 'NUnit', imageUrl: null },
+      ],
     },
     {
       name: 'Narzędzia',
@@ -107,24 +110,27 @@ export const mockContentPL: ContentResponse = {
         { name: 'Swagger', imageUrl: null },
         { name: 'Figma', imageUrl: null },
         { name: 'Gimp', imageUrl: null },
-      ]
-    }
+      ],
+    },
   ],
   projects: [
     {
       title: '@vitrum/ui',
-      description: 'Autorski design-system stworzony w React i TypeScript w stylu glass-morphism, wykorzystywany w moich projektach frontendowych. Zawiera zestaw wielokrotnie używanych komponentów UI, motywów kolorystycznych oraz narzędzi do budowy responsywnych interfejsów.',
+      description:
+        'Autorski design-system stworzony w React i TypeScript w stylu glass-morphism, wykorzystywany w moich projektach frontendowych. Zawiera zestaw wielokrotnie używanych komponentów UI, motywów kolorystycznych oraz narzędzi do budowy responsywnych interfejsów.',
       technologies: ['React', 'TypeScript', 'Tailwind CSS'],
       imageUrl: 'https://files.wiktorwijata.com/vitrum.png',
-      codeUrl: 'https://github.com/WiktorWijata/Portfolio/tree/develop/Source/Portfolio.Web/ClientApp/src/design-system'
+      codeUrl:
+        'https://github.com/WiktorWijata/Portfolio/tree/develop/Source/Portfolio.Web/ClientApp/src/design-system',
     },
     {
       title: 'Portfolio',
-      description: 'Strona wizytówka prezentująca moje umiejętności, doświadczenie oraz projekty. Treść na stronę zarządzana jest przez autorski CMS.',
-      technologies: ['C#','.NET 10', 'MSSQL', 'React', 'TypeScript', 'Tailwind CSS', 'Docker', 'Kubernetes'],
+      description:
+        'Strona wizytówka prezentująca moje umiejętności, doświadczenie oraz projekty. Treść na stronę zarządzana jest przez autorski CMS.',
+      technologies: ['C#', '.NET 10', 'MSSQL', 'React', 'TypeScript', 'Tailwind CSS', 'Docker', 'Kubernetes'],
       imageUrl: 'https://files.wiktorwijata.com/portfolio.png',
-      codeUrl: 'https://github.com/WiktorWijata/Portfolio/tree/develop/Source/Portfolio.Web/ClientApp'
-    }
+      codeUrl: 'https://github.com/WiktorWijata/Portfolio/tree/develop/Source/Portfolio.Web/ClientApp',
+    },
   ],
   experiences: [
     {
@@ -144,9 +150,30 @@ export const mockContentPL: ContentResponse = {
         'Pisanie testów jednostkowych i integracyjnych',
         'Przeprowadzanie Code Review oraz dbanie o jakość i spójność kodu zgodnie z ustalonymi standardami',
         'Udział w planowaniu sprintów, estymacji zadań oraz projektowaniu rozwiązań technicznych',
-        'Tworzenie dokumentacji technicznej (C4 model)'
+        'Tworzenie dokumentacji technicznej (C4 model)',
       ],
-      technologies: ['C#', '.NET', 'TypeScript', 'React', 'Aurelia', 'Knockout.js', 'Blazor', 'MSSQL', 'Oracle DB', 'MongoDB', 'RESTful API', 'RabbitMQ', 'MassTransit', 'Docker', 'Kubernetes', 'Azure DevOps', 'xUnit', 'NUnit', 'Azure', 'Application Insights']
+      technologies: [
+        'C#',
+        '.NET',
+        'TypeScript',
+        'React',
+        'Aurelia',
+        'Knockout.js',
+        'Blazor',
+        'MSSQL',
+        'Oracle DB',
+        'MongoDB',
+        'RESTful API',
+        'RabbitMQ',
+        'MassTransit',
+        'Docker',
+        'Kubernetes',
+        'Azure DevOps',
+        'xUnit',
+        'NUnit',
+        'Azure',
+        'Application Insights',
+      ],
     },
     {
       company: 'LSI Software S.A.',
@@ -167,7 +194,20 @@ export const mockContentPL: ContentResponse = {
         'Udział w planowaniu sprintów, estymacji zadań oraz projektowaniu rozwiązań technicznych',
         'Tworzenie dokumentacji technicznej',
       ],
-      technologies: ['C#', 'XAML', '.NET',  'WPF', 'WinForms', 'ASP.NET MVC', 'MSSQL', 'PostgreSQL', 'RESTful API', 'SOAP', 'Jira', 'NUnit']
+      technologies: [
+        'C#',
+        'XAML',
+        '.NET',
+        'WPF',
+        'WinForms',
+        'ASP.NET MVC',
+        'MSSQL',
+        'PostgreSQL',
+        'RESTful API',
+        'SOAP',
+        'Jira',
+        'NUnit',
+      ],
     },
     {
       company: 'GECOS Sp. z o.o.',
@@ -179,9 +219,9 @@ export const mockContentPL: ContentResponse = {
         'Programistyczne wsparcie klientów korzystających z systemów Comarch, w tym rozwój funkcjonalności i rozwiązywanie problemów',
         'Integracja aplikacji z istniejącymi modułami systemu Comarch i dostosowywanie ich do wymagań biznesowych klientów',
         'Analiza zgłoszeń użytkowników oraz diagnozowanie i naprawa błędów systemowych',
-        'Tworzenie i aktualizacja dokumentacji technicznej oraz instrukcji dla użytkowników końcowych'
+        'Tworzenie i aktualizacja dokumentacji technicznej oraz instrukcji dla użytkowników końcowych',
       ],
-      technologies: ['C#', 'XAML','.NET', 'WPF', 'WinForms', 'MSSQL']
+      technologies: ['C#', 'XAML', '.NET', 'WPF', 'WinForms', 'MSSQL'],
     },
     {
       company: 'Moje Bambino Sp. z o.o. Sp. k.',
@@ -193,10 +233,10 @@ export const mockContentPL: ContentResponse = {
         'Projektowanie i rozwój aplikacji wspierających wycenę produktów oraz tworzenie katalogów sprzedażowych',
         'Integracja danych z różnych źródeł w celu zapewnienia dokładnych i aktualnych informacji dla zespołów sprzedaży',
         'Analiza potrzeb biznesowych i dostosowywanie aplikacji oraz raportów do wymagań klientów',
-        'Optymalizacja zapytań SQL i struktur baz danych w celu poprawy wydajności generowanych raportów'
+        'Optymalizacja zapytań SQL i struktur baz danych w celu poprawy wydajności generowanych raportów',
       ],
-      technologies: ['VBA', 'VB.NET', 'C#', 'XAML','.NET', 'WPF', 'WinForms', 'MSSQL']
-    }
+      technologies: ['VBA', 'VB.NET', 'C#', 'XAML', '.NET', 'WPF', 'WinForms', 'MSSQL'],
+    },
   ],
   educations: [
     {
@@ -225,85 +265,92 @@ export const mockContentPL: ContentResponse = {
     {
       title: 'Smakowity sum',
       description: 'Sum ma najwięcej kubków smakowych ze wszystkich zwierząt — ma ich ponad 27 000!',
-      imageUrl: '🐟'
+      imageUrl: '🐟',
     },
     {
       title: 'Myszka Miki i listy',
       description: 'W 1933 roku Myszka Miki, postać z kreskówek, otrzymała 800 000 listów od fanów.',
-      imageUrl: '📬'
+      imageUrl: '📬',
     },
     {
       title: 'Wenusjański dzień',
       description: 'Na Wenus dzień trwa dłużej niż rok, czyli planeta obraca się wolniej niż okrąża Słońce.',
-      imageUrl: '🪐'
+      imageUrl: '🪐',
     },
     {
       title: 'Miód nie psuje się nigdy',
-      description: 'W egipskich grobowcach liczących ponad 3000 lat odkryto miód, który nadal był jadalny. Dzięki niskiej zawartości wody i właściwościom antybakteryjnym miód praktycznie nie ma terminu ważności.',
-      imageUrl: '🍯'
+      description:
+        'W egipskich grobowcach liczących ponad 3000 lat odkryto miód, który nadal był jadalny. Dzięki niskiej zawartości wody i właściwościom antybakteryjnym miód praktycznie nie ma terminu ważności.',
+      imageUrl: '🍯',
     },
     {
       title: 'Ośmiornica z trzema sercami',
-      description: 'Ośmiornica ma trzy serca i niebieską krew. Dwa serca pompują krew do skrzeli, a trzecie do reszty ciała. Krew jest niebieska ze względu na hemocyjaninę zawierającą miedź zamiast żelaza.',
-      imageUrl: '🐙'
+      description:
+        'Ośmiornica ma trzy serca i niebieską krew. Dwa serca pompują krew do skrzeli, a trzecie do reszty ciała. Krew jest niebieska ze względu na hemocyjaninę zawierającą miedź zamiast żelaza.',
+      imageUrl: '🐙',
     },
     {
       title: 'Piorun uderza 100 razy na sekundę',
-      description: 'W każdej chwili na Ziemi szaleje ok. 2000 burz. W ich wyniku pioruny uderzają w powierzchnię Ziemi średnio 100 razy na każdą sekundę — łącznie ok. 8,6 miliona razy dziennie.',
-      imageUrl: '⚡'
+      description:
+        'W każdej chwili na Ziemi szaleje ok. 2000 burz. W ich wyniku pioruny uderzają w powierzchnię Ziemi średnio 100 razy na każdą sekundę — łącznie ok. 8,6 miliona razy dziennie.',
+      imageUrl: '⚡',
     },
     {
       title: 'Księżyc oddala się od Ziemi',
-      description: 'Księżyc oddala się od Ziemi o około 3,8 cm rocznie. Za miliard lat będzie tak daleko, że całkowite zaćmienia Słońca nie będą już możliwe.',
-      imageUrl: '🌙'
+      description:
+        'Księżyc oddala się od Ziemi o około 3,8 cm rocznie. Za miliard lat będzie tak daleko, że całkowite zaćmienia Słońca nie będą już możliwe.',
+      imageUrl: '🌙',
     },
     {
       title: 'Gorąca woda zamarza szybciej',
-      description: 'Gorąca woda może zamarznąć szybciej niż zimna — zjawisko to nazywa się efektem Mpemby. Zaobserwował je już Arystoteles, a jego pełne wyjaśnienie naukowe wciąż jest przedmiotem dyskusji.',
-      imageUrl: '🧊'
+      description:
+        'Gorąca woda może zamarznąć szybciej niż zimna — zjawisko to nazywa się efektem Mpemby. Zaobserwował je już Arystoteles, a jego pełne wyjaśnienie naukowe wciąż jest przedmiotem dyskusji.',
+      imageUrl: '🧊',
     },
     {
       title: 'Mrówki nigdy nie śpią',
-      description: 'Mrówki nie mają typowego snu. Zamiast spać kilka godzin, drzemią setkach krótkich drzemek po ok. 1 minucie przez całą dobę — łącznie śpią ok. 4-5 godzin, ale rozłożonych na cały dzień.',
-      imageUrl: '🐜'
+      description:
+        'Mrówki nie mają typowego snu. Zamiast spać kilka godzin, drzemią setkach krótkich drzemek po ok. 1 minucie przez całą dobę — łącznie śpią ok. 4-5 godzin, ale rozłożonych na cały dzień.',
+      imageUrl: '🐜',
     },
     {
       title: 'Odciski języka są unikalne',
-      description: 'Podobnie jak odciski palców, odcisk języka każdego człowieka jest całkowicie unikalny. Układ brodawek i kształt języka nie powtarza się u żadnych dwóch osób na świecie.',
-      imageUrl: '👅'
-    }
+      description:
+        'Podobnie jak odciski palców, odcisk języka każdego człowieka jest całkowicie unikalny. Układ brodawek i kształt języka nie powtarza się u żadnych dwóch osób na świecie.',
+      imageUrl: '👅',
+    },
   ],
   contacts: [
-    { 
-      type: 'github', 
+    {
+      type: 'github',
       value: 'https://github.com/wiktorwijata',
-      isExternal: true
+      isExternal: true,
     },
-    { 
-      type: 'linkedin', 
+    {
+      type: 'linkedin',
       value: 'https://www.linkedin.com/in/wiktor-wijata-a72082149/',
-      isExternal: true
+      isExternal: true,
     },
-    { 
-      type: 'email', 
+    {
+      type: 'email',
       value: 'mailto:wiktorwijata@gmail.com',
-      isExternal: false
-    }
-  ]
-};
+      isExternal: false,
+    },
+  ],
+}
 
-export const mockContentEN: ContentResponse = {
+export const mockProfileEN: ProfileResponse = {
   hero: {
-    motto: 'Can\'t be done? People fly to space.',
+    motto: "Can't be done? People fly to space.",
     aboutMe: {
       title: ' Console.WriteLine("Hello World");',
-      greeting: 'Hi, my name is Wiktor, and I\'m glad you stopped by.',
+      greeting: "Hi, my name is Wiktor, and I'm glad you stopped by.",
       description: [
-        'Since you\'re here, let me tell you a bit about myself.',
-        'It\'s been over 7 years since I started my journey with programming. Since then, I have specialized in building efficient backend applications in the .NET ecosystem. I am passionate about writing clean code, system architecture, and solving complex technical problems.',
-        'The greatest satisfaction comes to me when my work can solve real problems.'
-      ]
-    }
+        "Since you're here, let me tell you a bit about myself.",
+        "It's been over 7 years since I started my journey with programming. Since then, I have specialized in building efficient backend applications in the .NET ecosystem. I am passionate about writing clean code, system architecture, and solving complex technical problems.",
+        'The greatest satisfaction comes to me when my work can solve real problems.',
+      ],
+    },
   },
   experiences: [
     {
@@ -323,9 +370,30 @@ export const mockContentEN: ContentResponse = {
         'Writing unit and integration tests',
         'Conducting code reviews and maintaining code quality and consistency in accordance with established standards',
         'Participating in sprint planning, task estimation, and technical solution design',
-        'Creating technical documentation (C4 model)'
+        'Creating technical documentation (C4 model)',
       ],
-      technologies: ['C#', '.NET', 'TypeScript', 'React', 'Aurelia', 'Knockout.js', 'Blazor', 'MSSQL', 'Oracle DB', 'MongoDB', 'RESTful API', 'RabbitMQ', 'MassTransit', 'Docker', 'Kubernetes', 'Azure DevOps', 'xUnit', 'NUnit', 'Azure', 'Application Insights']
+      technologies: [
+        'C#',
+        '.NET',
+        'TypeScript',
+        'React',
+        'Aurelia',
+        'Knockout.js',
+        'Blazor',
+        'MSSQL',
+        'Oracle DB',
+        'MongoDB',
+        'RESTful API',
+        'RabbitMQ',
+        'MassTransit',
+        'Docker',
+        'Kubernetes',
+        'Azure DevOps',
+        'xUnit',
+        'NUnit',
+        'Azure',
+        'Application Insights',
+      ],
     },
     {
       company: 'LSI Software S.A.',
@@ -346,7 +414,20 @@ export const mockContentEN: ContentResponse = {
         'Participating in sprint planning, task estimation, and technical solution design',
         'Creating technical documentation',
       ],
-      technologies: ['C#', 'XAML', '.NET', 'WPF', 'WinForms', 'ASP.NET MVC', 'MSSQL', 'PostgreSQL', 'RESTful API', 'SOAP', 'Jira', 'NUnit']
+      technologies: [
+        'C#',
+        'XAML',
+        '.NET',
+        'WPF',
+        'WinForms',
+        'ASP.NET MVC',
+        'MSSQL',
+        'PostgreSQL',
+        'RESTful API',
+        'SOAP',
+        'Jira',
+        'NUnit',
+      ],
     },
     {
       company: 'GECOS Sp. z o.o.',
@@ -358,9 +439,9 @@ export const mockContentEN: ContentResponse = {
         'Providing programming support for clients using Comarch systems, including functionality development and issue resolution',
         'Integrating applications with existing Comarch system modules and adapting them to client business requirements',
         'Analyzing user reports, diagnosing, and fixing system bugs',
-        'Creating and updating technical documentation and user manuals'
+        'Creating and updating technical documentation and user manuals',
       ],
-      technologies: ['C#', 'XAML', '.NET', 'WPF', 'WinForms', 'MSSQL']
+      technologies: ['C#', 'XAML', '.NET', 'WPF', 'WinForms', 'MSSQL'],
     },
     {
       company: 'Moje Bambino Sp. z o.o. Sp. k.',
@@ -372,10 +453,10 @@ export const mockContentEN: ContentResponse = {
         'Designing and developing applications supporting product pricing and creation of sales catalogs',
         'Integrating data from various sources to ensure accurate and up-to-date information for sales teams',
         'Analyzing business needs and adapting applications and reports to client requirements',
-        'Optimizing SQL queries and database structures to improve report generation performance'
+        'Optimizing SQL queries and database structures to improve report generation performance',
       ],
-      technologies: ['VBA', 'VB.NET', 'C#', 'XAML', '.NET', 'WPF', 'WinForms', 'MSSQL']
-    }
+      technologies: ['VBA', 'VB.NET', 'C#', 'XAML', '.NET', 'WPF', 'WinForms', 'MSSQL'],
+    },
   ],
   educations: [
     {
@@ -403,70 +484,80 @@ export const mockContentEN: ContentResponse = {
   projects: [
     {
       title: '@vitrum/ui',
-      description: 'A custom design system built in React and TypeScript with a glass-morphism style, used in my frontend projects. Contains a set of reusable UI components, color themes, and tools for building responsive interfaces.',
+      description:
+        'A custom design system built in React and TypeScript with a glass-morphism style, used in my frontend projects. Contains a set of reusable UI components, color themes, and tools for building responsive interfaces.',
       technologies: ['React', 'TypeScript', 'Tailwind CSS'],
       imageUrl: 'https://files.wiktorwijata.com/vitrum.png',
-      codeUrl: 'https://github.com/WiktorWijata/Portfolio/tree/develop/Source/Portfolio.Web/ClientApp/src/design-system'
+      codeUrl:
+        'https://github.com/WiktorWijata/Portfolio/tree/develop/Source/Portfolio.Web/ClientApp/src/design-system',
     },
     {
       title: 'Portfolio',
-      description: 'A portfolio website showcasing my skills, experience, and projects. The site content is managed by a custom CMS.',
+      description:
+        'A portfolio website showcasing my skills, experience, and projects. The site content is managed by a custom CMS.',
       technologies: ['C#', '.NET 10', 'MSSQL', 'React', 'TypeScript', 'Tailwind CSS', 'Docker', 'Kubernetes'],
       imageUrl: 'https://files.wiktorwijata.com/portfolio.png',
-      codeUrl: 'https://github.com/WiktorWijata/Portfolio/tree/develop/Source/Portfolio.Web/ClientApp'
-    }
+      codeUrl: 'https://github.com/WiktorWijata/Portfolio/tree/develop/Source/Portfolio.Web/ClientApp',
+    },
   ],
   facts: [
     {
       title: 'Tasty catfish',
       description: 'The catfish has more taste buds than any other animal — over 27,000 of them!',
-      imageUrl: '🐟'
+      imageUrl: '🐟',
     },
     {
       title: 'Mickey Mouse and fan mail',
       description: 'In 1933, Mickey Mouse, the cartoon character, received 800,000 fan letters.',
-      imageUrl: '📬'
+      imageUrl: '📬',
     },
     {
       title: 'A Venusian day',
       description: 'A day on Venus lasts longer than a year — the planet rotates slower than it orbits the Sun.',
-      imageUrl: '🪐'
+      imageUrl: '🪐',
     },
     {
       title: 'Honey never expires',
-      description: 'Honey found in Egyptian tombs over 3,000 years old was still edible. Thanks to its low water content and antibacterial properties, honey has virtually no expiration date.',
-      imageUrl: '🍯'
+      description:
+        'Honey found in Egyptian tombs over 3,000 years old was still edible. Thanks to its low water content and antibacterial properties, honey has virtually no expiration date.',
+      imageUrl: '🍯',
     },
     {
       title: 'Octopus has three hearts',
-      description: 'An octopus has three hearts and blue blood. Two hearts pump blood to the gills, while the third pumps it to the rest of the body. The blood is blue because it contains copper-based hemocyanin instead of iron.',
-      imageUrl: '🐙'
+      description:
+        'An octopus has three hearts and blue blood. Two hearts pump blood to the gills, while the third pumps it to the rest of the body. The blood is blue because it contains copper-based hemocyanin instead of iron.',
+      imageUrl: '🐙',
     },
     {
       title: 'Lightning strikes 100 times per second',
-      description: 'At any given moment, about 2,000 thunderstorms are active on Earth. As a result, lightning strikes the surface about 100 times every second — roughly 8.6 million times per day.',
-      imageUrl: '⚡'
+      description:
+        'At any given moment, about 2,000 thunderstorms are active on Earth. As a result, lightning strikes the surface about 100 times every second — roughly 8.6 million times per day.',
+      imageUrl: '⚡',
     },
     {
       title: 'The Moon is drifting away',
-      description: 'The Moon moves away from Earth by about 3.8 cm per year. In about a billion years, it will be so far away that total solar eclipses will no longer be possible.',
-      imageUrl: '🌙'
+      description:
+        'The Moon moves away from Earth by about 3.8 cm per year. In about a billion years, it will be so far away that total solar eclipses will no longer be possible.',
+      imageUrl: '🌙',
     },
     {
       title: 'Hot water can freeze faster',
-      description: 'Hot water can freeze faster than cold water — a phenomenon known as the Mpemba effect. It was observed by Aristotle, and its full scientific explanation is still debated today.',
-      imageUrl: '🧊'
+      description:
+        'Hot water can freeze faster than cold water — a phenomenon known as the Mpemba effect. It was observed by Aristotle, and its full scientific explanation is still debated today.',
+      imageUrl: '🧊',
     },
     {
       title: 'Ants never sleep',
-      description: 'Ants do not have a conventional sleep cycle. Instead of sleeping for several hours, they take hundreds of short naps of about 1 minute throughout the day — totaling around 4-5 hours of rest spread across 24 hours.',
-      imageUrl: '🐜'
+      description:
+        'Ants do not have a conventional sleep cycle. Instead of sleeping for several hours, they take hundreds of short naps of about 1 minute throughout the day — totaling around 4-5 hours of rest spread across 24 hours.',
+      imageUrl: '🐜',
     },
     {
       title: 'Tongue prints are unique',
-      description: 'Just like fingerprints, every person\'s tongue print is completely unique. The pattern of papillae and the shape of the tongue is never the same in any two people in the world.',
-      imageUrl: '👅'
-    }
+      description:
+        "Just like fingerprints, every person's tongue print is completely unique. The pattern of papillae and the shape of the tongue is never the same in any two people in the world.",
+      imageUrl: '👅',
+    },
   ],
   skillsCategories: [
     {
@@ -477,8 +568,8 @@ export const mockContentEN: ContentResponse = {
         { name: 'EF Core', imageUrl: null },
         { name: 'VB.NET', imageUrl: null },
         { name: 'NHibernate', imageUrl: null },
-        { name: 'SignalR', imageUrl: null}
-      ]
+        { name: 'SignalR', imageUrl: null },
+      ],
     },
     {
       name: 'Frontend',
@@ -487,20 +578,23 @@ export const mockContentEN: ContentResponse = {
         { name: 'CSS3', imageUrl: null },
         { name: 'React', imageUrl: null },
         { name: 'Aurelia', imageUrl: 'https://cdn.simpleicons.org/aurelia' },
-        { name: 'Knockout.js', imageUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/knockout/knockout-plain-wordmark.svg' },
+        {
+          name: 'Knockout.js',
+          imageUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/knockout/knockout-plain-wordmark.svg',
+        },
         { name: 'Blazor', imageUrl: null },
         { name: 'TypeScript', imageUrl: null },
         { name: 'JavaScript', imageUrl: null },
         { name: 'Tailwind CSS', imageUrl: null },
-        { name: 'Bootstrap', imageUrl: null }
-      ]
+        { name: 'Bootstrap', imageUrl: null },
+      ],
     },
     {
       name: 'Desktop',
       skills: [
         { name: 'WPF', imageUrl: null },
-        { name: 'WinForms', imageUrl: null }
-      ]
+        { name: 'WinForms', imageUrl: null },
+      ],
     },
     {
       name: 'Database',
@@ -511,8 +605,8 @@ export const mockContentEN: ContentResponse = {
         { name: 'Oracle DB', imageUrl: null },
         { name: 'MongoDB', imageUrl: null },
         { name: 'Redis', imageUrl: null },
-        { name: 'Apache Solr', imageUrl: 'https://cdn.simpleicons.org/apachesolr' }
-      ]
+        { name: 'Apache Solr', imageUrl: 'https://cdn.simpleicons.org/apachesolr' },
+      ],
     },
     {
       name: 'API & Messaging',
@@ -520,8 +614,8 @@ export const mockContentEN: ContentResponse = {
         { name: 'REST API', imageUrl: null },
         { name: 'SOAP', imageUrl: null },
         { name: 'Masstransit', imageUrl: null },
-        { name: 'RabbitMQ', imageUrl: null }
-      ]
+        { name: 'RabbitMQ', imageUrl: null },
+      ],
     },
     {
       name: 'CI/CD',
@@ -531,8 +625,8 @@ export const mockContentEN: ContentResponse = {
         { name: 'Docker', imageUrl: null },
         { name: 'Kubernetes', imageUrl: null },
         { name: 'SonarQube', imageUrl: null },
-        { name: 'NuGet', imageUrl: null }
-      ]
+        { name: 'NuGet', imageUrl: null },
+      ],
     },
     {
       name: 'Version Control',
@@ -540,15 +634,15 @@ export const mockContentEN: ContentResponse = {
         { name: 'Git', imageUrl: null },
         { name: 'Github', imageUrl: 'https://cdn.simpleicons.org/github/white' },
         { name: 'GitLab', imageUrl: null },
-        { name: 'SVN', imageUrl: null }
-      ]
+        { name: 'SVN', imageUrl: null },
+      ],
     },
     {
       name: 'Testing',
       skills: [
         { name: 'xUnit', imageUrl: null },
-        { name: 'NUnit', imageUrl: null }
-      ]
+        { name: 'NUnit', imageUrl: null },
+      ],
     },
     {
       name: 'Tools',
@@ -562,24 +656,24 @@ export const mockContentEN: ContentResponse = {
         { name: 'Swagger', imageUrl: null },
         { name: 'Figma', imageUrl: null },
         { name: 'Gimp', imageUrl: null },
-      ]
-    }
+      ],
+    },
   ],
   contacts: [
-    { 
-      type: 'github', 
+    {
+      type: 'github',
       value: 'https://github.com/wiktorwijata',
-      isExternal: true
+      isExternal: true,
     },
-    { 
-      type: 'linkedin', 
+    {
+      type: 'linkedin',
       value: 'https://www.linkedin.com/in/wiktor-wijata-a72082149/',
-      isExternal: true
+      isExternal: true,
     },
-    { 
-      type: 'email', 
+    {
+      type: 'email',
       value: 'mailto:wiktorwijata@gmail.com',
-      isExternal: false
-    }
-  ]
-};
+      isExternal: false,
+    },
+  ],
+}

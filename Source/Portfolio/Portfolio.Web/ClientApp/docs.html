@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500&family=JetBrains+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <title>OrchIDE UI</title>
+    <meta name="color-scheme" content="dark light" />
+    <script>
+      // Sets the saved theme before the first paint. The key is THEME_STORAGE_KEY (design-system/theme).
+      try {
+        var theme = localStorage.getItem('orchide-ui.theme')
+        if (theme) document.documentElement.setAttribute('data-theme', theme)
+      } catch (e) {
+        /* storage blocked: the default theme applies */
+      }
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/docs/main.tsx"></script>
+  </body>
+</html>

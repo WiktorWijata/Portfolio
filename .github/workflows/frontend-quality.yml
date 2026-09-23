@@ -1,0 +1,30 @@
+name: Frontend quality
+
+on:
+  pull_request:
+  push:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  frontend-quality:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: Source/Portfolio/Portfolio.Web/ClientApp
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24.15.0"
+          cache: npm
+          cache-dependency-path: Source/Portfolio/Portfolio.Web/ClientApp/package-lock.json
+      - run: npm ci
+      - run: npm run lint
+      - run: npx tsc -p tsconfig.app.json --noEmit --incremental false
+      - run: npx tsc -p tsconfig.node.json --noEmit --incremental false
+      - run: npm test
+      - run: npm run format:check
+      - run: npm run build

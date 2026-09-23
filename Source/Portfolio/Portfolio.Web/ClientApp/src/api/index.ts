@@ -1,3 +1,3 @@
-export * from './generated/content';
-export * from './models';
-export * from './useContent';
+export * from './generated/profile'
+export * from './models'
+export * from './useProfile'

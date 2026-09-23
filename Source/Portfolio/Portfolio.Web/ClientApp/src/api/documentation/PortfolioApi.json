@@ -5,10 +5,10 @@
     "version": "1.0"
   },
   "paths": {
-    "/api/content-read/languages": {
+    "/api/profile/languages": {
       "get": {
         "tags": [
-          "ContentRead"
+          "Profile"
         ],
         "responses": {
           "200": {
@@ -27,10 +27,10 @@
         }
       }
     },
-    "/api/content-read/content": {
+    "/api/profile": {
       "get": {
         "tags": [
-          "ContentRead"
+          "Profile"
         ],
         "parameters": [
           {
@@ -47,7 +47,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ContentResponse"
+                  "$ref": "#/components/schemas/ProfileResponse"
                 }
               }
             }
@@ -127,7 +127,7 @@
         },
         "additionalProperties": false
       },
-      "ContentResponse": {
+      "ProfileResponse": {
         "type": "object",
         "properties": {
           "language": {

@@ -1,5 +1,0 @@
-import { createRoot } from 'react-dom/client'
-import '@/index.css'
-import { DocsApp } from './DocsApp'
-
-createRoot(document.getElementById('root')!).render(<DocsApp />)

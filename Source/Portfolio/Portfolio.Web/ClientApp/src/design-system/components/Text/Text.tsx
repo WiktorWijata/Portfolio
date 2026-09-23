@@ -1,68 +1,28 @@
-import { useState, type JSX } from 'react';
-import { useTheme } from '../../themes';
-import { Alignment } from '../../tokens';
-import type { TextProps } from './Text.types';
-import { 
-  TextSize, 
-  TextVariant, 
-  TextWeight,
-  TextAs,
-  textSizeClasses, 
-  textWeightClasses,
-  textAlignmentClasses,
-  getTextVariantColor
-} from './Text.consts';
+import type { ComponentType, HTMLAttributes, Ref } from 'react'
+import { colorClasses, fontClasses, sizeClasses, weightClasses } from './Text.consts'
+import { type TextProps } from './Text.types'
 
-export function Text({
-  children,
-  size = TextSize.SM,
-  variant = TextVariant.PRIMARY,
-  weight = TextWeight.NORMAL,
-  align = Alignment.LEFT,
-  as = TextAs.P,
-  className = '',
-  hover = false,
-  style: customStyle,
-}: TextProps) {
-  const { currentTheme } = useTheme();
-  const [isHovered, setIsHovered] = useState(false);
-
-  const sizeClass = textSizeClasses[size];
-  const weightClass = textWeightClasses[weight];
-  const alignClass = textAlignmentClasses[align];
-
-  const getColor = () => {
-    if (hover && isHovered) {
-      return currentTheme.colors.text.secondary;
-    }
-    return getTextVariantColor(variant, currentTheme);
-  };
-
-  const classes = [
-    sizeClass,
-    weightClass,
-    alignClass,
-    hover ? 'transition-colors cursor-pointer' : '',
-    className,
-  ]
-    .filter(Boolean)
-    .join(' ');
-
-  const style = {
-    color: getColor(),
-    ...customStyle,
-  };
-
-  const Component = as as keyof JSX.IntrinsicElements;
-
+/**
+ * Off-scale details (letter-spacing, line-height, one-off colors) go in `className`;
+ * don't combine a `color`/`size` prop with a conflicting class.
+ */
+export function Text({ size, color, font, weight, as = 'span', className = '', children, ...rest }: TextProps) {
+  // `as` is a union of element names; typing the tag by the props Text passes avoids per-element ref/props checks.
+  const Tag = as as unknown as ComponentType<HTMLAttributes<HTMLElement> & { ref?: Ref<HTMLElement> }>
   return (
-    <Component
-      className={classes}
-      style={style}
-      onMouseEnter={hover ? () => setIsHovered(true) : undefined}
-      onMouseLeave={hover ? () => setIsHovered(false) : undefined}
+    <Tag
+      className={[
+        size && sizeClasses[size],
+        color && colorClasses[color],
+        font && fontClasses[font],
+        weight && weightClasses[weight],
+        className,
+      ]
+        .filter(Boolean)
+        .join(' ')}
+      {...rest}
     >
       {children}
-    </Component>
-  );
+    </Tag>
+  )
 }

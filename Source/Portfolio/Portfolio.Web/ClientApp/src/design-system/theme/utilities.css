@@ -1,0 +1,89 @@
+/* Utilities composed of theme tokens only; they follow the active theme. */
+
+/* Standard keyboard focus ring: no ring by default, a 2px accent ring only on focus-visible. Repeated as
+   `outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent` across
+   most interactive components before it was pulled out here. */
+@utility focus-ring {
+  outline: none;
+
+  &:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+  }
+}
+
+/* Same, tighter (1px/1px) — the rail, status bar and title bar controls, which sit closer to an edge. */
+@utility focus-ring-tight {
+  outline: none;
+
+  &:focus-visible {
+    outline: 1px solid var(--color-accent);
+    outline-offset: 1px;
+  }
+}
+
+/* Thin scrollbar with no track, visible only while hovering the scroll area. */
+@utility scrollbar-subtle {
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+
+  &:hover {
+    scrollbar-color: var(--color-line-strongest) transparent;
+  }
+}
+
+/* Page background: editor colour + an accent glow + a dotted grid (Projects, Experience, empty editor). */
+@utility bg-dotted-glow {
+  background-color: var(--color-surface-editor);
+  background-image:
+    radial-gradient(at 50% 40%, color-mix(in srgb, var(--color-accent) 8.6%, transparent), transparent 65%),
+    radial-gradient(
+      circle,
+      color-mix(in srgb, var(--color-content-secondary) 13%, transparent) 0.7px,
+      transparent 0.9px
+    );
+  background-size:
+    100% 100%,
+    22px 22px;
+  background-position:
+    center center,
+    center center;
+}
+
+/* Stage of the gallery: the inset surface with a soft accent glow in the middle. */
+@utility bg-stage-glow {
+  background-color: var(--color-surface-inset);
+  background-image: radial-gradient(
+    ellipse at center,
+    color-mix(in srgb, var(--color-accent) 7%, transparent),
+    transparent 70%
+  );
+}
+
+/* Card with a faint accent tint in the corner (the project's "Cel" card). */
+@utility bg-hero-card {
+  background-image: linear-gradient(135deg, var(--color-accent-surface-faint) 0%, var(--color-surface-card) 55%);
+}
+
+/* A light wash of the accent colour across a panel. */
+@utility bg-accent-wash {
+  background-image: linear-gradient(
+    120deg,
+    color-mix(in srgb, var(--color-accent) 7%, transparent),
+    color-mix(in srgb, var(--color-accent) 1.6%, transparent)
+  );
+}
+
+/* Round "target" bullet: a dot inside a translucent ring. */
+@utility bg-target-mark {
+  background-image: radial-gradient(
+    circle,
+    var(--color-accent) 0,
+    var(--color-accent) 2px,
+    transparent 2.5px,
+    transparent 5px,
+    color-mix(in srgb, var(--color-accent) 50%, transparent) 5.5px,
+    color-mix(in srgb, var(--color-accent) 50%, transparent) 6px,
+    transparent 6.5px
+  );
+}

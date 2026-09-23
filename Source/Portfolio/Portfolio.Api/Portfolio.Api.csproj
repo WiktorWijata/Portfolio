@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Content\Portfolio.Content.Infrastructure\Portfolio.Content.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\Profile\Portfolio.Profile.Infrastructure\Portfolio.Profile.Infrastructure.csproj" />
     <ProjectReference Include="..\..\Notifications\Portfolio.Notifications.Contracts\Portfolio.Notifications.Contracts.csproj" />
     <ProjectReference Include="..\..\Notifications\Portfolio.Notifications.Infrastructure\Portfolio.Notifications.Infrastructure.csproj" />
     <ProjectReference Include="..\Portfolio.Api.Contracts\Portfolio.Api.Contracts.csproj" />
