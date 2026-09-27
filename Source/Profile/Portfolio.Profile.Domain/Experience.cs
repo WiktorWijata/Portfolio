@@ -1,14 +1,19 @@
-﻿namespace Portfolio.Profile.Domain;
+using RescuePC.Software.Domain;
 
-public class Experience
+namespace Portfolio.Profile.Domain;
+
+public class Experience : AggregateRoot<Guid>
 {
-    public Guid Id { get; set; }
+    public override Guid Id { get; protected set; }
     public Guid ProfileId { get; set; }
-    public required string Company { get; set; }
-    public required string Position { get; set; }
-    public required DateTime StartDate { get; set; }
-    public DateTime? EndDate { get; set; }
-    public string? Description { get; set; }
-    public ICollection<ExperienceAchievement>? Achievements { get; set; }
-    public ICollection<ExperienceTechnology>? Technologies { get; set; }
+    public Guid EmployerId { get; set; }
+    public DateOnly StartDate { get; set; }
+    public DateOnly? EndDate { get; set; }
+    public List<ExperienceTranslation> Translations { get; set; } = [];
+    public List<ExperienceArea> Areas { get; set; } = [];
+    public List<ExperienceTechnology> Technologies { get; set; } = [];
+
+    protected Experience()
+    {
+    }
 }

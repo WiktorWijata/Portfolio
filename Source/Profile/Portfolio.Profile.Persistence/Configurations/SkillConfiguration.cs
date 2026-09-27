@@ -8,7 +8,13 @@ public class SkillConfiguration : IEntityTypeConfiguration<Skill>
 {
     public void Configure(EntityTypeBuilder<Skill> builder)
     {
-        builder.HasOne(s => s.Category)
+        builder.HasIndex(s => new { s.ProfileId, s.TechnologyId }).IsUnique();
+
+        builder.HasOne<Technology>()
+            .WithMany()
+            .HasForeignKey(s => s.TechnologyId);
+
+        builder.HasOne<SkillCategory>()
             .WithMany()
             .HasForeignKey(s => s.SkillCategoryId);
     }

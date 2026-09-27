@@ -1,14 +1,18 @@
-﻿namespace Portfolio.Profile.Domain;
+using RescuePC.Software.Domain;
 
-public class Project
+namespace Portfolio.Profile.Domain;
+
+public class Project : AggregateRoot<Guid>
 {
-    public Guid Id { get; set; }
+    public override Guid Id { get; protected set; }
     public Guid ProfileId { get; set; }
-    public required string Title { get; set; }
-    public required string Description { get; set; }
-    public string? ImageUrl { get; set; }       
+    public required string Name { get; set; }
     public string? CodeUrl { get; set; }
-    public string? DemoUrl { get; set; }
-    public int? Order { get; set; }
-    public required ICollection<ProjectTechnology> Technologies { get; set; }
+    public int Order { get; set; }
+    public List<ProjectTranslation> Translations { get; set; } = [];
+    public List<ProjectTechnology> Technologies { get; set; } = [];
+
+    protected Project()
+    {
+    }
 }

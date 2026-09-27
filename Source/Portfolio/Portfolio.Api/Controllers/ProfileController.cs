@@ -1,8 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Portfolio.Profile.Contracts;
-using RescuePC.Portfolio.Api.Contracts;
 using RescuePC.Portfolio.Api.Contracts.Models;
-using RescuePC.Portfolio.Api.Mappings;
 
 namespace RescuePC.Portfolio.Api.Controllers;
 
@@ -28,13 +26,5 @@ public class ProfileController : ControllerBase
             Code = x.Code,
             Name = x.Name
         }));
-    }
-
-    [HttpGet]
-    [ProducesResponseType(typeof(ProfileResponse), StatusCodes.Status200OK)]
-    public async Task<IActionResult> GetProfile(string languageCode, CancellationToken cancellationToken = default)
-    {
-        var profile = await _profileModule.GetProfileByLanguageCode(languageCode, cancellationToken);
-        return Ok(profile.ToResponse());
     }
 }

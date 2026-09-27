@@ -16,7 +16,4 @@ public class ProfileModule : IProfileModule
 
     public Task<IEnumerable<LanguageDto>> GetLanguages(CancellationToken cancellationToken = default)
         =>  _mediator.Send(new GetLanguagesQuery(), cancellationToken);
-
-    public Task<ProfileDto> GetProfileByLanguageCode(string languageCode, CancellationToken cancellationToken = default)
-        => _mediator.Send(new GetProfileByLanguageCodeQuery(languageCode), cancellationToken);
 }

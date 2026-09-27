@@ -1,10 +1,15 @@
-﻿namespace Portfolio.Profile.Domain;
+using RescuePC.Software.Domain;
 
-public class Contact
+namespace Portfolio.Profile.Domain;
+
+public class Contact : AggregateRoot<Guid>
 {
-    public Guid Id { get; set; }
+    public override Guid Id { get; protected set; }
     public Guid ProfileId { get; set; }
     public required ContactType Type { get; set; }
     public required string Value { get; set; }
-    public required bool IsExternal { get; set; }
+
+    protected Contact()
+    {
+    }
 }

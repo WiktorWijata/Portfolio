@@ -1,12 +1,16 @@
-﻿namespace Portfolio.Profile.Domain;
+using RescuePC.Software.Domain;
 
-public class Skill
+namespace Portfolio.Profile.Domain;
+
+public class Skill : AggregateRoot<Guid>
 {
-    public Guid Id { get; set; }
+    public override Guid Id { get; protected set; }
     public Guid ProfileId { get; set; }
+    public Guid TechnologyId { get; set; }
     public Guid SkillCategoryId { get; set; }
-    public SkillCategory Category { get; set; }
-    public required string Name { get; set; }
-    public string? ImageUrl { get; set; }
     public int Order { get; set; }
+
+    protected Skill()
+    {
+    }
 }

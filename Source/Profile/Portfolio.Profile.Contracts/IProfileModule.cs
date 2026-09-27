@@ -8,6 +8,5 @@ namespace Portfolio.Profile.Contracts
     public interface IProfileModule
     { 
         Task<IEnumerable<LanguageDto>> GetLanguages(CancellationToken cancellationToken = default);
-        Task<ProfileDto> GetProfileByLanguageCode(string languageCode, CancellationToken cancellationToken = default);
     }
 }

@@ -1,6 +1,0 @@
-﻿CREATE TABLE [content].[Language]
-(
-	[Code]		NVARCHAR(10)	NOT NULL PRIMARY KEY,
-	[Name]		NVARCHAR(100)	NOT NULL,
-	[Culture]	NVARCHAR(10)	NOT NULL,
-)
