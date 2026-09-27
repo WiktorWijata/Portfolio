@@ -7,7 +7,7 @@
 
 export interface Language {
   /** @nullable */
-  code?: string | null
+  code?: string | null;
   /** @nullable */
-  name?: string | null
+  name?: string | null;
 }

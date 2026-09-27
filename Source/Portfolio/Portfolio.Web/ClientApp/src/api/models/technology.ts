@@ -5,14 +5,13 @@
  * OpenAPI spec version: 1.0
  */
 
-export interface Education {
+export interface Technology {
   /** @nullable */
-  institution?: string | null
+  name?: string | null;
   /** @nullable */
-  degree?: string | null
+  iconSource?: string | null;
   /** @nullable */
-  field?: string | null
-  startDate?: string
+  iconSlug?: string | null;
   /** @nullable */
-  endDate?: string | null
+  iconIsMonochrome?: boolean | null;
 }

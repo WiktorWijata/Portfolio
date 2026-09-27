@@ -1,6 +1,3 @@
-import { CONTACT_EMAIL, CV_URL, GITHUB_URL, LINKEDIN_URL } from '@/profile'
-import type { CompanyField, SocialLink } from './Contact.types'
-
 export const CONTACT_KICKER = 'Kontakt / Porozmawiajmy'
 export const CONTACT_TITLE = 'Porozmawiajmy'
 export const CONTACT_TITLE_ACCENT = 'o współpracy.'
@@ -26,19 +23,6 @@ export const MAIL_SUBJECT_PREFIX = 'Kontakt z portfolio — '
 export const MAIL_NAME_LABEL = 'Imię: '
 export const MAIL_REPLY_LABEL = 'E-mail do odpowiedzi: '
 
-export const SOCIAL_LINKS: SocialLink[] = [
-  { label: 'LinkedIn', arrow: '↗', href: LINKEDIN_URL },
-  { label: 'GitHub', arrow: '↗', href: GITHUB_URL },
-  { label: 'Pobierz CV', arrow: '↓', href: CV_URL },
-]
-
 export const COMPANY_HEADER = 'DANE FIRMY'
-export const COMPANY_FIELDS: CompanyField[] = [
-  { label: 'Nazwa', lines: ['Rescuepc Software Wiktor Wijata'] },
-  { label: 'NIP', lines: ['7681831348'] },
-  { label: 'REGON', lines: ['385601617'] },
-  { label: 'Adres', lines: ['ul. Norwida 3 lok. 46', '26-300 Opoczno', 'woj. łódzkie'] },
-]
 
 export const DIRECT_TEXT = 'Możesz też napisać bezpośrednio:'
-export const DIRECT_EMAIL = CONTACT_EMAIL

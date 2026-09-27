@@ -1,3 +1,4 @@
+using RescuePC.Portfolio.BuildingBlocks.Domain;
 using RescuePC.Software.Domain;
 
 namespace Portfolio.Profile.Domain;
@@ -11,5 +12,10 @@ public class Aspiration : AggregateRoot<Guid>
 
     protected Aspiration()
     {
+    }
+
+    public AspirationTranslation? GetTranslation(LanguageCode languageCode)
+    {
+        return Translations.ForLanguage(languageCode, LanguageCode.PL);
     }
 }

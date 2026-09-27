@@ -1,6 +1,8 @@
+using RescuePC.Portfolio.BuildingBlocks.Domain;
+
 namespace Portfolio.Profile.Domain;
 
-public class IntroductionTranslation
+public class IntroductionTranslation : ITranslation<LanguageCode>
 {
     public Guid IntroductionId { get; set; }
     public LanguageCode LanguageCode { get; set; }

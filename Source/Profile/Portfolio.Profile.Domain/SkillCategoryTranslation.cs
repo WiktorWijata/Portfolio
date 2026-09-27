@@ -1,6 +1,8 @@
+using RescuePC.Portfolio.BuildingBlocks.Domain;
+
 namespace Portfolio.Profile.Domain;
 
-public class SkillCategoryTranslation
+public class SkillCategoryTranslation : ITranslation<LanguageCode>
 {
     public Guid SkillCategoryId { get; set; }
     public LanguageCode LanguageCode { get; set; }

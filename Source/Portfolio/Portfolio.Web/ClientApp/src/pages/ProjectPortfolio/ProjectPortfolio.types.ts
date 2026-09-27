@@ -22,8 +22,3 @@ export interface ArchitectureNote {
   title: string
   text: string
 }
-
-export interface ProjectAction {
-  label: string
-  href: string
-}

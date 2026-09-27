@@ -2,6 +2,7 @@ using Hangfire;
 using Portfolio.Profile.Infrastructure;
 using Portfolio.Notifications.Infrastructure;
 using RescuePC.Portfolio.Api.Middleware;
+using RescuePC.Portfolio.BuildingBlocks.Application;
 using RescuePC.Software.Logging.Providers.Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,6 +14,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddRateLimiting(builder.Configuration);
 builder.Services.AddHangfireJobs(builder.Configuration);
+builder.Services.AddCallerContext();
 
 const string ClientAppCorsPolicy = "ClientApp";
 

@@ -4,19 +4,19 @@
  * Portfolio.Api
  * OpenAPI spec version: 1.0
  */
+import type { ExperienceArea } from './experienceArea';
+import type { Technology } from './technology';
 
 export interface Experience {
   /** @nullable */
-  company?: string | null
+  employer?: string | null;
   /** @nullable */
-  position?: string | null
-  startDate?: string
+  position?: string | null;
+  startDate?: string;
   /** @nullable */
-  endDate?: string | null
+  endDate?: string | null;
   /** @nullable */
-  description?: string | null
+  areas?: ExperienceArea[] | null;
   /** @nullable */
-  achivements?: string[] | null
-  /** @nullable */
-  technologies?: string[] | null
+  technologies?: Technology[] | null;
 }

@@ -1,9 +1,4 @@
-import {
-  ArchitectureBlockKind,
-  type ArchitectureBlock,
-  type ArchitectureNote,
-  type ProjectAction,
-} from './ProjectPortfolio.types'
+import { ArchitectureBlockKind, type ArchitectureBlock, type ArchitectureNote } from './ProjectPortfolio.types'
 
 const REPOSITORY_URL = 'https://github.com/WiktorWijata/Portfolio'
 const REPOSITORY_COMMIT = 'b88ee03'
@@ -20,12 +15,9 @@ export const GALLERY_SLIDES = [
 
 export const GOAL_HEADING = 'O PROJEKCIE / ZAŁOŻENIA'
 export const GOAL_INTRO_TITLE = 'Cel projektu'
-export const GOAL_INTRO_TEXT = 'Prezentacja doświadczenia i projektów oraz samodzielna aktualizacja treści portfolio.'
 export const GOAL_SOLUTION_TITLE = 'Rozwiązanie'
-export const GOAL_SOLUTION_TEXT = 'Interfejs w React i TypeScript połączony z backendem .NET i bazą MSSQL.'
 export const GOAL_STACK_TITLE = 'Technologie'
-export const GOAL_STACK = ['C#', '.NET', 'React', 'TypeScript', 'MSSQL', 'Docker', 'Kubernetes']
-export const GOAL_ACTIONS: ProjectAction[] = [{ label: 'Repozytorium ↗', href: REPOSITORY_URL }]
+export const GOAL_REPOSITORY_LABEL = 'Repozytorium ↗'
 
 export const ARCHITECTURE_HEADING = 'ARCHITEKTURA / MODULARNY MONOLIT'
 export const ARCHITECTURE_LABEL = 'Architektura projektu'

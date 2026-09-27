@@ -1,12 +1,10 @@
+import { useProjects } from '@/api'
 import { Button, ButtonSize, Chip, ChipVariant, FontFamily, FontSize, FontWeight, Text } from '@/design-system'
 import {
-  GOAL_ACTIONS,
   GOAL_HEADING,
-  GOAL_INTRO_TEXT,
   GOAL_INTRO_TITLE,
-  GOAL_SOLUTION_TEXT,
+  GOAL_REPOSITORY_LABEL,
   GOAL_SOLUTION_TITLE,
-  GOAL_STACK,
   GOAL_STACK_TITLE,
 } from '../../ProjectPortfolio.consts'
 import { GithubIcon } from '../GithubIcon'
@@ -15,6 +13,12 @@ const sectionTitleClasses = 'uppercase tracking-[.09em] text-content-tinted-stro
 
 /** "O projekcie / założenia": the goal of the project, the solution, the technologies and the repository link. */
 export function GoalCard() {
+  const { data: projects } = useProjects()
+  const project = projects?.[0]
+  if (!project) return null
+
+  const technologies = project.technologies ?? []
+
   return (
     <div className="flex flex-1 flex-col overflow-hidden rounded-2xl border border-line-emphasis bg-hero-card shadow-hero max-[1100px]:flex-none">
       <div className="flex items-center gap-2.5 border-b border-b-tint/5 px-5 py-3">
@@ -53,7 +57,7 @@ export function GoalCard() {
             {GOAL_INTRO_TITLE}
           </Text>
           <Text as="p" font={FontFamily.Sans} className="text-[16px] leading-[1.7] text-content-strong">
-            {GOAL_INTRO_TEXT}
+            {project.goal}
           </Text>
         </section>
 
@@ -73,7 +77,7 @@ export function GoalCard() {
             font={FontFamily.Sans}
             className="max-w-[65ch] leading-[1.8] text-content-secondary"
           >
-            {GOAL_SOLUTION_TEXT}
+            {project.solution}
           </Text>
         </section>
 
@@ -88,22 +92,22 @@ export function GoalCard() {
             {GOAL_STACK_TITLE}
           </Text>
           <div className="mb-6 flex flex-wrap gap-[7px]">
-            {GOAL_STACK.map((technology) => (
-              <Chip key={technology} variant={ChipVariant.Tech}>
-                {technology}
+            {technologies.map((technology) => (
+              <Chip key={technology.name} variant={ChipVariant.Tech}>
+                {technology.name}
               </Chip>
             ))}
           </div>
-          <div className="flex flex-wrap items-center gap-3">
-            {GOAL_ACTIONS.map((action) => (
-              <Button key={action.href} href={action.href} target="_blank" rel="noopener" size={ButtonSize.Card}>
+          {project.codeUrl && (
+            <div className="flex flex-wrap items-center gap-3">
+              <Button href={project.codeUrl} target="_blank" rel="noopener" size={ButtonSize.Card}>
                 <span className="inline-flex items-center gap-2">
                   <GithubIcon />
-                  {action.label}
+                  {GOAL_REPOSITORY_LABEL}
                 </span>
               </Button>
-            ))}
-          </div>
+            </div>
+          )}
         </div>
       </div>
     </div>

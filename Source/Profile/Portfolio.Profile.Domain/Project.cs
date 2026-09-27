@@ -1,3 +1,4 @@
+using RescuePC.Portfolio.BuildingBlocks.Domain;
 using RescuePC.Software.Domain;
 
 namespace Portfolio.Profile.Domain;
@@ -14,5 +15,10 @@ public class Project : AggregateRoot<Guid>
 
     protected Project()
     {
+    }
+
+    public ProjectTranslation? GetTranslation(LanguageCode languageCode)
+    {
+        return Translations.ForLanguage(languageCode, LanguageCode.PL);
     }
 }

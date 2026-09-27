@@ -7,8 +7,7 @@
 
 export interface Contact {
   /** @nullable */
-  type?: string | null
+  type?: string | null;
   /** @nullable */
-  value?: string | null
-  isExternal?: boolean
+  value?: string | null;
 }

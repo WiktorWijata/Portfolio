@@ -4,11 +4,11 @@
  * Portfolio.Api
  * OpenAPI spec version: 1.0
  */
-import type { Skill } from './skill'
+import type { Technology } from './technology';
 
 export interface SkillCategory {
   /** @nullable */
-  name?: string | null
+  name?: string | null;
   /** @nullable */
-  skills?: Skill[] | null
+  technologies?: Technology[] | null;
 }

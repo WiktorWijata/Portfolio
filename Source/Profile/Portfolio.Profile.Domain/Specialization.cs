@@ -1,3 +1,4 @@
+using RescuePC.Portfolio.BuildingBlocks.Domain;
 using RescuePC.Software.Domain;
 
 namespace Portfolio.Profile.Domain;
@@ -12,5 +13,10 @@ public class Specialization : AggregateRoot<Guid>
 
     protected Specialization()
     {
+    }
+
+    public SpecializationTranslation? GetTranslation(LanguageCode languageCode)
+    {
+        return Translations.ForLanguage(languageCode, LanguageCode.PL);
     }
 }

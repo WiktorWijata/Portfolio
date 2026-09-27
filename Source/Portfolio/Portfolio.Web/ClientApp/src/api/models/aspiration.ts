@@ -5,6 +5,7 @@
  * OpenAPI spec version: 1.0
  */
 
-export type GetApiProfileParams = {
-  languageCode?: string
+export interface Aspiration {
+  /** @nullable */
+  text?: string | null;
 }

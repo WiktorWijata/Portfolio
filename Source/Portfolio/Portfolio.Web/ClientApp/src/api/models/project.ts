@@ -4,18 +4,19 @@
  * Portfolio.Api
  * OpenAPI spec version: 1.0
  */
+import type { Technology } from './technology';
 
 export interface Project {
   /** @nullable */
-  title?: string | null
+  name?: string | null;
   /** @nullable */
-  description?: string | null
+  description?: string | null;
   /** @nullable */
-  imageUrl?: string | null
+  goal?: string | null;
   /** @nullable */
-  codeUrl?: string | null
+  solution?: string | null;
   /** @nullable */
-  demoUrl?: string | null
+  codeUrl?: string | null;
   /** @nullable */
-  technologies?: string[] | null
+  technologies?: Technology[] | null;
 }

@@ -5,11 +5,11 @@
  * OpenAPI spec version: 1.0
  */
 
-export interface Fact {
+export interface Service {
   /** @nullable */
-  title?: string | null
+  iconSlug?: string | null;
   /** @nullable */
-  description?: string | null
+  title?: string | null;
   /** @nullable */
-  imageUrl?: string | null
+  description?: string | null;
 }

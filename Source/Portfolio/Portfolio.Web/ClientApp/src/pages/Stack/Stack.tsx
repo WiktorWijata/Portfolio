@@ -1,13 +1,20 @@
+import { useMemo } from 'react'
+import { useSkillCategories } from '@/api'
 import { SplitPanel, SplitPanelCollapseAt } from '@/design-system'
 import { PageIntro, PageIntroVariant } from '../PageIntro'
 import { PageContainer } from '../PageContainer'
 import { StackFilters, StackResults } from './components'
 import { useStackFilter } from './hooks/useStackFilter'
-import { STACK_GROUPS, STACK_KICKER, STACK_TEXT, STACK_TITLE, STACK_TITLE_ACCENT } from './Stack.consts'
+import { STACK_KICKER, STACK_TEXT, STACK_TITLE, STACK_TITLE_ACCENT } from './Stack.consts'
+import { toTechnologyGroups } from './utils'
 
 /** Stack.cs: technologies grouped by category, with a category list and a name search. */
 export function Stack() {
-  const { category, setCategory, query, setQuery, visibleGroups, total } = useStackFilter(STACK_GROUPS)
+  const { data: skillCategories } = useSkillCategories()
+  const groups = useMemo(() => toTechnologyGroups(skillCategories ?? []), [skillCategories])
+  const { category, setCategory, query, setQuery, visibleGroups, total } = useStackFilter(groups)
+
+  if (!skillCategories) return null
 
   return (
     <PageContainer>
@@ -24,7 +31,7 @@ export function Stack() {
           className="bg-surface-editor"
           aside={
             <StackFilters
-              groups={STACK_GROUPS}
+              groups={groups}
               category={category}
               onCategoryChange={setCategory}
               query={query}

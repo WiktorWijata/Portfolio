@@ -5,16 +5,17 @@
  * OpenAPI spec version: 1.0
  */
 
-export * from './aboutMe'
-export * from './contact'
-export * from './education'
-export * from './experience'
-export * from './fact'
-export * from './getApiProfileParams'
-export * from './hero'
-export * from './language'
-export * from './notificationRequest'
-export * from './profileResponse'
-export * from './project'
-export * from './skill'
-export * from './skillCategory'
+export * from './aspiration';
+export * from './business';
+export * from './certificate';
+export * from './contact';
+export * from './experience';
+export * from './experienceArea';
+export * from './introduction';
+export * from './language';
+export * from './notificationRequest';
+export * from './project';
+export * from './service';
+export * from './skillCategory';
+export * from './specialization';
+export * from './technology';

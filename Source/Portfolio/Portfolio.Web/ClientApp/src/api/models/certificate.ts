@@ -5,9 +5,12 @@
  * OpenAPI spec version: 1.0
  */
 
-export interface Skill {
+export interface Certificate {
   /** @nullable */
-  name?: string | null
+  name?: string | null;
   /** @nullable */
-  imageUrl?: string | null
+  issuer?: string | null;
+  issuedOn?: string;
+  /** @nullable */
+  code?: string | null;
 }

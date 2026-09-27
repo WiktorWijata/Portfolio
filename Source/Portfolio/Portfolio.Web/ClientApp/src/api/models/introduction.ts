@@ -4,12 +4,12 @@
  * Portfolio.Api
  * OpenAPI spec version: 1.0
  */
-import type { AboutMe } from './aboutMe'
 
-export interface Hero {
+export interface Introduction {
   /** @nullable */
-  motto?: string | null
+  title?: string | null;
   /** @nullable */
-  imageUrl?: string | null
-  aboutMe?: AboutMe
+  motto?: string | null;
+  /** @nullable */
+  description?: string | null;
 }

@@ -5,11 +5,9 @@
  * OpenAPI spec version: 1.0
  */
 
-export interface AboutMe {
+export interface ExperienceArea {
   /** @nullable */
-  title?: string | null
+  title?: string | null;
   /** @nullable */
-  greeting?: string | null
-  /** @nullable */
-  description?: string[] | null
+  responsibilities?: string[] | null;
 }
