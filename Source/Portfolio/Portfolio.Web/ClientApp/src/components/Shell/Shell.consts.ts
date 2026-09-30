@@ -27,6 +27,7 @@ export const TourTarget = {
   AssistantRail: 'assistant-rail',
   AssistantStatus: 'assistant-status',
   StatusBar: 'status-bar',
+  Docs: 'docs',
 } as const
 export type TourTarget = (typeof TourTarget)[keyof typeof TourTarget]
 
@@ -34,7 +35,3 @@ export const TOUR_ATTRIBUTE = 'data-tour'
 
 /** Static value shown in the status bar and the empty editor; it will come from the API later. */
 export const GIT_BRANCH = '⑂ master'
-
-/** Labels of the buttons that fold and unfold the Solution Explorer (rail, title bar and the explorer itself). */
-export const EXPLORER_HIDE_LABEL = 'Zwiń explorer'
-export const EXPLORER_SHOW_LABEL = 'Pokaż explorer'

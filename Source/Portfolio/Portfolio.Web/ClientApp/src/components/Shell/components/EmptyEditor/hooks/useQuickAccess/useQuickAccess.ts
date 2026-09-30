@@ -1,4 +1,5 @@
 import { useMemo } from 'react'
+import { useTranslation } from 'react-i18next'
 import { useEditor } from '@/context'
 import { findSolutionNode } from '@/navigation'
 import { QUICK_ACCESS_LABELS } from '../../EmptyEditor.consts'
@@ -6,15 +7,16 @@ import type { QuickAccessItem } from '../../EmptyEditor.types'
 
 /** Rows of "Szybki dostęp", in the order of the files in the Solution Explorer. */
 export function useQuickAccess(): QuickAccessItem[] {
+  const { t } = useTranslation()
   const { pageOrder, solution } = useEditor()
 
   return useMemo(
     () =>
       pageOrder.flatMap((page): QuickAccessItem[] => {
-        const label = QUICK_ACCESS_LABELS[page]
+        const labelKey = QUICK_ACCESS_LABELS[page]
         const node = findSolutionNode(solution, page)
-        return label && node ? [{ page, label, file: node.label }] : []
+        return labelKey && node ? [{ page, label: t(labelKey), file: node.label }] : []
       }),
-    [pageOrder, solution],
+    [pageOrder, solution, t],
   )
 }

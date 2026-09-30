@@ -1,12 +1,14 @@
 import { useMemo } from 'react'
 import { useContacts } from '@/api'
 import { Button, ButtonSize, ButtonVariant } from '@/design-system'
+import { useTranslation } from 'react-i18next'
 import { toSocialLinks } from '../../Contact.helpers'
 
 /** LinkedIn, GitHub and the CV file as small buttons under the form; the last one is pushed to the right. */
 export function SocialLinks() {
+  const { t } = useTranslation()
   const { data: contacts } = useContacts()
-  const links = useMemo(() => toSocialLinks(contacts ?? []), [contacts])
+  const links = useMemo(() => toSocialLinks(contacts ?? [], t), [contacts, t])
 
   return (
     <div className="flex flex-wrap items-center gap-2">

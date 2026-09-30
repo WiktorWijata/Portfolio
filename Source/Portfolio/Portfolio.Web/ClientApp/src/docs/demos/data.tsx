@@ -1,19 +1,21 @@
 import { useState } from 'react'
-import { Boxes, Code2, Database, Globe, Server } from 'lucide-react'
+import { Boxes, Code2, Database, Github, Globe, Server, Target } from 'lucide-react'
 import {
   Badge,
   BadgeTone,
   Chip,
   ChipVariant,
-  DataCard,
-  DataCardAction,
-  DataCardList,
-  DataCardRow,
+  Card,
+  CardAction,
+  CardField,
+  CardFields,
+  CardList,
+  CardRow,
+  CardVariant,
   FontFamily,
   FontSize,
+  ArchitectureDiagram,
   Gallery,
-  InfoCard,
-  InfoRow,
   List,
   ListItem,
   ListItemVariant,
@@ -48,29 +50,50 @@ function ChipDemo() {
   )
 }
 
-function DataCardDemo() {
+function CardDemo() {
   const [opened, setOpened] = useState(0)
   return (
     <div className="grid w-full grid-cols-2 gap-4 max-bp700:grid-cols-1">
-      <DataCard
+      <Card
         title="Ścieżka w skrócie"
         action={
-          <DataCardAction onClick={() => setOpened((n) => n + 1)}>
+          <CardAction onClick={() => setOpened((n) => n + 1)}>
             {opened ? `Otwórz → (${opened})` : 'Otwórz →'}
-          </DataCardAction>
+          </CardAction>
         }
       >
-        <DataCardList>
-          <DataCardRow title=".NET Developer" subtitle="B3 Consulting Poland" tag="2021.11 — obecnie" />
-          <DataCardRow title=".NET Developer" subtitle="LSI Software" tag="2019.01 — 2021.11" />
-        </DataCardList>
-      </DataCard>
-      <DataCard title="Certyfikaty">
-        <DataCardList>
-          <DataCardRow title="Azure Developer Associate" tag="Microsoft" />
-          <DataCardRow title="MCSA: Web Applications" tag="Microsoft" />
-        </DataCardList>
-      </DataCard>
+        <CardList>
+          <CardRow title=".NET Developer" subtitle="B3 Consulting Poland" tag="2021.11 — obecnie" />
+          <CardRow title=".NET Developer" subtitle="LSI Software" tag="2019.01 — 2021.11" />
+        </CardList>
+      </Card>
+      <Card title="Certyfikaty">
+        <CardList>
+          <CardRow title="Azure Developer Associate" tag="Microsoft" />
+          <CardRow title="MCSA: Web Applications" tag="Microsoft" />
+        </CardList>
+      </Card>
+      <Card title="Dane firmy" className="w-[345px]">
+        <CardFields>
+          <CardField label="Nazwa">Rescuepc Software Wiktor Wijata</CardField>
+          <CardField label="NIP">7681831348</CardField>
+          <CardField label="Adres">
+            ul. Norwida 3 lok. 46
+            <br />
+            26-300 Opoczno
+          </CardField>
+        </CardFields>
+      </Card>
+      <Card variant={CardVariant.Hero} title="O PROJEKCIE / ZAŁOŻENIA" icon={<Target />} className="w-[345px]">
+        <Text size={FontSize.Small} color={TextColor.Dim} className="p-3.5">
+          Wyróżniona karta: gradientowe tło, mocniejszy cień i ikona przed tytułem.
+        </Text>
+      </Card>
+      <Card variant={CardVariant.Standard} title="NAGŁÓWEK KARTY" className="w-[345px]">
+        <Text size={FontSize.Small} color={TextColor.Dim} className="p-3.5">
+          Większa karta z lekkim nagłówkiem — treść dowolna.
+        </Text>
+      </Card>
     </div>
   )
 }
@@ -113,20 +136,30 @@ function ListDemo() {
   )
 }
 
-function InfoCardDemo() {
+function ArchitectureDiagramDemo() {
   return (
-    <InfoCard header="DANE FIRMY" className="w-[345px]">
-      <InfoRow label="Nazwa">Rescuepc Software Wiktor Wijata</InfoRow>
-      <InfoRow label="NIP">7681831348</InfoRow>
-      <InfoRow label="REGON">385601617</InfoRow>
-      <InfoRow label="Adres">
-        ul. Norwida 3 lok. 46
-        <br />
-        26-300 Opoczno
-        <br />
-        woj. łódzkie
-      </InfoRow>
-    </InfoCard>
+    <ArchitectureDiagram
+      aria-label="Architektura projektu"
+      className="w-full max-w-[420px]"
+      linkIcon={<Github size={16} aria-hidden />}
+      blocks={[
+        {
+          title: 'Portfolio.Web',
+          href: 'https://github.com',
+          linkLabel: 'Otwórz na GitHubie',
+        },
+        { title: 'Portfolio.Api', note: 'ASP.NET Core · kontrolery', connectionLabel: 'HTTP / JSON' },
+        {
+          title: 'Moduły',
+          connectionLabel: 'IProfileModule / INotificationsModule',
+          children: [
+            { title: 'Profile', note: 'Treści portfolio' },
+            { title: 'Notifications', note: 'Wiadomości do wysyłki' },
+          ],
+        },
+        { title: 'Persistence', note: 'EF Core · repozytoria' },
+      ]}
+    />
   )
 }
 
@@ -149,6 +182,34 @@ function GalleryDemo() {
 
 export const dataEntries: DocEntry[] = [
   {
+    id: 'architecturediagram',
+    api: { folder: 'ArchitectureDiagram', interfaces: ['ArchitectureDiagramProps', 'ArchitectureBlock'] },
+    usage: `import { ArchitectureDiagram } from './design-system'
+
+<ArchitectureDiagram
+  aria-label="Architektura projektu"
+  linkIcon={<Github size={16} />} // dowolna ikona; komponent jej nie dostarcza
+  blocks={[
+    { title: 'Portfolio.Web', note: 'React · TypeScript', href: repoUrl, linkLabel: 'Otwórz na GitHubie' },
+    { title: 'Portfolio.Api', connectionLabel: 'HTTP / JSON' },
+    {
+      title: 'Moduły',
+      children: [{ title: 'Profile' }, { title: 'Notifications' }], // blok z dziećmi = rząd kafelków
+    },
+  ]}
+/>`,
+    name: 'ArchitectureDiagram',
+    category: 'data',
+    preview: (
+      <div className="flex w-full flex-col items-center gap-1 text-accent">
+        <span className="h-3 w-full rounded-sm border border-line-strongest bg-surface-hover" />
+        <span className="text-[10px] leading-none">↓</span>
+        <span className="h-3 w-full rounded-sm border border-line-strongest bg-surface-hover" />
+      </div>
+    ),
+    Demo: ArchitectureDiagramDemo,
+  },
+  {
     id: 'badge',
     api: { folder: 'Badge', interfaces: ['BadgeProps'] },
     usage: `import { Badge, BadgeTone } from './design-system'
@@ -157,7 +218,6 @@ export const dataEntries: DocEntry[] = [
 <Badge tone={BadgeTone.Accent}>2021.11 — obecnie</Badge>`,
     name: 'Badge',
     category: 'data',
-    summary: 'Mała etykieta statusu lub daty, w tonie neutralnym albo akcentowym.',
     preview: (
       <div className="flex gap-2">
         <Badge>2019 — 2021</Badge>
@@ -185,8 +245,6 @@ export const dataEntries: DocEntry[] = [
 <Chip variant={ChipVariant.Position}>MassTransit</Chip>`,
     name: 'Chip',
     category: 'data',
-    summary: 'Statyczny znacznik technologii z opcjonalną ikoną, w pięciu wariantach rozmiaru.',
-    note: 'Ikony to Lucide na ten etap, docelowo Devicon/Simple Icons w kolorach marek.',
     preview: (
       <div className="flex gap-2">
         <Chip icon={<Code2 />}>React</Chip>
@@ -222,8 +280,6 @@ export const dataEntries: DocEntry[] = [
 </List>`,
     name: 'List',
     category: 'data',
-    summary: 'Lista z nagłówkiem, licznikiem i opcjonalną wyszukiwarką; wiersze z animowanym hoverem.',
-    note: 'Wiersz ListItem: po hoverze/aktywacji pojawia się akcentowy pasek, tło jaśnieje i rośnie lewy padding.',
     preview: (
       <div className="w-full overflow-hidden rounded-md border border-line-default">
         <List header="Kategorie" count={3}>
@@ -233,30 +289,6 @@ export const dataEntries: DocEntry[] = [
       </div>
     ),
     Demo: ListDemo,
-  },
-  {
-    id: 'infocard',
-    api: { folder: 'InfoCard', interfaces: ['InfoCardProps', 'InfoRowProps'] },
-    usage: `import { InfoCard, InfoRow } from './design-system'
-
-<InfoCard header="DANE FIRMY">
-  <InfoRow label="NIP">7681831348</InfoRow>
-  <InfoRow label="Adres">
-    ul. Norwida 3 lok. 46
-    <br />
-    26-300 Opoczno
-  </InfoRow>
-</InfoCard>`,
-    name: 'InfoCard',
-    category: 'data',
-    summary: 'Karta tylko do odczytu: nagłówek i wiersze etykieta/wartość.',
-    note: '.contact-company („Dane firmy" na Contact) — ta sama powierzchnia co List, bez interakcji.',
-    preview: (
-      <InfoCard header="DANE FIRMY" className="w-full">
-        <InfoRow label="NIP">7681831348</InfoRow>
-      </InfoCard>
-    ),
-    Demo: InfoCardDemo,
   },
   {
     id: 'gallery',
@@ -277,8 +309,6 @@ const [index, setIndex] = useState(0)
 />`,
     name: 'Gallery',
     category: 'data',
-    summary: 'Karuzela zdjęć projektu z placeholderami, strzałkami, kropkami i obsługą klawiatury.',
-    note: '.project-gallery (Portfolio.cs / karta projektu) — sprawdzone w computed style.',
     preview: (
       <div className="flex flex-col items-center gap-1.5">
         <Text size={FontSize.Title} color={TextColor.Accent} font={FontFamily.Mono}>
@@ -294,40 +324,61 @@ const [index, setIndex] = useState(0)
     Demo: GalleryDemo,
   },
   {
-    id: 'datacard',
+    id: 'card',
     api: {
-      folder: 'DataCard',
-      interfaces: ['DataCardProps', 'DataCardActionProps', 'DataCardListProps', 'DataCardRowProps'],
+      folder: 'Card',
+      interfaces: [
+        'CardProps',
+        'CardActionProps',
+        'CardListProps',
+        'CardRowProps',
+        'CardFieldsProps',
+        'CardFieldProps',
+      ],
     },
-    usage: `import { DataCard, DataCardAction, DataCardList, DataCardRow } from './design-system'
+    usage: `import { Card, CardAction, CardFields, CardField, CardList, CardRow, CardVariant } from './design-system'
 
-<DataCard
+// Compact (domyślny): pasek nagłówka z tytułem, licznikiem i akcją
+<Card
   title="Ścieżka w skrócie"
-  action={<DataCardAction onClick={openExperience}>Otwórz →</DataCardAction>}
+  action={<CardAction onClick={openExperience}>Otwórz →</CardAction>}
 >
-  <DataCardList>
-    <DataCardRow title=".NET Developer" subtitle="B3 Consulting Poland" tag="2021.11 — obecnie" />
-    <DataCardRow title=".NET Developer" subtitle="LSI Software" tag="2019.01 — 2021.11" />
-  </DataCardList>
-</DataCard>
+  <CardList>
+    <CardRow title=".NET Developer" subtitle="B3 Consulting Poland" tag="2021.11 — obecnie" />
+    <CardRow title=".NET Developer" subtitle="LSI Software" tag="2019.01 — 2021.11" />
+  </CardList>
+</Card>
 
-// treść dowolna: np. chipy
-<DataCard title="Kluczowe technologie">
-  <div className="flex flex-wrap gap-2 p-3.5">
-    <Chip variant={ChipVariant.Mono}>C#</Chip>
-  </div>
-</DataCard>`,
-    name: 'DataCard',
+// etykieta nad wartością (dawniej InfoCard)
+<Card title="Dane firmy">
+  <CardFields>
+    <CardField label="NIP">7681831348</CardField>
+    <CardField label="Adres">
+      ul. Norwida 3 lok. 46
+      <br />
+      26-300 Opoczno
+    </CardField>
+  </CardFields>
+</Card>
+
+// Standard: większa karta z lekkim nagłówkiem, treść dowolna
+<Card variant={CardVariant.Standard} title="GALERIA PROJEKTU">
+  {/* treść */}
+</Card>
+
+// Hero: wyróżniona karta, opcjonalnie z ikoną przed tytułem
+<Card variant={CardVariant.Hero} title="O PROJEKCIE" icon={<Target />}>
+  {/* treść */}
+</Card>`,
+    name: 'Card',
     category: 'data',
-    summary: 'Karta z paskiem nagłówka (tytuł + akcja) i wierszami z tytułem, podtytułem i plakietką.',
-    note: '.home-card, .home-techbar i .arch2 na Home — wymiary, kolory i separatory zmierzone w prototypie.',
     preview: (
-      <DataCard title="Certyfikaty" className="w-full">
-        <DataCardList>
-          <DataCardRow title="Azure Developer Associate" tag="Microsoft" />
-        </DataCardList>
-      </DataCard>
+      <Card title="Certyfikaty" className="w-full">
+        <CardList>
+          <CardRow title="Azure Developer Associate" tag="Microsoft" />
+        </CardList>
+      </Card>
     ),
-    Demo: DataCardDemo,
+    Demo: CardDemo,
   },
 ]

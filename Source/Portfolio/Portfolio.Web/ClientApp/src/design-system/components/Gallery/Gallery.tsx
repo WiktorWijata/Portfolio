@@ -1,4 +1,4 @@
-import { CardHeading } from '../CardHeading'
+import { Card, CardVariant } from '../Card'
 import { IconButton } from '../IconButton'
 import { FontFamily, FontSize, Text } from '../Text'
 import { DEFAULT_LABELS } from './Gallery.consts'
@@ -21,16 +21,14 @@ export function Gallery({
   if (!slide) return null
 
   return (
-    // Arrow keys are handled here but always come from the focused prev/next/dot buttons (they bubble up).
-    // eslint-disable-next-line jsx-a11y/no-static-element-interactions
-    <section
+    <Card
+      variant={CardVariant.Standard}
+      title={heading}
       aria-roledescription={strings.carousel}
       onKeyDown={onKeyDown}
-      className={['overflow-hidden rounded-2xl border border-line-emphasis bg-surface-card', className].join(' ')}
+      className={className}
       {...rest}
     >
-      <CardHeading>{heading}</CardHeading>
-
       <div className="flex aspect-video items-center justify-center bg-stage-glow p-5">
         {slide.src ? (
           <img src={slide.src} alt={slide.alt} className="block h-full w-full object-contain" />
@@ -109,6 +107,6 @@ export function Gallery({
           }
         />
       </div>
-    </section>
+    </Card>
   )
 }

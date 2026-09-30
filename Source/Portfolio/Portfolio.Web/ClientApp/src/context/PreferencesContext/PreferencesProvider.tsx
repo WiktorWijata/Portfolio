@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useMemo, useState, type ReactNode } from 'react'
+import i18n from '@/i18n/i18n'
 import { readStorage, writeStorage } from '@/utils/storage'
 import { PreferencesContext } from './PreferencesContext'
 import { LANGUAGE_STORAGE_KEY, TOUR_SEEN_VALUE, TOUR_STORAGE_KEY } from './PreferencesContext.consts'
@@ -24,6 +25,7 @@ export function PreferencesProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     document.documentElement.lang = language
+    void i18n.changeLanguage(language)
   }, [language])
 
   const preferences = useMemo<Preferences>(

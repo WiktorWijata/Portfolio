@@ -82,6 +82,10 @@
     <Build Include="profile\Tables\Project.sql" />
     <Build Include="profile\Tables\ProjectTranslation.sql" />
     <Build Include="profile\Tables\ProjectTechnology.sql" />
+    <Build Include="profile\Tables\ProjectArchitectureNote.sql" />
+    <Build Include="profile\Tables\ProjectArchitectureNoteTranslation.sql" />
+    <Build Include="profile\Tables\ProjectArchitectureBlock.sql" />
+    <Build Include="profile\Tables\ProjectArchitectureBlockTranslation.sql" />
     <Build Include="profile\Tables\Employer.sql" />
     <Build Include="profile\Tables\Experience.sql" />
     <Build Include="profile\Tables\ExperienceTranslation.sql" />

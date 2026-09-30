@@ -22,6 +22,8 @@ import {
   ToolbarButton,
   Label,
   LabelTone,
+  Loader,
+  LoaderStatus,
   Link,
   LinkTone,
   RailButton,
@@ -77,6 +79,15 @@ function LabelDemo() {
       <Text size={FontSize.XLarge} color={TextColor.Heading}>
         Kicker nad h1, akcent
       </Text>
+    </div>
+  )
+}
+
+function LoaderDemo() {
+  return (
+    <div className="flex w-full flex-col gap-6">
+      <Loader label="Ładowanie doświadczenia…" />
+      <Loader status={LoaderStatus.Error} label="Nie udało się pobrać danych" />
     </div>
   )
 }
@@ -175,8 +186,6 @@ export const generalEntries: DocEntry[] = [
 </Text>`,
     name: 'Text',
     category: 'general',
-    summary: 'Tekst z tokenów: rozmiar, kolor, font i grubość zamiast wartości w px.',
-    note: 'Pominięty parametr jest dziedziczony z rodzica. Detale spoza skali (letter-spacing, line-height) idą w className.',
     preview: (
       <Text size={FontSize.Heading} color={TextColor.Heading} font={FontFamily.Sans}>
         Aa
@@ -193,10 +202,20 @@ export const generalEntries: DocEntry[] = [
 <Label size={LabelSize.Sm}>Kategorie</Label>`,
     name: 'Label',
     category: 'general',
-    summary: 'Mały, wersalikowy nagłówek: kicker nad tytułem albo pasek panelu.',
-    note: 'Kicker nad nagłówkiem (nagłówek panelu z licznikiem — patrz List).',
     preview: <Label tone={LabelTone.Accent}>Stack / Kompetencje</Label>,
     Demo: LabelDemo,
+  },
+  {
+    id: 'loader',
+    api: { folder: 'Loader', interfaces: ['LoaderProps'] },
+    usage: `import { Loader, LoaderStatus } from './design-system'
+
+{isLoading && <Loader label="Ładowanie doświadczenia…" />}
+{error && <Loader status={LoaderStatus.Error} label="Nie udało się pobrać danych" />}`,
+    name: 'Loader',
+    category: 'general',
+    preview: <Loader label="Ładowanie…" className="w-40" />,
+    Demo: LoaderDemo,
   },
   {
     id: 'button',
@@ -218,8 +237,6 @@ export const generalEntries: DocEntry[] = [
 <Button type="submit" size={ButtonSize.Lg}>Wyślij wiadomość ↗</Button>`,
     name: 'Button',
     category: 'general',
-    summary:
-      'Przycisk akcji (albo odnośnik wyglądający jak przycisk) w wariantach Primary, Outline i Secondary oraz rozmiarach Md, Sm, Xs i Lg.',
     preview: <Button variant={ButtonVariant.Primary}>Zobacz projekty</Button>,
     Demo: ButtonDemo,
   },
@@ -232,7 +249,6 @@ export const generalEntries: DocEntry[] = [
 <ToolbarButton size={ToolbarButtonSize.Sm} icon={<ListTree />} aria-label="Rozwiń wszystkie foldery" />`,
     name: 'ToolbarButton',
     category: 'general',
-    summary: 'Przycisk z samą ikoną w dwóch rozmiarach (Md i kompaktowy Sm) — narzędzia pasków (Terminal, Explorer).',
     preview: (
       <div className="flex gap-1">
         <ToolbarButton icon={<TerminalIcon />} aria-label="Terminal" />
@@ -250,7 +266,6 @@ export const generalEntries: DocEntry[] = [
 <IconButton icon={<ChevronLeft size={16} />} aria-label="Poprzedni slajd" onClick={showPrevious} />`,
     name: 'IconButton',
     category: 'general',
-    summary: 'Przycisk z samą ikoną i obramowaniem — sterowanie w obrębie karty (np. strzałki karuzeli Gallery).',
     preview: (
       <div className="flex gap-1">
         <IconButton icon={<ChevronLeft size={16} />} aria-label="Poprzedni" />
@@ -277,8 +292,6 @@ export const generalEntries: DocEntry[] = [
   active={terminalOpen} accent={RailButtonAccent.Success} onClick={toggleTerminal} />`,
     name: 'RailButton',
     category: 'general',
-    summary: 'Przycisk nawigacji z pionową etykietą, znany z paska po lewej stronie IDE.',
-    note: '.rail button[data-go]/[data-skills] — stany active i hover sprawdzone w computed style.',
     preview: (
       <div className="flex gap-2">
         <RailButton icon={<User />} label="ABOUT" aria-label="O mnie" active />
@@ -306,8 +319,6 @@ export const generalEntries: DocEntry[] = [
 <Link href="/cv.pdf" target="_blank" rel="noopener">Pobierz CV ↗</Link>`,
     name: 'Link',
     category: 'general',
-    summary: 'Tekstowy odnośnik w kolorze akcentu: link (<a>) albo przycisk akcji w treści.',
-    note: '.tour-action, .ai-message button, .explorer-contact-panel button — kolory ujednolicone do jednego tokenu link.',
     preview: <Link>Zobacz w portfolio →</Link>,
     Demo: LinkDemo,
   },

@@ -1,18 +1,14 @@
 import { useState, type FormEvent } from 'react'
 import { useContacts } from '@/api'
-import {
-  FORM_INCOMPLETE,
-  FORM_SENT,
-  MAIL_NAME_LABEL,
-  MAIL_REPLY_LABEL,
-  MAIL_SUBJECT_PREFIX,
-} from '../../Contact.consts'
 import { findEmail } from '../../Contact.helpers'
+import { CONTACT_KEYS } from '../../Contact.keys'
+import { useTexts } from '@/i18n/hooks/useTexts'
 
 /**
  * State of the contact form. For now the message is handed to the visitor's mail client (`mailto:`); sending through the notifications API will replace `sendMessage` later.
  */
 export function useContactForm() {
+  const [text] = useTexts(CONTACT_KEYS)
   const [feedback, setFeedback] = useState('')
   const { data: contacts } = useContacts()
 
@@ -20,8 +16,8 @@ export function useContactForm() {
     const targetEmail = findEmail(contacts ?? [])
     if (!targetEmail) return
 
-    const subject = `${MAIL_SUBJECT_PREFIX}${name}`
-    const body = `${message}\n\n${MAIL_NAME_LABEL}${name}\n${MAIL_REPLY_LABEL}${email}`
+    const subject = `${text.mail.subjectPrefix}${name}`
+    const body = `${message}\n\n${text.mail.nameLabel}${name}\n${text.mail.replyLabel}${email}`
     window.location.href = `mailto:${targetEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
   }
 
@@ -35,12 +31,12 @@ export function useContactForm() {
     const email = String(data.get('email')).trim()
     const message = String(data.get('message')).trim()
     if (!name || !message) {
-      setFeedback(FORM_INCOMPLETE)
+      setFeedback(text.form.incomplete)
       return
     }
 
     sendMessage(name, email, message)
-    setFeedback(FORM_SENT)
+    setFeedback(text.form.sent)
   }
 
   return { feedback, onSubmit }

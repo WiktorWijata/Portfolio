@@ -2,18 +2,16 @@ import { MessageSquareText, PanelLeft, SquareTerminal } from 'lucide-react'
 import { RailButton, RailButtonAccent, RailButtonIconSize } from '@/design-system'
 import { useEditor, usePanels } from '@/context'
 import { PAGE_SHELL } from '../../Shell.pages'
-import { EXPLORER_HIDE_LABEL, EXPLORER_SHOW_LABEL, TourTarget } from '../../Shell.consts'
-import {
-  RAIL_CHAT_LABEL,
-  RAIL_CHAT_TITLE,
-  RAIL_EXPLORER_TITLE,
-  RAIL_LABEL,
-  RAIL_TERMINAL_LABEL,
-  RAIL_TERMINAL_TITLE,
-} from './Rail.consts'
+import { TourTarget } from '../../Shell.consts'
+import { RAIL_EXPLORER_TITLE, RAIL_TERMINAL_TITLE } from './Rail.consts'
+import { EXPLORER_KEYS } from '@/components/Shell/components/Explorer/Explorer.keys'
+import { RAIL_KEYS } from './Rail.keys'
+import { useTexts } from '@/i18n/hooks/useTexts'
 
 /** Left icon rail: panel toggles on top, page shortcuts below, contact pinned to the bottom. */
 export function Rail() {
+  const [text, t] = useTexts(RAIL_KEYS)
+  const [explorerText] = useTexts(EXPLORER_KEYS)
   const { pageOrder, activePage, openPage } = useEditor()
   const { explorerOpen, toggleExplorer, terminalOpen, toggleTerminal, chatOpen, toggleChat } = usePanels()
   const pageButtons = pageOrder.flatMap((id) => {
@@ -24,7 +22,7 @@ export function Rail() {
 
   return (
     <nav
-      aria-label={RAIL_LABEL}
+      aria-label={text.label}
       className="flex flex-col items-center gap-[7px] border-r border-line-default bg-surface-hover py-3 max-bp570:hidden"
     >
       <RailButton
@@ -33,7 +31,7 @@ export function Rail() {
         label={RAIL_EXPLORER_TITLE}
         accent={RailButtonAccent.Explorer}
         data-tour={TourTarget.ExplorerRail}
-        aria-label={explorerOpen ? EXPLORER_HIDE_LABEL : EXPLORER_SHOW_LABEL}
+        aria-label={explorerOpen ? explorerText.hide : explorerText.show}
         aria-expanded={explorerOpen}
         active={explorerOpen}
         onClick={toggleExplorer}
@@ -44,7 +42,7 @@ export function Rail() {
         label={RAIL_TERMINAL_TITLE}
         accent={RailButtonAccent.Success}
         data-tour={TourTarget.TerminalRail}
-        aria-label={RAIL_TERMINAL_LABEL}
+        aria-label={text.terminalLabel}
         aria-expanded={terminalOpen}
         active={terminalOpen}
         onClick={toggleTerminal}
@@ -52,10 +50,10 @@ export function Rail() {
       <RailButton
         icon={<MessageSquareText strokeWidth={1.5} />}
         iconSize={RailButtonIconSize.Xl}
-        label={RAIL_CHAT_TITLE}
+        label={text.chatTitle}
         accent={RailButtonAccent.Assistant}
         data-tour={TourTarget.AssistantRail}
-        aria-label={RAIL_CHAT_LABEL}
+        aria-label={text.chatLabel}
         aria-expanded={chatOpen}
         active={chatOpen}
         onClick={toggleChat}
@@ -67,7 +65,7 @@ export function Rail() {
           className={index === firstPinned ? 'mt-auto' : ''}
           icon={button.icon}
           label={button.label}
-          aria-label={button.name}
+          aria-label={t(button.name)}
           active={activePage === button.id}
           onClick={() => openPage(button.id)}
         />

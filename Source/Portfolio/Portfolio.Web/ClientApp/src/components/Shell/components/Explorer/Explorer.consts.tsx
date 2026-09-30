@@ -11,8 +11,3 @@ export const NODE_ICONS: Record<SolutionNodeKind, ReactNode> = {
 }
 
 export const EXPLORER_LABEL = 'Solution Explorer'
-export const EXPAND_ALL_LABEL = 'Rozwiń wszystkie foldery'
-export const COLLAPSE_ALL_LABEL = 'Zwiń wszystkie foldery'
-export const EXPLORER_SEARCH_PLACEHOLDER = 'Szukaj plików…'
-export const EXPLORER_SEARCH_LABEL = 'Szukaj plików w rozwiązaniu'
-export const EXPLORER_NO_RESULTS = 'Brak plików pasujących do wyszukiwania.'

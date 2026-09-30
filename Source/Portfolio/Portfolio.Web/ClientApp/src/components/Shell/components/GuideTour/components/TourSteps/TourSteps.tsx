@@ -3,13 +3,16 @@ import { Language } from '@/context'
 import { GuideCard, GuideHighlight, GuideShade } from '@/design-system'
 import type { TourTarget } from '@/components/Shell/Shell.consts'
 import { usePreferences } from '@/context'
-import { HIGHLIGHT_PADDING, TOUR_ACTION_LABELS, TOUR_STEPS } from '../../GuideTour.consts'
+import { HIGHLIGHT_PADDING, TOUR_STEPS } from '../../GuideTour.consts'
 import { useTourTarget } from '../../hooks/useTourTarget'
+import { TOUR_KEYS } from '../../GuideTour.keys'
+import { useTexts } from '@/i18n/hooks/useTexts'
 
 const NO_TARGETS: TourTarget[] = []
 
 /** The running tour: shade, spotlight on the current target and the step card. */
 export function TourSteps() {
+  const [text, t] = useTexts(TOUR_KEYS)
   const { endTour, language, setLanguage } = usePreferences()
   const [step, setStep] = useState(0)
   const current = TOUR_STEPS[step]
@@ -37,16 +40,23 @@ export function TourSteps() {
         anchor={rect ?? undefined}
         step={step + 1}
         totalSteps={TOUR_STEPS.length}
-        title={current.title}
-        translation={current.translation}
-        actionLabel={current.action && TOUR_ACTION_LABELS[current.action]}
+        title={text.steps[current.key].title}
+        translation={current.bilingual ? t(TOUR_KEYS.steps[current.key].text, { lng: Language.En }) : undefined}
+        actionLabel={current.action && text.languageAction}
+        labels={{
+          progress: (stepNumber, total) => t(TOUR_KEYS.progress, { step: stepNumber, total }),
+          skip: text.skip,
+          back: text.back,
+          next: text.next,
+          done: text.done,
+        }}
         onAction={() => setLanguage(language === Language.Pl ? Language.En : Language.Pl)}
         isLastStep={isLast}
         onSkip={endTour}
         onBack={step > 0 ? () => setStep((s) => s - 1) : undefined}
         onNext={() => (isLast ? endTour() : setStep((s) => s + 1))}
       >
-        {current.text}
+        {t(TOUR_KEYS.steps[current.key].text, current.bilingual ? { lng: Language.Pl } : undefined)}
       </GuideCard>
     </>
   )

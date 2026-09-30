@@ -1,8 +1,12 @@
 import { Badge, FontFamily, FontSize, FontWeight, Label, LabelTone, Panel, Text, TextColor } from '@/design-system'
+import { useTexts } from '@/i18n/hooks/useTexts'
+import { DOCS_KEYS } from './Docs.keys'
+import { entryText } from './Docs.helpers'
 import { categories, entries, entriesIn } from './registry'
 import type { DocEntry } from './types'
 
 function ComponentCard({ entry }: { entry: DocEntry }) {
+  const [text] = useTexts(DOCS_KEYS, 'docs')
   return (
     <a href={`#/components/${entry.id}`} className="block rounded-3xl focus-ring">
       <Panel interactive className="flex h-full flex-col overflow-hidden">
@@ -17,7 +21,7 @@ function ComponentCard({ entry }: { entry: DocEntry }) {
             {entry.name}
           </Text>
           <Text as="p" size={FontSize.Small} color={TextColor.Dim} className="leading-[1.55]">
-            {entry.summary}
+            {entryText(text, entry.id).summary}
           </Text>
         </div>
       </Panel>
@@ -26,19 +30,19 @@ function ComponentCard({ entry }: { entry: DocEntry }) {
 }
 
 export function ComponentsIndex() {
+  const [text, t] = useTexts(DOCS_KEYS, 'docs')
   return (
     <div className="flex flex-col gap-10">
       <div className="flex flex-col gap-3">
-        <Label tone={LabelTone.Accent}>OrchIDE UI / Komponenty</Label>
+        <Label tone={LabelTone.Accent}>{text.componentsIndex.kicker}</Label>
         <Text as="h1" size={FontSize.Heading} color={TextColor.Heading} className="leading-[1.15] tracking-[-.03em]">
-          Komponenty
+          {text.componentsIndex.title}
         </Text>
         <Text as="p" size={FontSize.XLarge} color={TextColor.Muted} className="max-w-[640px] leading-[1.7]">
-          Biblioteka komponentów portfolio w stylu IDE. Wybierz komponent, żeby zobaczyć żywe demo — cały interfejs jest
-          zbudowany wyłącznie z tych klocków.
+          {text.componentsIndex.text}
         </Text>
         <Text size={FontSize.Small} font={FontFamily.Mono} color={TextColor.Faint}>
-          {entries.length} komponentów · {categories.length} kategorii
+          {t(DOCS_KEYS.componentsIndex.stats, { components: entries.length, categories: categories.length })}
         </Text>
       </div>
 
@@ -48,7 +52,7 @@ export function ComponentsIndex() {
           <section key={category.id} className="flex flex-col gap-4">
             <div className="flex items-center gap-3 border-b border-line-subtle pb-3">
               <Text as="h2" size={FontSize.XXLarge} weight={FontWeight.Medium} color={TextColor.Heading}>
-                {category.label}
+                {text.categories[category.id]}
               </Text>
               <Badge>{items.length}</Badge>
             </div>

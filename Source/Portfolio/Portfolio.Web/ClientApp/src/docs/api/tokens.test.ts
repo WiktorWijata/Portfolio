@@ -2,10 +2,10 @@ import { describe, expect, it } from 'vitest'
 import { getComponentTokens } from './tokens'
 
 // N2 regression: the generator used to scan Text.tsx's whole body for every dependant, crediting Input,
-// Textarea and CardHeading with every FontSize Text can ever produce (including --text-h1, 44px) instead of
+// Textarea and Card with every FontSize Text can ever produce (including --text-h1, 44px) instead of
 // only the tokens their own props actually select.
 describe('getComponentTokens — N2 regression: no over-attributed Text tokens', () => {
-  it.each(['Input', 'Textarea', 'CardHeading'])('%s does not report --text-h1', (folder) => {
+  it.each(['Input', 'Textarea', 'Card'])('%s does not report --text-h1', (folder) => {
     const { groups } = getComponentTokens(folder)
     const sizeTokens = groups.find((g) => g.category === 'sizes')?.tokens.map((t) => t.token) ?? []
     expect(sizeTokens).not.toContain('--text-h1')

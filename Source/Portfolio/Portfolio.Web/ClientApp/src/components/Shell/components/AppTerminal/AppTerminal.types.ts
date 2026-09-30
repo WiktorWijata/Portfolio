@@ -1,3 +1,4 @@
+import type { ParseKeys } from 'i18next'
 import type { PageId } from '@/navigation'
 
 export const TerminalCommandName = {
@@ -14,11 +15,11 @@ export type TerminalCommandName = (typeof TerminalCommandName)[keyof typeof Term
 
 export interface TerminalCommand {
   name: TerminalCommandName
-  /** Short description shown by `help` and, for page commands, in "Otwarto: …". */
-  description: string
+  /** Translation key of the short description shown by `help` and, for page commands, in "Opened: …". */
+  descriptionKey: ParseKeys
   /** Page the command opens in the editor. Commands without a page do something else (help, cv, clear). */
   page?: PageId
 }
 
 /** Command that opens a page; the page comes from the key it is registered under. */
-export type TerminalPageCommand = Pick<TerminalCommand, 'name' | 'description'>
+export type TerminalPageCommand = Pick<TerminalCommand, 'name' | 'descriptionKey'>

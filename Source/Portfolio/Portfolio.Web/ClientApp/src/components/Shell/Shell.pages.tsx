@@ -2,6 +2,8 @@ import { FolderOpen, GitBranch, Layers, Mail, PanelsTopLeft } from 'lucide-react
 import { PageId } from '@/navigation'
 import { TerminalCommandName } from './components/AppTerminal/AppTerminal.types'
 import type { PageShell } from './Shell.types'
+import { TERMINAL_KEYS } from '@/components/Shell/components/AppTerminal/AppTerminal.keys'
+import { RAIL_KEYS } from '@/components/Shell/components/Rail/Rail.keys'
 
 /**
  * How the shell presents every page: its rail button and its terminal command. The order of the buttons and
@@ -12,24 +14,24 @@ import type { PageShell } from './Shell.types'
 export const PAGE_SHELL: Record<PageId, PageShell> = {
   [PageId.GetStarted]: {},
   [PageId.Home]: {
-    rail: { label: 'ABOUT', name: 'O mnie', icon: <PanelsTopLeft /> },
-    command: { name: TerminalCommandName.About, description: 'O mnie' },
+    rail: { label: 'ABOUT', name: RAIL_KEYS.pages.home, icon: <PanelsTopLeft /> },
+    command: { name: TerminalCommandName.About, descriptionKey: TERMINAL_KEYS.commands.about },
   },
   [PageId.Projects]: {
-    rail: { label: 'WORK', name: 'Projekty', icon: <FolderOpen /> },
-    command: { name: TerminalCommandName.Projects, description: 'Projekty' },
+    rail: { label: 'WORK', name: RAIL_KEYS.pages.projects, icon: <FolderOpen /> },
+    command: { name: TerminalCommandName.Projects, descriptionKey: TERMINAL_KEYS.commands.projects },
   },
   [PageId.ProjectPortfolio]: {},
   [PageId.Stack]: {
-    rail: { label: 'STACK', name: 'Stack technologiczny', icon: <Layers /> },
-    command: { name: TerminalCommandName.Stack, description: 'Technologie' },
+    rail: { label: 'STACK', name: RAIL_KEYS.pages.stack, icon: <Layers /> },
+    command: { name: TerminalCommandName.Stack, descriptionKey: TERMINAL_KEYS.commands.stack },
   },
   [PageId.Experience]: {
-    rail: { label: 'PATH', name: 'Doświadczenie', icon: <GitBranch /> },
-    command: { name: TerminalCommandName.Experience, description: 'Doświadczenie' },
+    rail: { label: 'PATH', name: RAIL_KEYS.pages.experience, icon: <GitBranch /> },
+    command: { name: TerminalCommandName.Experience, descriptionKey: TERMINAL_KEYS.commands.experience },
   },
   [PageId.Contact]: {
-    rail: { label: 'MAIL', name: 'Kontakt', icon: <Mail />, pinned: true },
-    command: { name: TerminalCommandName.Contact, description: 'Formularz kontaktowy' },
+    rail: { label: 'MAIL', name: RAIL_KEYS.pages.contact, icon: <Mail />, pinned: true },
+    command: { name: TerminalCommandName.Contact, descriptionKey: TERMINAL_KEYS.commands.contact },
   },
 }

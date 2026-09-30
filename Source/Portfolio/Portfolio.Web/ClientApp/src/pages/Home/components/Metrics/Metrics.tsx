@@ -2,16 +2,10 @@ import { ChevronLeft, ChevronRight } from 'lucide-react'
 import type { KeyboardEvent } from 'react'
 import { useAspirations, useExperiences } from '@/api'
 import { FontFamily, FontSize, FontWeight, Text } from '@/design-system'
-import {
-  HOME_INFINITY_CONTROLS_LABEL,
-  HOME_INFINITY_LABEL,
-  HOME_INFINITY_NEXT_LABEL,
-  HOME_INFINITY_PREVIOUS_LABEL,
-  HOME_METRICS_TEAMS_LABEL,
-  HOME_METRICS_YEARS_LABEL,
-} from '../../Home.consts'
+import { useTexts } from '@/i18n/hooks/useTexts'
 import { useInfinityCaption } from '../../hooks/useInfinityCaption'
 import { computeYearsOfExperience, countEmployers } from './Metrics.helpers'
+import { HOME_KEYS } from '../../Home.keys'
 
 const cardClasses = 'rounded-xl border border-line-subtle bg-surface-panel/80 px-4 py-3.5'
 const arrowButton =
@@ -19,6 +13,7 @@ const arrowButton =
 
 /** The "∞" metric: a caption you can flip through with the arrows (or ←/→ on the group). */
 function InfinityMetric({ phrases }: { phrases: string[] }) {
+  const [text] = useTexts(HOME_KEYS)
   const { index, move } = useInfinityCaption(phrases.length)
 
   if (phrases.length === 0) return null
@@ -33,7 +28,7 @@ function InfinityMetric({ phrases }: { phrases: string[] }) {
     <div className={`${cardClasses} relative pr-[100px]`}>
       <Text
         as="strong"
-        aria-label={HOME_INFINITY_LABEL}
+        aria-label={text.metrics.infinity.label}
         font={FontFamily.Sans}
         weight={FontWeight.Medium}
         className="block text-[36px] leading-none tracking-[-.03em] text-accent"
@@ -54,13 +49,13 @@ function InfinityMetric({ phrases }: { phrases: string[] }) {
       {/* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions */}
       <div
         role="group"
-        aria-label={HOME_INFINITY_CONTROLS_LABEL}
+        aria-label={text.metrics.infinity.controls}
         onKeyDown={onKeyDown}
         className="absolute top-1/2 right-3.5 flex -translate-y-1/2 items-center gap-[3px]"
       >
         <button
           type="button"
-          aria-label={HOME_INFINITY_PREVIOUS_LABEL}
+          aria-label={text.metrics.infinity.previous}
           className={arrowButton}
           onClick={() => move(-1)}
         >
@@ -69,7 +64,7 @@ function InfinityMetric({ phrases }: { phrases: string[] }) {
         <Text aria-hidden font={FontFamily.Mono} className="text-[10px] whitespace-nowrap text-content-dim">
           {index + 1} / {phrases.length}
         </Text>
-        <button type="button" aria-label={HOME_INFINITY_NEXT_LABEL} className={arrowButton} onClick={() => move(1)}>
+        <button type="button" aria-label={text.metrics.infinity.next} className={arrowButton} onClick={() => move(1)}>
           <ChevronRight size={14} strokeWidth={1.4} aria-hidden />
         </button>
       </div>
@@ -79,14 +74,15 @@ function InfinityMetric({ phrases }: { phrases: string[] }) {
 
 /** Three figures under the intro: years of experience, teams, and the "∞" metric. */
 export function Metrics() {
+  const [text] = useTexts(HOME_KEYS)
   const { data: aspirations } = useAspirations()
   const { data: experiences } = useExperiences()
 
   if (!aspirations || !experiences) return null
 
   const metrics = [
-    { value: `${computeYearsOfExperience(experiences)}+`, label: HOME_METRICS_YEARS_LABEL },
-    { value: `${countEmployers(experiences)}`, label: HOME_METRICS_TEAMS_LABEL },
+    { value: `${computeYearsOfExperience(experiences)}+`, label: text.metrics.years },
+    { value: `${countEmployers(experiences)}`, label: text.metrics.teams },
   ]
 
   return (

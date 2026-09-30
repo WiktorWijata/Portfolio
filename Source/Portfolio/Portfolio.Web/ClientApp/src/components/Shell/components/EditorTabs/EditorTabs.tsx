@@ -2,14 +2,16 @@ import { Tab, Tabs } from '@/design-system'
 import { useEditor } from '@/context'
 import { pages } from '@/navigation'
 import { TourTarget } from '../../Shell.consts'
-import { CLOSE_TAB_LABEL, EDITOR_TABS_LABEL } from './EditorTabs.consts'
+import { EDITOR_TABS_KEYS } from './EditorTabs.keys'
+import { useTexts } from '@/i18n/hooks/useTexts'
 
 /** Tabs of the open files; drag to reorder, × to close. */
 export function EditorTabs() {
+  const [text, t] = useTexts(EDITOR_TABS_KEYS)
   const { tabs, activePage, openPage, closeTab, reorderTabs } = useEditor()
 
   return (
-    <Tabs aria-label={EDITOR_TABS_LABEL} data-tour={TourTarget.Tabs} onReorder={reorderTabs}>
+    <Tabs aria-label={text.tabsLabel} data-tour={TourTarget.Tabs} onReorder={reorderTabs}>
       {tabs.map((id) => (
         <Tab
           key={id}
@@ -17,9 +19,9 @@ export function EditorTabs() {
           active={id === activePage}
           onSelect={() => openPage(id)}
           onClose={() => closeTab(id)}
-          closeLabel={`${CLOSE_TAB_LABEL} ${pages[id].tab}`}
+          closeLabel={`${text.closeTab} ${t(pages[id].tab)}`}
         >
-          {pages[id].tab}
+          {t(pages[id].tab)}
         </Tab>
       ))}
     </Tabs>

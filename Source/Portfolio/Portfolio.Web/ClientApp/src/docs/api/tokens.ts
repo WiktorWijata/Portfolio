@@ -5,14 +5,7 @@
 
 export type TokenCategory = 'colors' | 'sizes' | 'fonts' | 'radii' | 'shadows' | 'breakpoints'
 
-export const tokenCategoryLabels: Record<TokenCategory, string> = {
-  colors: 'Kolory',
-  sizes: 'Rozmiary czcionek',
-  fonts: 'Fonty',
-  radii: 'Zaokrąglenia',
-  shadows: 'Cienie',
-  breakpoints: 'Breakpointy',
-}
+const TOKEN_CATEGORIES: TokenCategory[] = ['colors', 'sizes', 'fonts', 'radii', 'shadows', 'breakpoints']
 
 const cssFiles = import.meta.glob<string>('@/design-system/theme/*.css', {
   query: '?raw',
@@ -64,14 +57,14 @@ export interface TokenUsage {
   value: string
   /** The value in every theme (the default theme's value stands in where a theme does not override it). */
   themeValues: { theme: string; value: string }[]
-  /** What the token is used for, e.g. "tło", "obramowanie". */
+  /** What the token is used for, as a role id (see `tokens.roles` in the docs texts), e.g. `background`, `border`. */
   roles: string[]
   /** Example utilities/props that reference it. */
   classes: string[]
 }
 
 export interface ComponentTokens {
-  groups: { category: TokenCategory; label: string; tokens: TokenUsage[] }[]
+  groups: { category: TokenCategory; tokens: TokenUsage[] }[]
   /** Other design-system components this one is built from. */
   dependencies: string[]
 }
@@ -112,15 +105,15 @@ const categoryOf = (token: string): TokenCategory | null => {
 }
 
 const colorRoles: Record<string, string> = {
-  bg: 'tło',
-  text: 'kolor tekstu',
-  border: 'obramowanie',
-  outline: 'obrys',
-  ring: 'obrys',
-  fill: 'wypełnienie',
-  stroke: 'kreska',
-  caret: 'kursor',
-  divide: 'separator',
+  bg: 'background',
+  text: 'textColor',
+  border: 'border',
+  outline: 'outline',
+  ring: 'outline',
+  fill: 'fill',
+  stroke: 'stroke',
+  caret: 'caret',
+  divide: 'divider',
   from: 'gradient',
   to: 'gradient',
   via: 'gradient',
@@ -169,7 +162,7 @@ function readClass(raw: string, add: Add, via = raw) {
   const { variants, base: rawBase = '' } = splitVariants(raw)
   for (const v of variants) {
     const bp = v.match(/^(?:max-)?(bp\d+)$/)
-    if (bp && theme.has(`--breakpoint-${bp[1]}`)) add(`--breakpoint-${bp[1]}`, 'zmiana układu', v)
+    if (bp && theme.has(`--breakpoint-${bp[1]}`)) add(`--breakpoint-${bp[1]}`, 'layoutChange', v)
   }
   const base = stripOpacity(rawBase.replace(/^[!-]/, ''))
 
@@ -177,7 +170,7 @@ function readClass(raw: string, add: Add, via = raw) {
   // CSS body references instead of trying to match it against the prefix patterns below.
   const utilityBody = utilityBodies.get(base)
   if (utilityBody !== undefined) {
-    for (const m of utilityBody.matchAll(/var\((--[\w-]+)/g)) if (theme.has(m[1] ?? '')) add(m[1] ?? '', 'kolor', via)
+    for (const m of utilityBody.matchAll(/var\((--[\w-]+)/g)) if (theme.has(m[1] ?? '')) add(m[1] ?? '', 'color', via)
     return
   }
 
@@ -185,24 +178,24 @@ function readClass(raw: string, add: Add, via = raw) {
   if (color) {
     const name = color[2] ?? ''
     if (color[1] === 'text' && theme.has(`--text-${name}`)) {
-      add(`--text-${name}`, 'rozmiar czcionki', via)
+      add(`--text-${name}`, 'fontSize', via)
       return
     }
     if (theme.has(`--color-${name}`)) {
       const role =
         variants.includes('placeholder') && color[1] === 'text'
-          ? 'kolor placeholdera'
-          : (colorRoles[(color[1] ?? '').replace(/-[trblxyse]$/, '')] ?? 'kolor')
+          ? 'placeholderColor'
+          : (colorRoles[(color[1] ?? '').replace(/-[trblxyse]$/, '')] ?? 'color')
       add(`--color-${name}`, role, via)
       return
     }
   }
   const radius = base.match(/^rounded(?:-[trblse]{1,2})?-(.+)$/)
-  if (radius && theme.has(`--radius-${radius[1]}`)) return add(`--radius-${radius[1]}`, 'zaokrąglenie', via)
+  if (radius && theme.has(`--radius-${radius[1]}`)) return add(`--radius-${radius[1]}`, 'radius', via)
   const shadow = base.match(/^shadow-(.+)$/)
-  if (shadow && theme.has(`--shadow-${shadow[1]}`)) return add(`--shadow-${shadow[1]}`, 'cień', via)
+  if (shadow && theme.has(`--shadow-${shadow[1]}`)) return add(`--shadow-${shadow[1]}`, 'shadow', via)
   const font = base.match(/^font-(sans|mono|tree)$/)
-  if (font && theme.has(`--font-${font[1]}`)) return add(`--font-${font[1]}`, 'font', via)
+  if (font && theme.has(`--font-${font[1]}`)) return add(`--font-${font[1]}`, 'fontFamily', via)
 }
 
 /** Resolves a relative import specifier written in `fromPath` to whichever key of `sources` it names (the
@@ -268,7 +261,7 @@ export function getComponentTokens(folder: string): ComponentTokens {
       for (const raw of src.split(/[\s'"`{}]+/)) if (raw) readClass(raw, add)
     }
     for (const m of src.matchAll(/var\((--[\w-]+)/g))
-      if (theme.has(m[1] ?? '')) add(m[1] ?? '', 'wartość arbitralna', `var(${m[1]})`)
+      if (theme.has(m[1] ?? '')) add(m[1] ?? '', 'arbitraryValue', `var(${m[1]})`)
     for (const m of src.matchAll(/from '([^']+)'/g)) {
       const dep = resolveModule(path, m[1] ?? '')?.match(/\/components\/(\w+)\//)
       if (dep) dependencies.add(dep[1] ?? '')
@@ -282,26 +275,23 @@ export function getComponentTokens(folder: string): ComponentTokens {
     }
   }
 
-  const groups = (Object.keys(tokenCategoryLabels) as TokenCategory[])
-    .map((category) => ({
-      category,
-      label: tokenCategoryLabels[category],
-      tokens: [...found.entries()]
-        .filter(([token]) => categoryOf(token) === category)
-        .map(([token, e]) => ({
-          token,
-          category,
-          value: theme.get(token) ?? '',
-          themeValues: themeNames.map((name) => ({
-            theme: name,
-            value: valueIn(name, token) ?? theme.get(token) ?? '',
-          })),
-          roles: [...e.roles],
-          classes: [...e.classes].slice(0, 4),
-        }))
-        .sort((a, b) => a.token.localeCompare(b.token)),
-    }))
-    .filter((g) => g.tokens.length)
+  const groups = TOKEN_CATEGORIES.map((category) => ({
+    category,
+    tokens: [...found.entries()]
+      .filter(([token]) => categoryOf(token) === category)
+      .map(([token, e]) => ({
+        token,
+        category,
+        value: theme.get(token) ?? '',
+        themeValues: themeNames.map((name) => ({
+          theme: name,
+          value: valueIn(name, token) ?? theme.get(token) ?? '',
+        })),
+        roles: [...e.roles],
+        classes: [...e.classes].slice(0, 4),
+      }))
+      .sort((a, b) => a.token.localeCompare(b.token)),
+  })).filter((g) => g.tokens.length)
 
   const result = { groups, dependencies: [...dependencies].filter((d) => d !== folder) }
   cache.set(folder, result)

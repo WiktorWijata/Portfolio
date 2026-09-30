@@ -1,6 +1,6 @@
 export { StatusBarButton, StatusBarDivider, StatusBarItem, StatusBarSpacer, StatusBarSwitch } from './components'
 export { StatusBar } from './StatusBar'
-export { StatusBarAccent, StatusBarTone } from './StatusBar.types'
+export { StatusBarAccent, StatusBarIndicator, StatusBarTone } from './StatusBar.types'
 export type {
   StatusBarButtonProps,
   StatusBarItemProps,

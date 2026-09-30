@@ -1,13 +1,17 @@
 import type { ReactNode } from 'react'
 import { FontFamily, FontSize, FontWeight, Label, LabelTone, Panel, Text, TextColor } from '@/design-system'
+import { useTexts } from '@/i18n/hooks/useTexts'
 import { getComponentTokens } from './api/tokens'
+import { DOCS_KEYS } from './Docs.keys'
+import { entryText } from './Docs.helpers'
 import { CodeBlock } from './CodeBlock'
 import { PropsTables } from './PropsTable'
-import { categories, entries } from './registry'
+import { entries } from './registry'
 import { TokensTables } from './TokensTable'
 import type { DocEntry } from './types'
 
 function NeighbourLink({ entry, direction }: { entry?: DocEntry; direction: 'prev' | 'next' }) {
+  const [text] = useTexts(DOCS_KEYS, 'docs')
   if (!entry) return <span />
   return (
     <a
@@ -17,7 +21,7 @@ function NeighbourLink({ entry, direction }: { entry?: DocEntry; direction: 'pre
       )}
     >
       <Text size={FontSize.XSmall} font={FontFamily.Mono} color={TextColor.Faint}>
-        {direction === 'prev' ? '← Poprzedni' : 'Następny →'}
+        {direction === 'prev' ? text.componentPage.previous : text.componentPage.next}
       </Text>
       <Text size={FontSize.XLarge} weight={FontWeight.Medium} color={TextColor.Accent}>
         {entry.name}
@@ -45,7 +49,8 @@ function DocSection({ title, description, children }: { title: string; descripti
 }
 
 export function ComponentPage({ entry }: { entry: DocEntry }) {
-  const category = categories.find((c) => c.id === entry.category)
+  const [text] = useTexts(DOCS_KEYS, 'docs')
+  const categoryLabel = text.categories[entry.category]
   const index = entries.findIndex((e) => e.id === entry.id)
   const { dependencies } = getComponentTokens(entry.api.folder)
   const dependencyEntries = dependencies
@@ -57,18 +62,18 @@ export function ComponentPage({ entry }: { entry: DocEntry }) {
       <div className="flex flex-col gap-3">
         <Text size={FontSize.Small} color={TextColor.Dim}>
           <a href="#/components" className="hover:text-content-strong">
-            Komponenty
+            {text.componentPage.breadcrumb}
           </a>{' '}
-          / {category?.label}
+          / {categoryLabel}
         </Text>
-        <Label tone={LabelTone.Accent}>{category?.label}</Label>
+        <Label tone={LabelTone.Accent}>{categoryLabel}</Label>
         <Text as="h1" size={FontSize.Heading} color={TextColor.Heading} className="leading-[1.15] tracking-[-.03em]">
           {entry.name}
         </Text>
         <Text as="p" size={FontSize.XLarge} color={TextColor.Muted} className="max-w-[640px] leading-[1.7]">
-          {entry.summary}
+          {entryText(text, entry.id).summary}
         </Text>
-        {entry.note && (
+        {entryText(text, entry.id).note && (
           <Text
             as="p"
             size={FontSize.XSmall}
@@ -76,7 +81,7 @@ export function ComponentPage({ entry }: { entry: DocEntry }) {
             color={TextColor.Faint}
             className="max-w-[640px] leading-relaxed"
           >
-            {entry.note}
+            {entryText(text, entry.id).note}
           </Text>
         )}
       </div>
@@ -85,26 +90,20 @@ export function ComponentPage({ entry }: { entry: DocEntry }) {
         <entry.Demo />
       </Panel>
 
-      <DocSection title="Przykład użycia">
+      <DocSection title={text.componentPage.usage}>
         <CodeBlock code={entry.usage} />
       </DocSection>
 
-      <DocSection
-        title="Parametry"
-        description="Nazwa, typ, wartość domyślna i opis każdego propsa. Lista jest czytana wprost z pliku typów komponentu."
-      >
+      <DocSection title={text.componentPage.props.title} description={text.componentPage.props.description}>
         <PropsTables interfaces={entry.api.interfaces} />
       </DocSection>
 
-      <DocSection
-        title="Tokeny"
-        description="Tokeny z motywu (@theme), z których korzysta ten komponent, oraz do czego służą."
-      >
+      <DocSection title={text.componentPage.tokens.title} description={text.componentPage.tokens.description}>
         <TokensTables folder={entry.api.folder} />
       </DocSection>
 
       {dependencyEntries.length > 0 && (
-        <DocSection title="Zbudowany z" description="Inne komponenty OrchIDE UI używane wewnątrz.">
+        <DocSection title={text.componentPage.builtFrom.title} description={text.componentPage.builtFrom.description}>
           <div className="flex flex-wrap gap-2">
             {dependencyEntries.map((dep) => (
               <a

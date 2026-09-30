@@ -1,3 +1,13 @@
+import type { GuideCardLabels } from './components/GuideCard/GuideCard.types'
+
+export const DEFAULT_CARD_LABELS: GuideCardLabels = {
+  progress: (step, totalSteps) => `PRZEWODNIK / ${step} Z ${totalSteps}`,
+  skip: 'Pomiń',
+  back: 'Wstecz',
+  next: 'Dalej →',
+  done: 'Gotowe',
+}
+
 export const EDGE = 12
 
 export const GAP = 16

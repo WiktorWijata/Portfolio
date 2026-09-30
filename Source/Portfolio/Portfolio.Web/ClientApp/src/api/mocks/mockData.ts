@@ -7,6 +7,8 @@ import type {
   Introduction,
   Language,
   Project,
+  ProjectArchitectureBlock,
+  ProjectArchitectureNote,
   Service,
   SkillCategory,
   Specialization,
@@ -47,24 +49,50 @@ export const mockIntroductionEn: Introduction = {
 // ---------------------------------------------------------------------------
 
 export const mockServicesPl: Service[] = [
-  { iconSlug: 'code-xml', title: 'Rozwój aplikacji .NET', description: 'Nowe funkcje i utrzymanie istniejących systemów.' },
-  { iconSlug: 'workflow', title: 'Integracje systemów', description: 'API, komunikacja asynchroniczna i wymiana danych.' },
-  { iconSlug: 'refresh-cw', title: 'Modernizacja rozwiązań', description: 'Usprawnianie starszych aplikacji i rozwój w Azure.' },
+  {
+    iconSlug: 'code-xml',
+    title: 'Rozwój aplikacji .NET',
+    description: 'Nowe funkcje i utrzymanie istniejących systemów.',
+  },
+  {
+    iconSlug: 'workflow',
+    title: 'Integracje systemów',
+    description: 'API, komunikacja asynchroniczna i wymiana danych.',
+  },
+  {
+    iconSlug: 'refresh-cw',
+    title: 'Modernizacja rozwiązań',
+    description: 'Usprawnianie starszych aplikacji i rozwój w Azure.',
+  },
   {
     iconSlug: 'network',
     title: 'Projektowanie architektury',
-    description: 'Dobór komponentów, podział odpowiedzialności i komunikacja między usługami. Dokumentacja w modelu C4.',
+    description:
+      'Dobór komponentów, podział odpowiedzialności i komunikacja między usługami. Dokumentacja w modelu C4.',
   },
 ]
 
 export const mockServicesEn: Service[] = [
-  { iconSlug: 'code-xml', title: '.NET application development', description: 'New features and maintenance of existing systems.' },
-  { iconSlug: 'workflow', title: 'System integration', description: 'APIs, asynchronous communication and data exchange.' },
-  { iconSlug: 'refresh-cw', title: 'Solution modernization', description: 'Improving legacy applications and development in Azure.' },
+  {
+    iconSlug: 'code-xml',
+    title: '.NET application development',
+    description: 'New features and maintenance of existing systems.',
+  },
+  {
+    iconSlug: 'workflow',
+    title: 'System integration',
+    description: 'APIs, asynchronous communication and data exchange.',
+  },
+  {
+    iconSlug: 'refresh-cw',
+    title: 'Solution modernization',
+    description: 'Improving legacy applications and development in Azure.',
+  },
   {
     iconSlug: 'network',
     title: 'Architecture design',
-    description: 'Choosing components, dividing responsibilities and communication between services. Documentation in the C4 model.',
+    description:
+      'Choosing components, dividing responsibilities and communication between services. Documentation in the C4 model.',
   },
 ]
 
@@ -72,7 +100,12 @@ export const mockServicesEn: Service[] = [
 // Specializations
 // ---------------------------------------------------------------------------
 
-const devicon = (slug: string): Technology => ({ name: slug, iconSource: 'Devicon', iconSlug: slug, iconIsMonochrome: false })
+const devicon = (slug: string): Technology => ({
+  name: slug,
+  iconSource: 'Devicon',
+  iconSlug: slug,
+  iconIsMonochrome: false,
+})
 const tech = (name: string, iconSource: 'Devicon' | 'SimpleIcons', iconSlug: string): Technology => ({
   name,
   iconSource,
@@ -105,10 +138,30 @@ const T = {
 }
 
 export const mockSpecializationsPl: Specialization[] = [
-  { tag: 'UI', title: 'Aplikacje biznesowe', subtitle: 'Web i desktop dla użytkowników wewnętrznych', technologies: [T.react, T.blazor, T.wpf, T.winforms] },
-  { tag: 'API', title: 'Backend i usługi', subtitle: 'Logika domenowa, kontrakty, autoryzacja', technologies: [T.dotnet, T.restApi, T.grpc, T.soap, T.wcf] },
-  { tag: 'MSG', title: 'Integracje', subtitle: 'Komunikacja z systemami zewnętrznymi', technologies: [T.rabbitmq, T.masstransit] },
-  { tag: 'DB', title: 'Dane', subtitle: 'Modele, migracje, optymalizacja zapytań', technologies: [T.sqlServer, T.mongodb] },
+  {
+    tag: 'UI',
+    title: 'Aplikacje biznesowe',
+    subtitle: 'Web i desktop dla użytkowników wewnętrznych',
+    technologies: [T.react, T.blazor, T.wpf, T.winforms],
+  },
+  {
+    tag: 'API',
+    title: 'Backend i usługi',
+    subtitle: 'Logika domenowa, kontrakty, autoryzacja',
+    technologies: [T.dotnet, T.restApi, T.grpc, T.soap, T.wcf],
+  },
+  {
+    tag: 'MSG',
+    title: 'Integracje',
+    subtitle: 'Komunikacja z systemami zewnętrznymi',
+    technologies: [T.rabbitmq, T.masstransit],
+  },
+  {
+    tag: 'DB',
+    title: 'Dane',
+    subtitle: 'Modele, migracje, optymalizacja zapytań',
+    technologies: [T.sqlServer, T.mongodb],
+  },
   {
     tag: 'OPS',
     title: 'Wdrożenia i utrzymanie',
@@ -118,10 +171,30 @@ export const mockSpecializationsPl: Specialization[] = [
 ]
 
 export const mockSpecializationsEn: Specialization[] = [
-  { tag: 'UI', title: 'Business applications', subtitle: 'Web and desktop for internal users', technologies: [T.react, T.blazor, T.wpf, T.winforms] },
-  { tag: 'API', title: 'Backend and services', subtitle: 'Domain logic, contracts, authorization', technologies: [T.dotnet, T.restApi, T.grpc, T.soap, T.wcf] },
-  { tag: 'MSG', title: 'Integrations', subtitle: 'Communication with external systems', technologies: [T.rabbitmq, T.masstransit] },
-  { tag: 'DB', title: 'Data', subtitle: 'Models, migrations, query optimization', technologies: [T.sqlServer, T.mongodb] },
+  {
+    tag: 'UI',
+    title: 'Business applications',
+    subtitle: 'Web and desktop for internal users',
+    technologies: [T.react, T.blazor, T.wpf, T.winforms],
+  },
+  {
+    tag: 'API',
+    title: 'Backend and services',
+    subtitle: 'Domain logic, contracts, authorization',
+    technologies: [T.dotnet, T.restApi, T.grpc, T.soap, T.wcf],
+  },
+  {
+    tag: 'MSG',
+    title: 'Integrations',
+    subtitle: 'Communication with external systems',
+    technologies: [T.rabbitmq, T.masstransit],
+  },
+  {
+    tag: 'DB',
+    title: 'Data',
+    subtitle: 'Models, migrations, query optimization',
+    technologies: [T.sqlServer, T.mongodb],
+  },
   {
     tag: 'OPS',
     title: 'Deployment and maintenance',
@@ -195,7 +268,10 @@ const SKILL_GROUPS = [
     tech('Apache Solr', 'SimpleIcons', 'apachesolr'),
   ]),
   skillGroup('API i komunikacja', 'API & Messaging', [T.restApi, T.grpc, T.wcf, T.soap, T.masstransit, T.rabbitmq]),
-  skillGroup('Monitoring', 'Monitoring', [tech('Azure Application Insights', 'Devicon', 'azure'), tech('Grafana', 'Devicon', 'grafana')]),
+  skillGroup('Monitoring', 'Monitoring', [
+    tech('Azure Application Insights', 'Devicon', 'azure'),
+    tech('Grafana', 'Devicon', 'grafana'),
+  ]),
   skillGroup('CI/CD', 'CI/CD', [
     tech('Azure DevOps Pipelines', 'Devicon', 'azuredevops'),
     T.githubActions,
@@ -259,7 +335,10 @@ export const mockExperiencesPl: Experience[] = [
           'Komunikacja asynchroniczna (RabbitMQ / MassTransit)',
         ],
       },
-      { title: 'DevOps', responsibilities: ["Konfiguracja i utrzymanie pipeline'ów CI/CD w Azure DevOps (build, testy, wdrożenia)"] },
+      {
+        title: 'DevOps',
+        responsibilities: ["Konfiguracja i utrzymanie pipeline'ów CI/CD w Azure DevOps (build, testy, wdrożenia)"],
+      },
       {
         title: 'Jakość',
         responsibilities: [
@@ -276,7 +355,18 @@ export const mockExperiencesPl: Experience[] = [
         ],
       },
     ],
-    technologies: [T.csharp, T.dotnet, T.azure, T.sqlServer, tech('Oracle DB', 'Devicon', 'oracle'), T.mongodb, T.rabbitmq, T.masstransit, T.azureDevOps, tech('C4', 'Devicon', 'dot-net')],
+    technologies: [
+      T.csharp,
+      T.dotnet,
+      T.azure,
+      T.sqlServer,
+      tech('Oracle DB', 'Devicon', 'oracle'),
+      T.mongodb,
+      T.rabbitmq,
+      T.masstransit,
+      T.azureDevOps,
+      tech('C4', 'Devicon', 'dot-net'),
+    ],
   },
   {
     employer: 'LSI Software',
@@ -284,7 +374,12 @@ export const mockExperiencesPl: Experience[] = [
     startDate: '2019-01-01',
     endDate: '2021-11-01',
     areas: [
-      { title: 'Produkt', responsibilities: ['Współtworzenie i rozwój systemu ERP — nowe funkcjonalności i wsparcie użytkowników biznesowych'] },
+      {
+        title: 'Produkt',
+        responsibilities: [
+          'Współtworzenie i rozwój systemu ERP — nowe funkcjonalności i wsparcie użytkowników biznesowych',
+        ],
+      },
       {
         title: 'Desktop',
         responsibilities: [
@@ -293,7 +388,13 @@ export const mockExperiencesPl: Experience[] = [
           'Aplikacja WinForms pozwalająca publikować i zarządzać własnymi usługami REST/SOAP przez interfejs graficzny',
         ],
       },
-      { title: 'Integracje', responsibilities: ['Integracja z usługami REST/SOAP', 'Integracja z systemami zewnętrznymi (PayU, Pyszne.pl, UberEats)'] },
+      {
+        title: 'Integracje',
+        responsibilities: [
+          'Integracja z usługami REST/SOAP',
+          'Integracja z systemami zewnętrznymi (PayU, Pyszne.pl, UberEats)',
+        ],
+      },
       { title: 'Dane', responsibilities: ['SQL Server — optymalizacja zapytań, migracje, utrzymanie'] },
       { title: 'Web', responsibilities: ['Wsparcie przy budowie aplikacji webowych w ASP.NET MVC i .NET Core'] },
       {
@@ -304,7 +405,13 @@ export const mockExperiencesPl: Experience[] = [
           'Analiza, diagnoza i rozwiązywanie zgłoszeń od użytkowników i zespołu QA',
         ],
       },
-      { title: 'Zespół', responsibilities: ['Udział w planowaniu sprintów, estymacji i projektowaniu rozwiązań technicznych', 'Tworzenie dokumentacji technicznej'] },
+      {
+        title: 'Zespół',
+        responsibilities: [
+          'Udział w planowaniu sprintów, estymacji i projektowaniu rozwiązań technicznych',
+          'Tworzenie dokumentacji technicznej',
+        ],
+      },
     ],
     technologies: [
       T.csharp,
@@ -326,12 +433,29 @@ export const mockExperiencesPl: Experience[] = [
     endDate: '2019-01-01',
     areas: [
       { title: 'Produkt', responsibilities: ['Tworzenie dodatków i aplikacji dla systemu Comarch CDN XL'] },
-      { title: 'Klienci', responsibilities: ['Wsparcie programistyczne dla klientów korzystających z systemów Comarch — rozwój funkcjonalności i rozwiązywanie problemów'] },
-      { title: 'Integracje', responsibilities: ['Integracja aplikacji z istniejącymi modułami systemu Comarch i dopasowanie ich do wymagań biznesowych klienta'] },
+      {
+        title: 'Klienci',
+        responsibilities: [
+          'Wsparcie programistyczne dla klientów korzystających z systemów Comarch — rozwój funkcjonalności i rozwiązywanie problemów',
+        ],
+      },
+      {
+        title: 'Integracje',
+        responsibilities: [
+          'Integracja aplikacji z istniejącymi modułami systemu Comarch i dopasowanie ich do wymagań biznesowych klienta',
+        ],
+      },
       { title: 'Jakość', responsibilities: ['Analiza zgłoszeń użytkowników, diagnoza i naprawa błędów systemu'] },
-      { title: 'Dokumentacja', responsibilities: ['Tworzenie i aktualizacja dokumentacji technicznej oraz instrukcji użytkownika'] },
+      {
+        title: 'Dokumentacja',
+        responsibilities: ['Tworzenie i aktualizacja dokumentacji technicznej oraz instrukcji użytkownika'],
+      },
     ],
-    technologies: [T.csharp, tech('SQL', 'Devicon', 'microsoftsqlserver'), tech('Comarch CDN XL', 'Devicon', 'dot-net')],
+    technologies: [
+      T.csharp,
+      tech('SQL', 'Devicon', 'microsoftsqlserver'),
+      tech('Comarch CDN XL', 'Devicon', 'dot-net'),
+    ],
   },
   {
     employer: 'Moje Bambino',
@@ -339,13 +463,36 @@ export const mockExperiencesPl: Experience[] = [
     startDate: '2016-09-01',
     endDate: '2018-09-01',
     areas: [
-      { title: 'Raportowanie', responsibilities: ['Tworzenie raportów sprzedażowych w Excelu z użyciem zapytań SQL i procedur składowanych'] },
-      { title: 'Aplikacje', responsibilities: ['Projektowanie i rozwój aplikacji wspierających wycenę produktów i tworzenie katalogów sprzedażowych'] },
-      { title: 'Dane', responsibilities: ['Integracja danych z różnych źródeł, aby zespoły sprzedaży miały spójne i aktualne informacje'] },
-      { title: 'Analiza', responsibilities: ['Analiza potrzeb biznesowych i dopasowanie aplikacji oraz raportów do wymagań klienta'] },
-      { title: 'Wydajność', responsibilities: ['Optymalizacja zapytań SQL i struktur baz danych dla szybszego generowania raportów'] },
+      {
+        title: 'Raportowanie',
+        responsibilities: ['Tworzenie raportów sprzedażowych w Excelu z użyciem zapytań SQL i procedur składowanych'],
+      },
+      {
+        title: 'Aplikacje',
+        responsibilities: [
+          'Projektowanie i rozwój aplikacji wspierających wycenę produktów i tworzenie katalogów sprzedażowych',
+        ],
+      },
+      {
+        title: 'Dane',
+        responsibilities: [
+          'Integracja danych z różnych źródeł, aby zespoły sprzedaży miały spójne i aktualne informacje',
+        ],
+      },
+      {
+        title: 'Analiza',
+        responsibilities: ['Analiza potrzeb biznesowych i dopasowanie aplikacji oraz raportów do wymagań klienta'],
+      },
+      {
+        title: 'Wydajność',
+        responsibilities: ['Optymalizacja zapytań SQL i struktur baz danych dla szybszego generowania raportów'],
+      },
     ],
-    technologies: [tech('SQL', 'Devicon', 'microsoftsqlserver'), tech('T-SQL', 'Devicon', 'microsoftsqlserver'), tech('Excel', 'Devicon', 'dot-net')],
+    technologies: [
+      tech('SQL', 'Devicon', 'microsoftsqlserver'),
+      tech('T-SQL', 'Devicon', 'microsoftsqlserver'),
+      tech('Excel', 'Devicon', 'dot-net'),
+    ],
   },
 ]
 
@@ -372,9 +519,15 @@ export const mockExperiencesEn: Experience[] = [
       },
       {
         title: 'Integrations',
-        responsibilities: ['Integration with external systems and communication between services', 'Asynchronous communication (RabbitMQ / MassTransit)'],
+        responsibilities: [
+          'Integration with external systems and communication between services',
+          'Asynchronous communication (RabbitMQ / MassTransit)',
+        ],
       },
-      { title: 'DevOps', responsibilities: ['Configuring and maintaining CI/CD pipelines in Azure DevOps (build, tests, deployments)'] },
+      {
+        title: 'DevOps',
+        responsibilities: ['Configuring and maintaining CI/CD pipelines in Azure DevOps (build, tests, deployments)'],
+      },
       {
         title: 'Quality',
         responsibilities: [
@@ -385,10 +538,24 @@ export const mockExperiencesEn: Experience[] = [
       },
       {
         title: 'Team',
-        responsibilities: ['Participating in sprint planning, task estimation and technical solution design', 'Writing technical documentation (C4 model)'],
+        responsibilities: [
+          'Participating in sprint planning, task estimation and technical solution design',
+          'Writing technical documentation (C4 model)',
+        ],
       },
     ],
-    technologies: [T.csharp, T.dotnet, T.azure, T.sqlServer, tech('Oracle DB', 'Devicon', 'oracle'), T.mongodb, T.rabbitmq, T.masstransit, T.azureDevOps, tech('C4', 'Devicon', 'dot-net')],
+    technologies: [
+      T.csharp,
+      T.dotnet,
+      T.azure,
+      T.sqlServer,
+      tech('Oracle DB', 'Devicon', 'oracle'),
+      T.mongodb,
+      T.rabbitmq,
+      T.masstransit,
+      T.azureDevOps,
+      tech('C4', 'Devicon', 'dot-net'),
+    ],
   },
   {
     employer: 'LSI Software',
@@ -396,7 +563,10 @@ export const mockExperiencesEn: Experience[] = [
     startDate: '2019-01-01',
     endDate: '2021-11-01',
     areas: [
-      { title: 'Product', responsibilities: ['Co-developing an ERP system — new features and support for business users'] },
+      {
+        title: 'Product',
+        responsibilities: ['Co-developing an ERP system — new features and support for business users'],
+      },
       {
         title: 'Desktop',
         responsibilities: [
@@ -405,7 +575,13 @@ export const mockExperiencesEn: Experience[] = [
           'A WinForms application for publishing and managing custom REST/SOAP services through a graphical interface',
         ],
       },
-      { title: 'Integrations', responsibilities: ['Integration with REST/SOAP services', 'Integration with external systems (PayU, Pyszne.pl, UberEats)'] },
+      {
+        title: 'Integrations',
+        responsibilities: [
+          'Integration with REST/SOAP services',
+          'Integration with external systems (PayU, Pyszne.pl, UberEats)',
+        ],
+      },
       { title: 'Data', responsibilities: ['SQL Server — query optimization, migrations, maintenance'] },
       { title: 'Web', responsibilities: ['Support in building web applications in ASP.NET MVC and .NET Core'] },
       {
@@ -416,7 +592,13 @@ export const mockExperiencesEn: Experience[] = [
           'Analysis, diagnosis and resolution of issues reported by users and the QA team',
         ],
       },
-      { title: 'Team', responsibilities: ['Participating in sprint planning, estimation and technical solution design', 'Writing technical documentation'] },
+      {
+        title: 'Team',
+        responsibilities: [
+          'Participating in sprint planning, estimation and technical solution design',
+          'Writing technical documentation',
+        ],
+      },
     ],
     technologies: [
       T.csharp,
@@ -438,12 +620,26 @@ export const mockExperiencesEn: Experience[] = [
     endDate: '2019-01-01',
     areas: [
       { title: 'Product', responsibilities: ['Building add-ons and applications for the Comarch CDN XL system'] },
-      { title: 'Clients', responsibilities: ['Development support for clients using Comarch systems — feature development and problem solving'] },
-      { title: 'Integrations', responsibilities: ["Integrating applications with existing Comarch system modules and adapting them to the client's business requirements"] },
+      {
+        title: 'Clients',
+        responsibilities: [
+          'Development support for clients using Comarch systems — feature development and problem solving',
+        ],
+      },
+      {
+        title: 'Integrations',
+        responsibilities: [
+          "Integrating applications with existing Comarch system modules and adapting them to the client's business requirements",
+        ],
+      },
       { title: 'Quality', responsibilities: ['Analysis of user reports, diagnosis and fixing of system bugs'] },
       { title: 'Documentation', responsibilities: ['Creating and updating technical documentation and user manuals'] },
     ],
-    technologies: [T.csharp, tech('SQL', 'Devicon', 'microsoftsqlserver'), tech('Comarch CDN XL', 'Devicon', 'dot-net')],
+    technologies: [
+      T.csharp,
+      tech('SQL', 'Devicon', 'microsoftsqlserver'),
+      tech('Comarch CDN XL', 'Devicon', 'dot-net'),
+    ],
   },
   {
     employer: 'Moje Bambino',
@@ -451,13 +647,36 @@ export const mockExperiencesEn: Experience[] = [
     startDate: '2016-09-01',
     endDate: '2018-09-01',
     areas: [
-      { title: 'Reporting', responsibilities: ['Building sales reports in Excel using SQL queries and stored procedures'] },
-      { title: 'Applications', responsibilities: ['Designing and developing applications supporting product pricing and sales catalog creation'] },
-      { title: 'Data', responsibilities: ['Integrating data from various sources so that sales teams have consistent and up-to-date information'] },
-      { title: 'Analysis', responsibilities: ['Analysis of business needs and adapting applications and reports to client requirements'] },
-      { title: 'Performance', responsibilities: ['Optimizing SQL queries and database structures for faster report generation'] },
+      {
+        title: 'Reporting',
+        responsibilities: ['Building sales reports in Excel using SQL queries and stored procedures'],
+      },
+      {
+        title: 'Applications',
+        responsibilities: [
+          'Designing and developing applications supporting product pricing and sales catalog creation',
+        ],
+      },
+      {
+        title: 'Data',
+        responsibilities: [
+          'Integrating data from various sources so that sales teams have consistent and up-to-date information',
+        ],
+      },
+      {
+        title: 'Analysis',
+        responsibilities: ['Analysis of business needs and adapting applications and reports to client requirements'],
+      },
+      {
+        title: 'Performance',
+        responsibilities: ['Optimizing SQL queries and database structures for faster report generation'],
+      },
     ],
-    technologies: [tech('SQL', 'Devicon', 'microsoftsqlserver'), tech('T-SQL', 'Devicon', 'microsoftsqlserver'), tech('Excel', 'Devicon', 'dot-net')],
+    technologies: [
+      tech('SQL', 'Devicon', 'microsoftsqlserver'),
+      tech('T-SQL', 'Devicon', 'microsoftsqlserver'),
+      tech('Excel', 'Devicon', 'dot-net'),
+    ],
   },
 ]
 
@@ -474,25 +693,145 @@ export const mockCertificates: Certificate[] = [
 // Projects
 // ---------------------------------------------------------------------------
 
+const ARCHITECTURE_NOTES_PL: ProjectArchitectureNote[] = [
+  {
+    title: 'Clean Architecture',
+    text: 'Profile i Notifications mają własne projekty Contracts, Application, Domain, Persistence i Infrastructure. Kontrolery korzystają wyłącznie z kontraktów modułów (IProfileModule, INotificationsModule); host API rejestruje ich implementacje. Wspólne BuildingBlocks dostarczają podstawy techniczne.',
+  },
+  {
+    title: 'CQRS z MediatR',
+    text: 'Każdy odczyt to osobne zapytanie (np. GetExperiencesQuery, GetProjectsQuery) z własnym handlerem, a przygotowanie wiadomości obsługuje PrepareNotificationToSendCommand. Handlery działają przez repozytoria. Rozdział komend i zapytań nie oznacza osobnych baz danych.',
+  },
+  {
+    title: 'DDD — model domeny i tłumaczenia',
+    text: 'Agregaty (m.in. Profile, Project, Experience) dziedziczą po AggregateRoot<Guid>. Treści językowe leżą w osobnych tabelach tłumaczeń, a encja sama wybiera właściwe (GetTranslation) z powrotem do PL, gdy brakuje wersji. Interfejsy repozytoriów są w Domain, ich implementacje w Persistence.',
+  },
+  {
+    title: 'Język i kontekst żądania',
+    text: 'Język wybiera nagłówek Accept-Language — adresy API nie mają parametru języka. ICallerContext podaje język bieżącego żądania, a ICurrentTenant profil, którego dane są zwracane; handlery łączą jedno z drugim.',
+  },
+  {
+    title: 'Zaplecze techniczne',
+    text: 'API konfiguruje Hangfire z magazynem SQL Server, logowanie Serilog i limit żądań formularza kontaktowego. EF Core korzysta z osobnych kontekstów modułów, rejestrowanych ze wspólnym connection stringiem.',
+  },
+]
+
+const ARCHITECTURE_NOTES_EN: ProjectArchitectureNote[] = [
+  {
+    title: 'Clean Architecture',
+    text: 'Profile and Notifications each have their own Contracts, Application, Domain, Persistence and Infrastructure projects. Controllers depend only on the module contracts (IProfileModule, INotificationsModule); the API host registers their implementations. Shared BuildingBlocks provide the technical foundation.',
+  },
+  {
+    title: 'CQRS with MediatR',
+    text: 'Every read is its own query (e.g. GetExperiencesQuery, GetProjectsQuery) with a dedicated handler, and preparing a message is handled by PrepareNotificationToSendCommand. Handlers work through repositories. Separating commands and queries does not mean separate databases.',
+  },
+  {
+    title: 'DDD — domain model and translations',
+    text: 'Aggregates (among them Profile, Project and Experience) derive from AggregateRoot<Guid>. Language-specific content lives in separate translation tables, and the entity picks the right one itself (GetTranslation), falling back to PL when a version is missing. Repository interfaces live in Domain, their implementations in Persistence.',
+  },
+  {
+    title: 'Language and request context',
+    text: "The language comes from the Accept-Language header — API routes have no language parameter. ICallerContext supplies the current request's language and ICurrentTenant the profile whose data is returned; handlers combine the two.",
+  },
+  {
+    title: 'Technical backbone',
+    text: 'The API configures Hangfire with a SQL Server store, Serilog logging and a rate limit for the contact form requests. EF Core uses a separate context per module, registered with a shared connection string.',
+  },
+]
+
+const ARCHITECTURE_BLOCKS_PL: ProjectArchitectureBlock[] = [
+  {
+    title: 'Portfolio.Web',
+    note: 'React · TypeScript · Vite · TanStack Query',
+    url: 'https://github.com/WiktorWijata/Portfolio/tree/develop/Source/Portfolio/Portfolio.Web',
+    linkLabel: 'Otwórz Portfolio.Web na GitHubie',
+  },
+  {
+    title: 'Portfolio.Api',
+    note: 'ASP.NET Core · kontrolery · mapowanie DTO',
+    url: 'https://github.com/WiktorWijata/Portfolio/tree/develop/Source/Portfolio/Portfolio.Api',
+    linkLabel: 'Otwórz Portfolio.Api na GitHubie',
+    connectionLabel: 'HTTP / JSON',
+  },
+  {
+    title: 'Moduły',
+    connectionLabel: 'IProfileModule / INotificationsModule',
+    children: [
+      { title: 'Profile', note: 'Treści portfolio i wersje językowe' },
+      { title: 'Notifications', note: 'Przygotowanie wiadomości do wysyłki' },
+    ],
+  },
+  { title: 'Application → Domain', note: 'MediatR · handlery zapytań i komend · model domenowy' },
+  {
+    title: 'Persistence → Application + Domain',
+    note: 'EF Core · repozytoria · ProfileDbContext / NotificationDbContext',
+  },
+  { title: 'Infrastructure', note: 'Fasady modułów · rejestracja zależności · połączenie warstw' },
+]
+
+const ARCHITECTURE_BLOCKS_EN: ProjectArchitectureBlock[] = [
+  {
+    title: 'Portfolio.Web',
+    note: 'React · TypeScript · Vite · TanStack Query',
+    url: 'https://github.com/WiktorWijata/Portfolio/tree/develop/Source/Portfolio/Portfolio.Web',
+    linkLabel: 'Open Portfolio.Web on GitHub',
+  },
+  {
+    title: 'Portfolio.Api',
+    note: 'ASP.NET Core · controllers · DTO mapping',
+    url: 'https://github.com/WiktorWijata/Portfolio/tree/develop/Source/Portfolio/Portfolio.Api',
+    linkLabel: 'Open Portfolio.Api on GitHub',
+    connectionLabel: 'HTTP / JSON',
+  },
+  {
+    title: 'Modules',
+    connectionLabel: 'IProfileModule / INotificationsModule',
+    children: [
+      { title: 'Profile', note: 'Portfolio content and language versions' },
+      { title: 'Notifications', note: 'Preparing messages for sending' },
+    ],
+  },
+  { title: 'Application → Domain', note: 'MediatR · query and command handlers · domain model' },
+  {
+    title: 'Persistence → Application + Domain',
+    note: 'EF Core · repositories · ProfileDbContext / NotificationDbContext',
+  },
+  { title: 'Infrastructure', note: 'Module facades · dependency registration · wiring the layers' },
+]
+
 export const mockProjectsPl: Project[] = [
   {
     name: 'Portfolio',
-    description: 'Strona wizytówka prezentująca moje umiejętności, doświadczenie oraz projekty. Treść na stronę zarządzana jest przez autorski CMS.',
+    description:
+      'Strona wizytówka prezentująca moje umiejętności, doświadczenie oraz projekty. Treść na stronę zarządzana jest przez autorski CMS.',
     goal: 'Prezentacja doświadczenia i projektów oraz samodzielna aktualizacja treści portfolio.',
     solution: 'Interfejs w React i TypeScript połączony z backendem .NET i bazą MSSQL.',
     codeUrl: 'https://github.com/WiktorWijata/Portfolio',
     technologies: [T.csharp, T.dotnet, T.react, T.typescript, T.tailwind, T.sqlServer, T.docker, T.kubernetes],
+    architectureNotes: ARCHITECTURE_NOTES_PL,
+    architectureBlocks: ARCHITECTURE_BLOCKS_PL,
+    architectureCaption:
+      'Uproszczony schemat komponentów. HTTP opisuje komunikację, strzałki między warstwami — zależności kodu.',
+    architectureDiagramLabel:
+      'React komunikuje się przez HTTP z Portfolio.Api. API udostępnia moduły Profile i Notifications przez ich kontrakty. Każdy moduł ma Application, Domain, Persistence oraz Infrastructure.',
   },
 ]
 
 export const mockProjectsEn: Project[] = [
   {
     name: 'Portfolio',
-    description: 'A portfolio website showcasing my skills, experience, and projects. The site content is managed by a custom CMS.',
+    description:
+      'A portfolio website showcasing my skills, experience, and projects. The site content is managed by a custom CMS.',
     goal: 'Presenting my experience and projects, and updating the portfolio content myself.',
     solution: 'A React and TypeScript interface connected to a .NET backend and an MSSQL database.',
     codeUrl: 'https://github.com/WiktorWijata/Portfolio',
     technologies: [T.csharp, T.dotnet, T.react, T.typescript, T.tailwind, T.sqlServer, T.docker, T.kubernetes],
+    architectureNotes: ARCHITECTURE_NOTES_EN,
+    architectureBlocks: ARCHITECTURE_BLOCKS_EN,
+    architectureCaption:
+      'A simplified component diagram. HTTP describes communication; arrows between layers show code dependencies.',
+    architectureDiagramLabel:
+      'React communicates over HTTP with Portfolio.Api. The API exposes the Profile and Notifications modules through their contracts. Each module has Application, Domain, Persistence and Infrastructure layers.',
   },
 ]
 

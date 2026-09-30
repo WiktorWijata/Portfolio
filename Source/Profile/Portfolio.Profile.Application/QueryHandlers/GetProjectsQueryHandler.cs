@@ -43,8 +43,43 @@ public class GetProjectsQueryHandler : IRequestHandler<GetProjectsQuery, IEnumer
                     .Select(t => technologies[t.TechnologyId].ToDto())
                     .ToArray();
 
-                return x.Entity.ToDto(x.Translation, technologyDtos);
+                var architectureNotes = MapArchitectureNotes(x.Entity.ArchitectureNotes, languageCode);
+                var architectureBlocks = MapArchitectureBlocks(x.Entity, languageCode);
+
+                return x.Entity.ToDto(x.Translation, technologyDtos, architectureNotes, architectureBlocks);
             })
+            .ToArray();
+    }
+
+    private static ProjectArchitectureBlockDto[] MapArchitectureBlocks(Project project, LanguageCode languageCode)
+    {
+        var childrenByParent = project.ArchitectureBlocks
+            .Where(block => block.ParentBlockId is not null)
+            .ToLookup(block => block.ParentBlockId!.Value);
+
+        return project.ArchitectureBlocks
+            .Where(block => block.ParentBlockId is null)
+            .OrderBy(block => block.Order)
+            .SelectTranslated(block => block.GetTranslation(languageCode))
+            .Select(x =>
+            {
+                var children = childrenByParent[x.Entity.Id]
+                    .OrderBy(child => child.Order)
+                    .SelectTranslated(child => child.GetTranslation(languageCode))
+                    .Select(c => c.Entity.ToDto(c.Translation, project.CodeUrl, []))
+                    .ToArray();
+
+                return x.Entity.ToDto(x.Translation, project.CodeUrl, children);
+            })
+            .ToArray();
+    }
+
+    private static ProjectArchitectureNoteDto[] MapArchitectureNotes(IEnumerable<ProjectArchitectureNote> notes, LanguageCode languageCode)
+    {
+        return notes
+            .OrderBy(note => note.Order)
+            .SelectTranslated(note => note.GetTranslation(languageCode))
+            .Select(x => x.Translation.ToDto())
             .ToArray();
     }
 }

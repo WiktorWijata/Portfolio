@@ -1,10 +1,13 @@
 import { Chip, FontFamily, FontSize, FontWeight, Text } from '@/design-system'
-import { STACK_COUNT_LABEL, STACK_EMPTY } from '../../Stack.consts'
 import { TechIcon } from '../TechIcon'
 import type { StackResultsProps } from './StackResults.types'
+import { STACK_KEYS } from '../../Stack.keys'
+import { useTexts } from '@/i18n/hooks/useTexts'
 
 /** Right column of the Stack page: the number of matches and the groups of technologies as chips. */
 export function StackResults({ groups, total }: StackResultsProps) {
+  const [text] = useTexts(STACK_KEYS)
+
   return (
     <div className="@container min-w-0 px-[26px] pt-5 pb-[26px] @max-[700px]:p-5">
       <Text
@@ -14,7 +17,7 @@ export function StackResults({ groups, total }: StackResultsProps) {
         aria-live="polite"
         className="mb-1 border-b border-b-line-default pb-3.5 leading-[normal] tracking-[.05em] text-content-subtle"
       >
-        {total > 0 ? `${STACK_COUNT_LABEL} ${total}` : STACK_EMPTY}
+        {total > 0 ? `${text.results.count} ${total}` : text.results.empty}
       </Text>
       <div>
         {groups.map((group) => (

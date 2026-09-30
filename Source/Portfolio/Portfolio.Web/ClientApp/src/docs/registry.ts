@@ -4,15 +4,15 @@ import { generalEntries } from './demos/general'
 import { layoutEntries } from './demos/layout'
 import { navigationEntries } from './demos/navigation'
 import { overlayEntries } from './demos/overlays'
-import type { DocCategory, DocEntry } from './types'
+import type { CategoryId, DocCategory, DocEntry } from './types'
 
 export const categories: DocCategory[] = [
-  { id: 'general', label: 'Ogólne' },
-  { id: 'layout', label: 'Układ' },
-  { id: 'navigation', label: 'Nawigacja' },
-  { id: 'data', label: 'Prezentacja danych' },
-  { id: 'forms', label: 'Formularze' },
-  { id: 'overlays', label: 'Panele i nakładki' },
+  { id: 'general' },
+  { id: 'layout' },
+  { id: 'navigation' },
+  { id: 'data' },
+  { id: 'forms' },
+  { id: 'overlays' },
 ]
 
 export const entries: DocEntry[] = [
@@ -24,7 +24,7 @@ export const entries: DocEntry[] = [
   ...overlayEntries,
 ]
 
-export function entriesIn(categoryId: string) {
+export function entriesIn(categoryId: CategoryId) {
   return entries.filter((e) => e.category === categoryId)
 }
 

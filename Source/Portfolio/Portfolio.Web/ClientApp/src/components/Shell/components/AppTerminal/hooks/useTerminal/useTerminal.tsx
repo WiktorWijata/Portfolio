@@ -1,25 +1,21 @@
 import { useCallback, useMemo, useRef, useState, type ReactNode } from 'react'
 import { TerminalLineKind, type TerminalLine } from '@/design-system'
 import { useEditor } from '@/context'
-import {
-  TERMINAL_MAX_LINES,
-  TERMINAL_OPENED_PREFIX,
-  TERMINAL_PROMPT,
-  TERMINAL_UNKNOWN_HINT,
-  TERMINAL_UNKNOWN_PREFIX,
-  TERMINAL_WELCOME,
-} from '../../AppTerminal.consts'
+import { TERMINAL_MAX_LINES, TERMINAL_PROMPT, TERMINAL_WELCOME_LINE_ID } from '../../AppTerminal.consts'
 import { TerminalCommandName } from '../../AppTerminal.types'
 import { createCommandHandlers, type CommandReply } from '../../utils'
 import { useTerminalCommands } from '../useTerminalCommands'
+import { TERMINAL_KEYS } from '../../AppTerminal.keys'
+import { useTexts } from '@/i18n/hooks/useTexts'
 
 /** Output and command interpreter of the portfolio terminal. Page commands open tabs in the editor. */
 export function useTerminal() {
+  const [text, t] = useTexts(TERMINAL_KEYS)
   const { openPage } = useEditor()
   const { commands } = useTerminalCommands()
-  const handlers = useMemo(() => createCommandHandlers(commands), [commands])
+  const handlers = useMemo(() => createCommandHandlers(commands, t), [commands, t])
   const nextId = useRef(1)
-  const [lines, setLines] = useState<TerminalLine[]>([{ id: 0, content: TERMINAL_WELCOME }])
+  const [lines, setLines] = useState<TerminalLine[]>([{ id: TERMINAL_WELCOME_LINE_ID, content: null }])
 
   const run = useCallback(
     (raw: string) => {
@@ -37,10 +33,10 @@ export function useTerminal() {
 
       let reply: CommandReply
       if (!command) {
-        reply = { content: `${TERMINAL_UNKNOWN_PREFIX} ${raw}. ${TERMINAL_UNKNOWN_HINT}`, kind: TerminalLineKind.Error }
+        reply = { content: t(TERMINAL_KEYS.unknown, { command: raw }), kind: TerminalLineKind.Error }
       } else if (command.page) {
         openPage(command.page)
-        reply = { content: `${TERMINAL_OPENED_PREFIX} ${command.description}.` }
+        reply = { content: t(TERMINAL_KEYS.opened, { page: t(command.descriptionKey) }) }
       } else {
         reply = handlers[command.name]?.() ?? { content: '' }
       }
@@ -48,8 +44,13 @@ export function useTerminal() {
       const echo = line(`${TERMINAL_PROMPT} ${raw}`, TerminalLineKind.Command)
       setLines((prev) => [...prev, echo, line(reply.content, reply.kind)].slice(-TERMINAL_MAX_LINES))
     },
-    [commands, handlers, openPage],
+    [commands, handlers, openPage, t],
   )
 
-  return { lines, run }
+  const shownLines = useMemo(
+    () => lines.map((line) => (line.id === TERMINAL_WELCOME_LINE_ID ? { ...line, content: text.welcome } : line)),
+    [lines, text],
+  )
+
+  return { lines: shownLines, run }
 }

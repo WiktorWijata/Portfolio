@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next'
 import { FontFamily, FontSize, FontWeight, Text } from '@/design-system'
 import { GuideImagePosition } from '../../GetStarted.types'
 import { renderRichText } from '../../utils'
@@ -6,6 +7,7 @@ import type { GuideArticleProps } from './GuideArticle.types'
 
 /** One feature of the guide: a screenshot on the left, title + text + link on the right. */
 export function GuideArticle({ article, onAction }: GuideArticleProps) {
+  const { t } = useTranslation()
   const { image } = article
 
   return (
@@ -21,7 +23,7 @@ export function GuideArticle({ article, onAction }: GuideArticleProps) {
       >
         <img
           src={image.src}
-          alt={image.alt}
+          alt={t(image.altKey)}
           loading="lazy"
           className={[
             'block size-full object-contain',
@@ -36,17 +38,17 @@ export function GuideArticle({ article, onAction }: GuideArticleProps) {
           weight={FontWeight.Medium}
           className="mt-px mb-2.5 text-[18px] leading-[1.35] text-content-strong"
         >
-          {article.title}
+          {t(article.titleKey)}
         </Text>
-        {article.paragraphs.map((paragraph) => (
+        {article.paragraphKeys.map((paragraphKey) => (
           <Text
-            key={paragraph}
+            key={paragraphKey}
             as="p"
             size={FontSize.Medium}
             font={FontFamily.Sans}
             className="leading-[1.65] text-content-body"
           >
-            {renderRichText(paragraph)}
+            {renderRichText(t(paragraphKey))}
           </Text>
         ))}
         {article.action && (

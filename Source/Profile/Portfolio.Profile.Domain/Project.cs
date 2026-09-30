@@ -12,6 +12,8 @@ public class Project : AggregateRoot<Guid>
     public int Order { get; set; }
     public List<ProjectTranslation> Translations { get; set; } = [];
     public List<ProjectTechnology> Technologies { get; set; } = [];
+    public List<ProjectArchitectureNote> ArchitectureNotes { get; set; } = [];
+    public List<ProjectArchitectureBlock> ArchitectureBlocks { get; set; } = [];
 
     protected Project()
     {

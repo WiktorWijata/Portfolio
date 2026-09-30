@@ -135,7 +135,39 @@ public static class ProfileMapping
                 Goal = project.Goal,
                 Solution = project.Solution,
                 CodeUrl = project.CodeUrl,
-                Technologies = project.Technologies.Select(t => t.ToResponse()).ToArray()
+                Technologies = project.Technologies.Select(t => t.ToResponse()).ToArray(),
+                ArchitectureNotes = project.ArchitectureNotes.Select(n => n.ToResponse()).ToArray(),
+                ArchitectureBlocks = project.ArchitectureBlocks.Select(b => b.ToResponse()).ToArray(),
+                ArchitectureCaption = project.ArchitectureCaption,
+                ArchitectureDiagramLabel = project.ArchitectureDiagramLabel
+            };
+        }
+    }
+
+    extension(ProjectArchitectureBlockDto block)
+    {
+        public ProjectArchitectureBlock ToResponse()
+        {
+            return new ProjectArchitectureBlock
+            {
+                Title = block.Title,
+                Note = block.Note,
+                Url = block.Url,
+                LinkLabel = block.LinkLabel,
+                ConnectionLabel = block.ConnectionLabel,
+                Children = block.Children.Select(c => c.ToResponse()).ToArray()
+            };
+        }
+    }
+
+    extension(ProjectArchitectureNoteDto note)
+    {
+        public ProjectArchitectureNote ToResponse()
+        {
+            return new ProjectArchitectureNote
+            {
+                Title = note.Title,
+                Text = note.Text
             };
         }
     }

@@ -1,3 +1,5 @@
+import type { ParseKeys } from 'i18next'
+
 /** Every "file" that can be opened in the editor area. */
 export const PageId = {
   GetStarted: 'getstarted',
@@ -23,8 +25,8 @@ export interface PageMeta {
   id: PageId
   /** URL path the page lives under. */
   path: string
-  /** Label of the editor tab. */
-  tab: string
+  /** Translation key of the editor tab's label. */
+  tab: ParseKeys
   /** File name shown in the status bar. */
   file: string
 }

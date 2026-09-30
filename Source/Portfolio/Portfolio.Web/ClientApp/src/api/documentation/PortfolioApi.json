@@ -488,6 +488,75 @@
               "$ref": "#/components/schemas/Technology"
             },
             "nullable": true
+          },
+          "architectureNotes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProjectArchitectureNote"
+            },
+            "nullable": true
+          },
+          "architectureBlocks": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProjectArchitectureBlock"
+            },
+            "nullable": true
+          },
+          "architectureCaption": {
+            "type": "string",
+            "nullable": true
+          },
+          "architectureDiagramLabel": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ProjectArchitectureBlock": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "note": {
+            "type": "string",
+            "nullable": true
+          },
+          "url": {
+            "type": "string",
+            "nullable": true
+          },
+          "linkLabel": {
+            "type": "string",
+            "nullable": true
+          },
+          "connectionLabel": {
+            "type": "string",
+            "nullable": true
+          },
+          "children": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProjectArchitectureBlock"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ProjectArchitectureNote": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "text": {
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false

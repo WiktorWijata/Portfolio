@@ -1,11 +1,14 @@
 import { List, ListItem } from '@/design-system'
-import { POSITIONS_HEADER } from '../../Experience.consts'
 import type { PositionListProps } from './PositionList.types'
+import { EXPERIENCE_KEYS } from '../../Experience.keys'
+import { useTexts } from '@/i18n/hooks/useTexts'
 
 /** Left column of the Experience page: the positions, newest first; the chosen one is highlighted. */
 export function PositionList({ positions, activeId, onSelect }: PositionListProps) {
+  const [text] = useTexts(EXPERIENCE_KEYS)
+
   return (
-    <List header={POSITIONS_HEADER} count={positions.length} role="group" aria-label={POSITIONS_HEADER}>
+    <List header={text.positionsHeader} count={positions.length} role="group" aria-label={text.positionsHeader}>
       {positions.map((position) => (
         <ListItem
           key={position.id}

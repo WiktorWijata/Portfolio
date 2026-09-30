@@ -3,12 +3,15 @@ import { Button, ButtonVariant, FontFamily, FontSize, FontWeight, Text } from '@
 import { useEditor } from '@/context'
 import { PageId } from '@/navigation'
 import { CV_URL } from '@/profile'
-import { HOME_CV_LABEL, HOME_NAME, HOME_PROJECTS_LABEL } from '../../Home.consts'
+import { HOME_NAME } from '../../Home.consts'
 import { splitMotto } from './IntroCopy.helpers'
 import { Services } from '../Services'
+import { HOME_KEYS } from '../../Home.keys'
+import { useTexts } from '@/i18n/hooks/useTexts'
 
 /** Left column of the intro: kicker, headline, lead, the two actions and the services list. */
 export function IntroCopy() {
+  const [text] = useTexts(HOME_KEYS)
   const { openPage } = useEditor()
   const { data: introduction } = useIntroduction()
 
@@ -34,9 +37,9 @@ export function IntroCopy() {
           {introduction.description}
         </Text>
         <div className="mt-[21px] flex flex-wrap items-stretch gap-2.5">
-          <Button onClick={() => openPage(PageId.Projects)}>{HOME_PROJECTS_LABEL}</Button>
+          <Button onClick={() => openPage(PageId.Projects)}>{text.intro.projects}</Button>
           <Button variant={ButtonVariant.Secondary} href={CV_URL} target="_blank" rel="noopener">
-            {HOME_CV_LABEL}
+            {text.intro.cv}
           </Button>
         </div>
       </div>

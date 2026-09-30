@@ -9,4 +9,6 @@ public class ProjectTranslation : ITranslation<LanguageCode>
     public required string Description { get; set; }
     public string? Goal { get; set; }
     public string? Solution { get; set; }
+    public string? ArchitectureCaption { get; set; }
+    public string? ArchitectureDiagramLabel { get; set; }
 }

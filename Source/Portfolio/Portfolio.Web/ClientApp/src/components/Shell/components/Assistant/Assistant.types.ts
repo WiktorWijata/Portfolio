@@ -1,12 +1,10 @@
 import type { PageId } from '@/navigation'
 
-/** Canned answer to a question matching `pattern`. Replaced by a real model later. */
-export interface AssistantRule {
-  /** Tested against the lower-cased (Polish locale) question. */
-  pattern: RegExp
-  text: string
-  /** Page offered under the answer as "Zobacz w portfolio →". */
-  page?: PageId
+/** Which canned answer a rule gives: its translations live under `shell.assistant.rules.<key>`. Replaced by a real model later. */
+export interface AssistantRuleConfig {
+  key: 'contact' | 'project' | 'stack' | 'experience'
+  /** Page offered under the answer as "See in the portfolio →". */
+  page: PageId
 }
 
 export interface AssistantAnswer {

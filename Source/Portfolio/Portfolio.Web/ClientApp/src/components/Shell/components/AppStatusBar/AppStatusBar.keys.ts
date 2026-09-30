@@ -1,0 +1,22 @@
+/** Translation keys of the status bar; the texts live in `i18n/locales`. */
+export const STATUS_BAR_KEYS = {
+  label: 'shell.statusBar.label',
+  terminalToggle: 'shell.statusBar.terminalToggle',
+  terminalText: 'shell.statusBar.terminalText',
+  assistantToggle: 'shell.statusBar.assistantToggle',
+  assistantText: 'shell.statusBar.assistantText',
+  docsAria: 'shell.statusBar.docsAria',
+  themeSwitch: 'shell.statusBar.themeSwitch',
+  themeDark: 'shell.statusBar.themeDark',
+  themeDarkAria: 'shell.statusBar.themeDarkAria',
+  themeLight: 'shell.statusBar.themeLight',
+  themeLightAria: 'shell.statusBar.themeLightAria',
+  languageSwitch: 'shell.statusBar.languageSwitch',
+  apiOnline: 'shell.statusBar.apiOnline',
+  apiOffline: 'shell.statusBar.apiOffline',
+  apiChecking: 'shell.statusBar.apiChecking',
+  apiOnlineTitle: 'shell.statusBar.apiOnlineTitle',
+  apiOfflineTitle: 'shell.statusBar.apiOfflineTitle',
+  apiCheckingTitle: 'shell.statusBar.apiCheckingTitle',
+  versionTitle: 'shell.statusBar.versionTitle',
+} as const

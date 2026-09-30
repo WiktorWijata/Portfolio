@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useMemo } from 'react'
 import { Moon, Sun } from 'lucide-react'
 import {
   Badge,
@@ -20,6 +20,10 @@ import {
   useTheme,
   type StatusBarSwitchOption,
 } from '@/design-system'
+import { Language } from '@/context/PreferencesContext/PreferencesContext.types'
+import { useTexts } from '@/i18n/hooks/useTexts'
+import { DOCS_KEYS } from './Docs.keys'
+import { useDocsLanguage } from './hooks/useDocsLanguage'
 import { ChangelogPage } from './ChangelogPage'
 import { ComponentPage } from './ComponentPage'
 import { ComponentsIndex } from './ComponentsIndex'
@@ -31,17 +35,17 @@ import { markFaviconHref } from './brand'
 import { categories, entries, entriesIn, findEntry } from './registry'
 import { navigate, useHashRoute } from './useHashRoute'
 
-const THEME_OPTIONS: StatusBarSwitchOption<ThemeName>[] = [
-  { value: ThemeName.Dark, label: 'Ciemny', icon: <Moon strokeWidth={1.5} />, 'aria-label': 'Motyw ciemny' },
-  { value: ThemeName.Light, label: 'Jasny', icon: <Sun strokeWidth={1.5} />, 'aria-label': 'Motyw jasny' },
-]
-
 const SECTIONS = [
-  { id: 'overview', label: 'Overview', path: '/' },
-  { id: 'changelog', label: 'Changelog', path: '/changelog' },
-  { id: 'components', label: 'Komponenty', path: '/components' },
-  { id: 'themes', label: 'Motywy', path: '/themes' },
+  { id: 'overview', path: '/' },
+  { id: 'changelog', path: '/changelog' },
+  { id: 'components', path: '/components' },
+  { id: 'themes', path: '/themes' },
 ] as const
+
+const LANGUAGE_OPTIONS: StatusBarSwitchOption<Language>[] = [
+  { value: Language.Pl, label: 'PL', 'aria-label': 'Polski' },
+  { value: Language.En, label: 'EN', 'aria-label': 'English' },
+]
 
 type SectionId = (typeof SECTIONS)[number]['id']
 
@@ -55,17 +59,18 @@ function parseRoute(route: string): { section: SectionId; componentId?: string }
 }
 
 function Sidebar({ activeId }: { activeId?: string }) {
+  const [text] = useTexts(DOCS_KEYS, 'docs')
   return (
     <Menu
-      header="Komponenty"
-      aria-label="Nawigacja po komponentach"
+      header={text.app.sidebarHeader}
+      aria-label={text.app.sidebarLabel}
       className="max-h-[calc(100vh-139px)] max-bp850:max-h-none"
     >
       <MenuItem active={activeId === undefined} onClick={() => navigate('/components')}>
-        Wszystkie komponenty
+        {text.app.allComponents}
       </MenuItem>
       {categories.map((category) => (
-        <MenuGroup key={category.id} label={category.label}>
+        <MenuGroup key={category.id} label={text.categories[category.id]}>
           {entriesIn(category.id).map((entry) => (
             <MenuItem
               key={entry.id}
@@ -97,9 +102,28 @@ function ComponentsSection({ componentId }: { componentId?: string }) {
 }
 
 export function DocsApp() {
+  const [text, t] = useTexts(DOCS_KEYS, 'docs')
+  const [language, setLanguage] = useDocsLanguage()
   const route = useHashRoute()
   const { section, componentId } = parseRoute(route)
   const [theme, setTheme] = useTheme()
+  const themeOptions = useMemo<StatusBarSwitchOption<ThemeName>[]>(
+    () => [
+      {
+        value: ThemeName.Dark,
+        label: text.app.themeDark,
+        icon: <Moon strokeWidth={1.5} />,
+        'aria-label': text.app.themeDarkAria,
+      },
+      {
+        value: ThemeName.Light,
+        label: text.app.themeLight,
+        icon: <Sun strokeWidth={1.5} />,
+        'aria-label': text.app.themeLightAria,
+      },
+    ],
+    [text],
+  )
 
   useEffect(() => {
     document.title = 'OrchIDE UI'
@@ -130,23 +154,29 @@ export function DocsApp() {
               >
                 OrchIDE UI
               </Text>
-              <Label className="max-bp850:hidden">Design system</Label>
+              <Label className="max-bp850:hidden">{text.app.designSystem}</Label>
             </span>
           </a>
           <DocsSearch />
           <div className="flex items-center gap-3 justify-self-end max-bp700:col-span-2">
-            <StatusBarSwitch aria-label="Motyw" value={theme} onChange={setTheme} options={THEME_OPTIONS} />
+            <StatusBarSwitch aria-label={text.app.theme} value={theme} onChange={setTheme} options={themeOptions} />
+            <StatusBarSwitch
+              aria-label={text.app.language}
+              value={language}
+              onChange={setLanguage}
+              options={LANGUAGE_OPTIONS}
+            />
             <Badge className="max-bp700:hidden">
-              <Text font={FontFamily.Mono}>{entries.length} komponentów</Text>
+              <Text font={FontFamily.Mono}>{t(DOCS_KEYS.app.componentCount, { count: entries.length })}</Text>
             </Badge>
           </div>
         </Container>
         <div className="border-t border-line-subtle bg-surface-bar">
           <Container size={ContainerSize.Wide}>
-            <Tabs aria-label="Nawigacja główna">
+            <Tabs aria-label={text.app.mainNav}>
               {SECTIONS.map((s) => (
                 <Tab key={s.id} active={section === s.id} onSelect={() => navigate(s.path)}>
-                  {s.label}
+                  {text.app.sections[s.id]}
                 </Tab>
               ))}
             </Tabs>

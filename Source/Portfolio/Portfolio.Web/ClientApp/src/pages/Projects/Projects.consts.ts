@@ -1,5 +1,0 @@
-export const PROJECTS_KICKER = 'Portfolio / Wybrane realizacje'
-export const PROJECTS_TITLE = 'Pomysły zamienione'
-export const PROJECTS_TITLE_ACCENT = 'w oprogramowanie.'
-export const PROJECTS_TEXT = 'Autorska aplikacja portfolio z zapleczem do zarządzania treścią.'
-export const PROJECTS_NOTE = 'Portfolio: rzeczywisty zrzut ekranu.'

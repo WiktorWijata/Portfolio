@@ -81,7 +81,11 @@ export function useSpecializations() {
   })
 
   if (useMock) {
-    return { data: language === Language.En ? mockSpecializationsEn : mockSpecializationsPl, isLoading: false, error: null }
+    return {
+      data: language === Language.En ? mockSpecializationsEn : mockSpecializationsPl,
+      isLoading: false,
+      error: null,
+    }
   }
   return { data: query.data?.data, isLoading: query.isLoading, error: query.error }
 }
@@ -105,7 +109,11 @@ export function useSkillCategories() {
   })
 
   if (useMock) {
-    return { data: language === Language.En ? mockSkillCategoriesEn : mockSkillCategoriesPl, isLoading: false, error: null }
+    return {
+      data: language === Language.En ? mockSkillCategoriesEn : mockSkillCategoriesPl,
+      isLoading: false,
+      error: null,
+    }
   }
   return { data: query.data?.data, isLoading: query.isLoading, error: query.error }
 }

@@ -1,18 +1,15 @@
 import type { ComponentType, ReactNode } from 'react'
 
+export type CategoryId = 'general' | 'layout' | 'navigation' | 'data' | 'forms' | 'overlays'
+
 export interface DocCategory {
-  id: string
-  label: string
+  id: CategoryId
 }
 
 export interface DocEntry {
   id: string
   name: string
-  category: DocCategory['id']
-  /** One sentence for the overview card. */
-  summary: string
-  /** Technical note: what the demo was verified against in the prototype. */
-  note?: string
+  category: CategoryId
   /** Small static preview for the overview card. */
   preview: ReactNode
   Demo: ComponentType

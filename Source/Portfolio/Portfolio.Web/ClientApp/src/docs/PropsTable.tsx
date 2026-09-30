@@ -1,4 +1,7 @@
 import { FontFamily, FontSize, FontWeight, Text, TextColor } from '@/design-system'
+import { useTexts } from '@/i18n/hooks/useTexts'
+import { DOCS_KEYS } from './Docs.keys'
+import { useApiText } from './hooks/useApiText'
 import { getAlias, getEnum, getInterface, getUnion, type InterfaceDoc, type PropDoc } from './api/parseTypes'
 
 const th = 'border-b border-line-subtle px-4 py-2.5 text-left align-bottom'
@@ -30,12 +33,13 @@ function TypeCell({ prop }: { prop: PropDoc }) {
 }
 
 function DescriptionCell({ prop }: { prop: PropDoc }) {
+  const describe = useApiText()
   const enumDoc = getEnum(prop.type)
   return (
     <div className="flex flex-col gap-2">
       {prop.description && (
         <Text size={FontSize.Medium} color={TextColor.Body} className="leading-[1.6]">
-          <Rich text={prop.description} />
+          <Rich text={describe(prop.description)} />
         </Text>
       )}
       {enumDoc && (
@@ -50,7 +54,7 @@ function DescriptionCell({ prop }: { prop: PropDoc }) {
               </Text>
               {m.description && (
                 <Text size={FontSize.Small} color={TextColor.Dim}>
-                  — <Rich text={m.description} />
+                  — <Rich text={describe(m.description)} />
                 </Text>
               )}
             </li>
@@ -63,13 +67,19 @@ function DescriptionCell({ prop }: { prop: PropDoc }) {
 
 /** The `<table>` of a single interface's props — reused for a plain interface and for each union variant. */
 function PropsGrid({ props }: { props: PropDoc[] }) {
+  const [text] = useTexts(DOCS_KEYS, 'docs')
   if (props.length === 0) return null
   return (
     <div className="scrollbar-subtle overflow-x-auto rounded-xl border border-line-emphasis bg-surface-card">
       <table className="w-full min-w-[640px] border-collapse">
         <thead>
           <tr>
-            {['Nazwa', 'Typ', 'Domyślnie', 'Opis'].map((h) => (
+            {[
+              text.props.columns.name,
+              text.props.columns.type,
+              text.props.columns.default,
+              text.props.columns.description,
+            ].map((h) => (
               <th key={h} className={th}>
                 <Text
                   size={FontSize.Micro}
@@ -123,6 +133,8 @@ function PropsGrid({ props }: { props: PropDoc[] }) {
 
 /** One union variant (e.g. `ButtonAsLinkProps`): its own description as a heading, then its props. */
 function UnionVariant({ doc }: { doc: InterfaceDoc }) {
+  const describe = useApiText()
+  const [text] = useTexts(DOCS_KEYS, 'docs')
   return (
     <div className="flex flex-col gap-2 border-l-2 border-l-line-emphasis pl-4">
       <Text as="h4" size={FontSize.Medium} font={FontFamily.Mono} weight={FontWeight.Medium} color={TextColor.Heading}>
@@ -130,12 +142,12 @@ function UnionVariant({ doc }: { doc: InterfaceDoc }) {
       </Text>
       {doc.description && (
         <Text as="p" size={FontSize.Small} color={TextColor.Dim} className="leading-[1.6]">
-          <Rich text={doc.description} />
+          <Rich text={describe(doc.description)} />
         </Text>
       )}
       {doc.extends && (
         <Text as="p" size={FontSize.Small} color={TextColor.Dim} className="leading-[1.6]">
-          Przyjmuje też wszystkie propsy typu{' '}
+          {text.props.extends}{' '}
           <Text font={FontFamily.Mono} color={TextColor.AccentLight}>
             {doc.extends}
           </Text>
@@ -147,6 +159,8 @@ function UnionVariant({ doc }: { doc: InterfaceDoc }) {
 }
 
 function InterfaceTable({ name }: { name: string }) {
+  const describe = useApiText()
+  const [text, t] = useTexts(DOCS_KEYS, 'docs')
   const doc = getInterface(name)
   const alias = getAlias(name)
   const union = doc ? undefined : getUnion(name)
@@ -154,7 +168,7 @@ function InterfaceTable({ name }: { name: string }) {
   if (!doc && !alias) {
     return (
       <Text as="p" size={FontSize.Small} color={TextColor.Dim}>
-        Brak opisu typu {name}.
+        {t(DOCS_KEYS.props.missing, { name })}
       </Text>
     )
   }
@@ -173,21 +187,21 @@ function InterfaceTable({ name }: { name: string }) {
         </Text>
         {(doc?.extends || alias) && (
           <Text as="p" size={FontSize.Small} color={TextColor.Dim} className="leading-[1.6]">
-            {doc?.extends ? 'Przyjmuje też wszystkie propsy typu ' : union ? 'Jeden z dwóch kształtów: ' : 'Typ: '}
+            {doc?.extends ? `${text.props.extends} ` : union ? `${text.props.unionOf} ` : `${text.props.typeLabel} `}
             <Text font={FontFamily.Mono} color={TextColor.AccentLight}>
               {doc?.extends ?? alias?.type}
             </Text>
             {alias?.description && (
               <>
                 {' — '}
-                <Rich text={alias.description} />
+                <Rich text={describe(alias.description)} />
               </>
             )}
           </Text>
         )}
         {doc?.description && (
           <Text as="p" size={FontSize.Small} color={TextColor.Dim}>
-            <Rich text={doc.description} />
+            <Rich text={describe(doc.description)} />
           </Text>
         )}
       </div>
@@ -206,13 +220,14 @@ function InterfaceTable({ name }: { name: string }) {
 }
 
 export function PropsTables({ interfaces }: { interfaces: string[] }) {
+  const [text] = useTexts(DOCS_KEYS, 'docs')
   return (
     <div className="flex flex-col gap-8">
       {interfaces.map((name) => (
         <InterfaceTable key={name} name={name} />
       ))}
       <Text size={FontSize.XSmall} font={FontFamily.Mono} color={TextColor.Faint}>
-        * prop wymagany
+        {text.props.required}
       </Text>
     </div>
   )

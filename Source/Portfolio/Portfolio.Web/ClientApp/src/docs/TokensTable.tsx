@@ -1,17 +1,19 @@
 import { Badge, FontFamily, FontSize, FontWeight, Text, TextColor } from '@/design-system'
+import { useTexts } from '@/i18n/hooks/useTexts'
 import { getComponentTokens } from './api/tokens'
+import { DOCS_KEYS } from './Docs.keys'
 
 const th = 'border-b border-line-subtle px-4 py-2.5 text-left align-bottom'
 const td = 'border-b border-line-faint px-4 py-2.5 align-middle'
 
 export function TokensTables({ folder }: { folder: string }) {
+  const [text] = useTexts(DOCS_KEYS, 'docs')
   const { groups } = getComponentTokens(folder)
 
   if (!groups.length) {
     return (
       <Text as="p" size={FontSize.Medium} color={TextColor.Dim}>
-        Ten komponent nie odwołuje się do żadnych tokenów z @theme — jego zachowanie wynika z układu (szerokości,
-        marginesy).
+        {text.tokens.none}
       </Text>
     )
   }
@@ -21,13 +23,13 @@ export function TokensTables({ folder }: { folder: string }) {
       {groups.map((group) => (
         <div key={group.category} className="flex flex-col gap-2.5">
           <Text as="h3" size={FontSize.XLarge} weight={FontWeight.Medium} color={TextColor.Heading}>
-            {group.label}
+            {text.tokens.categories[group.category]}
           </Text>
           <div className="scrollbar-subtle overflow-x-auto rounded-xl border border-line-emphasis bg-surface-card">
             <table className="w-full min-w-[560px] border-collapse">
               <thead>
                 <tr>
-                  {['Token', 'Wartość', 'Zastosowanie'].map((h) => (
+                  {[text.tokens.columns.token, text.tokens.columns.value, text.tokens.columns.usage].map((h) => (
                     <th key={h} className={th}>
                       <Text
                         size={FontSize.Micro}
@@ -80,7 +82,7 @@ export function TokensTables({ folder }: { folder: string }) {
                     <td className={td}>
                       <span className="flex flex-wrap items-center gap-x-2 gap-y-1">
                         {t.roles.map((role) => (
-                          <Badge key={role}>{role}</Badge>
+                          <Badge key={role}>{text.tokens.roles[role as keyof typeof text.tokens.roles]}</Badge>
                         ))}
                         <Text size={FontSize.XSmall} font={FontFamily.Mono} color={TextColor.Faint}>
                           {t.classes.join(' · ')}
@@ -95,8 +97,7 @@ export function TokensTables({ folder }: { folder: string }) {
         </div>
       ))}
       <Text size={FontSize.XSmall} font={FontFamily.Mono} color={TextColor.Faint} className="leading-relaxed">
-        Lista jest wyliczana ze źródeł komponentu. Pojedyncze wartości zmierzone w prototypie, które nie są tokenami
-        (np. niestandardowe odcienie), nie są tu wymienione.
+        {text.tokens.footnote}
       </Text>
     </div>
   )

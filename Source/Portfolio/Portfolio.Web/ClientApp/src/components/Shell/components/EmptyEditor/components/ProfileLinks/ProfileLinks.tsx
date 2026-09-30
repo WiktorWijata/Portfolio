@@ -2,7 +2,8 @@ import { FontFamily, FontSize, Text } from '@/design-system'
 import { useEditor } from '@/context'
 import { CV_URL } from '@/profile'
 import { PageId } from '@/navigation'
-import { EMPTY_EDITOR_CONTACT_LABEL, EMPTY_EDITOR_CV_LABEL, EMPTY_EDITOR_LINKS_LABEL } from '../../EmptyEditor.consts'
+import { EMPTY_EDITOR_KEYS } from '../../EmptyEditor.keys'
+import { useTexts } from '@/i18n/hooks/useTexts'
 
 const linkBase = [
   'flex h-[42px] items-center justify-center gap-2 rounded-sm border px-2.5 whitespace-nowrap no-underline',
@@ -17,21 +18,22 @@ const contactClasses = `${linkBase} cursor-pointer border-line-strong bg-transpa
 
 /** "Pobierz CV ↓" and "Kontakt ↗" under the heading of the empty editor. */
 export function ProfileLinks() {
+  const [text] = useTexts(EMPTY_EDITOR_KEYS)
   const { openPage } = useEditor()
 
   return (
     <div
-      aria-label={EMPTY_EDITOR_LINKS_LABEL}
+      aria-label={text.linksLabel}
       className="mb-6 grid grid-cols-2 gap-2.5 max-[380px]:grid-cols-1 max-[380px]:gap-2"
     >
       <a href={CV_URL} target="_blank" rel="noopener noreferrer" className={cvClasses}>
         <Text size={FontSize.Small} font={FontFamily.Mono} className="leading-none">
-          {EMPTY_EDITOR_CV_LABEL} <span aria-hidden>↓</span>
+          {text.cv} <span aria-hidden>↓</span>
         </Text>
       </a>
       <button type="button" className={contactClasses} onClick={() => openPage(PageId.Contact)}>
         <Text size={FontSize.Small} font={FontFamily.Sans} className="leading-none">
-          {EMPTY_EDITOR_CONTACT_LABEL} <span aria-hidden>↗</span>
+          {text.contact} <span aria-hidden>↗</span>
         </Text>
       </button>
     </div>

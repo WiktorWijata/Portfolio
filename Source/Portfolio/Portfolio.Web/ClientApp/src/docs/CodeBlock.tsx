@@ -1,5 +1,7 @@
 import { useState, type ReactNode } from 'react'
 import { Check, Copy } from 'lucide-react'
+import { useTexts } from '@/i18n/hooks/useTexts'
+import { DOCS_KEYS } from './Docs.keys'
 import { FontFamily, FontSize, ToolbarButton, ToolbarButtonSize, Text, TextColor } from '@/design-system'
 
 // comment | string | tag | keyword | number | attribute
@@ -34,6 +36,7 @@ function highlight(code: string): ReactNode[] {
 }
 
 export function CodeBlock({ code }: { code: string }) {
+  const [text] = useTexts(DOCS_KEYS, 'docs')
   const [copied, setCopied] = useState(false)
 
   async function copy() {
@@ -51,7 +54,7 @@ export function CodeBlock({ code }: { code: string }) {
       <ToolbarButton
         size={ToolbarButtonSize.Sm}
         icon={copied ? <Check /> : <Copy />}
-        aria-label={copied ? 'Skopiowano' : 'Kopiuj kod'}
+        aria-label={copied ? text.codeBlock.copied : text.codeBlock.copy}
         onClick={copy}
         className="absolute top-3 right-3 z-[1]"
       />

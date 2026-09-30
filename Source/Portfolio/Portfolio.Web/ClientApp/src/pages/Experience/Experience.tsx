@@ -3,25 +3,30 @@ import { useExperiences } from '@/api'
 import { SplitPanel, SplitPanelCollapseAt } from '@/design-system'
 import { PageIntro, PageIntroVariant } from '../PageIntro'
 import { PageContainer } from '../PageContainer'
+import { PageLoader } from '../PageLoader'
+import { COMMON_KEYS } from '@/i18n/common.keys'
 import { PositionDetail, PositionList } from './components'
-import { EXPERIENCE_KICKER, EXPERIENCE_TEXT, EXPERIENCE_TITLE, EXPERIENCE_TITLE_ACCENT } from './Experience.consts'
 import { toPositions } from './Experience.helpers'
+import { EXPERIENCE_KEYS } from './Experience.keys'
+import { useTexts } from '@/i18n/hooks/useTexts'
 
 /** Experience.cs: the career as master-detail — the positions on the left, the chosen one's scope on the right. */
 export function Experience() {
-  const { data: experiences } = useExperiences()
-  const positions = useMemo(() => toPositions(experiences ?? []), [experiences])
+  const [text, t] = useTexts(EXPERIENCE_KEYS)
+  const { data: experiences, isLoading, error } = useExperiences()
+  const positions = useMemo(() => toPositions(experiences ?? [], t), [experiences, t])
   const [activeId, setActiveId] = useState<string>()
   const position = positions.find((item) => item.id === activeId) ?? positions[0]
+  if (isLoading || error) return <PageLoader label={t(COMMON_KEYS.loading.experience)} failed={!!error} />
   if (!position) return null
 
   return (
     <PageContainer>
       <PageIntro
-        kicker={EXPERIENCE_KICKER}
-        title={EXPERIENCE_TITLE}
-        accent={EXPERIENCE_TITLE_ACCENT}
-        text={EXPERIENCE_TEXT}
+        kicker={text.intro.kicker}
+        title={text.intro.title}
+        accent={text.intro.accent}
+        text={text.intro.text}
         variant={PageIntroVariant.Section}
       />
       <div className="@container pt-0.5">

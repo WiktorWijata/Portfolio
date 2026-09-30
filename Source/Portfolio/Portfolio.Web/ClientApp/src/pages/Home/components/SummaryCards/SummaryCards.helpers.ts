@@ -1,12 +1,14 @@
+import type { TFunction } from 'i18next'
 import type { Experience } from '@/api'
 import { formatPeriod } from '@/utils/period'
 import type { HomeCareerItem } from '../../Home.types'
+import { COMMON_KEYS } from '@/i18n/common.keys'
 
 /** The most recent experiences as short career entries, newest first (backend already orders them so). */
-export function toCareerItems(experiences: Experience[], count: number): HomeCareerItem[] {
+export function toCareerItems(experiences: Experience[], count: number, t: TFunction): HomeCareerItem[] {
   return experiences.slice(0, count).map((experience) => ({
     title: experience.position ?? '',
     company: experience.employer ?? '',
-    period: formatPeriod(experience.startDate, experience.endDate),
+    period: formatPeriod(experience.startDate, experience.endDate, t(COMMON_KEYS.present)),
   }))
 }

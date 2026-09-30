@@ -8,7 +8,7 @@ import { getEnum, getInterface, getUnion, parseSource } from './parseTypes'
 describe('parseSource — N3 regression: terminates on malformed/truncated input', () => {
   it('discovers nested component props and preserves shared props of the StatusBarButton union', () => {
     for (const name of [
-      'InfoRowProps',
+      'CardFieldProps',
       'MenuItemProps',
       'ListItemProps',
       'TreeFileProps',

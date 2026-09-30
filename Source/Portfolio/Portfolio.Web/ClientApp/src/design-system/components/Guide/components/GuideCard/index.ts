@@ -1,2 +1,2 @@
 export { GuideCard } from './GuideCard'
-export type { GuideCardProps } from './GuideCard.types'
+export type { GuideCardLabels, GuideCardProps } from './GuideCard.types'

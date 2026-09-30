@@ -1,13 +1,10 @@
+import type { TFunction } from 'i18next'
 import type { ReactNode } from 'react'
 import { Link, type TerminalLineKind } from '@/design-system'
 import { CV_URL } from '@/profile'
-import {
-  TERMINAL_CV_INTRO,
-  TERMINAL_CV_LINK,
-  TERMINAL_HELP_FOOTER,
-  TERMINAL_HELP_NAME_WIDTH,
-} from '../AppTerminal.consts'
+import { TERMINAL_HELP_NAME_WIDTH } from '../AppTerminal.consts'
 import { TerminalCommandName, type TerminalCommand } from '../AppTerminal.types'
+import { TERMINAL_KEYS } from '../AppTerminal.keys'
 
 /** What a command prints: a line of output, optionally coloured as an error. */
 export interface CommandReply {
@@ -18,9 +15,9 @@ export interface CommandReply {
 export type CommandHandler = () => CommandReply
 
 /** The `help` text: every command with its description, then the keyboard hints. */
-export function formatHelp(commands: TerminalCommand[]): string {
-  const list = commands.map((c) => `${c.name.padEnd(TERMINAL_HELP_NAME_WIDTH)}— ${c.description}`).join('\n')
-  return `${list}\n\n${TERMINAL_HELP_FOOTER}`
+export function formatHelp(commands: TerminalCommand[], t: TFunction): string {
+  const list = commands.map((c) => `${c.name.padEnd(TERMINAL_HELP_NAME_WIDTH)}— ${t(c.descriptionKey)}`).join('\n')
+  return `${list}\n\n${t(TERMINAL_KEYS.helpFooter)}`
 }
 
 /**
@@ -29,17 +26,18 @@ export function formatHelp(commands: TerminalCommand[]): string {
  */
 export function createCommandHandlers(
   commands: TerminalCommand[],
+  t: TFunction,
 ): Partial<Record<TerminalCommandName, CommandHandler>> {
   return {
-    [TerminalCommandName.Help]: () => ({ content: formatHelp(commands) }),
+    [TerminalCommandName.Help]: () => ({ content: formatHelp(commands, t) }),
     [TerminalCommandName.Cv]: () => {
       window.open(CV_URL, '_blank', 'noopener')
       return {
         content: (
           <>
-            {TERMINAL_CV_INTRO}{' '}
+            {t(TERMINAL_KEYS.cvIntro)}{' '}
             <Link href={CV_URL} target="_blank" rel="noopener">
-              {TERMINAL_CV_LINK}
+              {t(TERMINAL_KEYS.cvLink)}
             </Link>
           </>
         ),

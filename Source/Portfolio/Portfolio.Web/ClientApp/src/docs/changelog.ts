@@ -11,6 +11,65 @@ export interface Release {
 /** Newest first. */
 export const releases: Release[] = [
   {
+    version: '0.33.0',
+    date: '2026-09-30',
+    title: 'StatusBarItem: lampka stanu',
+    added: [
+      'StatusBarItem: prop `indicator` (StatusBarIndicator: Online, Offline, Pending) — kolorowa lampka przed tekstem, np. stan połączenia z API; Pending pulsuje.',
+    ],
+  },
+  {
+    version: '0.32.0',
+    date: '2026-09-30',
+    title: 'Loader: stan ładowania w stylu IDE',
+    added: [
+      'Loader: cienki pasek postępu (jak pod paskiem tytułu VS Code) nad linią statusu z migającym kursorem; stan LoaderStatus.Error pokazuje komunikat bez paska. Respektuje ustawienie zmniejszonego ruchu.',
+    ],
+  },
+  {
+    version: '0.31.0',
+    date: '2026-09-30',
+    title: 'Card: wariant Hero i ikona w nagłówku',
+    added: [
+      'Card: wariant Hero (gradientowe tło i mocniejszy cień, jak karta „O projekcie") oraz prop `icon` — ikona przed tytułem w wariantach Standard i Hero.',
+    ],
+    changed: [
+      'GoalCard (strona projektu) używa Card w wariancie Hero zamiast własnego kontenera i nagłówka. Wygląd bez zmian.',
+    ],
+  },
+  {
+    version: '0.30.0',
+    date: '2026-09-30',
+    title: 'Jeden komponent Card zamiast DataCard, InfoCard i CardHeading',
+    added: [
+      'Card z wariantami: Compact (pasek nagłówka z tytułem, licznikiem i akcją — dawne DataCard/InfoCard) oraz Standard (większa karta z lekkim nagłówkiem — dawne CardHeading). Wnętrza: CardList/CardRow, CardFields/CardField (etykieta nad wartością) i CardAction.',
+    ],
+    changed: [
+      'Gallery i karta architektury projektu używają Card w wariancie Standard zamiast własnego kontenera i CardHeading. Wygląd bez zmian.',
+      'InfoCard korzystał z tła bez przezroczystości, DataCard z 80% — po scaleniu wszystkie karty Compact mają 80%.',
+      'Usunięte: DataCard, DataCardAction, DataCardList, DataCardRow, InfoCard, InfoRow i CardHeading (zastąpione przez Card, CardAction, CardList, CardRow, CardFields, CardField oraz wariant Standard).',
+    ],
+  },
+  {
+    version: '0.29.0',
+    date: '2026-09-29',
+    title: 'Teksty interfejsu GuideCard do podmiany',
+    added: [
+      'GuideCard: prop `labels` (`GuideCardLabels`) z tekstami karty — etykieta postępu („PRZEWODNIK / N Z M"), „Pomiń", „Wstecz", „Dalej →" i „Gotowe". Pominięte pola mają dotychczasowe polskie wartości, więc zmiana jest wstecznie zgodna (wzorzec jak w Gallery, Terminal i Chat).',
+    ],
+  },
+  {
+    version: '0.28.0',
+    date: '2026-09-29',
+    title: 'Nowy komponent ArchitectureDiagram',
+    added: [
+      'ArchitectureDiagram — pionowy schemat warstw: bloki (tytuł, opis, opcjonalny link z ikoną) połączone strzałkami z opcjonalnym opisem połączenia. Blok z dziećmi jest rzędem wyróżnionych kafelków (moduły). Komponent nie zna treści ani ikon aplikacji (`linkIcon` przekazuje strona).',
+    ],
+    changed: [
+      'Diagram architektury ze strony projektu (ProjectPortfolio) przeniesiony do design-systemu. Strzałki są teraz rysowane między wszystkimi kolejnymi blokami, a nie wpisane ręcznie w dane.',
+    ],
+  },
+  {
     version: '0.27.7',
     date: '2026-09-23',
     title: 'Logika stanowa Gallery i Chat wydzielona do hooków',

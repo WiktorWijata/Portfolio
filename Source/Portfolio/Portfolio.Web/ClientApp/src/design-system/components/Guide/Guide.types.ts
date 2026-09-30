@@ -13,4 +13,4 @@ export type { GuideShadeProps } from './components/GuideShade'
 
 export type { GuideHighlightProps } from './components/GuideHighlight'
 
-export type { GuideCardProps } from './components/GuideCard'
+export type { GuideCardLabels, GuideCardProps } from './components/GuideCard'

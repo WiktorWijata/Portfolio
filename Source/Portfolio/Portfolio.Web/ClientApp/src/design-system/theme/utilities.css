@@ -87,3 +87,37 @@
     transparent 6.5px
   );
 }
+
+/* Loader: the indeterminate progress bar (a segment sweeping left to right, as under the VS Code title bar)
+   and the blinking block cursor after the status line. Both stand still for users who prefer reduced motion. */
+@keyframes loader-sweep {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(350%);
+  }
+}
+
+@keyframes loader-blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+@utility animate-loader-sweep {
+  animation: loader-sweep 1.3s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+    transform: translateX(120%);
+  }
+}
+
+@utility animate-loader-blink {
+  animation: loader-blink 1.05s step-end infinite;
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
+}

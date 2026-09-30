@@ -2,7 +2,7 @@ import { useEffect, useId, useLayoutEffect, useRef } from 'react'
 import { Button, ButtonSize, ButtonVariant } from '../../../Button'
 import { Link } from '../../../Link'
 import { FontFamily, FontSize, FontWeight, Text, TextColor } from '../../../Text'
-import { EDGE, FOCUSABLE_SELECTOR, GAP } from '../../Guide.consts'
+import { DEFAULT_CARD_LABELS, EDGE, FOCUSABLE_SELECTOR, GAP } from '../../Guide.consts'
 import type { GuideHighlightRect } from '../../Guide.types'
 import type { GuideCardProps } from './GuideCard.types'
 
@@ -41,11 +41,13 @@ export function GuideCard({
   onNext,
   isLastStep = false,
   modal = false,
+  labels,
   anchor,
   style,
   className = '',
 }: GuideCardProps) {
   const titleId = useId()
+  const text = { ...DEFAULT_CARD_LABELS, ...labels }
   const cardRef = useRef<HTMLElement>(null)
 
   // Anchored card: position it next to the anchor (direct DOM write — no extra render).
@@ -119,7 +121,7 @@ export function GuideCard({
         font={FontFamily.Mono}
         className="block tracking-[.07em] text-accent-muted"
       >
-        PRZEWODNIK / {step} Z {totalSteps}
+        {text.progress(step, totalSteps)}
       </Text>
       <Text
         as="h2"
@@ -145,13 +147,13 @@ export function GuideCard({
       )}
       <div className="flex items-center gap-2">
         <Button variant={ButtonVariant.Outline} size={ButtonSize.Sm} onClick={onSkip}>
-          Pomiń
+          {text.skip}
         </Button>
         <Button variant={ButtonVariant.Outline} size={ButtonSize.Sm} onClick={onBack} disabled={!onBack}>
-          Wstecz
+          {text.back}
         </Button>
         <Button size={ButtonSize.Sm} className="ml-auto" data-guide-next onClick={onNext}>
-          {isLastStep ? 'Gotowe' : 'Dalej →'}
+          {isLastStep ? text.done : text.next}
         </Button>
       </div>
     </Text>

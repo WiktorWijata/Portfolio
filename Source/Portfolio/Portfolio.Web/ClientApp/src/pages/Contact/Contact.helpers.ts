@@ -1,15 +1,21 @@
+import type { TFunction } from 'i18next'
 import type { Business, Contact } from '@/api'
 import { CV_URL } from '@/profile'
 import type { CompanyField, SocialLink } from './Contact.types'
+import { CONTACT_KEYS } from './Contact.keys'
 
-export function toCompanyFields(business: Business): CompanyField[] {
+export function toCompanyFields(business: Business, t: TFunction): CompanyField[] {
   return [
-    { label: 'Nazwa', lines: [business.name ?? ''] },
-    { label: 'NIP', lines: [business.taxNumber ?? ''] },
-    { label: 'REGON', lines: [business.registrationNumber ?? ''] },
+    { label: t(CONTACT_KEYS.company.name), lines: [business.name ?? ''] },
+    { label: t(CONTACT_KEYS.company.taxNumber), lines: [business.taxNumber ?? ''] },
+    { label: t(CONTACT_KEYS.company.registrationNumber), lines: [business.registrationNumber ?? ''] },
     {
-      label: 'Adres',
-      lines: [business.street ?? '', `${business.postalCode ?? ''} ${business.city ?? ''}`.trim(), `woj. ${business.region ?? ''}`],
+      label: t(CONTACT_KEYS.company.address),
+      lines: [
+        business.street ?? '',
+        `${business.postalCode ?? ''} ${business.city ?? ''}`.trim(),
+        t(CONTACT_KEYS.company.region, { region: business.region ?? '' }),
+      ],
     },
   ]
 }
@@ -20,14 +26,14 @@ export function findEmail(contacts: Contact[]): string | undefined {
 }
 
 /** LinkedIn/GitHub from the API, plus the CV download (a static asset, not backend data). */
-export function toSocialLinks(contacts: Contact[]): SocialLink[] {
+export function toSocialLinks(contacts: Contact[], t: TFunction): SocialLink[] {
   const links: SocialLink[] = []
   const linkedIn = contacts.find((contact) => contact.type === 'LinkedIn')?.value
   const gitHub = contacts.find((contact) => contact.type === 'GitHub')?.value
 
   if (linkedIn) links.push({ label: 'LinkedIn', arrow: '↗', href: linkedIn })
   if (gitHub) links.push({ label: 'GitHub', arrow: '↗', href: gitHub })
-  links.push({ label: 'Pobierz CV', arrow: '↓', href: CV_URL })
+  links.push({ label: t(CONTACT_KEYS.social.cv), arrow: '↓', href: CV_URL })
 
   return links
 }

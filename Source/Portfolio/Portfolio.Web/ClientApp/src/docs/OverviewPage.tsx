@@ -5,8 +5,9 @@ import {
   FontFamily,
   FontSize,
   FontWeight,
-  InfoCard,
-  InfoRow,
+  Card,
+  CardField,
+  CardFields,
   Label,
   LabelTone,
   Panel,
@@ -14,23 +15,12 @@ import {
   TextColor,
   readThemeColor,
 } from '@/design-system'
+import { useTexts } from '@/i18n/hooks/useTexts'
+import { DOCS_KEYS } from './Docs.keys'
 import { categories, entries } from './registry'
 import { navigate } from './useHashRoute'
 
-const principles = [
-  {
-    title: 'Kolory tylko z motywu',
-    body: 'Domyślny jest ciemny motyw w stylu IDE z akcentem orchidei. Kod odwołuje się do tokenów po nazwie, więc kolejny motyw to nowy plik, a nie zmiany w komponentach.',
-  },
-  {
-    title: 'Tokeny zamiast pikseli',
-    body: 'Tekst przyjmuje FontSize, TextColor i FontFamily zamiast wartości w px. Wartości spoza skali trafiają do className.',
-  },
-  {
-    title: 'Wierność prototypowi',
-    body: 'Style są mierzone na żywym prototypie (computed style), a nie kopiowane z opisu. Każdy komponent ma odnotowane, z czego został zweryfikowany.',
-  },
-]
+const PRINCIPLES = ['colors', 'tokens', 'fidelity'] as const
 
 const palette = [
   'accent',
@@ -45,37 +35,37 @@ const palette = [
 ]
 
 export function OverviewPage() {
+  const [text] = useTexts(DOCS_KEYS, 'docs')
   return (
     <div className="flex flex-col gap-14">
       <section className="flex flex-col gap-4">
-        <Label tone={LabelTone.Accent}>OrchIDE UI / Overview</Label>
+        <Label tone={LabelTone.Accent}>{text.overview.kicker}</Label>
         <Text
           as="h1"
           size={FontSize.Display}
           color={TextColor.Heading}
           className="max-w-[760px] leading-[1.1] tracking-[-.03em]"
         >
-          Komponenty portfolio w stylu IDE
+          {text.overview.title}
         </Text>
         <Text as="p" size={FontSize.XXLarge} color={TextColor.Muted} className="max-w-[640px] leading-[1.7]">
-          OrchIDE UI to biblioteka komponentów, z której zbudowane jest całe portfolio, łącznie z tą stroną. Jedna
-          paleta, jedna skala typografii i komponenty sprawdzone względem prototypu.
+          {text.overview.text}
         </Text>
         <div className="mt-2 flex flex-wrap gap-3">
           <Button variant={ButtonVariant.Primary} onClick={() => navigate('/components')}>
-            Przeglądaj komponenty
+            {text.overview.browse}
           </Button>
           <Button variant={ButtonVariant.Outline} onClick={() => navigate('/changelog')}>
-            Zobacz Changelog
+            {text.overview.seeChangelog}
           </Button>
         </div>
       </section>
 
       <section className="grid grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-4">
         {[
-          { value: entries.length, label: 'komponentów' },
-          { value: categories.length, label: 'kategorii' },
-          { value: palette.length, label: 'kluczowych kolorów' },
+          { value: entries.length, label: text.overview.stats.components },
+          { value: categories.length, label: text.overview.stats.categories },
+          { value: palette.length, label: text.overview.stats.colors },
         ].map((stat) => (
           <Panel key={stat.label} className="flex flex-col gap-1 px-5 py-4">
             <Text size={FontSize.Heading} weight={FontWeight.Medium} color={TextColor.Accent} className="leading-none">
@@ -90,16 +80,16 @@ export function OverviewPage() {
 
       <section className="flex flex-col gap-4">
         <Text as="h2" size={FontSize.XXLarge} weight={FontWeight.Medium} color={TextColor.Heading}>
-          Zasady
+          {text.overview.principlesTitle}
         </Text>
         <div className="grid grid-cols-[repeat(auto-fit,minmax(240px,1fr))] gap-4">
-          {principles.map((p) => (
-            <Panel key={p.title} className="flex flex-col gap-2 p-5">
+          {PRINCIPLES.map((key) => (
+            <Panel key={key} className="flex flex-col gap-2 p-5">
               <Text as="h3" size={FontSize.XLarge} weight={FontWeight.Medium} color={TextColor.Heading}>
-                {p.title}
+                {text.overview.principles[key].title}
               </Text>
               <Text as="p" size={FontSize.Small} color={TextColor.Dim} className="leading-[1.65]">
-                {p.body}
+                {text.overview.principles[key].body}
               </Text>
             </Panel>
           ))}
@@ -108,7 +98,7 @@ export function OverviewPage() {
 
       <section className="flex flex-col gap-4">
         <Text as="h2" size={FontSize.XXLarge} weight={FontWeight.Medium} color={TextColor.Heading}>
-          Kolory
+          {text.overview.colorsTitle}
         </Text>
         <div className="grid grid-cols-[repeat(auto-fill,minmax(140px,1fr))] gap-3">
           {palette.map((name) => (
@@ -130,7 +120,7 @@ export function OverviewPage() {
       <section className="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-6">
         <div className="flex flex-col gap-4">
           <Text as="h2" size={FontSize.XXLarge} weight={FontWeight.Medium} color={TextColor.Heading}>
-            Typografia
+            {text.overview.typographyTitle}
           </Text>
           <Panel className="flex flex-col gap-5 p-5">
             <div className="flex flex-col gap-1">
@@ -154,15 +144,17 @@ export function OverviewPage() {
 
         <div className="flex flex-col gap-4">
           <Text as="h2" size={FontSize.XXLarge} weight={FontWeight.Medium} color={TextColor.Heading}>
-            Stos
+            {text.overview.stackTitle}
           </Text>
-          <InfoCard header="OrchIDE UI">
-            <InfoRow label="Wersja">v{DESIGN_SYSTEM_VERSION}</InfoRow>
-            <InfoRow label="Framework">React 19 + TypeScript</InfoRow>
-            <InfoRow label="Style">Tailwind CSS v4 (@theme)</InfoRow>
-            <InfoRow label="Ikony">Lucide</InfoRow>
-            <InfoRow label="Fonty">IBM Plex Sans, JetBrains Mono</InfoRow>
-          </InfoCard>
+          <Card title="OrchIDE UI">
+            <CardFields>
+              <CardField label={text.overview.fields.version}>v{DESIGN_SYSTEM_VERSION}</CardField>
+              <CardField label={text.overview.fields.framework}>React 19 + TypeScript</CardField>
+              <CardField label={text.overview.fields.style}>Tailwind CSS v4 (@theme)</CardField>
+              <CardField label={text.overview.fields.icons}>Lucide</CardField>
+              <CardField label={text.overview.fields.fonts}>IBM Plex Sans, JetBrains Mono</CardField>
+            </CardFields>
+          </Card>
         </div>
       </section>
     </div>

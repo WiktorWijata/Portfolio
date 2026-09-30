@@ -10,20 +10,16 @@ import {
   TextColor,
 } from '@/design-system'
 import { useEditor, usePanels } from '@/context'
-import { EXPLORER_HIDE_LABEL, TourTarget } from '../../Shell.consts'
+import { TourTarget } from '../../Shell.consts'
 import { ContactCard, ExplorerTree } from './components'
-import {
-  COLLAPSE_ALL_LABEL,
-  EXPAND_ALL_LABEL,
-  EXPLORER_LABEL,
-  EXPLORER_NO_RESULTS,
-  EXPLORER_SEARCH_LABEL,
-  EXPLORER_SEARCH_PLACEHOLDER,
-} from './Explorer.consts'
+import { EXPLORER_LABEL } from './Explorer.consts'
 import { allFolders, nodeMatches } from './utils'
+import { EXPLORER_KEYS } from './Explorer.keys'
+import { useTexts } from '@/i18n/hooks/useTexts'
 
 /** The Solution Explorer of the portfolio: every page is a "file" that opens as an editor tab. */
 export function Explorer() {
+  const [text] = useTexts(EXPLORER_KEYS)
   const { solution } = useEditor()
   const { setExplorerOpen } = usePanels()
   const [query, setQuery] = useState('')
@@ -41,27 +37,27 @@ export function Explorer() {
           <ToolbarButton
             size={ToolbarButtonSize.Sm}
             icon={<ListTree />}
-            aria-label={EXPAND_ALL_LABEL}
+            aria-label={text.expandAll}
             onClick={() => setOpenFolders(allFolders(solution, true))}
           />
           <ToolbarButton
             size={ToolbarButtonSize.Sm}
             icon={<FoldVertical />}
-            aria-label={COLLAPSE_ALL_LABEL}
+            aria-label={text.collapseAll}
             onClick={() => setOpenFolders(allFolders(solution, false))}
           />
           <ToolbarButton
             size={ToolbarButtonSize.Sm}
             icon={<PanelLeftClose />}
-            aria-label={EXPLORER_HIDE_LABEL}
+            aria-label={text.hide}
             onClick={() => setExplorerOpen(false)}
           />
         </>
       }
       search={
         <SearchField
-          placeholder={EXPLORER_SEARCH_PLACEHOLDER}
-          aria-label={EXPLORER_SEARCH_LABEL}
+          placeholder={text.searchPlaceholder}
+          aria-label={text.searchLabel}
           value={query}
           onChange={(event) => setQuery(event.target.value)}
         />
@@ -77,7 +73,7 @@ export function Explorer() {
         />
       ) : (
         <Text as="p" size={FontSize.Small} color={TextColor.Faint} className="px-3 py-2">
-          {EXPLORER_NO_RESULTS}
+          {text.noResults}
         </Text>
       )}
     </SolutionExplorer>

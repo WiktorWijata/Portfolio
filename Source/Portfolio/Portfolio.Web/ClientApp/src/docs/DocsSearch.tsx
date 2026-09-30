@@ -1,11 +1,15 @@
 import { useEffect, useMemo, useRef, useState, type KeyboardEvent } from 'react'
 import { Badge, FontSize, List, ListItem, Panel, SearchField, Text, TextColor } from '@/design-system'
-import { categories, entries } from './registry'
+import { useTexts } from '@/i18n/hooks/useTexts'
+import { DOCS_KEYS } from './Docs.keys'
+import { entryText } from './Docs.helpers'
+import { entries } from './registry'
 import { navigate } from './useHashRoute'
 
 const MAX_RESULTS = 8
 
 export function DocsSearch({ className = '' }: { className?: string }) {
+  const [text, t] = useTexts(DOCS_KEYS, 'docs')
   const [query, setQuery] = useState('')
   const [open, setOpen] = useState(false)
   const [activeIndex, setActiveIndex] = useState(0)
@@ -15,10 +19,10 @@ export function DocsSearch({ className = '' }: { className?: string }) {
     const q = query.trim().toLowerCase()
     if (!q) return []
     return entries
-      .filter((e) => e.name.toLowerCase().includes(q) || e.summary.toLowerCase().includes(q))
+      .filter((e) => e.name.toLowerCase().includes(q) || entryText(text, e.id).summary.toLowerCase().includes(q))
       .sort((a, b) => Number(b.name.toLowerCase().startsWith(q)) - Number(a.name.toLowerCase().startsWith(q)))
       .slice(0, MAX_RESULTS)
-  }, [query])
+  }, [query, text])
 
   const input = () => rootRef.current?.querySelector('input')
 
@@ -67,8 +71,8 @@ export function DocsSearch({ className = '' }: { className?: string }) {
       }}
     >
       <SearchField
-        placeholder="Szukaj komponentu…  ( / )"
-        aria-label="Szukaj komponentu"
+        placeholder={text.search.placeholder}
+        aria-label={text.search.label}
         role="combobox"
         aria-expanded={showDropdown}
         aria-controls="docs-search-results"
@@ -96,18 +100,18 @@ export function DocsSearch({ className = '' }: { className?: string }) {
                 <ListItem
                   key={entry.id}
                   title={entry.name}
-                  subtitle={entry.summary}
+                  subtitle={entryText(text, entry.id).summary}
                   active={i === activeIndex}
                   onMouseDown={(e) => e.preventDefault()}
                   onMouseEnter={() => setActiveIndex(i)}
                   onClick={() => choose(entry.id)}
-                  trailing={<Badge>{categories.find((c) => c.id === entry.category)?.label}</Badge>}
+                  trailing={<Badge>{text.categories[entry.category]}</Badge>}
                 />
               ))}
             </List>
           ) : (
             <Text as="p" size={FontSize.Small} color={TextColor.Dim} className="px-4 py-4">
-              Brak wyników dla „{query.trim()}"
+              {t(DOCS_KEYS.search.noResults, { query: query.trim() })}
             </Text>
           )}
         </Panel>

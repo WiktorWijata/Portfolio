@@ -5,6 +5,8 @@
  * OpenAPI spec version: 1.0
  */
 import type { Technology } from './technology';
+import type { ProjectArchitectureNote } from './projectArchitectureNote';
+import type { ProjectArchitectureBlock } from './projectArchitectureBlock';
 
 export interface Project {
   /** @nullable */
@@ -19,4 +21,12 @@ export interface Project {
   codeUrl?: string | null;
   /** @nullable */
   technologies?: Technology[] | null;
+  /** @nullable */
+  architectureNotes?: ProjectArchitectureNote[] | null;
+  /** @nullable */
+  architectureBlocks?: ProjectArchitectureBlock[] | null;
+  /** @nullable */
+  architectureCaption?: string | null;
+  /** @nullable */
+  architectureDiagramLabel?: string | null;
 }

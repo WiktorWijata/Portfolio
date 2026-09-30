@@ -1,6 +1,20 @@
 import type { CSSProperties, ReactNode } from 'react'
 import type { GuideHighlightRect } from '../../Guide.types'
 
+/** Teksty interfejsu karty przewodnika — do podmiany np. przy zmianie języka. */
+export interface GuideCardLabels {
+  /** Etykieta postępu nad tytułem, dla kroku o danym numerze (od 1) spośród wszystkich. */
+  progress: (step: number, totalSteps: number) => string
+  /** Przycisk „Pomiń". */
+  skip: string
+  /** Przycisk „Wstecz". */
+  back: string
+  /** Przycisk „Dalej →". */
+  next: string
+  /** Przycisk na ostatnim kroku („Gotowe"). */
+  done: string
+}
+
 export interface GuideCardProps {
   /** Numer bieżącego kroku (od 1), pokazywany w etykiecie „PRZEWODNIK / N Z M". */
   step: number
@@ -42,6 +56,11 @@ export interface GuideCardProps {
   anchor?: GuideHighlightRect
   /** Style inline — pozycja karty (`top`, `left`), gdy nie używasz `anchor`; karta jest `position: fixed`. */
   style?: CSSProperties
+  /**
+   * Teksty interfejsu; pominięte pola mają polskie wartości domyślne („PRZEWODNIK / 1 Z 6", „Pomiń",
+   * „Wstecz", „Dalej →", „Gotowe").
+   */
+  labels?: Partial<GuideCardLabels>
   /** Dodatkowe klasy głównego elementu. */
   className?: string
 }

@@ -241,7 +241,7 @@ export const overlayEntries: DocEntry[] = [
     id: 'guide',
     api: {
       folder: 'Guide',
-      interfaces: ['GuideCardProps', 'GuideHighlightProps', 'GuideHighlightRect', 'GuideShadeProps'],
+      interfaces: ['GuideCardProps', 'GuideCardLabels', 'GuideHighlightProps', 'GuideHighlightRect', 'GuideShadeProps'],
     },
     usage: `import { GuideCard, GuideHighlight, GuideShade } from './design-system'
 
@@ -263,8 +263,6 @@ export const overlayEntries: DocEntry[] = [
 </GuideCard>`,
     name: 'Guide',
     category: 'overlays',
-    summary: 'Przewodnik krok po kroku: karta, spotlight na elemencie i przyciemnione tło.',
-    note: '.portfolio-tour-card/-shade/-highlight (przewodnik „Oprowadź mnie") — karta, tło i podświetlenie; cele i kroki dostarcza aplikacja.',
     preview: (
       <div className="flex flex-col gap-1.5">
         <Text size={FontSize.XXSmall} font={FontFamily.Mono} className="tracking-[.07em] text-accent-muted">
@@ -298,8 +296,6 @@ export const overlayEntries: DocEntry[] = [
 { id: 7, kind: TerminalLineKind.Error, content: 'Nieznana komenda: foo' }`,
     name: 'Terminal',
     category: 'overlays',
-    summary: 'Dolny panel konsoli z historią komend, uzupełnianiem Tab i zmianą wysokości.',
-    note: '.portfolio-terminal — Esc zamyka, wysokość zmienia się przeciąganiem lub strzałkami na uchwycie. Komendy interpretuje aplikacja.',
     preview: (
       <div className="w-full">
         <Text as="div" size={FontSize.XSmall} font={FontFamily.Mono} color={TextColor.Accent}>
@@ -339,8 +335,6 @@ export const overlayEntries: DocEntry[] = [
 }`,
     name: 'Chat',
     category: 'overlays',
-    summary: 'Okno asystenta z bąbelkami, chipami z pytaniami i polem wiadomości.',
-    note: '.ai-chat — Enter wysyła, Shift+Enter nowa linia, Esc zamyka. Odpowiedzi generuje aplikacja.',
     preview: (
       <div className="flex w-full flex-col gap-1.5">
         <Text
@@ -379,8 +373,6 @@ export const overlayEntries: DocEntry[] = [
 )}`,
     name: 'ChatLauncher',
     category: 'overlays',
-    summary: 'Pływający przycisk „Zapytaj o mnie", który otwiera okno czatu.',
-    note: '.ai-chat-toggle — pozycja fixed w prawym dolnym rogu; offset bottom jest animowany (180 ms). Wymiary i kolory zmierzone w prototypie.',
     preview: (
       <Text
         as="div"

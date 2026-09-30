@@ -1,9 +1,11 @@
-import { useCallback, useRef, useState } from 'react'
+import { useCallback, useMemo, useRef, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { ChatMessageRole, type ChatMessage } from '@/design-system'
 import { useEditor, usePanels } from '@/context'
-import { ASSISTANT_ACTION_LABEL, ASSISTANT_WELCOME } from '../../Assistant.consts'
+import { ASSISTANT_WELCOME_MESSAGE_ID } from '../../Assistant.consts'
 import { getAnswer } from '../../utils'
 import { appendMessages } from './useAssistant.transitions'
+import { ASSISTANT_KEYS } from '../../Assistant.keys'
 
 /**
  * Conversation with the assistant. Answers are canned for now; replies with a page offer a jump to it.
@@ -11,16 +13,17 @@ import { appendMessages } from './useAssistant.transitions'
  * (and its DOM) without bound.
  */
 export function useAssistant() {
+  const { t, i18n } = useTranslation()
   const { openPage } = useEditor()
   const { setChatOpen } = usePanels()
   const nextId = useRef(1)
   const [messages, setMessages] = useState<ChatMessage[]>([
-    { id: 0, role: ChatMessageRole.Assistant, content: ASSISTANT_WELCOME },
+    { id: ASSISTANT_WELCOME_MESSAGE_ID, role: ChatMessageRole.Assistant, content: null },
   ])
 
   const send = useCallback(
     (text: string) => {
-      const { text: answer, page } = getAnswer(text)
+      const { text: answer, page } = getAnswer(text, t, i18n.language)
       const question: ChatMessage = { id: nextId.current++, role: ChatMessageRole.User, content: text }
       const reply: ChatMessage = {
         id: nextId.current++,
@@ -28,7 +31,7 @@ export function useAssistant() {
         content: answer,
         action: page
           ? {
-              label: ASSISTANT_ACTION_LABEL,
+              label: t(ASSISTANT_KEYS.action),
               onAction: () => {
                 openPage(page)
                 setChatOpen(false)
@@ -38,8 +41,16 @@ export function useAssistant() {
       }
       setMessages((prev) => appendMessages(prev, [question, reply]))
     },
-    [openPage, setChatOpen],
+    [openPage, setChatOpen, t, i18n.language],
   )
 
-  return { messages, send }
+  const shownMessages = useMemo(
+    () =>
+      messages.map((message) =>
+        message.id === ASSISTANT_WELCOME_MESSAGE_ID ? { ...message, content: t(ASSISTANT_KEYS.welcome) } : message,
+      ),
+    [messages, t],
+  )
+
+  return { messages: shownMessages, send }
 }

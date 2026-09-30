@@ -1,7 +1,6 @@
 import { BookOpen, MessageSquare, Moon, Sun } from 'lucide-react'
 import { useState } from 'react'
 import {
-  CardHeading,
   Container,
   ContainerSize,
   FontFamily,
@@ -16,6 +15,7 @@ import {
   StatusBarButton,
   StatusBarDivider,
   StatusBarItem,
+  StatusBarIndicator,
   StatusBarSpacer,
   StatusBarSwitch,
   StatusBarTone,
@@ -57,19 +57,6 @@ function PanelDemo() {
         </Text>
       </Panel>
     </>
-  )
-}
-
-function CardHeadingDemo() {
-  return (
-    <div className="w-[280px] overflow-hidden rounded-md border border-line-default">
-      <CardHeading>NAGŁÓWEK KARTY</CardHeading>
-      <div className="p-3.5">
-        <Text size={FontSize.Small} color={TextColor.Dim}>
-          Treść karty, dowolna.
-        </Text>
-      </div>
-    </div>
   )
 }
 
@@ -182,6 +169,9 @@ function StatusBarDemo() {
             { value: 'en', label: 'EN', 'aria-label': 'English' },
           ]}
         />
+        <StatusBarItem indicator={StatusBarIndicator.Online}>online</StatusBarItem>
+        {/* lampka przed tekstem: Online, Offline, Pending */}
+        <StatusBarItem indicator={StatusBarIndicator.Online}>online</StatusBarItem>
         <StatusBarItem tone={StatusBarTone.Faint}>v0.1.0</StatusBarItem>
       </StatusBar>
     </div>
@@ -212,7 +202,6 @@ export const layoutEntries: DocEntry[] = [
 <Container size={ContainerSize.Wide}>Układ z sidebarem (max 1280 px)</Container>`,
     name: 'Container',
     category: 'layout',
-    summary: 'Wyśrodkowany kontener szerokości strony z marginesami bocznymi.',
     preview: (
       <div className="flex h-14 w-full items-center justify-center rounded-sm border border-dashed border-line-emphasis">
         <div className="h-8 w-2/3 rounded-sm bg-surface-hover" />
@@ -231,7 +220,6 @@ export const layoutEntries: DocEntry[] = [
 </Panel>`,
     name: 'Panel',
     category: 'layout',
-    summary: 'Bazowa karta: tło, obramowanie, promień i cień. Opcjonalnie z hoverem.',
     preview: (
       <Panel className="px-5 py-4">
         <Text size={FontSize.Medium} color={TextColor.Body}>
@@ -240,26 +228,6 @@ export const layoutEntries: DocEntry[] = [
       </Panel>
     ),
     Demo: PanelDemo,
-  },
-  {
-    id: 'cardheading',
-    api: { folder: 'CardHeading', interfaces: ['CardHeadingProps'] },
-    usage: `import { CardHeading } from './design-system'
-
-<div className="overflow-hidden rounded-2xl border border-line-emphasis bg-surface-card">
-  <CardHeading>GALERIA PROJEKTU</CardHeading>
-  {/* treść karty */}
-</div>`,
-    name: 'CardHeading',
-    category: 'layout',
-    summary: 'Mała etykieta na górze obramowanej karty, bez tła i bez licznika/akcji.',
-    note: 'Gallery i ArchitectureCard (strona projektu) — dwa miejsca z identycznym nagłówkiem karty, teraz jedno źródło. Inna rola niż PanelBar (ma tło, licznik i akcję — DataCard, InfoCard, List).',
-    preview: (
-      <div className="w-full max-w-[220px] overflow-hidden rounded-md border border-line-default">
-        <CardHeading>NAGŁÓWEK</CardHeading>
-      </div>
-    ),
-    Demo: CardHeadingDemo,
   },
   {
     id: 'splitpanel',
@@ -279,8 +247,6 @@ export const layoutEntries: DocEntry[] = [
 </SplitPanel>`,
     name: 'SplitPanel',
     category: 'layout',
-    summary: 'Master-detail: lista po lewej, szczegóły po prawej, zwija się na wąskich ekranach.',
-    note: '.xp w Experience i .stack-panel w Stack mają identyczny grid 320px/1fr, border, radius — sprawdzone w DOM.',
     preview: (
       <div className="grid h-14 w-full grid-cols-[1fr_2fr] overflow-hidden rounded-md border border-line-default">
         <div className="border-r border-line-default bg-surface-panel" />
@@ -303,7 +269,7 @@ export const layoutEntries: DocEntry[] = [
     },
     usage: `import {
   StatusBar, StatusBarItem, StatusBarButton, StatusBarDivider,
-  StatusBarSpacer, StatusBarSwitch, StatusBarTone, StatusBarAccent,
+  StatusBarSpacer, StatusBarSwitch, StatusBarTone, StatusBarAccent, StatusBarIndicator,
 } from './design-system'
 
 <StatusBar aria-label="Pasek statusu">
@@ -344,8 +310,6 @@ export const layoutEntries: DocEntry[] = [
 </StatusBar>`,
     name: 'StatusBar',
     category: 'layout',
-    summary: 'Dolny pasek okna IDE: gałąź, ścieżka pliku, przełączniki paneli, język i wersja.',
-    note: '.status w prototypie — wymiary i kolory zmierzone przez getComputedStyle.',
     preview: (
       <div className="flex h-7 w-full items-center gap-3 border-t border-line-default bg-surface-hover px-3">
         <span className="font-mono text-xs text-success-content-muted">⑂ master</span>
@@ -367,8 +331,6 @@ export const layoutEntries: DocEntry[] = [
 </TitleBar>`,
     name: 'TitleBar',
     category: 'layout',
-    summary: 'Górny pasek okna IDE: logo, tytuł i przyciski akcji.',
-    note: '.bar i .bar .run w prototypie — wymiary, kolory i hover zmierzone przez getComputedStyle.',
     preview: (
       <div className="flex h-9 w-full items-center gap-3.5 border-b border-line-default bg-surface-hover px-3">
         <span className="rounded-[2px] bg-accent px-[5px] py-[3px] font-mono text-xs font-semibold text-accent-content">

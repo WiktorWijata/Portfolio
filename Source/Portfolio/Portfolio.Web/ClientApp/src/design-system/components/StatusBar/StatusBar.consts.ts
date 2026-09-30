@@ -1,4 +1,4 @@
-import { StatusBarAccent, StatusBarTone } from './StatusBar.types'
+import { StatusBarAccent, StatusBarIndicator, StatusBarTone } from './StatusBar.types'
 
 export const toneClasses: Record<StatusBarTone, string> = {
   [StatusBarTone.Default]: 'text-content-tertiary',
@@ -9,6 +9,12 @@ export const toneClasses: Record<StatusBarTone, string> = {
 export const accentClasses: Record<StatusBarAccent, string> = {
   [StatusBarAccent.Success]: 'text-success-content',
   [StatusBarAccent.Assistant]: 'text-warning-content',
+}
+
+export const indicatorClasses: Record<StatusBarIndicator, string> = {
+  [StatusBarIndicator.Online]: 'bg-success-indicator',
+  [StatusBarIndicator.Offline]: 'bg-danger-content',
+  [StatusBarIndicator.Pending]: 'bg-warning-content animate-pulse',
 }
 
 export const buttonBase =

@@ -25,6 +25,16 @@ export const StatusBarAccent = {
 } as const
 export type StatusBarAccent = (typeof StatusBarAccent)[keyof typeof StatusBarAccent]
 
+export const StatusBarIndicator = {
+  /** Zielona lampka — połączenie działa. */
+  Online: 'online',
+  /** Czerwona lampka — brak połączenia. */
+  Offline: 'offline',
+  /** Pulsująca pomarańczowa lampka — trwa sprawdzanie. */
+  Pending: 'pending',
+} as const
+export type StatusBarIndicator = (typeof StatusBarIndicator)[keyof typeof StatusBarIndicator]
+
 export type { StatusBarItemProps } from './components/StatusBarItem'
 
 export type {

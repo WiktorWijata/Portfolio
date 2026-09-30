@@ -1,18 +1,19 @@
-import { DataCard, FontFamily, FontSize, List, ListItem, Text } from '@/design-system'
+import { Card, FontFamily, FontSize, List, ListItem, Text } from '@/design-system'
 import { useEditor } from '@/context'
 import { GIT_BRANCH } from '@/components/Shell/Shell.consts'
-import { EMPTY_EDITOR_QUICK_ACCESS_TITLE } from '../../EmptyEditor.consts'
 import { useQuickAccess } from '../../hooks/useQuickAccess'
-import { formatFileCount } from '../../utils'
+import { EMPTY_EDITOR_KEYS } from '../../EmptyEditor.keys'
+import { useTexts } from '@/i18n/hooks/useTexts'
 
 /** "Szybki dostęp": the main pages as rows (label + file name), with a footer of branch and file count. */
 export function QuickAccess() {
+  const [text, t] = useTexts(EMPTY_EDITOR_KEYS)
   const { openPage } = useEditor()
   const items = useQuickAccess()
 
   return (
     <>
-      <DataCard title={EMPTY_EDITOR_QUICK_ACCESS_TITLE} count={items.length}>
+      <Card title={text.quickAccess} count={items.length}>
         <List>
           {items.map((item) => (
             <ListItem
@@ -42,14 +43,14 @@ export function QuickAccess() {
             />
           ))}
         </List>
-      </DataCard>
+      </Card>
       <div className="mt-[18px] flex items-center gap-2.5">
         <Text size={FontSize.XSmall} font={FontFamily.Mono} className="tracking-[.03em] text-content-faint">
           {GIT_BRANCH}
         </Text>
         <i className="h-px flex-1 bg-surface-hover-strong" />
         <Text size={FontSize.XSmall} font={FontFamily.Mono} className="tracking-[.03em] text-content-faint">
-          {formatFileCount(items.length)}
+          {t(EMPTY_EDITOR_KEYS.fileCount, { count: items.length })}
         </Text>
       </div>
     </>

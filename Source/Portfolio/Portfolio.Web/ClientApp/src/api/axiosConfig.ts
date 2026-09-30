@@ -1,4 +1,6 @@
 import axios from 'axios'
+import { queryClient } from './queryClient'
+import { API_HEALTH_QUERY_KEY } from './useApiStatus'
 import { LANGUAGE_STORAGE_KEY } from '@/context/PreferencesContext/PreferencesContext.consts'
 import { readStorage } from '@/utils/storage'
 
@@ -21,4 +23,15 @@ if (apiUrl) {
 axios.interceptors.request.use((config) => {
   config.headers['Accept-Language'] = readStorage(LANGUAGE_STORAGE_KEY) ?? 'pl'
   return config
+})
+
+/**
+ * A request that got no answer at all means the API is unreachable: re-check its health right away instead of
+ * waiting for the next poll, so the status light and the offline page follow the failure.
+ */
+axios.interceptors.response.use(undefined, (error: unknown) => {
+  if (axios.isAxiosError(error) && !error.response && error.config?.url !== '/health') {
+    void queryClient.invalidateQueries({ queryKey: API_HEALTH_QUERY_KEY })
+  }
+  return Promise.reject(error)
 })

@@ -259,8 +259,6 @@ export const navigationEntries: DocEntry[] = [
 </Menu>`,
     name: 'Menu',
     category: 'navigation',
-    summary: 'Karta-spis treści z płaskimi pozycjami i rozwijalnymi grupami.',
-    note: '.gs-index (GetStarted „Szybki przewodnik") — sprawdzone w DOM.',
     preview: (
       <Menu header="Przewodnik" aria-label="Podgląd menu" className="w-[170px]">
         <MenuItem active>Wprowadzenie</MenuItem>
@@ -296,8 +294,6 @@ export const navigationEntries: DocEntry[] = [
 </Tabs>`,
     name: 'Tabs',
     category: 'navigation',
-    summary: 'Zakładki otwartych plików z zamykaniem i przeciąganiem, by zmienić kolejność.',
-    note: '.tabs — stany default/hover/active/close/dragging zmierzone w computed style, przeciąganie na pointer events.',
     preview: (
       <Tabs aria-label="Podgląd zakładek" className="w-full overflow-hidden rounded-t-md">
         <Tab id="a" active onClose={() => {}} closeLabel="Zamknij Stack">
@@ -333,8 +329,6 @@ export const navigationEntries: DocEntry[] = [
 </SolutionExplorer>`,
     name: 'SolutionExplorer',
     category: 'navigation',
-    summary: 'Drzewo plików z wyszukiwarką, zwijaniem folderów i zwijanym panelem.',
-    note: '.explorer/.solution-tree — wcięcia, markery plików, stan active, sprawdzone w computed style.',
     preview: (
       <div className="w-[190px] overflow-hidden border border-line-default">
         <SolutionExplorer className="w-full border-r-0" aria-label="Podgląd explorera">

@@ -15,6 +15,8 @@ export * from './introduction';
 export * from './language';
 export * from './notificationRequest';
 export * from './project';
+export * from './projectArchitectureBlock';
+export * from './projectArchitectureNote';
 export * from './service';
 export * from './skillCategory';
 export * from './specialization';

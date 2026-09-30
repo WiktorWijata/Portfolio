@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next'
 import { FontFamily, FontSize, FontWeight, Text } from '@/design-system'
 import { PageContainer, PageContainerPadding } from '../PageContainer'
 import { GuideActionLink, GuideArticle, GuideIndex } from './components'
@@ -6,6 +7,7 @@ import { useGuideNavigation } from './hooks/useGuideNavigation'
 
 /** GetStarted.md: the guide to the portfolio — an index on the left, an introduction and features on the right. */
 export function GetStarted() {
+  const { t } = useTranslation()
   const { selectedId, select, runAction } = useGuideNavigation()
 
   return (
@@ -20,7 +22,7 @@ export function GetStarted() {
               weight={FontWeight.Medium}
               className="mb-4 text-[clamp(25px,2.4vw,34px)] leading-[1.2] tracking-[-.5px] text-content-strong"
             >
-              {GUIDE_INTRO.title}
+              {t(GUIDE_INTRO.titleKey)}
             </Text>
             <Text
               as="p"
@@ -28,7 +30,7 @@ export function GetStarted() {
               font={FontFamily.Sans}
               className="max-w-[950px] leading-[1.7] text-content-soft"
             >
-              {GUIDE_INTRO.text}
+              {t(GUIDE_INTRO.textKey)}
             </Text>
             <GuideActionLink action={GUIDE_INTRO.action} onRun={runAction} className="mt-[9px] py-2" />
           </header>
@@ -40,7 +42,7 @@ export function GetStarted() {
                 weight={FontWeight.Medium}
                 className="mb-[21px] text-[23px] leading-tight tracking-[-.3px] text-content-strong"
               >
-                {section.title}
+                {t(section.titleKey)}
               </Text>
               <div className="grid grid-cols-2 gap-x-[25px] gap-y-7 max-[1300px]:grid-cols-1">
                 {section.articles.map((article) => (

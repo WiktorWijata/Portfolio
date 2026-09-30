@@ -1,15 +1,17 @@
 import { useSpecializations } from '@/api'
-import { Chip, ChipVariant, DataCard, FontFamily, FontSize, FontWeight, Text } from '@/design-system'
-import { HOME_LAYERS_LABEL, HOME_LAYERS_TITLE } from '../../Home.consts'
+import { Chip, ChipVariant, Card, FontFamily, FontSize, FontWeight, Text } from '@/design-system'
+import { HOME_KEYS } from '../../Home.keys'
+import { useTexts } from '@/i18n/hooks/useTexts'
 
 /** Diagram card "Co buduję / warstwy systemu": each specialization with a tag, a description and technology chips. */
 export function ArchitectureCard() {
+  const [text] = useTexts(HOME_KEYS)
   const { data: specializations } = useSpecializations()
 
   if (!specializations) return null
 
   return (
-    <DataCard title={HOME_LAYERS_TITLE} aria-label={HOME_LAYERS_LABEL} className="w-full min-w-0">
+    <Card title={text.layers.title} aria-label={text.layers.label} className="w-full min-w-0">
       <ol className="m-0 list-none p-0">
         {specializations.map((specialization, index) => (
           <li
@@ -54,6 +56,6 @@ export function ArchitectureCard() {
           </li>
         ))}
       </ol>
-    </DataCard>
+    </Card>
   )
 }
