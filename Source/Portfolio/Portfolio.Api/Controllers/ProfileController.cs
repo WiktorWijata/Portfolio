@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Portfolio.Profile.Contracts;
 using RescuePC.Portfolio.Api.Contracts.Models;
 using RescuePC.Portfolio.Api.Mappings;
+using RescuePC.Portfolio.BuildingBlocks.Application;
 
 namespace RescuePC.Portfolio.Api.Controllers;
 
@@ -29,6 +30,7 @@ public class ProfileController : ControllerBase
         }));
     }
 
+    [ChatTool("get_introduction")]
     [HttpGet("introduction")]
     [ProducesResponseType(typeof(Introduction), StatusCodes.Status200OK)]
     public async Task<IActionResult> GetIntroduction(CancellationToken cancellationToken = default)
@@ -37,6 +39,7 @@ public class ProfileController : ControllerBase
         return Ok(introduction.ToResponse());
     }
 
+    [ChatTool("get_services")]
     [HttpGet("services")]
     [ProducesResponseType(typeof(Service[]), StatusCodes.Status200OK)]
     public async Task<IActionResult> GetServices(CancellationToken cancellationToken = default)
@@ -45,6 +48,7 @@ public class ProfileController : ControllerBase
         return Ok(services.Select(s => s.ToResponse()));
     }
 
+    [ChatTool("get_specializations")]
     [HttpGet("specializations")]
     [ProducesResponseType(typeof(Specialization[]), StatusCodes.Status200OK)]
     public async Task<IActionResult> GetSpecializations(CancellationToken cancellationToken = default)
@@ -53,6 +57,7 @@ public class ProfileController : ControllerBase
         return Ok(specializations.Select(s => s.ToResponse()));
     }
 
+    [ChatTool("get_aspirations")]
     [HttpGet("aspirations")]
     [ProducesResponseType(typeof(Aspiration[]), StatusCodes.Status200OK)]
     public async Task<IActionResult> GetAspirations(CancellationToken cancellationToken = default)
@@ -61,6 +66,7 @@ public class ProfileController : ControllerBase
         return Ok(aspirations.Select(a => a.ToResponse()));
     }
 
+    [ChatTool("get_skills")]
     [HttpGet("skills")]
     [ProducesResponseType(typeof(SkillCategory[]), StatusCodes.Status200OK)]
     public async Task<IActionResult> GetSkills(CancellationToken cancellationToken = default)
@@ -69,6 +75,7 @@ public class ProfileController : ControllerBase
         return Ok(skillCategories.Select(s => s.ToResponse()));
     }
 
+    [ChatTool("get_experiences")]
     [HttpGet("experiences")]
     [ProducesResponseType(typeof(Experience[]), StatusCodes.Status200OK)]
     public async Task<IActionResult> GetExperiences(CancellationToken cancellationToken = default)
@@ -77,6 +84,7 @@ public class ProfileController : ControllerBase
         return Ok(experiences.Select(e => e.ToResponse()));
     }
 
+    [ChatTool("get_certificates")]
     [HttpGet("certificates")]
     [ProducesResponseType(typeof(Certificate[]), StatusCodes.Status200OK)]
     public async Task<IActionResult> GetCertificates(CancellationToken cancellationToken = default)
@@ -85,6 +93,7 @@ public class ProfileController : ControllerBase
         return Ok(certificates.Select(c => c.ToResponse()));
     }
 
+    [ChatTool("get_projects")]
     [HttpGet("projects")]
     [ProducesResponseType(typeof(Project[]), StatusCodes.Status200OK)]
     public async Task<IActionResult> GetProjects(CancellationToken cancellationToken = default)
@@ -93,6 +102,7 @@ public class ProfileController : ControllerBase
         return Ok(projects.Select(p => p.ToResponse()));
     }
 
+    [ChatTool("get_contacts")]
     [HttpGet("contacts")]
     [ProducesResponseType(typeof(Contact[]), StatusCodes.Status200OK)]
     public async Task<IActionResult> GetContacts(CancellationToken cancellationToken = default)
@@ -101,6 +111,7 @@ public class ProfileController : ControllerBase
         return Ok(contacts.Select(c => c.ToResponse()));
     }
 
+    [ChatTool("get_business")]
     [HttpGet("business")]
     [ProducesResponseType(typeof(Business), StatusCodes.Status200OK)]
     public async Task<IActionResult> GetBusiness(CancellationToken cancellationToken = default)

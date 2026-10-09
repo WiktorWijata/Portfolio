@@ -25,7 +25,11 @@
     <Project Path="Source/BuildingBlocks/Portfolio.BuildingBlocks.Intrastructure/Portfolio.BuildingBlocks.Intrastructure.csproj" Id="28fa0cb0-1408-4d91-9648-90b49ec2ad0e" />
     <Project Path="Source/BuildingBlocks/Portfolio.BuildingBlocks.Persistence/Portfolio.BuildingBlocks.Persistence.csproj" Id="6fbe5473-1a7b-4ccc-b4f6-afc07dec7858" />
   </Folder>
-  <Folder Name="/Source/Chat/" />
+  <Folder Name="/Source/Chat/">
+    <Project Path="Source/Chat/Portfolio.Chat.Application/Portfolio.Chat.Application.csproj" />
+    <Project Path="Source/Chat/Portfolio.Chat.Contracts/Portfolio.Chat.Contracts.csproj" />
+    <Project Path="Source/Chat/Portfolio.Chat.Infrastructure/Portfolio.Chat.Infrastructure.csproj" />
+  </Folder>
   <Folder Name="/Source/Profile/">
     <Project Path="Source/Profile/Portfolio.Profile.Application/Portfolio.Profile.Application.csproj" Id="6bfc7dea-3da2-478c-997c-b5f3a2ed291b" />
     <Project Path="Source/Profile/Portfolio.Profile.Contracts/Portfolio.Profile.Contracts.csproj" />
@@ -39,6 +43,11 @@
     <Project Path="Source/Notifications/Portfolio.Notifications.Domain/Portfolio.Notifications.Domain.csproj" />
     <Project Path="Source/Notifications/Portfolio.Notifications.Infrastructure/Portfolio.Notifications.Infrastructure.csproj" Id="604575b9-053b-47c1-af3e-cca4294e4b17" />
     <Project Path="Source/Notifications/Portfolio.Notifications.Persistence/Portfolio.Notifications.Persistence.csproj" Id="e52b5377-5f06-4c6c-b7d0-987c0365a247" />
+  </Folder>
+  <Folder Name="/Tests/">
+    <Project Path="Tests/Portfolio.BuildingBlocks.UnitTests/Portfolio.BuildingBlocks.UnitTests.csproj" />
+    <Project Path="Tests/Portfolio.Api.UnitTests/Portfolio.Api.UnitTests.csproj" />
+    <Project Path="Tests/Portfolio.Chat.UnitTests/Portfolio.Chat.UnitTests.csproj" />
   </Folder>
   <Folder Name="/Source/Porfolio/">
     <Project Path="Source/Portfolio/Portfolio.Api.Contracts/Portfolio.Api.Contracts.csproj" />

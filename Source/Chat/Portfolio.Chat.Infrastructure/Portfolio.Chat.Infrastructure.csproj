@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Hangfire.Core" Version="1.8.18" />
+    <PackageReference Include="IntegratorAI.Api.Contracts" Version="1.2.0" />
+    <PackageReference Include="RescuePC.Software.Refit" Version="10.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\BuildingBlocks\Portfolio.BuildingBlocks.Application\Portfolio.BuildingBlocks.Application.csproj" />
+    <ProjectReference Include="..\Portfolio.Chat.Application\Portfolio.Chat.Application.csproj" />
+    <ProjectReference Include="..\Portfolio.Chat.Contracts\Portfolio.Chat.Contracts.csproj" />
+  </ItemGroup>
+
+</Project>
