@@ -18,13 +18,39 @@ public class ChatToolRegistryTests
     }
 
     [Fact]
-    public void Knows_which_tools_need_an_argument_and_ignores_the_cancellation_token()
+    public void Describes_parameters_without_the_cancellation_token()
+    {
+        var tools = For(typeof(ValidController)).Tools.ToDictionary(t => t.Name);
+
+        Assert.Collection(
+            tools["find_item"].Parameters,
+            name =>
+            {
+                Assert.Equal(("name", "string", "Name of the item.", true), (name.Name, name.Type, name.Description, name.Required));
+            },
+            limit =>
+            {
+                Assert.Equal(("limit", "integer", "Maximum number of results.", false), (limit.Name, limit.Type, limit.Description, limit.Required));
+            });
+        Assert.Empty(tools["get_greeting"].Parameters);
+    }
+
+    [Fact]
+    public void Knows_which_tools_need_an_argument()
     {
         var tools = For(typeof(ValidController)).Tools.ToDictionary(t => t.Name, t => t.NeedsArguments);
 
         Assert.True(tools["find_item"]);
         Assert.False(tools["get_greeting"]);
         Assert.False(tools["get_typed"]);
+    }
+
+    [Fact]
+    public void Rejects_a_parameter_of_a_type_the_model_cannot_pass()
+    {
+        var exception = Assert.Throws<InvalidOperationException>(() => For(typeof(ComplexParameterController)));
+
+        Assert.Contains("unsupported type", exception.Message);
     }
 
     [Theory]

@@ -28,7 +28,8 @@ public class BuildChatContextQueryHandlerTests
         }
     }
 
-    private static ChatTool Tool(string name, bool needsArguments = false) => new(name, needsArguments);
+    private static ChatTool Tool(string name, bool needsArguments = false)
+        => new(name, needsArguments ? [new ChatToolParameter("name", "string", "The name.", Required: true)] : []);
 
     private static BuildChatContextQueryHandler CreateBuilder(FakeRegistry registry, FakeRunner runner, string language = "PL")
         => new(registry, runner, new FixedCallerContext(language));
@@ -82,6 +83,41 @@ public class BuildChatContextQueryHandlerTests
         var rules = ChatInstructions.For("PL").OperatingRules;
         Assert.Equal(string.Join("\n", rules.Select(rule => $"- {rule}")), context.OperatingRules);
         Assert.All(context.OperatingRules.Split('\n'), line => Assert.StartsWith("- ", line));
+    }
+
+    [Fact]
+    public async Task Declares_every_tool_with_its_description_and_parameters_in_name_order()
+    {
+        var registry = new FakeRegistry(Tool("get_skills"), Tool("get_projects", needsArguments: true));
+
+        var context = await CreateBuilder(registry, new FakeRunner(new() { ["get_skills"] = "[]" })).Build();
+
+        var instructions = ChatInstructions.For("PL");
+        Assert.Collection(
+            context.Tools,
+            projects =>
+            {
+                Assert.Equal("get_projects", projects.Name);
+                Assert.Equal(instructions.Tools["get_projects"], projects.Description);
+                var parameter = Assert.Single(projects.Parameters);
+                Assert.Equal(("name", "string", "The name."), (parameter.Name, parameter.Type, parameter.Description));
+                Assert.Empty(projects.Guardrails);
+            },
+            skills =>
+            {
+                Assert.Equal("get_skills", skills.Name);
+                Assert.Empty(skills.Parameters);
+                Assert.Empty(skills.Guardrails);
+            });
+    }
+
+    [Fact]
+    public async Task Declares_no_tools_as_an_empty_list_and_not_null()
+    {
+        var context = await CreateBuilder(new FakeRegistry(), new FakeRunner(new())).Build();
+
+        Assert.NotNull(context.Tools);
+        Assert.Empty(context.Tools);
     }
 
     [Fact]

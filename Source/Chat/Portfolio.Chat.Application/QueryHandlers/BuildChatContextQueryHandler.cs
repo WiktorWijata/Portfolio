@@ -1,5 +1,6 @@
 using System.Text;
 using IntegratorAI.Api.Contracts.Context;
+using IntegratorAI.Api.Contracts.Context.Models;
 using MediatR;
 using Portfolio.Chat.Application.Queries;
 using RescuePC.Portfolio.BuildingBlocks.Application;
@@ -48,6 +49,20 @@ public class BuildChatContextQueryHandler : IRequestHandler<BuildChatContextQuer
             OperatingRules = string.Join("\n", instructions.OperatingRules.Select(rule => $"- {rule}")),
             OutputFormat = instructions.OutputFormat,
             Examples = instructions.Examples,
+
+            // Every tool is declared, so IntegratorAI knows what the assistant can ask for. The data of the tools without
+            // arguments is also in the context above until IntegratorAI can call tools. IntegratorAI does not accept
+            // null for the lists of a tool.
+            Tools = _registry.Tools
+                .OrderBy(t => t.Name, StringComparer.Ordinal)
+                .Select(t => new Tool
+                {
+                    Name = t.Name,
+                    Description = instructions.DescribeTool(t.Name, languageCode),
+                    Parameters = t.Parameters.Select(p => new ToolParameter { Name = p.Name, Type = p.Type, Description = p.Description }).ToArray(),
+                    Guardrails = [],
+                })
+                .ToArray(),
         };
     }
 }
