@@ -74,3 +74,9 @@ public abstract class ToolBaseController : ControllerBase
 
 public sealed class DerivedToolController : ToolBaseController;
 
+public sealed class ComplexParameterController : ControllerBase
+{
+    [ChatTool("complex_param")]
+    [HttpGet("complex")]
+    public Task<IActionResult> Complex(Guid id) => Task.FromResult<IActionResult>(Ok());
+}
