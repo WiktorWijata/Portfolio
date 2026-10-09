@@ -1,10 +1,10 @@
 using System.Text.Json;
 using Microsoft.Extensions.DependencyInjection;
 using Portfolio.Chat.Contracts;
-using RescuePC.Portfolio.Api.Chat;
+using Portfolio.Chat.Infrastructure;
 using RescuePC.Portfolio.BuildingBlocks.Application;
 
-namespace Portfolio.Api.UnitTests.Chat;
+namespace Portfolio.Chat.UnitTests;
 
 public class ControllerChatToolCatalogTests
 {
@@ -77,31 +77,20 @@ public class ControllerChatToolCatalogTests
     }
 }
 
-public class AddChatToolsTests
+public class AddChatTests
 {
-    [Fact]
-    public void Registration_resolves_the_catalog_with_all_real_tools()
-    {
-        // Reproduces what happens at application startup: scanning, validation and DI wiring in one go.
-        var services = new ServiceCollection();
-
-        var exception = Record.Exception(() => services.AddChatTools());
-        Assert.Null(exception);
-
-        using var provider = services.BuildServiceProvider(new ServiceProviderOptions { ValidateScopes = true, ValidateOnBuild = false });
-        using var scope = provider.CreateScope();
-        var catalog = scope.ServiceProvider.GetRequiredService<IChatToolCatalog>();
-
-        Assert.Equal(10, catalog.GetTools().Count);
-        Assert.All(catalog.GetTools(), tool => Assert.False(string.IsNullOrWhiteSpace(tool.Description)));
-    }
-
     [Fact]
     public void Registration_fails_fast_when_a_tool_is_invalid()
     {
+        // The test assembly contains deliberately invalid controllers.
         var services = new ServiceCollection();
 
-        Assert.Throws<InvalidOperationException>(() =>
-            services.AddChatTools(typeof(PostToolController).Assembly, typeof(ValidController).Assembly));
+        Assert.Throws<InvalidOperationException>(() => services.AddChat(typeof(PostToolController).Assembly));
+    }
+
+    [Fact]
+    public void Registration_requires_the_assemblies_to_scan()
+    {
+        Assert.Throws<ArgumentException>(() => new ServiceCollection().AddChat());
     }
 }

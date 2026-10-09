@@ -1,7 +1,7 @@
 using Hangfire;
+using Portfolio.Chat.Infrastructure;
 using Portfolio.Profile.Infrastructure;
 using Portfolio.Notifications.Infrastructure;
-using RescuePC.Portfolio.Api.Chat;
 using RescuePC.Portfolio.Api.HealthChecks;
 using RescuePC.Portfolio.Api.Middleware;
 using RescuePC.Portfolio.BuildingBlocks.Application;
@@ -12,7 +12,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Host.AddSerilog();
 
 builder.Services.AddControllers();
-builder.Services.AddChatTools();
+builder.Services.AddChat(typeof(Program).Assembly);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddRateLimiting(builder.Configuration);

@@ -22,7 +22,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Source\Portfolio\Portfolio.Api\Portfolio.Api.csproj" />
     <ProjectReference Include="..\..\Source\Chat\Portfolio.Chat.Infrastructure\Portfolio.Chat.Infrastructure.csproj" />
   </ItemGroup>
 

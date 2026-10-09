@@ -27,6 +27,7 @@
   </Folder>
   <Folder Name="/Source/Chat/">
     <Project Path="Source/Chat/Portfolio.Chat.Contracts/Portfolio.Chat.Contracts.csproj" />
+    <Project Path="Source/Chat/Portfolio.Chat.Infrastructure/Portfolio.Chat.Infrastructure.csproj" />
   </Folder>
   <Folder Name="/Source/Profile/">
     <Project Path="Source/Profile/Portfolio.Profile.Application/Portfolio.Profile.Application.csproj" Id="6bfc7dea-3da2-478c-997c-b5f3a2ed291b" />
@@ -44,6 +45,7 @@
   </Folder>
   <Folder Name="/Tests/">
     <Project Path="Tests/Portfolio.Api.UnitTests/Portfolio.Api.UnitTests.csproj" />
+    <Project Path="Tests/Portfolio.Chat.UnitTests/Portfolio.Chat.UnitTests.csproj" />
   </Folder>
   <Folder Name="/Source/Porfolio/">
     <Project Path="Source/Portfolio/Portfolio.Api.Contracts/Portfolio.Api.Contracts.csproj" />

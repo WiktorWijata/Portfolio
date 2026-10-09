@@ -15,7 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\BuildingBlocks\Portfolio.BuildingBlocks.Intrastructure\Portfolio.BuildingBlocks.Intrastructure.csproj" />
-    <ProjectReference Include="..\..\Chat\Portfolio.Chat.Contracts\Portfolio.Chat.Contracts.csproj" />
+    <ProjectReference Include="..\..\Chat\Portfolio.Chat.Infrastructure\Portfolio.Chat.Infrastructure.csproj" />
     <ProjectReference Include="..\..\Profile\Portfolio.Profile.Infrastructure\Portfolio.Profile.Infrastructure.csproj" />
     <ProjectReference Include="..\..\Notifications\Portfolio.Notifications.Contracts\Portfolio.Notifications.Contracts.csproj" />
     <ProjectReference Include="..\..\Notifications\Portfolio.Notifications.Infrastructure\Portfolio.Notifications.Infrastructure.csproj" />

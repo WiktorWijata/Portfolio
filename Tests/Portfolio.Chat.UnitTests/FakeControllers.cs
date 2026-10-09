@@ -2,7 +2,7 @@ using System.ComponentModel;
 using Microsoft.AspNetCore.Mvc;
 using RescuePC.Portfolio.BuildingBlocks.Application;
 
-namespace Portfolio.Api.UnitTests.Chat;
+namespace Portfolio.Chat.UnitTests;
 
 public sealed class GreetingService
 {

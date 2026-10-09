@@ -3,10 +3,11 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
+using Microsoft.Extensions.DependencyInjection;
 using Portfolio.Chat.Contracts;
 using RescuePC.Portfolio.BuildingBlocks.Application;
 
-namespace RescuePC.Portfolio.Api.Chat;
+namespace Portfolio.Chat.Infrastructure;
 
 /// <summary>
 /// Runs chat tools by calling the controller action behind them, so the model receives exactly the data the

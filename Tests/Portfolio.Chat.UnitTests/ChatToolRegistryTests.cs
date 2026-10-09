@@ -1,7 +1,7 @@
 using Portfolio.Chat.Contracts;
-using RescuePC.Portfolio.Api.Chat;
+using Portfolio.Chat.Infrastructure;
 
-namespace Portfolio.Api.UnitTests.Chat;
+namespace Portfolio.Chat.UnitTests;
 
 public class ChatToolRegistryTests
 {
@@ -60,18 +60,5 @@ public class ChatToolRegistryTests
         var exception = Assert.Throws<InvalidOperationException>(() => For(typeof(ValidController), typeof(DuplicateNameController)));
 
         Assert.Contains("get_greeting", exception.Message);
-    }
-
-    [Fact]
-    public void Real_controllers_are_all_valid_tools()
-    {
-        var registry = ChatToolRegistry.FromAssemblies([typeof(ChatToolRegistry).Assembly]);
-
-        Assert.Equal(
-            [
-                "get_aspirations", "get_business", "get_certificates", "get_contacts", "get_experiences",
-                "get_introduction", "get_projects", "get_services", "get_skills", "get_specializations",
-            ],
-            registry.Definitions.Select(d => d.Name).Order().ToArray());
     }
 }

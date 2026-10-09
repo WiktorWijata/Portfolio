@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc.Routing;
 using Portfolio.Chat.Contracts;
 using RescuePC.Portfolio.BuildingBlocks.Application;
 
-namespace RescuePC.Portfolio.Api.Chat;
+namespace Portfolio.Chat.Infrastructure;
 
 /// <summary>
 /// Finds the controller actions marked with <see cref="ChatToolAttribute"/> and checks that each is a valid tool.
