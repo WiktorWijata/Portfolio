@@ -45,6 +45,7 @@
     <Project Path="Source/Notifications/Portfolio.Notifications.Persistence/Portfolio.Notifications.Persistence.csproj" Id="e52b5377-5f06-4c6c-b7d0-987c0365a247" />
   </Folder>
   <Folder Name="/Tests/">
+    <Project Path="Tests/Portfolio.BuildingBlocks.UnitTests/Portfolio.BuildingBlocks.UnitTests.csproj" />
     <Project Path="Tests/Portfolio.Api.UnitTests/Portfolio.Api.UnitTests.csproj" />
     <Project Path="Tests/Portfolio.Chat.UnitTests/Portfolio.Chat.UnitTests.csproj" />
   </Folder>

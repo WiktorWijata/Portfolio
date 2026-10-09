@@ -7,9 +7,6 @@ namespace RescuePC.Portfolio.BuildingBlocks.Application;
 /// <summary>Resolves <see cref="ICallerContext"/> from the current request's Accept-Language header.</summary>
 public class HttpCallerContext : ICallerContext
 {
-    private static readonly HashSet<string> SupportedLanguageCodes = ["PL", "EN"];
-    private const string FallbackLanguageCode = "PL";
-
     public HttpCallerContext(IHttpContextAccessor httpContextAccessor)
     {
         LanguageCode = ResolveLanguageCode(httpContextAccessor.HttpContext);
@@ -21,12 +18,10 @@ public class HttpCallerContext : ICallerContext
     {
         if (httpContext is null || !httpContext.Request.Headers.TryGetValue("Accept-Language", out StringValues header))
         {
-            return FallbackLanguageCode;
+            return CallerLanguages.Fallback;
         }
 
-        var code = header.ToString().Split(',', ';', '-').FirstOrDefault()?.Trim().ToUpperInvariant();
-
-        return code is not null && SupportedLanguageCodes.Contains(code) ? code : FallbackLanguageCode;
+        return CallerLanguages.Resolve(header.ToString().Split(',', ';', '-').FirstOrDefault());
     }
 }
 
@@ -35,7 +30,11 @@ public static class CallerContextServiceCollectionExtensions
     public static IServiceCollection AddCallerContext(this IServiceCollection services)
     {
         services.AddHttpContextAccessor();
-        services.AddScoped<ICallerContext, HttpCallerContext>();
+        services.AddScoped<CallerLanguageOverride>();
+        services.AddScoped<ICallerContext>(provider =>
+            provider.GetRequiredService<CallerLanguageOverride>().LanguageCode is { } languageCode
+                ? new FixedCallerContext(languageCode)
+                : ActivatorUtilities.CreateInstance<HttpCallerContext>(provider));
 
         return services;
     }
