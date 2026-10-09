@@ -18,7 +18,7 @@ public class PortfolioApiChatToolsTests
     {
         var registry = ChatToolRegistry.FromAssemblies([typeof(ProfileController).Assembly]);
 
-        Assert.Equal(ExpectedTools, registry.Definitions.Select(d => d.Name).Order().ToArray());
+        Assert.Equal(ExpectedTools, registry.Tools.Select(d => d.Name).Order().ToArray());
     }
 
     [Fact]

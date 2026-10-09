@@ -6,13 +6,13 @@ namespace Portfolio.Chat.Application.QueryHandlers;
 
 public class GetChatToolsQueryHandler : IRequestHandler<GetChatToolsQuery, IEnumerable<ChatToolDto>>
 {
-    private readonly IChatToolCatalog _catalog;
+    private readonly IChatToolRegistry _registry;
 
-    public GetChatToolsQueryHandler(IChatToolCatalog catalog)
+    public GetChatToolsQueryHandler(IChatToolRegistry registry)
     {
-        _catalog = catalog;
+        _registry = registry;
     }
 
     public Task<IEnumerable<ChatToolDto>> Handle(GetChatToolsQuery request, CancellationToken cancellationToken)
-        => Task.FromResult<IEnumerable<ChatToolDto>>(_catalog.GetTools());
+        => Task.FromResult<IEnumerable<ChatToolDto>>(_registry.Tools);
 }

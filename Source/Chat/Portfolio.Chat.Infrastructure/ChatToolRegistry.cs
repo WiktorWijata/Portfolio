@@ -3,6 +3,7 @@ using System.Reflection;
 using System.Text.RegularExpressions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Routing;
+using Portfolio.Chat.Application;
 using Portfolio.Chat.Contracts.Models;
 using RescuePC.Portfolio.BuildingBlocks.Application;
 
@@ -12,7 +13,7 @@ namespace Portfolio.Chat.Infrastructure;
 /// Finds the controller actions marked with <see cref="ChatToolAttribute"/> and checks that each is a valid tool.
 /// It is built when the application starts, so a misconfigured tool fails the startup instead of a chat request.
 /// </summary>
-public sealed partial class ChatToolRegistry
+public sealed partial class ChatToolRegistry : IChatToolRegistry
 {
     private static readonly Dictionary<Type, string> SchemaTypes = new()
     {
@@ -49,7 +50,7 @@ public sealed partial class ChatToolRegistry
     public static ChatToolRegistry FromAssemblies(IEnumerable<Assembly> assemblies)
         => new(assemblies.SelectMany(a => a.GetTypes()));
 
-    public IReadOnlyList<ChatToolDto> Definitions => _tools.Values.Select(t => t.Definition).ToList();
+    public IReadOnlyList<ChatToolDto> Tools => _tools.Values.Select(t => t.Definition).ToList();
 
     public bool TryGet(string name, out RegisteredChatTool tool) => _tools.TryGetValue(name, out tool!);
 

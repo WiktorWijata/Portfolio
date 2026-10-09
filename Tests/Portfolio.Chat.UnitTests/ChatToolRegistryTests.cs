@@ -14,13 +14,13 @@ public class ChatToolRegistryTests
 
         Assert.Equal(
             ["find_item", "get_broken", "get_empty", "get_greeting", "get_missing", "get_typed"],
-            registry.Definitions.Select(d => d.Name).Order().ToArray());
+            registry.Tools.Select(d => d.Name).Order().ToArray());
     }
 
     [Fact]
     public void Describes_parameters_without_the_cancellation_token()
     {
-        var tool = For(typeof(ValidController)).Definitions.Single(d => d.Name == "find_item");
+        var tool = For(typeof(ValidController)).Tools.Single(d => d.Name == "find_item");
 
         Assert.Equal("Finds an item by name.", tool.Description);
         Assert.Collection(

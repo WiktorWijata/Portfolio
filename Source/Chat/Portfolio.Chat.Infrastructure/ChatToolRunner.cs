@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.Extensions.DependencyInjection;
 using Portfolio.Chat.Application;
-using Portfolio.Chat.Contracts.Models;
 
 namespace Portfolio.Chat.Infrastructure;
 
@@ -14,7 +13,7 @@ namespace Portfolio.Chat.Infrastructure;
 /// frontend gets from the same endpoint. Scoped: the controller and its dependencies live in the request scope,
 /// which is also what resolves the response language.
 /// </summary>
-public sealed class ControllerChatToolCatalog : IChatToolCatalog
+public sealed class ChatToolRunner : IChatToolRunner
 {
     private static readonly JsonSerializerOptions JsonOptions = new(JsonSerializerDefaults.Web)
     {
@@ -24,13 +23,11 @@ public sealed class ControllerChatToolCatalog : IChatToolCatalog
     private readonly ChatToolRegistry _registry;
     private readonly IServiceProvider _services;
 
-    public ControllerChatToolCatalog(ChatToolRegistry registry, IServiceProvider services)
+    public ChatToolRunner(ChatToolRegistry registry, IServiceProvider services)
     {
         _registry = registry;
         _services = services;
     }
-
-    public IReadOnlyList<ChatToolDto> GetTools() => _registry.Definitions;
 
     public async Task<string> ExecuteAsync(string toolName, string? argumentsJson, CancellationToken cancellationToken = default)
     {

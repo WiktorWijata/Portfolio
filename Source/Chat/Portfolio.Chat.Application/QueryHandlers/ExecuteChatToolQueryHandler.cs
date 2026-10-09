@@ -5,13 +5,13 @@ namespace Portfolio.Chat.Application.QueryHandlers;
 
 public class ExecuteChatToolQueryHandler : IRequestHandler<ExecuteChatToolQuery, string>
 {
-    private readonly IChatToolCatalog _catalog;
+    private readonly IChatToolRunner _runner;
 
-    public ExecuteChatToolQueryHandler(IChatToolCatalog catalog)
+    public ExecuteChatToolQueryHandler(IChatToolRunner runner)
     {
-        _catalog = catalog;
+        _runner = runner;
     }
 
     public Task<string> Handle(ExecuteChatToolQuery request, CancellationToken cancellationToken)
-        => _catalog.ExecuteAsync(request.ToolName, request.ArgumentsJson, cancellationToken);
+        => _runner.ExecuteAsync(request.ToolName, request.ArgumentsJson, cancellationToken);
 }

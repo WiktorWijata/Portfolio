@@ -27,8 +27,10 @@ public static class ServiceCollectionExtensions
     public static IServiceCollection AddChat(this IServiceCollection services, IEnumerable<Type> controllerTypes)
     {
         services.AddChatMediatR(typeof(GetChatToolsQueryHandler).Assembly);
-        services.AddSingleton(new ChatToolRegistry(controllerTypes));
-        services.AddScoped<IChatToolCatalog, ControllerChatToolCatalog>();
+        var registry = new ChatToolRegistry(controllerTypes);
+        services.AddSingleton(registry);
+        services.AddSingleton<IChatToolRegistry>(registry);
+        services.AddScoped<IChatToolRunner, ChatToolRunner>();
         services.AddScoped<IChatModule, ChatModule>();
 
         return services;
