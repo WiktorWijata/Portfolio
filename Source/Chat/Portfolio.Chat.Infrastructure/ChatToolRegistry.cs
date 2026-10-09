@@ -3,7 +3,7 @@ using System.Reflection;
 using System.Text.RegularExpressions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Routing;
-using Portfolio.Chat.Contracts;
+using Portfolio.Chat.Contracts.Models;
 using RescuePC.Portfolio.BuildingBlocks.Application;
 
 namespace Portfolio.Chat.Infrastructure;
@@ -49,7 +49,7 @@ public sealed partial class ChatToolRegistry
     public static ChatToolRegistry FromAssemblies(IEnumerable<Assembly> assemblies)
         => new(assemblies.SelectMany(a => a.GetTypes()));
 
-    public IReadOnlyList<ChatToolDefinition> Definitions => _tools.Values.Select(t => t.Definition).ToList();
+    public IReadOnlyList<ChatToolDto> Definitions => _tools.Values.Select(t => t.Definition).ToList();
 
     public bool TryGet(string name, out RegisteredChatTool tool) => _tools.TryGetValue(name, out tool!);
 
@@ -80,7 +80,7 @@ public sealed partial class ChatToolRegistry
                 $"Chat tool '{attribute.Name}' on {where} must return Task<IActionResult> or Task<ActionResult<T>>.");
         }
 
-        var parameters = new List<ChatToolParameterDefinition>();
+        var parameters = new List<ChatToolParameterDto>();
         foreach (var parameter in method.GetParameters())
         {
             if (parameter.ParameterType == typeof(CancellationToken))
@@ -97,10 +97,21 @@ public sealed partial class ChatToolRegistry
             }
 
             var description = parameter.GetCustomAttribute<DescriptionAttribute>()?.Description ?? string.Empty;
-            parameters.Add(new ChatToolParameterDefinition(parameter.Name!, schemaType, description, required: !parameter.HasDefaultValue));
+            parameters.Add(new ChatToolParameterDto
+            {
+                Name = parameter.Name!,
+                Type = schemaType,
+                Description = description,
+                Required = !parameter.HasDefaultValue,
+            });
         }
 
-        var definition = new ChatToolDefinition(attribute.Name, attribute.Description, parameters);
+        var definition = new ChatToolDto
+        {
+            Name = attribute.Name,
+            Description = attribute.Description,
+            Parameters = parameters.ToArray(),
+        };
         return new RegisteredChatTool(definition, method.DeclaringType!, method);
     }
 
@@ -122,4 +133,4 @@ public sealed partial class ChatToolRegistry
     private static partial Regex ToolNamePattern();
 }
 
-public sealed record RegisteredChatTool(ChatToolDefinition Definition, Type ControllerType, MethodInfo Method);
+public sealed record RegisteredChatTool(ChatToolDto Definition, Type ControllerType, MethodInfo Method);

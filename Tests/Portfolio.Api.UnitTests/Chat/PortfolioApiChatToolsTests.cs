@@ -22,7 +22,7 @@ public class PortfolioApiChatToolsTests
     }
 
     [Fact]
-    public void Registration_resolves_the_catalog_with_all_tools_of_the_api()
+    public async Task Registration_resolves_the_module_with_all_tools_of_the_api()
     {
         // Reproduces what happens at application startup: scanning, validation and DI wiring in one go.
         var services = new ServiceCollection();
@@ -30,9 +30,11 @@ public class PortfolioApiChatToolsTests
         var exception = Record.Exception(() => services.AddChat(typeof(ProfileController).Assembly));
         Assert.Null(exception);
 
-        using var provider = services.BuildServiceProvider(new ServiceProviderOptions { ValidateScopes = true });
-        using var scope = provider.CreateScope();
-        var tools = scope.ServiceProvider.GetRequiredService<IChatToolCatalog>().GetTools();
+        services.AddLogging();
+
+        await using var provider = services.BuildServiceProvider(new ServiceProviderOptions { ValidateScopes = true });
+        await using var scope = provider.CreateAsyncScope();
+        var tools = (await scope.ServiceProvider.GetRequiredService<IChatModule>().GetTools()).ToArray();
 
         Assert.Equal(ExpectedTools, tools.Select(t => t.Name).Order().ToArray());
         Assert.All(tools, tool => Assert.False(string.IsNullOrWhiteSpace(tool.Description)));

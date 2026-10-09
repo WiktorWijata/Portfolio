@@ -4,8 +4,8 @@ using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.Extensions.DependencyInjection;
-using Portfolio.Chat.Contracts;
-using RescuePC.Portfolio.BuildingBlocks.Application;
+using Portfolio.Chat.Application;
+using Portfolio.Chat.Contracts.Models;
 
 namespace Portfolio.Chat.Infrastructure;
 
@@ -30,7 +30,7 @@ public sealed class ControllerChatToolCatalog : IChatToolCatalog
         _services = services;
     }
 
-    public IReadOnlyList<ChatToolDefinition> GetTools() => _registry.Definitions;
+    public IReadOnlyList<ChatToolDto> GetTools() => _registry.Definitions;
 
     public async Task<string> ExecuteAsync(string toolName, string? argumentsJson, CancellationToken cancellationToken = default)
     {

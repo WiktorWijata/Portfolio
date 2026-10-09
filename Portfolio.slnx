@@ -26,6 +26,7 @@
     <Project Path="Source/BuildingBlocks/Portfolio.BuildingBlocks.Persistence/Portfolio.BuildingBlocks.Persistence.csproj" Id="6fbe5473-1a7b-4ccc-b4f6-afc07dec7858" />
   </Folder>
   <Folder Name="/Source/Chat/">
+    <Project Path="Source/Chat/Portfolio.Chat.Application/Portfolio.Chat.Application.csproj" />
     <Project Path="Source/Chat/Portfolio.Chat.Contracts/Portfolio.Chat.Contracts.csproj" />
     <Project Path="Source/Chat/Portfolio.Chat.Infrastructure/Portfolio.Chat.Infrastructure.csproj" />
   </Folder>

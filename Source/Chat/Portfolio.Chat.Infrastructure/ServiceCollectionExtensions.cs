@@ -1,5 +1,7 @@
 using System.Reflection;
 using Microsoft.Extensions.DependencyInjection;
+using Portfolio.Chat.Application;
+using Portfolio.Chat.Application.QueryHandlers;
 using Portfolio.Chat.Contracts;
 
 namespace Portfolio.Chat.Infrastructure;
@@ -18,8 +20,16 @@ public static class ServiceCollectionExtensions
             throw new ArgumentException("Pass the assemblies that contain the controllers exposing chat tools.", nameof(controllerAssemblies));
         }
 
-        services.AddSingleton(ChatToolRegistry.FromAssemblies(controllerAssemblies));
+        return services.AddChat(controllerAssemblies.SelectMany(a => a.GetTypes()));
+    }
+
+    /// <summary>Same as the assembly overload, for an explicit set of controller types.</summary>
+    public static IServiceCollection AddChat(this IServiceCollection services, IEnumerable<Type> controllerTypes)
+    {
+        services.AddChatMediatR(typeof(GetChatToolsQueryHandler).Assembly);
+        services.AddSingleton(new ChatToolRegistry(controllerTypes));
         services.AddScoped<IChatToolCatalog, ControllerChatToolCatalog>();
+        services.AddScoped<IChatModule, ChatModule>();
 
         return services;
     }
