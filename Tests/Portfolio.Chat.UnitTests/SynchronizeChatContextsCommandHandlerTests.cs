@@ -1,14 +1,18 @@
 using IntegratorAI.Api.Contracts.Context;
+using IntegratorAI.Api.Contracts.Context.Models;
+using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using Portfolio.Chat.Application;
-using Portfolio.Chat.Application.Context;
+using Portfolio.Chat.Application.CommandHandlers;
+using Portfolio.Chat.Application.Commands;
+using Portfolio.Chat.Application.Queries;
 using Portfolio.Chat.Contracts;
 using Portfolio.Chat.Infrastructure;
 using RescuePC.Portfolio.BuildingBlocks.Application;
 
 namespace Portfolio.Chat.UnitTests;
 
-public class ChatContextSynchronizerTests
+public class SynchronizeChatContextsCommandHandlerTests
 {
     private sealed class FakeContextApi : IContextApi
     {
@@ -31,25 +35,24 @@ public class ChatContextSynchronizerTests
         }
     }
 
-    private sealed class FakeBuilder(ICallerContext caller, string? failForLanguage) : IChatContextBuilder
+    private sealed class FakeBuilder(ICallerContext caller, string? failForLanguage) : IRequestHandler<BuildChatContextQuery, ContextRequest>
     {
-        public Task<ChatContextDefinition> BuildAsync(CancellationToken cancellationToken = default)
+        public Task<ContextRequest> Handle(BuildChatContextQuery request, CancellationToken cancellationToken)
         {
             if (caller.LanguageCode == failForLanguage)
             {
                 throw new InvalidOperationException($"The data for {failForLanguage} cannot be read.");
             }
 
-            return Task.FromResult(new ChatContextDefinition
+            return Task.FromResult(new ContextRequest
             {
-                LanguageCode = caller.LanguageCode,
                 Name = $"ctx-{caller.LanguageCode}",
                 SystemRole = $"role-{caller.LanguageCode}",
                 DomainContext = $"data-{caller.LanguageCode}",
                 DecisionPolicy = "policy",
                 OperatingRules = "- rule",
                 OutputFormat = "format",
-                Examples = [new ChatExample { Input = "in", ExpectedResponse = "out" }],
+                Examples = [new Example { Input = "in", expectedResponse = "out" }],
             });
         }
     }
@@ -63,22 +66,23 @@ public class ChatContextSynchronizerTests
         var services = new ServiceCollection();
         services.AddLogging();
         services.AddCallerContext();
-        services.Configure<IntegratorAIOptions>(options =>
+        services.Configure<AssistantOptions>(options =>
         {
             options.Contexts["PL"] = polishId;
             options.Contexts["EN"] = englishId;
         });
         services.AddSingleton<IContextApi>(api);
-        services.AddScoped<IChatContextBuilder>(provider => new FakeBuilder(provider.GetRequiredService<ICallerContext>(), failForLanguage));
-        services.AddScoped<IChatContextSynchronizer, ChatContextSynchronizer>();
+        services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(SynchronizeChatContextsCommandHandler).Assembly));
+        services.AddScoped<IRequestHandler<BuildChatContextQuery, ContextRequest>>(provider => new FakeBuilder(provider.GetRequiredService<ICallerContext>(), failForLanguage));
+        services.AddScoped<SynchronizeChatContextsCommandHandler>();
 
         return services.BuildServiceProvider(new ServiceProviderOptions { ValidateScopes = true });
     }
 
-    private static Task<IReadOnlyList<Portfolio.Chat.Contracts.Models.ChatContextSyncDto>> Synchronize(ServiceProvider provider)
+    private static Task<IEnumerable<Portfolio.Chat.Contracts.Models.ChatContextSyncDto>> Synchronize(ServiceProvider provider)
     {
         var scope = provider.CreateScope();
-        return scope.ServiceProvider.GetRequiredService<IChatContextSynchronizer>().SynchronizeAsync();
+        return scope.ServiceProvider.GetRequiredService<SynchronizeChatContextsCommandHandler>().Handle(new SynchronizeChatContextsCommand(), CancellationToken.None);
     }
 
     [Fact]
@@ -182,10 +186,11 @@ public class ChatContextSynchronizerTests
         var services = new ServiceCollection();
         services.AddLogging();
         services.AddCallerContext();
-        services.Configure<IntegratorAIOptions>(options => options.Contexts["PL"] = Guid.NewGuid());
+        services.Configure<AssistantOptions>(options => options.Contexts["PL"] = Guid.NewGuid());
         services.AddSingleton<IContextApi>(api);
         services.AddChat([typeof(ValidController)]);
-        services.AddScoped<IChatContextBuilder>(provider => new FakeBuilder(provider.GetRequiredService<ICallerContext>(), failForLanguage: null));
+        services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(SynchronizeChatContextsCommandHandler).Assembly));
+        services.AddScoped<IRequestHandler<BuildChatContextQuery, ContextRequest>>(provider => new FakeBuilder(provider.GetRequiredService<ICallerContext>(), failForLanguage: null));
 
         await using var provider = services.BuildServiceProvider(new ServiceProviderOptions { ValidateScopes = true });
         await using var scope = provider.CreateAsyncScope();

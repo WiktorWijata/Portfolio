@@ -1,20 +1,18 @@
 using Microsoft.AspNetCore.Mvc;
-using Portfolio.Chat.Contracts.Models;
 
 namespace RescuePC.Portfolio.Api.Results;
 
 /// <summary>
-/// Writes the answer of the assistant to the client as Server-Sent Events while it is being produced. The id of the
-/// conversation goes in the <c>Completion-Id</c> header, which is sent before the first token so the client has it at once.
+/// Writes a stream of text to the client as Server-Sent Events while it is being produced. Headers set before the result
+/// runs (like <c>Completion-Id</c>) are sent before the first token.
 /// </summary>
-public sealed class ChatStreamResult : IActionResult
+public sealed class SseResult : IActionResult
 {
-    public const string CompletionIdHeader = "Completion-Id";
     public const string InterruptedMessage = "The answer was interrupted.";
 
-    private readonly ChatStreamDto _stream;
+    private readonly IAsyncEnumerable<string> _stream;
 
-    public ChatStreamResult(ChatStreamDto stream)
+    public SseResult(IAsyncEnumerable<string> stream)
     {
         _stream = stream;
     }
@@ -28,14 +26,13 @@ public sealed class ChatStreamResult : IActionResult
         response.ContentType = "text/event-stream";
         response.Headers.CacheControl = "no-cache";
         response.Headers["X-Accel-Buffering"] = "no";
-        response.Headers[CompletionIdHeader] = _stream.CompletionId.ToString();
 
         try
         {
-            // Sends the headers now, so the client has the conversation id before the first token is written.
+            // Sends the headers now, so the client has them before the first token is written.
             await response.StartAsync(cancellationToken);
 
-            await foreach (var token in _stream.Tokens.WithCancellation(cancellationToken))
+            await foreach (var token in _stream.WithCancellation(cancellationToken))
             {
                 await response.WriteAsync(Frame(token), cancellationToken);
                 await response.Body.FlushAsync(cancellationToken);
@@ -51,7 +48,7 @@ public sealed class ChatStreamResult : IActionResult
         catch (Exception exception)
         {
             // The status has been sent already, so the only way to report the failure is an event in the stream.
-            httpContext.RequestServices.GetRequiredService<ILogger<ChatStreamResult>>()
+            httpContext.RequestServices.GetRequiredService<ILogger<SseResult>>()
                 .LogError(exception, "The answer of the assistant was interrupted.");
 
             await response.WriteAsync($"event: error\ndata: {InterruptedMessage}\n\n", CancellationToken.None);

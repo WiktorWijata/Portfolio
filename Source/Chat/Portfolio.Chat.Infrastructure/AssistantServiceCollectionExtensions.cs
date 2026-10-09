@@ -1,3 +1,4 @@
+using Portfolio.Chat.Application;
 using IntegratorAI.Api.Contracts.Chat;
 using IntegratorAI.Api.Contracts.Context;
 using Microsoft.Extensions.Configuration;
@@ -6,21 +7,21 @@ using RescuePC.Software.Refit;
 
 namespace Portfolio.Chat.Infrastructure;
 
-public static class IntegratorAIServiceCollectionExtensions
+public static class AssistantServiceCollectionExtensions
 {
     /// <summary>
-    /// Registers the typed clients for IntegratorAI. A missing <c>IntegratorAI:BaseUrl</c> does not stop the application,
+    /// Registers the typed clients for IntegratorAI. A missing <c>Assistant:BaseUrl</c> does not stop the application,
     /// so the rest of the site still runs without it; the first call to IntegratorAI reports what is missing.
     /// </summary>
-    public static IServiceCollection AddIntegratorAIClient(this IServiceCollection services, IConfiguration configuration)
+    public static IServiceCollection AddAssistantClient(this IServiceCollection services, IConfiguration configuration)
     {
-        var section = configuration.GetSection(IntegratorAIOptions.SectionName);
-        services.Configure<IntegratorAIOptions>(section);
+        var section = configuration.GetSection(AssistantOptions.SectionName);
+        services.Configure<AssistantOptions>(section);
 
-        var baseUrl = section.Get<IntegratorAIOptions>()?.BaseUrl;
+        var baseUrl = section.Get<AssistantOptions>()?.BaseUrl;
 
-        services.AddRefitClient<IContextApi>("IntegratorAI.Context", client => Configure(client, baseUrl));
-        services.AddRefitClient<IStreamChatApi>("IntegratorAI.StreamChat", client => Configure(client, baseUrl));
+        services.AddRefitClient<IContextApi>("Assistant.Context", client => Configure(client, baseUrl));
+        services.AddRefitClient<IStreamChatApi>("Assistant.StreamChat", client => Configure(client, baseUrl));
 
         return services;
     }
@@ -31,7 +32,7 @@ public static class IntegratorAIServiceCollectionExtensions
 
         if (string.IsNullOrEmpty(baseUrl) || !Uri.TryCreate(baseUrl, UriKind.Absolute, out var baseAddress))
         {
-            throw new InvalidOperationException($"Configuration value '{IntegratorAIOptions.SectionName}:BaseUrl' is missing or is not an absolute URL.");
+            throw new InvalidOperationException($"Configuration value '{AssistantOptions.SectionName}:BaseUrl' is missing or is not an absolute URL.");
         }
 
         // No trailing slash: the paths in the IntegratorAI contract start with one, and Refit would double it.

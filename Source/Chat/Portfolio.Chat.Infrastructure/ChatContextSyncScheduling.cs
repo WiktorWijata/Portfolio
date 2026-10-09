@@ -1,3 +1,4 @@
+using Portfolio.Chat.Application;
 using Hangfire;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -16,10 +17,10 @@ public static class ChatContextSyncScheduling
     /// </summary>
     public static IServiceProvider ScheduleChatContextSync(this IServiceProvider services)
     {
-        if (string.IsNullOrWhiteSpace(services.GetRequiredService<IOptions<IntegratorAIOptions>>().Value.BaseUrl))
+        if (string.IsNullOrWhiteSpace(services.GetRequiredService<IOptions<AssistantOptions>>().Value.BaseUrl))
         {
             services.GetRequiredService<ILoggerFactory>().CreateLogger(typeof(ChatContextSyncScheduling))
-                .LogInformation("IntegratorAI:BaseUrl is not set, so the chat context is not synchronized.");
+                .LogInformation("Assistant:BaseUrl is not set, so the chat context is not synchronized.");
 
             return services;
         }

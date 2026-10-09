@@ -4,12 +4,11 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.DependencyInjection;
-using Portfolio.Chat.Contracts.Models;
 using RescuePC.Portfolio.Api.Results;
 
 namespace Portfolio.Api.UnitTests.Chat;
 
-public class ChatStreamResultTests
+public class SseResultTests
 {
     private static async IAsyncEnumerable<string> Tokens(params string[] tokens)
     {
@@ -28,7 +27,7 @@ public class ChatStreamResultTests
         throw new IOException("the connection to IntegratorAI was lost");
     }
 
-    private static async Task<(DefaultHttpContext Context, string Body)> Run(ChatStreamDto stream, CancellationToken requestAborted = default)
+    private static async Task<(DefaultHttpContext Context, string Body)> Run(IAsyncEnumerable<string> stream, CancellationToken requestAborted = default)
     {
         var context = new DefaultHttpContext
         {
@@ -37,7 +36,7 @@ public class ChatStreamResultTests
         };
         context.Response.Body = new MemoryStream();
 
-        await new ChatStreamResult(stream).ExecuteResultAsync(new ActionContext(context, new RouteData(), new Microsoft.AspNetCore.Mvc.Abstractions.ActionDescriptor()));
+        await new SseResult(stream).ExecuteResultAsync(new ActionContext(context, new RouteData(), new Microsoft.AspNetCore.Mvc.Abstractions.ActionDescriptor()));
 
         return (context, Encoding.UTF8.GetString(((MemoryStream)context.Response.Body).ToArray()));
     }
@@ -50,18 +49,15 @@ public class ChatStreamResultTests
     [InlineData("- one\n- two\n", "data: - one\ndata: - two\ndata: \n\n")]
     public void A_line_break_in_a_token_never_ends_the_event(string token, string expectedFrame)
     {
-        Assert.Equal(expectedFrame, ChatStreamResult.Frame(token));
+        Assert.Equal(expectedFrame, SseResult.Frame(token));
     }
 
     [Fact]
-    public async Task Streams_the_tokens_and_puts_the_conversation_id_in_a_header()
+    public async Task Streams_the_tokens_as_events()
     {
-        var completionId = Guid.NewGuid();
-
-        var (context, body) = await Run(new ChatStreamDto { CompletionId = completionId, Tokens = Tokens("Hi", "there\n- x") });
+        var (context, body) = await Run(Tokens("Hi", "there\n- x"));
 
         Assert.Equal("data: Hi\n\ndata: there\ndata: - x\n\ndata: [DONE]\n\n", body);
-        Assert.Equal(completionId.ToString(), context.Response.Headers["Completion-Id"].ToString());
         Assert.Equal("text/event-stream", context.Response.ContentType);
         Assert.Equal("no-cache", context.Response.Headers.CacheControl.ToString());
         Assert.Equal("no", context.Response.Headers["X-Accel-Buffering"].ToString());
@@ -70,9 +66,9 @@ public class ChatStreamResultTests
     [Fact]
     public async Task An_answer_that_breaks_off_ends_with_an_error_event_and_not_with_done()
     {
-        var (_, body) = await Run(new ChatStreamDto { CompletionId = Guid.NewGuid(), Tokens = BreaksAfter("Half an") });
+        var (_, body) = await Run(BreaksAfter("Half an"));
 
-        Assert.Equal($"data: Half an\n\nevent: error\ndata: {ChatStreamResult.InterruptedMessage}\n\n", body);
+        Assert.Equal($"data: Half an\n\nevent: error\ndata: {SseResult.InterruptedMessage}\n\n", body);
         Assert.DoesNotContain("[DONE]", body);
         Assert.DoesNotContain("IntegratorAI", body);
     }
@@ -83,7 +79,7 @@ public class ChatStreamResultTests
         using var aborted = new CancellationTokenSource();
         aborted.Cancel();
 
-        var (_, body) = await Run(new ChatStreamDto { CompletionId = Guid.NewGuid(), Tokens = Tokens("never sent") }, aborted.Token);
+        var (_, body) = await Run(Tokens("never sent"), aborted.Token);
 
         Assert.DoesNotContain("error", body);
         Assert.DoesNotContain("never sent", body);

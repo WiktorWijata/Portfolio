@@ -12,7 +12,7 @@ builder.Host.AddSerilog();
 
 builder.Services.AddControllers();
 builder.Services.AddChat(typeof(Program).Assembly);
-builder.Services.AddIntegratorAIClient(builder.Configuration);
+builder.Services.AddAssistantClient(builder.Configuration);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddRateLimiting(builder.Configuration);

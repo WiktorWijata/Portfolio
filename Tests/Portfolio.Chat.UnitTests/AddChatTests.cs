@@ -8,26 +8,24 @@ namespace Portfolio.Chat.UnitTests;
 public class AddChatTests
 {
     [Fact]
-    public async Task The_module_lists_and_runs_tools_through_mediator()
+    public async Task The_runner_runs_a_tool_through_its_controller()
     {
-        // The whole path a chat request takes: module -> MediatR -> handler -> catalog -> controller.
+        // The registration wires the runner to the registry and to the controller behind the tool.
         var services = new ServiceCollection().AddSingleton<GreetingService>();
         services.AddLogging();
         services.AddChat([typeof(ValidController)]);
 
         await using var provider = services.BuildServiceProvider(new ServiceProviderOptions { ValidateScopes = true });
         await using var scope = provider.CreateAsyncScope();
-        var module = scope.ServiceProvider.GetRequiredService<IChatModule>();
+        var runner = scope.ServiceProvider.GetRequiredService<IChatToolRunner>();
 
-        var tools = (await module.GetTools()).Select(t => t.Name).Order().ToArray();
-        var result = await module.ExecuteTool("get_greeting", null!);
+        var result = await runner.ExecuteAsync("get_greeting", null);
 
-        Assert.Contains("get_greeting", tools);
         Assert.Equal("""{"text":"hello"}""", result);
     }
 
     [Fact]
-    public async Task The_module_reports_a_failed_tool_call_as_ChatToolException()
+    public async Task The_runner_reports_an_unknown_tool_as_ChatToolException()
     {
         var services = new ServiceCollection().AddSingleton<GreetingService>();
         services.AddLogging();
@@ -35,9 +33,9 @@ public class AddChatTests
 
         await using var provider = services.BuildServiceProvider();
         await using var scope = provider.CreateAsyncScope();
-        var module = scope.ServiceProvider.GetRequiredService<IChatModule>();
+        var runner = scope.ServiceProvider.GetRequiredService<IChatToolRunner>();
 
-        await Assert.ThrowsAsync<ChatToolException>(() => module.ExecuteTool("get_unknown", "{}"));
+        await Assert.ThrowsAsync<ChatToolException>(() => runner.ExecuteAsync("get_unknown", "{}"));
     }
 
     [Fact]

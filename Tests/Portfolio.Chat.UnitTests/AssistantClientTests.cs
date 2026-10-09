@@ -9,7 +9,7 @@ using Portfolio.Chat.Infrastructure;
 
 namespace Portfolio.Chat.UnitTests;
 
-public class IntegratorAIClientTests
+public class AssistantClientTests
 {
     private sealed class StubHandler(Func<HttpRequestMessage, HttpResponseMessage> respond) : HttpMessageHandler
     {
@@ -26,11 +26,11 @@ public class IntegratorAIClientTests
     private static ServiceProvider CreateProvider(StubHandler handler, string? baseUrl = "https://example.test/integratorai/api")
     {
         var configuration = new ConfigurationBuilder()
-            .AddInMemoryCollection(baseUrl is null ? [] : new Dictionary<string, string?> { ["IntegratorAI:BaseUrl"] = baseUrl })
+            .AddInMemoryCollection(baseUrl is null ? [] : new Dictionary<string, string?> { ["Assistant:BaseUrl"] = baseUrl })
             .Build();
 
         var services = new ServiceCollection();
-        services.AddIntegratorAIClient(configuration);
+        services.AddAssistantClient(configuration);
         services.ConfigureAll<HttpClientFactoryOptions>(options => options.HttpMessageHandlerBuilderActions.Add(builder => builder.PrimaryHandler = handler));
 
         return services.BuildServiceProvider();
@@ -115,6 +115,6 @@ public class IntegratorAIClientTests
 
         var exception = Assert.Throws<InvalidOperationException>(() => provider.GetRequiredService<IContextApi>());
 
-        Assert.Contains("IntegratorAI:BaseUrl", exception.Message);
+        Assert.Contains("Assistant:BaseUrl", exception.Message);
     }
 }

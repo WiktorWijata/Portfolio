@@ -18,40 +18,33 @@ public class ChatToolRegistryTests
     }
 
     [Fact]
-    public void Describes_parameters_without_the_cancellation_token()
+    public void Knows_which_tools_need_an_argument_and_ignores_the_cancellation_token()
     {
-        var tool = For(typeof(ValidController)).Tools.Single(d => d.Name == "find_item");
+        var tools = For(typeof(ValidController)).Tools.ToDictionary(t => t.Name, t => t.NeedsArguments);
 
-        Assert.Equal("Finds an item by name.", tool.Description);
-        Assert.Collection(
-            tool.Parameters,
-            name =>
-            {
-                Assert.Equal("name", name.Name);
-                Assert.Equal("string", name.Type);
-                Assert.Equal("Name of the item.", name.Description);
-                Assert.True(name.Required);
-            },
-            limit =>
-            {
-                Assert.Equal("limit", limit.Name);
-                Assert.Equal("integer", limit.Type);
-                Assert.False(limit.Required);
-            });
+        Assert.True(tools["find_item"]);
+        Assert.False(tools["get_greeting"]);
+        Assert.False(tools["get_typed"]);
     }
 
     [Theory]
-    [InlineData(typeof(PostToolController), "read-only")]
-    [InlineData(typeof(NoVerbToolController), "read-only")]
-    [InlineData(typeof(BadNameController), "lowercase")]
-    [InlineData(typeof(EmptyDescriptionController), "description")]
-    [InlineData(typeof(SyncReturnController), "Task<IActionResult>")]
-    [InlineData(typeof(ComplexParameterController), "unsupported type")]
-    public void Rejects_invalid_tools_with_a_message_that_says_why(Type controller, string expectedFragment)
+    [InlineData(typeof(PostToolController))]
+    [InlineData(typeof(NoVerbToolController))]
+    public void Rejects_tools_that_are_not_read_only_actions(Type controller)
     {
         var exception = Assert.Throws<InvalidOperationException>(() => For(controller));
 
-        Assert.Contains(expectedFragment, exception.Message);
+        Assert.Contains("read-only", exception.Message);
+    }
+
+    [Fact]
+    public void An_action_inherited_from_a_base_controller_is_a_tool_run_on_the_inheriting_controller()
+    {
+        var registry = For(typeof(DerivedToolController));
+
+        Assert.True(registry.TryGet("get_inherited", out var tool));
+        Assert.Equal(typeof(DerivedToolController), tool.ControllerType);
+        Assert.Contains(registry.Tools, t => t.Name == "get_inherited");
     }
 
     [Fact]

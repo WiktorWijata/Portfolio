@@ -1,9 +1,9 @@
-namespace Portfolio.Chat.Infrastructure;
+namespace Portfolio.Chat.Application;
 
 /// <summary>Where IntegratorAI is and which of its contexts the chat uses. Bound from the "IntegratorAI" section.</summary>
-public sealed class IntegratorAIOptions
+public sealed class AssistantOptions
 {
-    public const string SectionName = "IntegratorAI";
+    public const string SectionName = "Assistant";
 
     /// <summary>Base address including the API path base, e.g. <c>https://host/integratorai/api</c>.</summary>
     public string? BaseUrl { get; set; }

@@ -1,6 +1,5 @@
 using MediatR;
 using Portfolio.Chat.Application.Commands;
-using Portfolio.Chat.Application.Queries;
 using Portfolio.Chat.Contracts;
 using Portfolio.Chat.Contracts.Models;
 
@@ -14,12 +13,6 @@ public class ChatModule : IChatModule
     {
         _mediator = mediator;
     }
-
-    public Task<IEnumerable<ChatToolDto>> GetTools(CancellationToken cancellationToken = default)
-        => _mediator.Send(new GetChatToolsQuery(), cancellationToken);
-
-    public Task<string> ExecuteTool(string toolName, string argumentsJson, CancellationToken cancellationToken = default)
-        => _mediator.Send(new ExecuteChatToolQuery(toolName, argumentsJson), cancellationToken);
 
     public Task<IEnumerable<ChatContextSyncDto>> SynchronizeContexts(CancellationToken cancellationToken = default)
         => _mediator.Send(new SynchronizeChatContextsCommand(), cancellationToken);
