@@ -4,6 +4,7 @@ using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Portfolio.Chat.Contracts;
+using RescuePC.Portfolio.BuildingBlocks.Application;
 
 namespace RescuePC.Portfolio.Api.Chat;
 

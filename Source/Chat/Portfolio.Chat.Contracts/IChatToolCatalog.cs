@@ -15,7 +15,8 @@ namespace Portfolio.Chat.Contracts
         /// </summary>
         /// <param name="toolName">Name given in <c>[ChatTool]</c>.</param>
         /// <param name="argumentsJson">JSON object with the arguments chosen by the model; may be null or empty.</param>
-        /// <exception cref="ChatToolException">Unknown tool, invalid arguments or a failed call.</exception>
+        /// <exception cref="System.Exception">Unknown tool, invalid arguments or a failed call; the implementation throws a
+        /// <c>ChatToolException</c> (BuildingBlocks.Application) whose message is safe to return to the model.</exception>
         Task<string> ExecuteAsync(string toolName, string argumentsJson, CancellationToken cancellationToken = default);
     }
 }

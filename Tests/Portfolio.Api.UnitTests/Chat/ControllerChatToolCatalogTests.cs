@@ -2,6 +2,7 @@ using System.Text.Json;
 using Microsoft.Extensions.DependencyInjection;
 using Portfolio.Chat.Contracts;
 using RescuePC.Portfolio.Api.Chat;
+using RescuePC.Portfolio.BuildingBlocks.Application;
 
 namespace Portfolio.Api.UnitTests.Chat;
 
