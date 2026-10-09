@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="Resources/*.json" WithCulture="false" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\..\BuildingBlocks\Portfolio.BuildingBlocks.Application\Portfolio.BuildingBlocks.Application.csproj" />
     <ProjectReference Include="..\Portfolio.Chat.Contracts\Portfolio.Chat.Contracts.csproj" />
   </ItemGroup>

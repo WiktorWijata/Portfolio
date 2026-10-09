@@ -1,6 +1,7 @@
 using System.Reflection;
 using Microsoft.Extensions.DependencyInjection;
 using Portfolio.Chat.Application;
+using Portfolio.Chat.Application.Context;
 using Portfolio.Chat.Application.QueryHandlers;
 using Portfolio.Chat.Contracts;
 
@@ -31,6 +32,7 @@ public static class ServiceCollectionExtensions
         services.AddSingleton(registry);
         services.AddSingleton<IChatToolRegistry>(registry);
         services.AddScoped<IChatToolRunner, ChatToolRunner>();
+        services.AddScoped<IChatContextBuilder, ChatContextBuilder>();
         services.AddScoped<IChatModule, ChatModule>();
 
         return services;
