@@ -4,6 +4,7 @@ using IntegratorAI.Api.Contracts.Chat;
 using IntegratorAI.Api.Contracts.Context;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Http;
 using Portfolio.Chat.Infrastructure;
 
 namespace Portfolio.Chat.UnitTests;
@@ -30,7 +31,7 @@ public class IntegratorAIClientTests
 
         var services = new ServiceCollection();
         services.AddIntegratorAIClient(configuration);
-        services.ConfigureHttpClientDefaults(builder => builder.ConfigurePrimaryHttpMessageHandler(() => handler));
+        services.ConfigureAll<HttpClientFactoryOptions>(options => options.HttpMessageHandlerBuilderActions.Add(builder => builder.PrimaryHandler = handler));
 
         return services.BuildServiceProvider();
     }

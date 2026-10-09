@@ -23,6 +23,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Source\Chat\Portfolio.Chat.Infrastructure\Portfolio.Chat.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\Source\BuildingBlocks\Portfolio.BuildingBlocks.Intrastructure\Portfolio.BuildingBlocks.Intrastructure.csproj" />
   </ItemGroup>
 
   <ItemGroup>

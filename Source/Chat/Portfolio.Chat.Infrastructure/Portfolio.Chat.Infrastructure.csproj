@@ -11,8 +11,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="IntegratorAI.Api.Contracts" Version="1.1.0" />
-    <PackageReference Include="Refit.HttpClientFactory" Version="8.0.0" />
+    <PackageReference Include="Hangfire.Core" Version="1.8.18" />
+    <PackageReference Include="IntegratorAI.Api.Contracts" Version="1.2.0" />
+    <PackageReference Include="Refit.Reflection" Version="15.1.0" />
+    <PackageReference Include="RescuePC.Software.Refit" Version="10.0.0" />
   </ItemGroup>
 
   <ItemGroup>

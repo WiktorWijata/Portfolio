@@ -2,8 +2,7 @@ using IntegratorAI.Api.Contracts.Chat;
 using IntegratorAI.Api.Contracts.Context;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Options;
-using Refit;
+using RescuePC.Software.Refit;
 
 namespace Portfolio.Chat.Infrastructure;
 
@@ -15,17 +14,20 @@ public static class IntegratorAIServiceCollectionExtensions
     /// </summary>
     public static IServiceCollection AddIntegratorAIClient(this IServiceCollection services, IConfiguration configuration)
     {
-        services.Configure<IntegratorAIOptions>(configuration.GetSection(IntegratorAIOptions.SectionName));
+        var section = configuration.GetSection(IntegratorAIOptions.SectionName);
+        services.Configure<IntegratorAIOptions>(section);
 
-        services.AddRefitClient<IContextApi>().ConfigureHttpClient(Configure);
-        services.AddRefitClient<IStreamChatApi>().ConfigureHttpClient(Configure);
+        var baseUrl = section.Get<IntegratorAIOptions>()?.BaseUrl;
+
+        services.AddRefitClient<IContextApi>("IntegratorAI.Context", client => Configure(client, baseUrl));
+        services.AddRefitClient<IStreamChatApi>("IntegratorAI.StreamChat", client => Configure(client, baseUrl));
 
         return services;
     }
 
-    private static void Configure(IServiceProvider services, HttpClient client)
+    private static void Configure(HttpClient client, string? configuredBaseUrl)
     {
-        var baseUrl = services.GetRequiredService<IOptions<IntegratorAIOptions>>().Value.BaseUrl?.Trim().TrimEnd('/');
+        var baseUrl = configuredBaseUrl?.Trim().TrimEnd('/');
 
         if (string.IsNullOrEmpty(baseUrl) || !Uri.TryCreate(baseUrl, UriKind.Absolute, out var baseAddress))
         {

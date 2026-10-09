@@ -60,4 +60,5 @@ app.UseRateLimiter();
 app.UseAuthorization();
 app.MapControllers();
 app.MapHealthChecks("/health").DisableRateLimiting();
+app.Services.ScheduleChatContextSync();
 app.Run();
