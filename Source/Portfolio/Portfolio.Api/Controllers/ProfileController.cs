@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
-using Portfolio.Chat.Contracts;
 using Portfolio.Profile.Contracts;
 using RescuePC.Portfolio.Api.Contracts.Models;
 using RescuePC.Portfolio.Api.Mappings;
+using RescuePC.Portfolio.BuildingBlocks.Application;
 
 namespace RescuePC.Portfolio.Api.Controllers;
 

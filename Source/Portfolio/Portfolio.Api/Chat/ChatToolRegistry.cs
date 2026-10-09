@@ -4,6 +4,7 @@ using System.Text.RegularExpressions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Routing;
 using Portfolio.Chat.Contracts;
+using RescuePC.Portfolio.BuildingBlocks.Application;
 
 namespace RescuePC.Portfolio.Api.Chat;
 

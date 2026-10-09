@@ -1,6 +1,6 @@
 using System.ComponentModel;
 using Microsoft.AspNetCore.Mvc;
-using Portfolio.Chat.Contracts;
+using RescuePC.Portfolio.BuildingBlocks.Application;
 
 namespace Portfolio.Api.UnitTests.Chat;
 
