@@ -1,61 +1,11 @@
-﻿{
+{
   "openapi": "3.0.1",
   "info": {
     "title": "Portfolio.Api",
     "version": "1.0"
   },
   "paths": {
-    "/api/content-read/languages": {
-      "get": {
-        "tags": [
-          "ContentRead"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Language"
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/content-read/content": {
-      "get": {
-        "tags": [
-          "ContentRead"
-        ],
-        "parameters": [
-          {
-            "name": "languageCode",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ContentResponse"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/notification/send": {
+    "/notification/send": {
       "post": {
         "tags": [
           "Notification"
@@ -85,26 +35,307 @@
           }
         }
       }
+    },
+    "/profile/languages": {
+      "get": {
+        "tags": [
+          "Profile"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Language"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/profile/introduction": {
+      "get": {
+        "tags": [
+          "Profile"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Introduction"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/profile/services": {
+      "get": {
+        "tags": [
+          "Profile"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Service"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/profile/specializations": {
+      "get": {
+        "tags": [
+          "Profile"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Specialization"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/profile/aspirations": {
+      "get": {
+        "tags": [
+          "Profile"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Aspiration"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/profile/skills": {
+      "get": {
+        "tags": [
+          "Profile"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SkillCategory"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/profile/experiences": {
+      "get": {
+        "tags": [
+          "Profile"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Experience"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/profile/certificates": {
+      "get": {
+        "tags": [
+          "Profile"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Certificate"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/profile/projects": {
+      "get": {
+        "tags": [
+          "Profile"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Project"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/profile/contacts": {
+      "get": {
+        "tags": [
+          "Profile"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Contact"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/profile/business": {
+      "get": {
+        "tags": [
+          "Profile"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Business"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
     "schemas": {
-      "AboutMe": {
+      "Aspiration": {
         "type": "object",
         "properties": {
-          "title": {
+          "text": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Business": {
+        "type": "object",
+        "properties": {
+          "name": {
             "type": "string",
             "nullable": true
           },
-          "greeting": {
+          "taxNumber": {
             "type": "string",
             "nullable": true
           },
-          "description": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
+          "registrationNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "street": {
+            "type": "string",
+            "nullable": true
+          },
+          "postalCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "city": {
+            "type": "string",
+            "nullable": true
+          },
+          "region": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Certificate": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "issuer": {
+            "type": "string",
+            "nullable": true
+          },
+          "issuedOn": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "code": {
+            "type": "string",
             "nullable": true
           }
         },
@@ -120,90 +351,6 @@
           "value": {
             "type": "string",
             "nullable": true
-          },
-          "isExternal": {
-            "type": "boolean"
-          }
-        },
-        "additionalProperties": false
-      },
-      "ContentResponse": {
-        "type": "object",
-        "properties": {
-          "language": {
-            "$ref": "#/components/schemas/Language"
-          },
-          "hero": {
-            "$ref": "#/components/schemas/Hero"
-          },
-          "skillsCategories": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/SkillCategory"
-            },
-            "nullable": true
-          },
-          "projects": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Project"
-            },
-            "nullable": true
-          },
-          "experiences": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Experience"
-            },
-            "nullable": true
-          },
-          "educations": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Education"
-            },
-            "nullable": true
-          },
-          "facts": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Fact"
-            },
-            "nullable": true
-          },
-          "contacts": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Contact"
-            },
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "Education": {
-        "type": "object",
-        "properties": {
-          "institution": {
-            "type": "string",
-            "nullable": true
-          },
-          "degree": {
-            "type": "string",
-            "nullable": true
-          },
-          "field": {
-            "type": "string",
-            "nullable": true
-          },
-          "startDate": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "endDate": {
-            "type": "string",
-            "format": "date-time",
-            "nullable": true
           }
         },
         "additionalProperties": false
@@ -211,7 +358,7 @@
       "Experience": {
         "type": "object",
         "properties": {
-          "company": {
+          "employer": {
             "type": "string",
             "nullable": true
           },
@@ -228,20 +375,33 @@
             "format": "date-time",
             "nullable": true
           },
-          "description": {
-            "type": "string",
-            "nullable": true
-          },
-          "achivements": {
+          "areas": {
             "type": "array",
             "items": {
-              "type": "string"
+              "$ref": "#/components/schemas/ExperienceArea"
             },
             "nullable": true
           },
           "technologies": {
             "type": "array",
             "items": {
+              "$ref": "#/components/schemas/Technology"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ExperienceArea": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "responsibilities": {
+            "type": "array",
+            "items": {
               "type": "string"
             },
             "nullable": true
@@ -249,37 +409,20 @@
         },
         "additionalProperties": false
       },
-      "Fact": {
+      "Introduction": {
         "type": "object",
         "properties": {
           "title": {
             "type": "string",
             "nullable": true
           },
-          "description": {
-            "type": "string",
-            "nullable": true
-          },
-          "imageUrl": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "Hero": {
-        "type": "object",
-        "properties": {
           "motto": {
             "type": "string",
             "nullable": true
           },
-          "imageUrl": {
+          "description": {
             "type": "string",
             "nullable": true
-          },
-          "aboutMe": {
-            "$ref": "#/components/schemas/AboutMe"
           }
         },
         "additionalProperties": false
@@ -319,7 +462,7 @@
       "Project": {
         "type": "object",
         "properties": {
-          "title": {
+          "name": {
             "type": "string",
             "nullable": true
           },
@@ -327,7 +470,11 @@
             "type": "string",
             "nullable": true
           },
-          "imageUrl": {
+          "goal": {
+            "type": "string",
+            "nullable": true
+          },
+          "solution": {
             "type": "string",
             "nullable": true
           },
@@ -335,28 +482,97 @@
             "type": "string",
             "nullable": true
           },
-          "demoUrl": {
-            "type": "string",
-            "nullable": true
-          },
           "technologies": {
             "type": "array",
             "items": {
-              "type": "string"
+              "$ref": "#/components/schemas/Technology"
+            },
+            "nullable": true
+          },
+          "architectureNotes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProjectArchitectureNote"
+            },
+            "nullable": true
+          },
+          "architectureBlocks": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProjectArchitectureBlock"
+            },
+            "nullable": true
+          },
+          "architectureCaption": {
+            "type": "string",
+            "nullable": true
+          },
+          "architectureDiagramLabel": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ProjectArchitectureBlock": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "note": {
+            "type": "string",
+            "nullable": true
+          },
+          "url": {
+            "type": "string",
+            "nullable": true
+          },
+          "linkLabel": {
+            "type": "string",
+            "nullable": true
+          },
+          "connectionLabel": {
+            "type": "string",
+            "nullable": true
+          },
+          "children": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProjectArchitectureBlock"
             },
             "nullable": true
           }
         },
         "additionalProperties": false
       },
-      "Skill": {
+      "ProjectArchitectureNote": {
         "type": "object",
         "properties": {
-          "name": {
+          "title": {
             "type": "string",
             "nullable": true
           },
-          "imageUrl": {
+          "text": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Service": {
+        "type": "object",
+        "properties": {
+          "iconSlug": {
+            "type": "string",
+            "nullable": true
+          },
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
             "type": "string",
             "nullable": true
           }
@@ -370,11 +586,58 @@
             "type": "string",
             "nullable": true
           },
-          "skills": {
+          "technologies": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/Skill"
+              "$ref": "#/components/schemas/Technology"
             },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Specialization": {
+        "type": "object",
+        "properties": {
+          "tag": {
+            "type": "string",
+            "nullable": true
+          },
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "subtitle": {
+            "type": "string",
+            "nullable": true
+          },
+          "technologies": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Technology"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Technology": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "iconSource": {
+            "type": "string",
+            "nullable": true
+          },
+          "iconSlug": {
+            "type": "string",
+            "nullable": true
+          },
+          "iconIsMonochrome": {
+            "type": "boolean",
             "nullable": true
           }
         },

@@ -22,7 +22,11 @@
     "noUnusedParameters": true,
     "erasableSyntaxOnly": true,
     "noFallthroughCasesInSwitch": true,
-    "noUncheckedSideEffectImports": true
+    "noUncheckedIndexedAccess": true,
+    "noUncheckedSideEffectImports": true,
+
+    /* Path alias: "@/design-system" -> "src/design-system" */
+    "paths": { "@/*": ["./src/*"] }
   },
   "include": ["src"]
 }

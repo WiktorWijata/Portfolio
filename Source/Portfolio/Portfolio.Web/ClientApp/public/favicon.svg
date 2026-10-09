@@ -1,14 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 42 22" width="42" height="22">
-  <text
-    x="21"
-    y="18"
-    text-anchor="middle"
-    dominant-baseline="auto"
-    font-family="'Courier New', Courier, monospace"
-    font-size="20"
-    font-weight="bold"
-    fill="#ffffff"
-    stroke="#ffffff"
-    stroke-width="1"
-  >&lt;/&gt;</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+  <!-- The "W_" mark of the title bar: accent tile with the letters drawn as strokes, so no font is needed. -->
+  <rect width="32" height="32" rx="7" fill="#c77dbb" />
+  <g fill="none" stroke="#1e1f22" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M5.5 7.5 9 21 12.5 12 16 21 19.5 7.5" />
+    <path d="M21.5 25h5" />
+  </g>
 </svg>

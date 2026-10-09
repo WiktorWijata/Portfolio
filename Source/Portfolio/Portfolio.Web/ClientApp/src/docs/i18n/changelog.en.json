@@ -1,0 +1,384 @@
+{
+  "0.33.0": {
+    "title": "StatusBarItem: a status light",
+    "added": [
+      "StatusBarItem: the `indicator` prop (StatusBarIndicator: Online, Offline, Pending) — a coloured light before the text, e.g. the API connection state; Pending pulses."
+    ]
+  },
+  "0.32.0": {
+    "title": "Loader: an IDE-style loading state",
+    "added": [
+      "Loader: a thin indeterminate progress bar (as under the VS Code title bar) above a monospace status line with a blinking cursor; the LoaderStatus.Error state shows the message without the bar. Respects the reduced-motion setting."
+    ]
+  },
+  "0.31.0": {
+    "title": "Card: Hero variant and a header icon",
+    "added": [
+      "Card: a Hero variant (gradient background and a stronger shadow, like the About the project card) and the `icon` prop — an icon before the title in the Standard and Hero variants."
+    ],
+    "changed": [
+      "GoalCard (the project page) uses Card in the Hero variant instead of its own container and header. The look is unchanged."
+    ]
+  },
+  "0.30.0": {
+    "title": "One Card component instead of DataCard, InfoCard and CardHeading",
+    "added": [
+      "Card with variants: Compact (a header bar with a title, counter and action — the former DataCard/InfoCard) and Standard (a larger card with a light header — the former CardHeading). Insides: CardList/CardRow, CardFields/CardField (label above value) and CardAction."
+    ],
+    "changed": [
+      "Gallery and the project architecture card use Card in the Standard variant instead of their own container and CardHeading. The look is unchanged.",
+      "InfoCard used a fully opaque background and DataCard 80% — after the merge all Compact cards use 80%.",
+      "Removed: DataCard, DataCardAction, DataCardList, DataCardRow, InfoCard, InfoRow and CardHeading (replaced by Card, CardAction, CardList, CardRow, CardFields, CardField and the Standard variant)."
+    ]
+  },
+  "0.29.0": {
+    "title": "GuideCard interface texts can be replaced",
+    "added": [
+      "GuideCard: the `labels` prop (`GuideCardLabels`) with the card's texts — the progress label (“PRZEWODNIK / N Z M”), “Pomiń”, “Wstecz”, “Dalej →” and “Gotowe”. Omitted fields keep the existing Polish values, so the change is backwards compatible (the same pattern as in Gallery, Terminal and Chat)."
+    ]
+  },
+  "0.28.0": {
+    "title": "New ArchitectureDiagram component",
+    "added": [
+      "ArchitectureDiagram — a vertical diagram of layers: blocks (a title, a description, an optional link with an icon) joined by arrows with an optional description of the connection. A block with children is a row of highlighted tiles (modules). The component knows neither the app's content nor its icons (`linkIcon` is passed by the page)."
+    ],
+    "changed": [
+      "The architecture diagram from the project page (ProjectPortfolio) moved to the design system. Arrows are now drawn between all consecutive blocks instead of being written into the data by hand."
+    ]
+  },
+  "0.27.7": {
+    "title": "State logic of Gallery and Chat extracted into hooks",
+    "added": [
+      "Gallery/hooks/useGalleryNav — moving through slides (wrapping) and handling the ←/→ arrows, previously defined inline in the component.",
+      "Chat/hooks/useChatInput — the message text, Enter/Shift+Enter and the props of the `<textarea>`, modelled on Terminal/hooks/useCommandInput."
+    ],
+    "changed": [
+      "Gallery.tsx and Chat.tsx are now just JSX composition plus hooks, following the convention already used in Metrics (useInfinityCaption) and Terminal (useCommandInput, useResizableHeight). Look and behaviour are unchanged."
+    ]
+  },
+  "0.27.6": {
+    "title": "A shared interactivity base for buttons",
+    "added": [
+      "internal/interactiveBase.ts — INTERACTIVE_BASE_CLASSES: the cursor and the disabled state shared by every `*Button` (previously copied, or not handled at all in some variants)."
+    ],
+    "changed": [
+      "Button, ToolbarButton, IconButton, RailButton, ChatLauncher and the internal CloseButton now use the shared base instead of each defining the cursor/disabled again. The look is unchanged — none of these components had been used with `disabled`, so this is purely additive."
+    ]
+  },
+  "0.27.5": {
+    "title": "New IconButton (with a border) next to ToolbarButton",
+    "added": [
+      "IconButton — a square button with an icon and a border for controls inside a card (e.g. the carousel arrows)."
+    ],
+    "changed": [
+      "The former `IconButton` (borderless, toolbars: Terminal, Explorer, Assistant) renamed to `ToolbarButton`/`ToolbarButtonSize` — no change in look or behaviour.",
+      "Gallery: the previous/next arrows now use `IconButton` instead of the local `controlButtonClasses`."
+    ]
+  },
+  "0.27.4": {
+    "title": "A consistent structure of design-system subcomponents",
+    "changed": [
+      "Subcomponents of Guide, InfoCard, List, Menu, SolutionExplorer, StatusBar, Tabs and TitleBar were extracted into their components directories, together with their own types.",
+      "Public exports and behaviour were kept; ListSearchRow remains a private element of List, and the shared tree-indent calculation lives in utils."
+    ]
+  },
+  "0.27.3": {
+    "title": "DataCard subcomponents in separate folders",
+    "changed": [
+      "DataCardAction, DataCardList and DataCardRow together with their types were moved to DataCard/components. Public exports, props and the look were kept."
+    ]
+  },
+  "0.27.2": {
+    "title": "Component constants in .consts.ts files",
+    "changed": [
+      "Static maps of classes, tones and sizes and the configuration of 17 components were moved to their .consts.ts files; the look and the public props are unchanged.",
+      "The token generator reads the Text maps from Text.consts.ts, keeping the recognition of selected variants in dependent components."
+    ]
+  },
+  "0.27.1": {
+    "title": "Guide focus trap: hidden elements and Shift+Tab from outside the card",
+    "fixed": [
+      "The Guide focus trap now skips hidden elements (display: none or a hidden ancestor) and not only disabled ones — the selector did not filter visibility by itself.",
+      "Tab/Shift+Tab with the focus outside the card now correctly lands on the first/last element of the cycle — Shift+Tab used to land one element too early (the second-to-last instead of the last)."
+    ]
+  },
+  "0.27.0": {
+    "title": "Button/Link/StatusBarButton contracts, tab order and keyboard",
+    "added": [
+      "CardHeading: a small label at the top of a bordered card — extracted from Gallery and ArchitectureCard.",
+      "The focus-ring and focus-ring-tight utilities (a 2px/2px and 1px/1px focus ring in the accent colour) — they replace the same hand-assembled list of classes that was previously repeated in a dozen components.",
+      "The --radius-xl-plus (9px) and --duration-140 tokens — named, shared definitions for values repeated unchanged (ChatLauncher, Menu, EmptyEditor; Button, IconButton, Panel, StatusBar, Field, ProfileLinks)."
+    ],
+    "changed": [
+      "ButtonProps, LinkProps and StatusBarButtonProps are now unions of a button variant and a link variant (…AsButtonProps | …AsLinkProps) with the proper native attributes and ref for each, instead of one type described by AnchorHTMLAttributes also for <button>. disabled is no longer available together with href (Button), and likewise expanded with href (StatusBarButton) — this narrows the contract; existing calls without such combinations keep working.",
+      "Button sets type=\"button\" by default (keeping an explicit type=\"submit\"), so a button in the non-href variant does not submit a form by accident.",
+      "Gallery now uses CardHeading instead of its own copy of the same header.",
+      "Input and Textarea share the internal Field (the label) and the base field classes (FIELD_BASE_CLASSES) instead of two almost identical implementations.",
+      "Tab reordering (useTabsReorder) no longer moves DOM nodes during the drag — the visual order goes through flex order/transform, and React remains the only owner of the actual order, set only by onReorder. EditorProvider.reorderTabs validates that the new order is a permutation of the currently open tabs.",
+      "Terminal: Tab captures the key only when it actually completes something — Shift+Tab and Tab without a match move the focus like everywhere else instead of blocking it. Added aria-keyshortcuts=\"Tab\" on the command field.",
+      "Closing a tab is now visible also when focused by keyboard, not only on hover; both tab buttons have a focus-ring.",
+      "The focus trap in Guide covers all standard focusable elements (links, form fields, tabindex), not only <button>.",
+      "ProjectCard colours the label/title/description through the color prop of Text (TextColor.Accent/Heading/Muted) instead of raw text-* classes, which happen to match the existing colour scale.",
+      "The API documentation generator (parseTypes.ts) now recognises multi-line interface declarations, local shared (non-exported) interfaces and unions of two interfaces (getUnion) — the Button/Link/StatusBarButton API tables are complete again. The token generator (tokens.ts) follows a component's local imports and expands tokens from custom @utility rules, so Input/Textarea (through Field) and every component using focus-ring* have a full token list again."
+    ],
+    "fixed": [
+      "Escape during a tab drag actually cancels the gesture (without changing the order) — previously only a comment in the code claimed so. Cleanup on unmount now cancels all animations of the neighbouring tabs, not just the dragged one.",
+      "The terminal height handle now has a visible focus ring (previously outline-none with no focus state at all)."
+    ]
+  },
+  "0.26.0": {
+    "title": "Light theme and a theme switch",
+    "added": [
+      "The light theme (theme/light.css): grey surfaces (a mid shade, not white), the same tokens as dark, a darker accent for contrast on a light background, an inverted tint and softer shadows; text contrast measured and no worse than in the dark theme",
+      "useTheme() and setTheme() — the current theme and changing it, with the choice remembered in localStorage, shared by the app and the documentation; initTheme() applies the saved theme and follows changes in other tabs",
+      "StatusBarSwitch: the icon option in StatusBarSwitchOption — an icon instead of a label (the label then serves as the accessible name)",
+      "The highlight token (a light edge in shadows; tint can now be inverted in the light theme) and the --theme-icon-invert variable (inverting dark single-colour icons)"
+    ],
+    "changed": [
+      "color-scheme is set in the theme files; check:theme now also compares the --theme-* variables",
+      "Technology icons cannot have a colour in the URL: dark icons are marked monochrome"
+    ]
+  },
+  "0.25.0": {
+    "title": "Themes: all colours from tokens",
+    "added": [
+      "The theme mechanism: the theme/base.css, theme/dark.css and theme/utilities.css files; the theme is chosen by the data-theme attribute on <html>",
+      "ThemeName, DEFAULT_THEME, THEME_ATTRIBUTE, isThemeName and applyTheme, and readThemeColor (a token value for SVG data URIs and canvas)",
+      "The tint and scrim overlay tokens: shadows are composed from them (color-mix), so a theme defines only these two colours",
+      "The utilities bg-stage-glow, bg-hero-card, bg-accent-wash and bg-target-mark, and the shadows shadow-menu, shadow-chat, shadow-launcher, shadow-drag, shadow-hero, shadow-logo, shadow-inset-highlight, shadow-glow-success and shadow-glow-accent",
+      "Tokens for colours that were hard-coded until now: accent-line-*, accent-surface-hover, accent-muted, content-tinted, content-tinted-strong, success-content-soft, success-indicator, decor-lilac, filetype-markdown, indicator-idle, surface-pressed-strong, line-hover, chat-user-line"
+    ],
+    "changed": [
+      "Colour tokens renamed to the {group}-{role} taxonomy: surface-*, line-*, content-*, accent-*, link-*, success|warning|danger|info-*, decor-*; classes change accordingly (e.g. bg-list → bg-surface-panel, text-text-dim → text-content-muted, border-border-5 → border-line-emphasis)",
+      "The text scale was tidied: 17 text-* tokens merged into 12 content-* steps; 80 [#hex] literals replaced by tokens (the largest colour shift 11/255, mostly in the purple shades in Chat, Terminal, Menu and Guide)",
+      "The default Tailwind palette is disabled (--color-*: initial): bg-white, text-red-500 etc. no longer compile",
+      "The page background in index.html and docs.html uses color-scheme instead of a hard-coded colour"
+    ]
+  },
+  "0.24.0": {
+    "title": "Tidying up the greys",
+    "changed": [
+      "Almost identical greys replaced by existing tokens of the same role (text, background, line): 32 [#hex] literals in components and the app; the largest shift is 3/255 per channel",
+      "The tokens group-line and panel-line merged with bar-subtle and chip-line, status-divider with border-6, status-version with text-dim-2, text-heading-2 with text-heading, surface with list (a difference of up to 1/255)"
+    ]
+  },
+  "0.23.0": {
+    "title": "Gallery and SolutionExplorer labels as props",
+    "added": [
+      "Gallery: the labels prop (GalleryLabels) — accessible names of the buttons and dots, the carousel role description and the placeholder texts; missing fields have Polish defaults",
+      "SolutionExplorer: the labels prop (SolutionExplorerLabels) — the header title and the accessible name of the file tree"
+    ]
+  },
+  "0.22.0": {
+    "title": "Terminal and Chat labels as props, DataCard with a counter",
+    "added": [
+      "Terminal: the labels prop (TerminalLabels) — the title, the names of the close button, the height handle and the command field; missing fields have Polish defaults",
+      "Chat: the labels prop (ChatLabels) — the names of the close button, the message field and the send button",
+      "DataCard: the count prop — a counter in a small badge on the header bar"
+    ],
+    "changed": [
+      "Terminal: the command field has an id generated by useId (two terminals on a page do not collide)",
+      "Internals tidied without changing the look: a shared close button for Terminal/Chat, a shared header bar for List/InfoCard/DataCard (the InfoCard bar is now 29.6 px like in the prototype), Tabs split into a hook, an animator and pure functions"
+    ]
+  },
+  "0.21.0": {
+    "title": "Tokens for shared colours and an API instead of overrides",
+    "added": [
+      "Tokens for colours repeated across many components: text-label, text-tag, text-panel-title, text-lead, text-item, text-row-title, text-caption, text-field-label, terminal-text, close-button (+ -hover and -hover-bg), chip-line, bar, bar-subtle, panel-line, group-line, card-line, inset, input-border, explorer-hover",
+      "The shadow-card-raised token and Panel: the raised prop — a stronger panel shadow",
+      "Button: the Card size (40 px, radius 5 px) — a button in a card footer",
+      "RailButton: the iconSize prop (RailButtonIconSize: Md 16 px, Lg 17 px, Xl 18 px)"
+    ],
+    "changed": [
+      "Gallery and SolutionExplorer no longer set their own width or margins — the layout belongs to the parent (in the example we set them with the className class)",
+      "Components use tokens instead of repeated colour literals (the look is unchanged)"
+    ]
+  },
+  "0.20.0": {
+    "title": "StatusBarButton as a link",
+    "added": [
+      "StatusBarButton: the href prop (and target and rel) — renders an <a> link that looks like a bar button, e.g. a link to the documentation"
+    ]
+  },
+  "0.19.0": {
+    "title": "Contact page elements",
+    "added": [
+      "Button: the Xs size (a link-button 7×12 px, mono 12 px — social links) and Lg (form submit: 12×18 px, sans 13 px)"
+    ],
+    "changed": [
+      "Input and Textarea fitted to the measured fields of the contact form: background #202226, border #464850, padding 12 px, a 13 px label with an 8 px gap, a 2 px accent outline on focus"
+    ]
+  },
+  "0.18.0": {
+    "title": "Experience page elements",
+    "added": [
+      "List: the tag prop in ListItem — a bordered label (e.g. a date range) that changes look together with the row (hover and active state)",
+      "Chip: the Position variant — a technology tag in a position description (mono 11.5 px, padding 4/10 px)"
+    ],
+    "changed": [
+      "ListItem (Detail) fitted to the prototype: title #a4a8ae, subtitle mono 11 px, normal line height; in a narrow container the rows take the full width, and the active one has an accent line at the top"
+    ]
+  },
+  "0.17.0": {
+    "title": "Stack page elements",
+    "added": [
+      "List: ListItemVariant.Filter — a category filter row (mono 12 px); in a narrow container it lays out in a row with an accent line at the top",
+      "SplitPanel: SplitPanelCollapseAt.Container700 — collapsing by container width (@container), like Stack in the prototype"
+    ],
+    "changed": [
+      "Chip Default fitted to the measured Stack chip: mono 12.5 px, radius 3 px, the icon can be an <img> image",
+      "List: the header bar (background, padding, the counter badge) and the search row (a line underneath) match the prototype"
+    ]
+  },
+  "0.16.0": {
+    "title": "Chip Tech",
+    "added": ["Chip: the Tech variant (mono 11 px, padding 5/9 px) — technology tags on the project page"],
+    "changed": [
+      "Gallery: texts (the heading, the placeholder, the counter) have a normal line height, like in the prototype"
+    ]
+  },
+  "0.15.0": {
+    "title": "Card shadow with a glow",
+    "changed": [
+      "The shadow-card token includes a thin glow at the top (inset 1 px), as in the prototype — affects Panel"
+    ]
+  },
+  "0.14.0": {
+    "title": "DataCard, Chip variants and Button Secondary",
+    "added": [
+      "DataCard: a card with a header bar (a title + an action) and DataCardAction, DataCardList and DataCardRow (a row with a title, a subtitle and a badge)",
+      "Chip: the variant prop (ChipVariant) — Default, Mono (11.5 px) and Compact (10.5 px)",
+      "Button: the Secondary variant (e.g. “Pobierz CV ↓”) and the href prop, which renders a link that looks like a button"
+    ],
+    "changed": [
+      "Button Md fitted to the measured page buttons: mono 12 px font and 14 px padding (previously 13 px and 16 px); the label is bold only in the Primary variant"
+    ]
+  },
+  "0.13.0": {
+    "title": "Link: the Info variant",
+    "added": [
+      "Link: the tone prop (LinkTone) — Accent (default) and Info (blue, underlined on hover)",
+      "The link-info and link-info-hover tokens"
+    ]
+  },
+  "0.12.0": {
+    "title": "A background with a glow and dots",
+    "added": [
+      "The bg-dotted-glow utility: a page background with an accent glow and a dotted grid (Projects, Experience, the empty editor)"
+    ]
+  },
+  "0.11.0": {
+    "title": "The guide as a modal window",
+    "added": [
+      "GuideCard: the modal prop — focus on “Dalej” after every step, Esc = Skip, Tab cycles through the card's buttons, the focus returns after closing",
+      "GuideCard: the anchor prop — the card places itself next to an element (to its right, below or above) and recalculates the position when the window changes",
+      "Text: the ref prop to the rendered element"
+    ],
+    "changed": ["GuideCard: aria-modal is set only with modal (a static preview is not a modal window)"]
+  },
+  "0.10.0": {
+    "title": "Link and the Sm size in Button",
+    "added": [
+      "Link: a text link in the accent colour — an <a> with href or an action button without href; the underline option",
+      "Button: the size prop (ButtonSize) — Md (44 px, mono 13) and the compact Sm (8×12 px, sans 12)",
+      "The link and link-hover tokens"
+    ],
+    "changed": [
+      "Guide: the Skip, Back and Next buttons use Button Sm, and the action link uses Link",
+      "Chat: the “See in the portfolio →” action uses Link",
+      "Button: focus-visible with an accent outline"
+    ],
+    "fixed": ["Button: the pointer cursor (Tailwind v4 leaves an arrow on buttons by default)"]
+  },
+  "0.9.0": {
+    "title": "ChatLauncher and the open prop in Chat",
+    "added": [
+      "ChatLauncher: a floating “Ask about me” button that opens the chat window, with an animated bottom offset",
+      "Chat: the open prop — hides the window while keeping the typed text; after reopening it scrolls to the bottom and focuses the message field",
+      "The launcher-* tokens: the background, border and text colour of the ChatLauncher button"
+    ]
+  },
+  "0.8.0": {
+    "title": "Terminal: keeping state after closing",
+    "added": [
+      "Terminal: the open prop — hides the panel while keeping the command history, height and output; after reopening it scrolls to the bottom and focuses the prompt"
+    ]
+  },
+  "0.7.0": {
+    "title": "State colours in RailButton",
+    "added": [
+      "RailButton: the accent prop (RailButtonAccent) — the colour of the active state: Accent, Explorer, Success, Assistant",
+      "The rail-success and rail-assistant tokens: backgrounds of the active terminal and chat buttons"
+    ]
+  },
+  "0.6.0": {
+    "title": "TitleBar and the explorer footer",
+    "added": [
+      "TitleBar: the top bar of the IDE window with a logo, a title and TitleBarButton buttons (the Run and Link tones)",
+      "SolutionExplorer: the footer prop — an element pinned to the bottom of the explorer",
+      "The run-* tokens: colours of the blue “run” button with hover and focus states"
+    ]
+  },
+  "0.5.0": {
+    "title": "StatusBar",
+    "added": [
+      "StatusBar: the bottom bar of the IDE window with the StatusBarItem, StatusBarButton, StatusBarDivider, StatusBarSpacer and StatusBarSwitch elements",
+      "Status tokens: status-branch, status-success, status-path, status-action, status-version, status-divider, lang-active-text"
+    ]
+  },
+  "0.4.1": {
+    "title": "Prop descriptions in component types",
+    "changed": [
+      "All component type files have Polish prop descriptions (JSDoc) and default values (@default)",
+      "Enum values (e.g. ButtonVariant, FontSize) have a description for every member"
+    ]
+  },
+  "0.4.0": {
+    "title": "Navigation: Menu, Tabs and Container",
+    "added": [
+      "Container: the ContainerSize.Wide variant (1280px)",
+      "The scrollbar-subtle utility: a thin scrollbar visible on hover"
+    ],
+    "changed": [
+      "Menu scrolls the list inside the card and the header stays pinned",
+      "Tabs: dragging and the Alt+Shift+arrow shortcuts work only with onReorder",
+      "A Tab without onClose has no close button (a navigation tab)"
+    ]
+  },
+  "0.3.0": {
+    "title": "Terminal, Chat and Text",
+    "added": [
+      "Terminal: ↑/↓ history, Tab completion, Esc closes, resizing by dragging or with arrows",
+      "Chat: the assistant window with bubbles, question chips, Enter sends, Shift+Enter a new line",
+      "Text: size (FontSize), colour (TextColor), font (FontFamily) and weight (FontWeight) instead of px values"
+    ],
+    "changed": [
+      "Components render their text through Text; the look is unchanged (checked by comparing computed style)",
+      "The library name: OrchIDE UI"
+    ],
+    "fixed": ["The --shadow-tour token matches the prototype (0 16px 60px, alpha .533)"]
+  },
+  "0.2.0": {
+    "title": "Gallery, guide and rail buttons",
+    "added": [
+      "Gallery: a carousel with placeholders, dots and keyboard support",
+      "Guide: GuideCard, GuideHighlight and GuideShade",
+      "RailButton extracted from IconButton (a navigation button with a vertical label)",
+      "IconButtonSize: the compact Sm size",
+      "Container and InfoCard"
+    ],
+    "changed": ["Guide: hover on the Skip, Back and Next buttons"]
+  },
+  "0.1.0": {
+    "title": "The first wave of components",
+    "added": [
+      "Tokens in Tailwind v4 (@theme): colours, typography, radii, shadows, breakpoints",
+      "Button, Chip, Badge, Label, Panel, Input, Textarea, SearchField, IconButton",
+      "List with a search field, SplitPanel, Menu, Tabs with dragging, SolutionExplorer"
+    ],
+    "fixed": [
+      "SolutionExplorer: the chevron toggles a folder, and clicking a row selects a file or a folder",
+      "SolutionExplorer: correct indents of nested items and the expand/collapse-all buttons"
+    ]
+  }
+}

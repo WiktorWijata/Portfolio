@@ -1,0 +1,1 @@
+export { useDocsLanguage } from './useDocsLanguage'

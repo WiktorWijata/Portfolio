@@ -1,0 +1,125 @@
+/*
+ * OrchIDE UI — the "light" theme. It defines the same variables as dark.css (`npm run check:theme` verifies it);
+ * the shadows are the only optional part: they are lighter here, because a dark shadow on a light page reads
+ * much stronger than on a dark one.
+ *
+ * Reading guide: this is a grey theme, not a white one. Raised surfaces (cards, fields) are the lightest greys,
+ * sunken ones (inset, hover, active) are darker.
+ * The accent is darker than in the dark theme so that it keeps its contrast on a light surface.
+ */
+:root[data-theme='light'] {
+  color-scheme: light;
+
+  /* Surfaces (backgrounds) */
+  --color-surface-shell: #b3b8c3;
+  --color-surface-editor: #bfc3cc;
+  --color-surface-inset: #b7bbc5;
+  --color-surface-panel: #c7cbd3;
+  --color-surface-field: #bcc0ca;
+  --color-surface-bar: #babec8;
+  --color-surface-card: #cdd1d9;
+  --color-surface-overlay: #d0d3db;
+  --color-surface-hover: #b8bcc6;
+  --color-surface-hover-strong: #b1b5c0;
+  --color-surface-active: #adb3be;
+  --color-surface-pressed: #a2a8b4;
+  --color-surface-pressed-strong: #979eab;
+  --color-indicator-idle: #838b99;
+
+  /* Lines (borders and separators) */
+  --color-line-faint: #aeb2bc;
+  --color-line-subtle: #a5a9b4;
+  --color-line-default: #9a9fab;
+  --color-line-strong: #8e94a1;
+  --color-line-emphasis: #7f8695;
+  --color-line-strongest: #707989;
+  --color-line-hover: #656e7f;
+
+  /* Content (text and icons) */
+  --color-content-strong: #0f1117;
+  --color-content-primary: #17191f;
+  --color-content-emphasis: #1f2127;
+  --color-content-soft: #282a30;
+  --color-content-body: #2f3137;
+  --color-content-secondary: #36383e;
+  --color-content-lead: #31352f;
+  --color-content-tertiary: #3d3f45;
+  --color-content-muted: #42444a;
+  --color-content-dim: #45474d;
+  --color-content-subtle: #47494f;
+  --color-content-faint: #5a5c62;
+  --color-content-tinted: #4a3852;
+  --color-content-tinted-strong: #352738;
+
+  /* Accent */
+  --color-accent: #6f2765;
+  --color-accent-hover: #651f5c;
+  --color-accent-light: #571a4e;
+  --color-accent-dark: #d59ac9;
+  --color-accent-content: #ffffff;
+  --color-accent-surface: #c4abc0;
+  --color-accent-line-subtle: #a98ca1;
+  --color-accent-line: #98738f;
+  --color-accent-line-strong: #855a7c;
+  --color-accent-line-hover: #714a68;
+  --color-accent-surface-hover: #b899b3;
+  --color-accent-surface-faint: #c8b7c5;
+  --color-accent-muted: #6a3861;
+  --color-accent-soft: #5b2153;
+
+  /* Links */
+  --color-link: #6f2263;
+  --color-link-hover: #571a4e;
+  --color-link-info: #0c4778;
+  --color-link-info-hover: #083961;
+
+  /* Tones: success, warning, danger, info */
+  --color-success-content: #174f2a;
+  --color-success-content-muted: #174f2a;
+  --color-success-content-soft: #3e6a4a;
+  --color-success-indicator: #36a352;
+  --color-success-surface: #a7bfae;
+  --color-warning-content: #6f3402;
+  --color-warning-content-soft: #4c3306;
+  --color-warning-surface: #c6b298;
+  --color-danger-content: #8a220c;
+  --color-info-surface: #a3bdd0;
+  --color-info-surface-hover: #91b0c8;
+  --color-info-line: #5c8bad;
+  --color-info-line-hover: #55a0cb;
+  --color-info-content: #0c4165;
+  --color-info-content-hover: #0c4a70;
+  --color-info-focus: #2c8bc4;
+
+  /* Decoration and file types */
+  --color-filetype-cs: #134d27;
+  --color-decor-sky: #124f6d;
+  --color-decor-lilac: #4b3580;
+  --color-filetype-markdown: #1a4674;
+  --color-chat-user-line: #a97d9f;
+
+  /* Translucent overlays: on a light page the hover wash darkens instead of lightening */
+  --color-tint: #000000;
+  --color-highlight: #ffffff;
+  --color-scrim: #141821;
+
+  /* Other values that depend on the theme */
+  --theme-icon-invert: 0;
+
+  /* Shadows (optional): softer than in the dark theme */
+  --shadow-card:
+    0 12px 32px color-mix(in srgb, var(--color-scrim) 10%, transparent), inset 0 1px 0 var(--color-highlight);
+  --shadow-card-raised:
+    0 16px 48px color-mix(in srgb, var(--color-scrim) 14%, transparent), inset 0 1px 0 var(--color-highlight);
+  --shadow-panel:
+    0 8px 26px color-mix(in srgb, var(--color-scrim) 9%, transparent), inset 0 0 0 1px var(--color-highlight);
+  --shadow-menu:
+    0 8px 26px color-mix(in srgb, var(--color-scrim) 10%, transparent), inset 0 1px 0 var(--color-highlight);
+  --shadow-tour: 0 16px 60px color-mix(in srgb, var(--color-scrim) 26%, transparent);
+  --shadow-chat: 0 18px 65px color-mix(in srgb, var(--color-scrim) 22%, transparent);
+  --shadow-launcher: 0 6px 24px color-mix(in srgb, var(--color-scrim) 14%, transparent);
+  --shadow-drag: 0 3px 12px color-mix(in srgb, var(--color-scrim) 16%, transparent);
+  --shadow-hero: 0 16px 48px color-mix(in srgb, var(--color-scrim) 11%, transparent);
+  --shadow-logo:
+    inset 0 1px 0 var(--color-highlight), 0 6px 18px color-mix(in srgb, var(--color-scrim) 10%, transparent);
+}

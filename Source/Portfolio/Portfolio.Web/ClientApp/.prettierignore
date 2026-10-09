@@ -1,0 +1,7 @@
+build
+dist
+node_modules
+public
+src/api/generated
+src/api/documentation
+src/api/models

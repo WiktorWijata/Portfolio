@@ -1,9 +1,6 @@
-import type { ContainerProps } from './Container.types';
+import { sizeClasses } from './Container.consts'
+import { ContainerSize, type ContainerProps } from './Container.types'
 
-export function Container({ children, className = '' }: ContainerProps) {
-  return (
-    <div className={`container mx-auto px-[5%] ${className}`}>
-      {children}
-    </div>
-  );
+export function Container({ size = ContainerSize.Default, className = '', ...rest }: ContainerProps) {
+  return <div className={['mx-auto w-full px-8', sizeClasses[size], className].join(' ')} {...rest} />
 }

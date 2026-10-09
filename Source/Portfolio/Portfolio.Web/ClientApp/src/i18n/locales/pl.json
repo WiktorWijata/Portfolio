@@ -1,62 +1,423 @@
 {
+  "nav": {
+    "tabs": {
+      "getStarted": "GetStarted.md",
+      "home": "O mnie",
+      "projects": "Projekty",
+      "projectPortfolio": "Portfolio.cs",
+      "stack": "Stack",
+      "experience": "Doświadczenie",
+      "contact": "Kontakt"
+    }
+  },
+  "shell": {
+    "statusBar": {
+      "label": "Pasek statusu",
+      "terminalToggle": "Przełącz terminal",
+      "terminalText": ">_ Terminal",
+      "assistantToggle": "Przełącz asystenta",
+      "assistantText": "Asystent",
+      "docsAria": "Dokumentacja design systemu OrchIDE UI (nowa karta)",
+      "themeSwitch": "Motyw",
+      "themeDark": "Ciemny",
+      "themeDarkAria": "Motyw ciemny",
+      "themeLight": "Jasny",
+      "themeLightAria": "Motyw jasny",
+      "languageSwitch": "Język",
+      "versionTitle": "Wersja aplikacji",
+      "apiOnline": "online",
+      "apiOffline": "offline",
+      "apiChecking": "łączenie…",
+      "apiOnlineTitle": "Połączono z API",
+      "apiOfflineTitle": "Brak połączenia z API",
+      "apiCheckingTitle": "Sprawdzanie połączenia z API"
+    },
+    "titleBar": {
+      "tourLauncher": "Oprowadź mnie",
+      "tourLauncherTitle": "Uruchom oprowadzanie",
+      "tourLauncherAria": "Uruchom oprowadzanie po portfolio"
+    },
+    "explorer": {
+      "hide": "Zwiń explorer",
+      "show": "Pokaż explorer",
+      "expandAll": "Rozwiń wszystkie foldery",
+      "collapseAll": "Zwiń wszystkie foldery",
+      "searchPlaceholder": "Szukaj plików…",
+      "searchLabel": "Szukaj plików w rozwiązaniu",
+      "noResults": "Brak plików pasujących do wyszukiwania."
+    },
+    "editorTabs": {
+      "tabsLabel": "Otwarte zakładki",
+      "closeTab": "Zamknij kartę"
+    },
+    "emptyEditor": {
+      "text": "Brak otwartych plików. Otwórz jeden z poniższych, aby wrócić do portfolio.",
+      "cv": "Pobierz CV",
+      "contact": "Kontakt",
+      "linksLabel": "CV i kontakt",
+      "quickAccess": "Szybki dostęp",
+      "fileCount_one": "{{count}} plik",
+      "fileCount_few": "{{count}} pliki",
+      "fileCount_many": "{{count}} plików",
+      "fileCount_other": "{{count}} pliku",
+      "pages": {
+        "home": "O mnie",
+        "projects": "Wybrane projekty",
+        "stack": "Stack technologiczny",
+        "experience": "Doświadczenie",
+        "contact": "Kontakt"
+      },
+      "offlineTitle": "Brak połączenia z serwerem",
+      "offlineText": "Nie mogę pobrać danych z API, więc strony mogą się nie wczytać. Sprawdź połączenie lub spróbuj za chwilę.",
+      "offlineRetry": "Spróbuj ponownie"
+    },
+    "rail": {
+      "label": "Skróty",
+      "chatTitle": "CZAT",
+      "chatLabel": "Czat",
+      "terminalLabel": "Terminal",
+      "pages": {
+        "home": "O mnie",
+        "projects": "Projekty",
+        "stack": "Stack technologiczny",
+        "experience": "Doświadczenie",
+        "contact": "Kontakt"
+      }
+    },
+    "contactCard": {
+      "label": "Współpraca",
+      "status": "Otwarty na współpracę",
+      "title": "Porozmawiajmy o Twoim projekcie.",
+      "text": "Rozwój aplikacji .NET, integracje i architektura systemów.",
+      "action": "Przejdź do kontaktu"
+    },
+    "terminal": {
+      "label": "Terminal portfolio",
+      "welcome": "Cześć! Możesz poruszać się po portfolio także stąd.\nWpisz help lub wybierz komendę poniżej.",
+      "helpFooter": "↑/↓ historia · Tab podpowiedzi · Esc zwiń",
+      "cvIntro": "CV jest dostępne tutaj:",
+      "cvLink": "Pobierz CV ↗",
+      "opened": "Otwarto: {{page}}.",
+      "unknown": "Nieznana komenda: {{command}}. Wpisz help.",
+      "labels": {
+        "title": "Terminal",
+        "close": "Zamknij terminal",
+        "resize": "Zmień wysokość terminala",
+        "input": "Komenda terminala"
+      },
+      "commands": {
+        "help": "Dostępne komendy",
+        "about": "O mnie",
+        "projects": "Projekty",
+        "stack": "Technologie",
+        "experience": "Doświadczenie",
+        "contact": "Formularz kontaktowy",
+        "cv": "Link do CV",
+        "clear": "Wyczyść terminal"
+      }
+    },
+    "assistant": {
+      "title": "Asystent portfolio",
+      "subtitle": "Poznaj doświadczenie Wiktora",
+      "placeholder": "O co chcesz zapytać?",
+      "note": "Podgląd interakcji · odpowiedzi demonstracyjne, bez połączenia z AI.",
+      "launcher": "Zapytaj o mnie",
+      "action": "Zobacz w portfolio →",
+      "welcome": "Cześć! Pomogę Ci poznać doświadczenie, technologie i projekty Wiktora. Wybierz pytanie lub wpisz własne.\n\nTo podgląd czatu — na razie pokazuję przygotowane odpowiedzi.",
+      "labels": {
+        "close": "Zamknij czat",
+        "input": "Wiadomość do asystenta",
+        "send": "Wyślij wiadomość"
+      },
+      "topics": {
+        "experience": "Jakie ma doświadczenie?",
+        "stack": "W jakich technologiach pracuje?",
+        "project": "Opowiedz o projekcie Portfolio",
+        "collaboration": "Jak nawiązać współpracę?"
+      },
+      "fallback": "W tym podglądzie mogę pokazać informacje o doświadczeniu, technologiach, projekcie Portfolio i kontakcie. Swobodne odpowiedzi na inne pytania będą dostępne po podłączeniu modelu AI.",
+      "rules": {
+        "contact": {
+          "pattern": "współprac|kontakt|staw|dostępn|zatrudn",
+          "text": "W sprawie współpracy, dostępności i warunków najlepiej skontaktować się bezpośrednio z Wiktorem. W portfolio znajdziesz formularz kontaktowy i dane kontaktowe."
+        },
+        "project": {
+          "pattern": "projekt|portfolio|architekt|cqrs|ddd",
+          "text": "Projekt Portfolio łączy frontend React i TypeScript z backendem .NET. Backend ma moduły Profile i Notifications, wydzielone warstwy oraz komendy i zapytania obsługiwane przez MediatR. Opis projektu zawiera diagram architektury i link do kodu."
+        },
+        "stack": {
+          "pattern": "technolog|stack|react|azure|docker|sql|język",
+          "text": "Główny obszar pracy Wiktora to .NET i C#, aplikacje biznesowe, bazy danych oraz integracje systemów. Portfolio przedstawia również doświadczenie z interfejsami webowymi i desktopowymi. Szczegółową listę znajdziesz w Stack."
+        },
+        "experience": {
+          "pattern": "doświadcze|pracow|karier|robił|zawod",
+          "text": "Wiktor rozwija aplikacje .NET, integruje systemy i pracuje z bazami danych. W jego doświadczeniu są B3 Consulting Poland, LSI Software, GECOS i Moje Bambino. Sekcja Doświadczenie opisuje obowiązki, narzędzia i obszary pracy w poszczególnych firmach."
+        }
+      }
+    },
+    "tour": {
+      "progress": "PRZEWODNIK / {{step}} Z {{total}}",
+      "skip": "Pomiń",
+      "back": "Wstecz",
+      "next": "Dalej →",
+      "done": "Gotowe",
+      "languageAction": "Przełącz język / Switch language →",
+      "steps": {
+        "language": {
+          "title": "Polski albo angielski / Polish or English",
+          "text": "Przełącznik języka jest w prawym dolnym rogu, na pasku statusu. Kliknij PL lub EN, aby zmienić język całego portfolio."
+        },
+        "theme": {
+          "title": "Ciemny albo jasny",
+          "text": "Obok przełącznika języka jest przełącznik motywu. Kliknij księżyc lub słońce, aby zmienić wygląd całego portfolio — wybór zostanie zapamiętany."
+        },
+        "explorer": {
+          "title": "Wszystko w explorerze",
+          "text": "Wybierz plik, aby poznać moje doświadczenie, technologie lub projekty. Kliknięcie nazwy katalogu otwiera jego stronę, a chevron rozwija zawartość."
+        },
+        "tabs": {
+          "title": "Twoja kolejność zakładek",
+          "text": "Każdą stronę możesz otworzyć w zakładce. Przeciągaj zakładki, aby zmienić kolejność, i zamykaj je krzyżykiem. Po zamknięciu wszystkich zobaczysz szybki dostęp."
+        },
+        "terminal": {
+          "title": "Portfolio z terminala",
+          "text": "Włącz terminal i wpisz help, aby poznać komendy. projects otwiera projekty, a stack pokazuje technologie. Tab podpowiada komendy, ↑ i ↓ przegląda historię."
+        },
+        "assistant": {
+          "title": "Zapytaj o moje doświadczenie",
+          "text": "Otwórz Asystenta i wybierz pytanie o doświadczenie, technologie lub współpracę. Obecnie czat jest demonstracją z przygotowanymi odpowiedziami — połączenie z AI będzie kolejnym etapem."
+        },
+        "docs": {
+          "title": "Biblioteka komponentów",
+          "text": "Interfejs zbudowałem na własnym design systemie OrchIDE UI. Kliknij OrchIDE UI na pasku statusu, aby otworzyć jego dokumentację w nowej karcie: komponenty, przykłady użycia i dziennik zmian."
+        }
+      }
+    }
+  },
   "common": {
-    "all": "Wszystkie",
-    "loading": "Ładowanie...",
-    "error": "Wystąpił błąd",
-    "noData": "Brak danych",
-    "present": "Obecnie"
+    "present": "obecnie",
+    "loading": {
+      "experience": "Ładowanie doświadczenia…",
+      "stack": "Ładowanie stosu technologicznego…",
+      "projects": "Ładowanie projektów…",
+      "home": "Ładowanie profilu…",
+      "contact": "Ładowanie danych kontaktowych…",
+      "project": "Ładowanie projektu…"
+    },
+    "loadError": "Nie udało się pobrać danych"
   },
-  "navigation": {
-    "home": "Start",
-    "about": "O mnie",
-    "experience": "Doświadczenie",
-    "education": "Edukacja i certyfikaty",
-    "projects": "Projekty",
-    "skills": "Umiejętności i technologie",
-    "contact": "Kontakt",
-    "didYouKnow": "Czy wiesz, że...?"
+  "home": {
+    "intro": {
+      "projects": "Zobacz projekty ↗",
+      "cv": "Pobierz CV ↓"
+    },
+    "services": {
+      "title": "W czym mogę pomóc"
+    },
+    "layers": {
+      "title": "Co buduję / warstwy systemu",
+      "label": "Warstwy systemów, które buduję"
+    },
+    "metrics": {
+      "years": "lat doświadczenia",
+      "teams": "firmy i zespoły",
+      "infinity": {
+        "label": "Nieskończoność",
+        "controls": "Wybierz hasło",
+        "previous": "Poprzednie hasło",
+        "next": "Następne hasło"
+      }
+    },
+    "career": {
+      "title": "Ścieżka w skrócie",
+      "action": "Otwórz →"
+    },
+    "certificates": {
+      "title": "Certyfikaty"
+    },
+    "tech": {
+      "title": "Kluczowe technologie",
+      "action": "Otwórz Stack →"
+    }
   },
-  "buttons": {
-    "showMore": "Pokaż więcej",
-    "showLess": "Pokaż mniej",
-    "sendMessage": "Wyślij wiadomość",
-    "downloadCv": "Pobierz CV",
-    "viewProject": "Zobacz projekt",
-    "viewCode": "Zobacz kod",
-    "viewProjects": "Projekty"
+  "experience": {
+    "intro": {
+      "kicker": "Ścieżka zawodowa",
+      "title": "Doświadczenie",
+      "accent": "z realnych systemów.",
+      "text": "Aplikacje biznesowe, integracje i rozwój oprogramowania w ekosystemie Microsoft. Wybierz stanowisko, aby zobaczyć zakres obowiązków."
+    },
+    "positionsHeader": "Stanowiska"
+  },
+  "projects": {
+    "intro": {
+      "kicker": "Portfolio / Wybrane realizacje",
+      "title": "Pomysły zamienione",
+      "accent": "w oprogramowanie.",
+      "text": "Autorska aplikacja portfolio z zapleczem do zarządzania treścią."
+    },
+    "note": "Portfolio: rzeczywisty zrzut ekranu.",
+    "portfolio": {
+      "label": "01 / APLIKACJA WEBOWA",
+      "imageAlt": "Zrzut ekranu portfolio Wiktora Wijaty"
+    }
+  },
+  "projectPortfolio": {
+    "architecture": {
+      "heading": "ARCHITEKTURA / MODULARNY MONOLIT",
+      "label": "Architektura projektu",
+      "sourceLabel": "Na podstawie kodu"
+    },
+    "gallery": {
+      "label": "Galeria projektu Portfolio",
+      "slideAlt": "Widok aplikacji — zdjęcie {{number}}",
+      "heading": "GALERIA PROJEKTU",
+      "carousel": "karuzela",
+      "previous": "Poprzedni slajd",
+      "next": "Następny slajd",
+      "slides": "Wybierz slajd",
+      "slide": "Pokaż slajd {{number}}",
+      "placeholder": "Miejsce na zdjęcie {{number}}",
+      "placeholderNote": "Podgląd projektu zostanie dodany później"
+    },
+    "goal": {
+      "heading": "O PROJEKCIE / ZAŁOŻENIA",
+      "intro": "Cel projektu",
+      "solution": "Rozwiązanie",
+      "stack": "Technologie",
+      "repository": "Repozytorium ↗"
+    }
+  },
+  "getStarted": {
+    "indexTitle": "Szybki przewodnik",
+    "indexLabel": "Tematy przewodnika",
+    "intro": {
+      "indexLabel": "Wprowadzenie",
+      "title": "Zobacz, co Cię tu czeka.",
+      "text": "Poznaj moje doświadczenie, projekty i sposób pracy. Wybierz temat, aby dowiedzieć się więcej — poruszanie się po portfolio nie wymaga znajomości programowania.",
+      "action": "Przejdź do strony o mnie →"
+    },
+    "sections": {
+      "portfolio": "Portfolio",
+      "navigation": "Nawigacja"
+    },
+    "articles": {
+      "profile": {
+        "indexLabel": "O mnie",
+        "title": "Od problemu do rozwiązania",
+        "p1": "Sprawdź, czym się zajmuję i w jakich obszarach mogę wesprzeć Twój zespół lub projekt.",
+        "action": "Poznaj mnie →",
+        "alt": "Zrzut portfolio: home"
+      },
+      "projects": {
+        "indexLabel": "Wybrane projekty",
+        "title": "Zobacz wybrane projekty",
+        "p1": "Własne aplikacje, technologie i decyzje stojące za rozwiązaniami. Każdy projekt ma osobny opis.",
+        "action": "Przeglądaj projekty →",
+        "alt": "Zrzut portfolio: projects"
+      },
+      "experience": {
+        "indexLabel": "Doświadczenie",
+        "title": "Doświadczenie w praktyce",
+        "p1": "Poznaj mój zakres obowiązków, używane narzędzia i systemy, które rozwijałem zawodowo.",
+        "action": "Zobacz doświadczenie →",
+        "alt": "Zrzut portfolio: experience"
+      },
+      "contact": {
+        "indexLabel": "Kontakt i CV",
+        "title": "Porozmawiajmy o współpracy",
+        "p1": "Przejdź do formularza kontaktowego, pobierz CV lub odwiedź moje profile.",
+        "action": "Otwórz kontakt →",
+        "alt": "Zrzut portfolio: contact"
+      },
+      "explorer": {
+        "indexLabel": "Explorer i foldery",
+        "title": "Wybieraj pliki w explorerze",
+        "p1": "Kliknięcie nazwy otwiera stronę. Chevron rozwija folder, a nazwa Projects prowadzi do przeglądu realizacji.",
+        "alt": "Zrzut portfolio: explorer"
+      },
+      "tabs": {
+        "indexLabel": "Zakładki dokumentów",
+        "title": "Przełączaj otwarte zakładki",
+        "p1": "Strony otwierają się w kolejności klikania. Kolejność zakładek zmienisz, przeciągając je na pasku. Zamknij kartę krzyżykiem i wróć do niej później z explorera.",
+        "alt": "Zrzut portfolio: tabs"
+      },
+      "start": {
+        "indexLabel": "Szybki dostęp",
+        "title": "Zacznij od nowa",
+        "p1": "Po zamknięciu wszystkich kart pojawi się szybki dostęp. Przewodnik otworzysz ponownie jako GetStarted.md.",
+        "alt": "Zrzut portfolio: start"
+      },
+      "terminal": {
+        "indexLabel": "Terminal",
+        "title": "Odkrywaj portfolio z terminala",
+        "p1": "Otwórz TERMINAL pod FILES i wpisz `help`, aby poznać komendy. Przejdź do projektów przez `projects`, sprawdź `stack` lub otwórz `contact`.",
+        "p2": "↑/↓ przegląda historię, Tab podpowiada komendy, a Esc zwija panel. Wysokość zmienisz, przeciągając jego górną krawędź.",
+        "action": "Wypróbuj terminal →",
+        "alt": "Portfolio z otwartym terminalem, komendami i polem wpisywania"
+      }
+    }
+  },
+  "stack": {
+    "intro": {
+      "kicker": "Stack / Kompetencje",
+      "title": "Technologie",
+      "accent": "w moim warsztacie.",
+      "text": "Przegląd narzędzi i technologii z mojego portfolio. Wybierz kategorię lub wyszukaj nazwę."
+    },
+    "filters": {
+      "header": "Kategorie",
+      "label": "Kategorie umiejętności",
+      "all": "Wszystkie",
+      "searchPlaceholder": "Szukaj technologii…",
+      "searchLabel": "Szukaj technologii"
+    },
+    "results": {
+      "count": "Liczba technologii:",
+      "empty": "Brak wyników — zmień nazwę lub kategorię."
+    }
   },
   "contact": {
-    "header": "Skontaktuj się ze mną",
-    "description": "Szukasz doświadczonego backend developera? Chętnie porozmawiam o Twoim projekcie!"
-  },
-  "footer": {
-    "copyright": "RescuePC Software Wiktor Wijata. Wszystkie prawa zastrzeżone.",
-    "techStack": "Zbudowane z React, TypeScript & Tailwind CSS",
-    "themeLabel": "Motyw:"
-  },
-  "form": {
-    "nameLabel": "Imię",
-    "namePlaceholder": "Jan Kowalski",
-    "emailLabel": "Email",
-    "emailPlaceholder": "jan@example.com",
-    "messageLabel": "Wiadomość",
-    "messagePlaceholder": "Twoja wiadomość...",
-    "sending": "Wysyłanie...",
-    "send": "Wyślij wiadomość",
-    "successMessage": "Wiadomość wysłana pomyślnie!",
-    "rateLimitedMessage": "Twoja wiadomość została już wysłana. Wiktor na pewno się odezwie!",
-    "errorMessage": "Nie udało się wysłać wiadomości. Spróbuj ponownie później."
-  },
-  "themes": {
-    "cosmos": "Kosmos",
-    "sunset": "Zachód słońca",
-    "vscode-dark": "VS Code Dark"
-  },
-  "errors": {
-    "unavailable": {
-      "title": "Strona chwilowo nie działa",
-      "description": "Nie udało się pobrać treści. Sprawdź połączenie z internetem i spróbuj ponownie."
+    "intro": {
+      "kicker": "Kontakt / Porozmawiajmy",
+      "title": "Porozmawiajmy",
+      "accent": "o współpracy.",
+      "text": "Szukasz developera .NET lub chcesz porozmawiać o współpracy? Zostaw kilka słów."
     },
-    "retry": "Spróbuj ponownie"
+    "form": {
+      "name": {
+        "label": "Imię",
+        "placeholder": "Twoje imię"
+      },
+      "email": {
+        "label": "E-mail",
+        "placeholder": "ty@firma.pl"
+      },
+      "message": {
+        "label": "Wiadomość",
+        "placeholder": "Czego dotyczy projekt lub propozycja współpracy?"
+      },
+      "note": "Wiadomość trafi bezpośrednio na moją skrzynkę. Odpowiadam zwykle w ciągu dnia lub dwóch.",
+      "submit": "Wyślij wiadomość ↗",
+      "incomplete": "Uzupełnij imię i treść wiadomości.",
+      "sent": "Dziękuję — wiadomość została wysłana. Odpowiem na podany adres e-mail."
+    },
+    "mail": {
+      "subjectPrefix": "Kontakt z portfolio — ",
+      "nameLabel": "Imię: ",
+      "replyLabel": "E-mail do odpowiedzi: "
+    },
+    "company": {
+      "header": "DANE FIRMY",
+      "name": "Nazwa",
+      "taxNumber": "NIP",
+      "registrationNumber": "REGON",
+      "address": "Adres",
+      "region": "woj. {{region}}",
+      "direct": "Możesz też napisać bezpośrednio:"
+    },
+    "social": {
+      "cv": "Pobierz CV"
+    }
   }
 }

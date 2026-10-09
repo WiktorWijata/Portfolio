@@ -1,35 +1,35 @@
-import i18n from 'i18next';
-import { initReactI18next } from 'react-i18next';
-import plTranslations from './locales/pl.json';
-import enTranslations from './locales/en.json';
+import i18n from 'i18next'
+import { initReactI18next } from 'react-i18next'
+import { Language } from '@/context/PreferencesContext/PreferencesContext.types'
+import { LANGUAGE_STORAGE_KEY } from '@/context/PreferencesContext/PreferencesContext.consts'
+import { readStorage } from '@/utils/storage'
+import en from './locales/en.json'
+import pl from './locales/pl.json'
 
-const STORAGE_KEY = 'portfolio-language';
-const DEFAULT_LANGUAGE = 'pl';
+/** The initial language only; afterwards `PreferencesProvider` is the single owner and calls `changeLanguage`. */
+const initialLanguage = readStorage(LANGUAGE_STORAGE_KEY) === Language.En ? Language.En : Language.Pl
 
-// Get saved language from localStorage or use default
-const savedLanguage = localStorage.getItem(STORAGE_KEY) || DEFAULT_LANGUAGE;
+void i18n.use(initReactI18next).init({
+  resources: {
+    [Language.Pl]: { translation: pl },
+    [Language.En]: { translation: en },
+  },
+  lng: initialLanguage,
+  fallbackLng: Language.Pl,
+  interpolation: { escapeValue: false },
+})
 
-i18n
-  .use(initReactI18next)
-  .init({
-    resources: {
-      pl: {
-        translation: plTranslations
-      },
-      en: {
-        translation: enTranslations
-      }
-    },
-    lng: savedLanguage,
-    fallbackLng: DEFAULT_LANGUAGE,
-    interpolation: {
-      escapeValue: false // React already escapes values
+if (import.meta.hot) {
+  import.meta.hot.accept(['./locales/pl.json', './locales/en.json'], ([newPl, newEn]) => {
+    const bundles = [
+      [Language.Pl, newPl],
+      [Language.En, newEn],
+    ] as const
+    for (const [language, module] of bundles) {
+      if (module) i18n.addResourceBundle(language, 'translation', module.default, true, true)
     }
-  });
+    void i18n.changeLanguage(i18n.language)
+  })
+}
 
-// Save language to localStorage whenever it changes
-i18n.on('languageChanged', (lng) => {
-  localStorage.setItem(STORAGE_KEY, lng);
-});
-
-export default i18n;
+export default i18n

@@ -56,30 +56,47 @@
   <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
   <ItemGroup>
     <Folder Include="Properties" />
-    <Folder Include="content" />
-    <Folder Include="content\Tables" />
+    <Folder Include="profile" />
+    <Folder Include="profile\Tables" />
     <Folder Include="notification" />
     <Folder Include="notification\Tables" />
   </ItemGroup>
   <ItemGroup>
-    <Build Include="content\Tables\Language.sql" />
-    <Build Include="content\Tables\Hero.sql" />
-    <Build Include="content\Tables\AboutMe.sql" />
-    <Build Include="content\Tables\Content.sql" />
-    <Build Include="content\Tables\Experience.sql" />
-    <Build Include="content\Tables\Education.sql" />
-    <Build Include="content\Tables\Fact.sql" />
-    <Build Include="content\Tables\Contact.sql" />
-    <Build Include="content\Tables\AboutMeDescription.sql" />
-    <Build Include="content\Tables\SkillCategory.sql" />
-    <Build Include="content\Tables\Skill.sql" />
-    <Build Include="content\Tables\Project.sql" />
-    <Build Include="content\Tables\ProjectTechnology.sql" />
-    <Build Include="content\Tables\Technology.sql" />
-    <Build Include="content\Tables\ExperienceTechnology.sql" />
-    <Build Include="content\Tables\ExperienceAchievement.sql" />
+    <Build Include="profile\Tables\Language.sql" />
+    <Build Include="profile\Tables\Profile.sql" />
+    <Build Include="profile\Tables\Contact.sql" />
+    <Build Include="profile\Tables\SkillCategory.sql" />
+    <Build Include="profile\Tables\SkillCategoryTranslation.sql" />
+    <Build Include="profile\Tables\Skill.sql" />
+    <Build Include="profile\Tables\Service.sql" />
+    <Build Include="profile\Tables\ServiceTranslation.sql" />
+    <Build Include="profile\Tables\Specialization.sql" />
+    <Build Include="profile\Tables\SpecializationTranslation.sql" />
+    <Build Include="profile\Tables\SpecializationTechnology.sql" />
+    <Build Include="profile\Tables\Aspiration.sql" />
+    <Build Include="profile\Tables\AspirationTranslation.sql" />
+    <Build Include="profile\Tables\Introduction.sql" />
+    <Build Include="profile\Tables\IntroductionTranslation.sql" />
+    <Build Include="profile\Tables\Certificate.sql" />
+    <Build Include="profile\Tables\Business.sql" />
+    <Build Include="profile\Tables\Project.sql" />
+    <Build Include="profile\Tables\ProjectTranslation.sql" />
+    <Build Include="profile\Tables\ProjectTechnology.sql" />
+    <Build Include="profile\Tables\ProjectArchitectureNote.sql" />
+    <Build Include="profile\Tables\ProjectArchitectureNoteTranslation.sql" />
+    <Build Include="profile\Tables\ProjectArchitectureBlock.sql" />
+    <Build Include="profile\Tables\ProjectArchitectureBlockTranslation.sql" />
+    <Build Include="profile\Tables\Employer.sql" />
+    <Build Include="profile\Tables\Experience.sql" />
+    <Build Include="profile\Tables\ExperienceTranslation.sql" />
+    <Build Include="profile\Tables\ExperienceArea.sql" />
+    <Build Include="profile\Tables\ExperienceAreaTranslation.sql" />
+    <Build Include="profile\Tables\ExperienceResponsibility.sql" />
+    <Build Include="profile\Tables\ExperienceResponsibilityTranslation.sql" />
+    <Build Include="profile\Tables\ExperienceTechnology.sql" />
+    <Build Include="profile\Tables\Technology.sql" />
     <Build Include="notification\Tables\Email.sql" />
-    <Build Include="content\content.sql" />
+    <Build Include="profile\profile.sql" />
     <Build Include="notification\notification.sql" />
     <None Include="TestData.sql" />
   </ItemGroup>

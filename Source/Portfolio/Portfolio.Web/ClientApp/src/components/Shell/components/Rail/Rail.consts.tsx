@@ -1,0 +1,2 @@
+export const RAIL_EXPLORER_TITLE = 'FILES'
+export const RAIL_TERMINAL_TITLE = 'TERMINAL'

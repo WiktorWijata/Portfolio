@@ -1,1 +1,0 @@
-export { FooterSocialLinks } from './FooterSocialLinks';

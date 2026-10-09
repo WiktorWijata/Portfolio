@@ -1,7 +1,9 @@
 using Hangfire;
-using Portfolio.Content.Infrastructure;
+using Portfolio.Profile.Infrastructure;
 using Portfolio.Notifications.Infrastructure;
+using RescuePC.Portfolio.Api.HealthChecks;
 using RescuePC.Portfolio.Api.Middleware;
+using RescuePC.Portfolio.BuildingBlocks.Application;
 using RescuePC.Software.Logging.Providers.Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,6 +15,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddRateLimiting(builder.Configuration);
 builder.Services.AddHangfireJobs(builder.Configuration);
+builder.Services.AddCallerContext();
 
 const string ClientAppCorsPolicy = "ClientApp";
 
@@ -30,8 +33,9 @@ builder.Services.AddCors(options =>
 });
 
 var connectionString = builder.Configuration.GetConnectionString("Portfolio");
-builder.Services.AddContent(connectionString!);
+builder.Services.AddProfile(connectionString!);
 builder.Services.AddNotifications(connectionString!);
+builder.Services.AddHealthChecks().AddCheck("database", new DatabaseHealthCheck(connectionString!));
 
 var app = builder.Build();
 
@@ -52,4 +56,5 @@ app.UseCors(ClientAppCorsPolicy);
 app.UseRateLimiter();
 app.UseAuthorization();
 app.MapControllers();
+app.MapHealthChecks("/health").DisableRateLimiting();
 app.Run();

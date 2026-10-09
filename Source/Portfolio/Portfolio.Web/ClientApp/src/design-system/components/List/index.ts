@@ -1,2 +1,4 @@
-export { List } from './List';
-export type { ListProps } from './List.types';
+export { ListItem } from './components'
+export { List } from './List'
+export { ListItemVariant } from './List.types'
+export type { ListItemProps, ListProps } from './List.types'
