@@ -53,6 +53,11 @@ jobs:
             --username "$GH_PACKAGES_USERNAME" \
             --password "$GH_PACKAGES_TOKEN" \
             --store-password-in-clear-text
+          dotnet nuget update source IntegratorAI-GitHub \
+            --configfile Source/nuget.config \
+            --username "$GH_PACKAGES_USERNAME" \
+            --password "$GH_PACKAGES_TOKEN" \
+            --store-password-in-clear-text
 
       - name: Build and push Web
         uses: docker/build-push-action@v5
