@@ -232,9 +232,7 @@
   },
   "0.16.0": {
     "title": "Chip Tech",
-    "added": [
-      "Chip: the Tech variant (mono 11 px, padding 5/9 px) — technology tags on the project page"
-    ],
+    "added": ["Chip: the Tech variant (mono 11 px, padding 5/9 px) — technology tags on the project page"],
     "changed": [
       "Gallery: texts (the heading, the placeholder, the counter) have a normal line height, like in the prototype"
     ]
@@ -276,9 +274,7 @@
       "GuideCard: the anchor prop — the card places itself next to an element (to its right, below or above) and recalculates the position when the window changes",
       "Text: the ref prop to the rendered element"
     ],
-    "changed": [
-      "GuideCard: aria-modal is set only with modal (a static preview is not a modal window)"
-    ]
+    "changed": ["GuideCard: aria-modal is set only with modal (a static preview is not a modal window)"]
   },
   "0.10.0": {
     "title": "Link and the Sm size in Button",
@@ -292,9 +288,7 @@
       "Chat: the “See in the portfolio →” action uses Link",
       "Button: focus-visible with an accent outline"
     ],
-    "fixed": [
-      "Button: the pointer cursor (Tailwind v4 leaves an arrow on buttons by default)"
-    ]
+    "fixed": ["Button: the pointer cursor (Tailwind v4 leaves an arrow on buttons by default)"]
   },
   "0.9.0": {
     "title": "ChatLauncher and the open prop in Chat",
@@ -362,9 +356,7 @@
       "Components render their text through Text; the look is unchanged (checked by comparing computed style)",
       "The library name: OrchIDE UI"
     ],
-    "fixed": [
-      "The --shadow-tour token matches the prototype (0 16px 60px, alpha .533)"
-    ]
+    "fixed": ["The --shadow-tour token matches the prototype (0 16px 60px, alpha .533)"]
   },
   "0.2.0": {
     "title": "Gallery, guide and rail buttons",
@@ -375,9 +367,7 @@
       "IconButtonSize: the compact Sm size",
       "Container and InfoCard"
     ],
-    "changed": [
-      "Guide: hover on the Skip, Back and Next buttons"
-    ]
+    "changed": ["Guide: hover on the Skip, Back and Next buttons"]
   },
   "0.1.0": {
     "title": "The first wave of components",
