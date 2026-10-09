@@ -48,6 +48,9 @@ public class BuildChatContextQueryHandler : IRequestHandler<BuildChatContextQuer
             OperatingRules = string.Join("\n", instructions.OperatingRules.Select(rule => $"- {rule}")),
             OutputFormat = instructions.OutputFormat,
             Examples = instructions.Examples,
+
+            // The data is in the context for now, so there are no tools to declare. IntegratorAI does not accept null here when creating.
+            Tools = [],
         };
     }
 }

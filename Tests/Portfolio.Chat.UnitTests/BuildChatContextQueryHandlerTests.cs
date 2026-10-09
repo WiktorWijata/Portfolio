@@ -85,6 +85,15 @@ public class BuildChatContextQueryHandlerTests
     }
 
     [Fact]
+    public async Task Declares_no_tools_but_never_null_because_IntegratorAI_cannot_create_a_context_without_the_list()
+    {
+        var context = await CreateBuilder(new FakeRegistry(), new FakeRunner(new())).Build();
+
+        Assert.NotNull(context.Tools);
+        Assert.Empty(context.Tools);
+    }
+
+    [Fact]
     public async Task A_failing_tool_fails_the_build_instead_of_leaving_data_out_silently()
     {
         var builder = CreateBuilder(new FakeRegistry(Tool("get_projects")), new FakeRunner(new()));
