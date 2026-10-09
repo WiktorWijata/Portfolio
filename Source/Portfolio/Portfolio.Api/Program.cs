@@ -2,7 +2,6 @@ using Hangfire;
 using Portfolio.Chat.Infrastructure;
 using Portfolio.Profile.Infrastructure;
 using Portfolio.Notifications.Infrastructure;
-using RescuePC.Portfolio.Api.HealthChecks;
 using RescuePC.Portfolio.Api.Middleware;
 using RescuePC.Portfolio.BuildingBlocks.Application;
 using RescuePC.Software.Logging.Providers.Serilog;
@@ -40,7 +39,7 @@ builder.Services.AddCors(options =>
 var connectionString = builder.Configuration.GetConnectionString("Portfolio");
 builder.Services.AddProfile(connectionString!);
 builder.Services.AddNotifications(connectionString!);
-builder.Services.AddHealthChecks().AddCheck("database", new DatabaseHealthCheck(connectionString!));
+builder.Services.AddDatabaseHealthCheck(connectionString!);
 
 var app = builder.Build();
 
