@@ -23,4 +23,10 @@ public class ChatModule : IChatModule
 
     public Task<IEnumerable<ChatContextSyncDto>> SynchronizeContexts(CancellationToken cancellationToken = default)
         => _mediator.Send(new SynchronizeChatContextsCommand(), cancellationToken);
+
+    public Task<ChatStreamDto> StartCompletion(string prompt, CancellationToken cancellationToken = default)
+        => _mediator.Send(new StartChatCompletionCommand(prompt), cancellationToken);
+
+    public Task<ChatStreamDto> ContinueCompletion(Guid completionId, string prompt, CancellationToken cancellationToken = default)
+        => _mediator.Send(new ContinueChatCompletionCommand(completionId, prompt), cancellationToken);
 }

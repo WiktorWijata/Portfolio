@@ -31,7 +31,9 @@ builder.Services.AddCors(options =>
     {
         policy.WithOrigins(corsAllowedOrigin)
             .AllowAnyHeader()
-            .AllowAnyMethod();
+            .AllowAnyMethod()
+            // A browser may read a response header from another origin only if it is exposed; the chat id travels in one.
+            .WithExposedHeaders("Completion-Id");
     });
 });
 

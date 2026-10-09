@@ -34,6 +34,7 @@ public static class ServiceCollectionExtensions
         services.AddScoped<IChatToolRunner, ChatToolRunner>();
         services.AddScoped<IChatContextBuilder, ChatContextBuilder>();
         services.AddScoped<IChatContextSynchronizer, ChatContextSynchronizer>();
+        services.AddScoped<IChatCompletionGateway, IntegratorAIChatGateway>();
         services.AddScoped<IChatModule, ChatModule>();
 
         return services;
