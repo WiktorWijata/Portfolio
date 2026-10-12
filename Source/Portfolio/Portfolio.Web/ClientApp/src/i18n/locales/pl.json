@@ -120,10 +120,10 @@
       "title": "Asystent portfolio",
       "subtitle": "Poznaj doświadczenie Wiktora",
       "placeholder": "O co chcesz zapytać?",
-      "note": "Podgląd interakcji · odpowiedzi demonstracyjne, bez połączenia z AI.",
+      "note": "Odpowiedzi tworzy model AI na podstawie danych z portfolio i mogą być niedokładne.",
       "launcher": "Zapytaj o mnie",
       "action": "Zobacz w portfolio →",
-      "welcome": "Cześć! Pomogę Ci poznać doświadczenie, technologie i projekty Wiktora. Wybierz pytanie lub wpisz własne.\n\nTo podgląd czatu — na razie pokazuję przygotowane odpowiedzi.",
+      "welcome": "Cześć! Pomogę Ci poznać doświadczenie, technologie i projekty Wiktora. Wybierz pytanie lub wpisz własne.",
       "labels": {
         "close": "Zamknij czat",
         "input": "Wiadomość do asystenta",
@@ -153,6 +153,11 @@
           "pattern": "doświadcze|pracow|karier|robił|zawod",
           "text": "Wiktor rozwija aplikacje .NET, integruje systemy i pracuje z bazami danych. W jego doświadczeniu są B3 Consulting Poland, LSI Software, GECOS i Moje Bambino. Sekcja Doświadczenie opisuje obowiązki, narzędzia i obszary pracy w poszczególnych firmach."
         }
+      },
+      "errors": {
+        "unavailable": "Asystent jest chwilowo niedostępny. Spróbuj ponownie za chwilę.",
+        "rateLimited": "Wysłano za dużo wiadomości w krótkim czasie. Poczekaj chwilę i spróbuj ponownie.",
+        "interrupted": "Odpowiedź została przerwana. Spróbuj ponownie."
       }
     },
     "tour": {

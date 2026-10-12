@@ -34,11 +34,13 @@ import type {
   Aspiration,
   Business,
   Certificate,
+  ChatRequest,
   Contact,
   Experience,
   Introduction,
   Language,
   NotificationRequest,
+  ProblemDetails,
   Project,
   Service,
   SkillCategory,
@@ -49,6 +51,119 @@ import type {
 
 
 
+export const postChatCompletions = (
+    chatRequest: ChatRequest, options?: AxiosRequestConfig
+ ): Promise<AxiosResponse<void>> => {
+    
+    
+    return axios.default.post(
+      `/chat/completions`,
+      chatRequest,options
+    );
+  }
+
+
+
+export const getPostChatCompletionsMutationOptions = <TError = AxiosError<ProblemDetails>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postChatCompletions>>, TError,{data: ChatRequest}, TContext>, axios?: AxiosRequestConfig}
+): UseMutationOptions<Awaited<ReturnType<typeof postChatCompletions>>, TError,{data: ChatRequest}, TContext> => {
+
+const mutationKey = ['postChatCompletions'];
+const {mutation: mutationOptions, axios: axiosOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, axios: undefined};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof postChatCompletions>>, {data: ChatRequest}> = (props) => {
+          const {data} = props ?? {};
+
+          return  postChatCompletions(data,axiosOptions)
+        }
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type PostChatCompletionsMutationResult = NonNullable<Awaited<ReturnType<typeof postChatCompletions>>>
+    export type PostChatCompletionsMutationBody = ChatRequest
+    export type PostChatCompletionsMutationError = AxiosError<ProblemDetails>
+
+    export const usePostChatCompletions = <TError = AxiosError<ProblemDetails>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postChatCompletions>>, TError,{data: ChatRequest}, TContext>, axios?: AxiosRequestConfig}
+ , queryClient?: QueryClient): UseMutationResult<
+        Awaited<ReturnType<typeof postChatCompletions>>,
+        TError,
+        {data: ChatRequest},
+        TContext
+      > => {
+
+      const mutationOptions = getPostChatCompletionsMutationOptions(options);
+
+      return useMutation(mutationOptions, queryClient);
+    }
+    
+export const postChatCompletionsId = (
+    id: string,
+    chatRequest: ChatRequest, options?: AxiosRequestConfig
+ ): Promise<AxiosResponse<void>> => {
+    
+    
+    return axios.default.post(
+      `/chat/completions/${id}`,
+      chatRequest,options
+    );
+  }
+
+
+
+export const getPostChatCompletionsIdMutationOptions = <TError = AxiosError<ProblemDetails>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postChatCompletionsId>>, TError,{id: string;data: ChatRequest}, TContext>, axios?: AxiosRequestConfig}
+): UseMutationOptions<Awaited<ReturnType<typeof postChatCompletionsId>>, TError,{id: string;data: ChatRequest}, TContext> => {
+
+const mutationKey = ['postChatCompletionsId'];
+const {mutation: mutationOptions, axios: axiosOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, axios: undefined};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof postChatCompletionsId>>, {id: string;data: ChatRequest}> = (props) => {
+          const {id,data} = props ?? {};
+
+          return  postChatCompletionsId(id,data,axiosOptions)
+        }
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type PostChatCompletionsIdMutationResult = NonNullable<Awaited<ReturnType<typeof postChatCompletionsId>>>
+    export type PostChatCompletionsIdMutationBody = ChatRequest
+    export type PostChatCompletionsIdMutationError = AxiosError<ProblemDetails>
+
+    export const usePostChatCompletionsId = <TError = AxiosError<ProblemDetails>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof postChatCompletionsId>>, TError,{id: string;data: ChatRequest}, TContext>, axios?: AxiosRequestConfig}
+ , queryClient?: QueryClient): UseMutationResult<
+        Awaited<ReturnType<typeof postChatCompletionsId>>,
+        TError,
+        {id: string;data: ChatRequest},
+        TContext
+      > => {
+
+      const mutationOptions = getPostChatCompletionsIdMutationOptions(options);
+
+      return useMutation(mutationOptions, queryClient);
+    }
+    
 export const postNotificationSend = (
     notificationRequest: NotificationRequest, options?: AxiosRequestConfig
  ): Promise<AxiosResponse<void>> => {

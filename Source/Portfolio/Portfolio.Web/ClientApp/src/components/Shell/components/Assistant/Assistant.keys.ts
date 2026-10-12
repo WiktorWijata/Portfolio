@@ -19,6 +19,11 @@ export const ASSISTANT_KEYS = {
     collaboration: 'shell.assistant.topics.collaboration',
   },
   fallback: 'shell.assistant.fallback',
+  errors: {
+    unavailable: 'shell.assistant.errors.unavailable',
+    rateLimited: 'shell.assistant.errors.rateLimited',
+    interrupted: 'shell.assistant.errors.interrupted',
+  },
   rules: {
     contact: {
       pattern: 'shell.assistant.rules.contact.pattern',

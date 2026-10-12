@@ -118,10 +118,10 @@
       "title": "Portfolio assistant",
       "subtitle": "Explore Wiktor's experience",
       "placeholder": "What would you like to ask?",
-      "note": "Interaction preview · demo answers, not connected to an AI.",
+      "note": "Answers are written by an AI model from the portfolio data and may be inaccurate.",
       "launcher": "Ask about me",
       "action": "See in the portfolio →",
-      "welcome": "Hi! I can help you explore Wiktor's experience, technologies and projects. Pick a question or type your own.\n\nThis is a chat preview — for now I show prepared answers.",
+      "welcome": "Hi! I can help you explore Wiktor's experience, technologies and projects. Pick a question or type your own.",
       "labels": {
         "close": "Close chat",
         "input": "Message to the assistant",
@@ -151,6 +151,11 @@
           "pattern": "experience|career|worked|employ|job|background",
           "text": "Wiktor develops .NET applications, integrates systems and works with databases. His experience includes B3 Consulting Poland, LSI Software, GECOS and Moje Bambino. The Experience section describes duties, tools and areas of work at each company."
         }
+      },
+      "errors": {
+        "unavailable": "The assistant is unavailable right now. Please try again in a moment.",
+        "rateLimited": "Too many messages in a short time. Please wait a moment and try again.",
+        "interrupted": "The answer was interrupted. Please try again."
       }
     },
     "tour": {
