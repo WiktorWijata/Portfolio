@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { LANGUAGE_STORAGE_KEY } from '@/context/PreferencesContext/PreferencesContext.consts'
 import { readStorage } from '@/utils/storage'
+import type { ChatRequest } from './models'
 import { readServerSentEvents } from './sse'
 
 const COMPLETION_ID_HEADER = 'Completion-Id'
@@ -40,7 +41,9 @@ export interface StreamChatAnswerOptions {
 /**
  * Sends a message to the assistant and streams the answer to `onToken`. It returns the id of the conversation,
  * to be passed back to continue it. The API is reached the way the rest of the client reaches it (the axios base
- * URL), but with `fetch`, because axios cannot read a response while it is still being written.
+ * URL), but with `fetch`, because axios cannot read a response while it is still being written. For the same reason
+ * the generated `postChatCompletions` and its hooks are not used: they would wait for the whole answer. Only the
+ * request type comes from the generated models.
  */
 export async function streamChatAnswer({
   prompt,
@@ -49,6 +52,8 @@ export async function streamChatAnswer({
   onToken,
 }: StreamChatAnswerOptions): Promise<string> {
   const path = completionId ? `/chat/completions/${encodeURIComponent(completionId)}` : '/chat/completions'
+
+  const body: ChatRequest = { prompt }
 
   let response: Response
   try {
@@ -59,7 +64,7 @@ export async function streamChatAnswer({
         Accept: 'text/event-stream',
         'Accept-Language': readStorage(LANGUAGE_STORAGE_KEY) ?? 'pl',
       },
-      body: JSON.stringify({ prompt }),
+      body: JSON.stringify(body),
       signal,
     })
   } catch (error) {
