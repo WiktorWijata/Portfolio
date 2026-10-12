@@ -6,6 +6,8 @@ import { ASSISTANT_KEYS } from './Assistant.keys'
 export const ASSISTANT_MAX_MESSAGES = 100
 /** Id of the first message, the welcome text, which is translated when shown. */
 export const ASSISTANT_WELCOME_MESSAGE_ID = 0
+/** Shown in the bubble of an answer until its first piece arrives. */
+export const ASSISTANT_PENDING_TEXT = '…'
 export const ASSISTANT_TOPIC_KEYS = [
   ASSISTANT_KEYS.topics.experience,
   ASSISTANT_KEYS.topics.stack,
