@@ -7,6 +7,7 @@ export const ASSISTANT_KEYS = {
   launcher: 'shell.assistant.launcher',
   action: 'shell.assistant.action',
   welcome: 'shell.assistant.welcome',
+  typing: 'shell.assistant.typing',
   labels: {
     close: 'shell.assistant.labels.close',
     input: 'shell.assistant.labels.input',
