@@ -2,6 +2,9 @@ using System.Runtime.CompilerServices;
 
 namespace RescuePC.Portfolio.BuildingBlocks.Application;
 
+/// <summary>One Server-Sent Event: its data and, when it has one, its name (<c>event: tool_call</c>).</summary>
+public record ServerSentEvent(string? Name, string Data);
+
 public static class ServerSentEvents
 {
     /// <summary>
@@ -13,6 +16,21 @@ public static class ServerSentEvents
         string? endMarker = "[DONE]",
         [EnumeratorCancellation] CancellationToken cancellationToken = default)
     {
+        await foreach (var item in ReadEvents(response, endMarker, cancellationToken))
+        {
+            yield return item.Data;
+        }
+    }
+
+    /// <summary>
+    /// Like <see cref="ReadData"/>, but each event comes with its name, so that an event of another kind than the
+    /// data (a tool call among the tokens of an answer) can be told apart.
+    /// </summary>
+    public static async IAsyncEnumerable<ServerSentEvent> ReadEvents(
+        HttpResponseMessage response,
+        string? endMarker = "[DONE]",
+        [EnumeratorCancellation] CancellationToken cancellationToken = default)
+    {
         using (response)
         {
             await using var stream = await response.Content.ReadAsStreamAsync(cancellationToken);
@@ -20,11 +38,15 @@ public static class ServerSentEvents
 
             // An event can span several "data:" lines (a token with line breaks); they are joined back with "\n".
             var lines = new List<string>();
+            string? name = null;
 
             while (await reader.ReadLineAsync(cancellationToken) is { } line)
             {
                 if (line.Length == 0)
                 {
+                    var eventName = name;
+                    name = null;
+
                     if (lines.Count == 0)
                     {
                         continue;
@@ -40,13 +62,17 @@ public static class ServerSentEvents
 
                     if (data.Length > 0)
                     {
-                        yield return data;
+                        yield return new ServerSentEvent(eventName, data);
                     }
                 }
                 else if (line.StartsWith("data:", StringComparison.Ordinal))
                 {
                     var value = line["data:".Length..];
                     lines.Add(value.StartsWith(' ') ? value[1..] : value);
+                }
+                else if (line.StartsWith("event:", StringComparison.Ordinal))
+                {
+                    name = line["event:".Length..].Trim();
                 }
             }
         }

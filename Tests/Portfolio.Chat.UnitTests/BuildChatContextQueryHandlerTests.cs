@@ -86,29 +86,43 @@ public class BuildChatContextQueryHandlerTests
     }
 
     [Fact]
-    public async Task Declares_every_tool_with_its_description_and_parameters_in_name_order()
+    public async Task Declares_only_the_tools_that_need_arguments_with_their_description_and_parameters()
     {
         var registry = new FakeRegistry(Tool("get_skills"), Tool("get_projects", needsArguments: true));
 
         var context = await CreateBuilder(registry, new FakeRunner(new() { ["get_skills"] = "[]" })).Build();
 
         var instructions = ChatInstructions.For("PL");
-        Assert.Collection(
-            context.Tools,
-            projects =>
-            {
-                Assert.Equal("get_projects", projects.Name);
-                Assert.Equal(instructions.Tools["get_projects"], projects.Description);
-                var parameter = Assert.Single(projects.Parameters);
-                Assert.Equal(("name", "string", "The name."), (parameter.Name, parameter.Type, parameter.Description));
-                Assert.Empty(projects.Guardrails);
-            },
-            skills =>
-            {
-                Assert.Equal("get_skills", skills.Name);
-                Assert.Empty(skills.Parameters);
-                Assert.Empty(skills.Guardrails);
-            });
+        var projects = Assert.Single(context.Tools);
+        Assert.Equal("get_projects", projects.Name);
+        Assert.Equal(instructions.Tools["get_projects"], projects.Description);
+        var parameter = Assert.Single(projects.Parameters);
+        Assert.Equal(("name", "string", "The name.", true), (parameter.Name, parameter.Type, parameter.Description, parameter.Required));
+        Assert.Empty(projects.Guardrails);
+    }
+
+    [Fact]
+    public async Task Declares_the_tools_in_name_order_and_tells_which_parameters_are_optional()
+    {
+        var optional = new ChatTool("get_contacts", [new ChatToolParameter("limit", "integer", "How many.", Required: false), new ChatToolParameter("id", "integer", "Which.", Required: true)]);
+        var registry = new FakeRegistry(Tool("get_skills", needsArguments: true), optional);
+
+        var context = await CreateBuilder(registry, new FakeRunner(new())).Build();
+
+        Assert.Equal(["get_contacts", "get_skills"], context.Tools.Select(t => t.Name).ToArray());
+        Assert.Equal([false, true], context.Tools.First().Parameters.Select(p => p.Required).ToArray());
+    }
+
+    [Fact]
+    public async Task A_tool_whose_arguments_are_all_optional_is_answered_in_advance_and_not_declared()
+    {
+        var onlyOptional = new ChatTool("get_certificates", [new ChatToolParameter("limit", "integer", "How many.", Required: false)]);
+        var runner = new FakeRunner(new() { ["get_certificates"] = "[1]" });
+
+        var context = await CreateBuilder(new FakeRegistry(onlyOptional), runner).Build();
+
+        Assert.Equal(["get_certificates"], runner.Calls);
+        Assert.Empty(context.Tools);
     }
 
     [Fact]
