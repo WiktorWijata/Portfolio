@@ -11,7 +11,7 @@ export const DEFAULT_LABELS: ChatLabels = {
 }
 
 export const bubbleClasses: Record<ChatMessageRole, string> = {
-  [ChatMessageRole.Assistant]: 'rounded-[3px_12px_12px_12px] border-line-default bg-surface-hover',
+  [ChatMessageRole.Assistant]: 'self-start rounded-[3px_12px_12px_12px] border-line-default bg-surface-hover',
   [ChatMessageRole.User]:
     'self-end rounded-[12px_3px_12px_12px] border-chat-user-line bg-accent-surface text-content-primary',
 }

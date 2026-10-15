@@ -1,11 +1,13 @@
 import { MessageSquareText } from 'lucide-react'
-import { useEffect, useRef } from 'react'
-import { Chat, ChatLauncher } from '@/design-system'
+import { useEffect, useMemo, useRef } from 'react'
+import { Chat, ChatLauncher, ChatMessageRole } from '@/design-system'
 import { usePanels } from '@/context'
 import { CHAT_ELEMENT_ID } from '../../Shell.consts'
-import { ASSISTANT_TOPIC_KEYS } from './Assistant.consts'
+import { ASSISTANT_PENDING_TEXT, ASSISTANT_TOPIC_KEYS } from './Assistant.consts'
+import { TypingIndicator } from './components/TypingIndicator'
 import { useAssistant } from './hooks/useAssistant'
 import { useChatDock } from './hooks/useChatDock'
+import { renderMarkdown } from './utils'
 import { ASSISTANT_KEYS } from './Assistant.keys'
 import { useTexts } from '@/i18n/hooks/useTexts'
 
@@ -17,6 +19,25 @@ export function Assistant() {
   const [text, t] = useTexts(ASSISTANT_KEYS)
   const { chatOpen, setChatOpen } = usePanels()
   const { messages, send } = useAssistant()
+
+  // The answers are Markdown (bold, lists, links); the one that has not started yet shows the pulsing dots.
+  const shownMessages = useMemo(
+    () =>
+      messages.map((message) => {
+        if (message.role !== ChatMessageRole.Assistant || typeof message.content !== 'string') return message
+
+        return {
+          ...message,
+          content:
+            message.content === ASSISTANT_PENDING_TEXT ? (
+              <TypingIndicator label={text.typing} />
+            ) : (
+              renderMarkdown(message.content)
+            ),
+        }
+      }),
+    [messages, text.typing],
+  )
   const { bottom, height } = useChatDock()
 
   // Closing the window hands the focus to the launcher (not on first render).
@@ -44,7 +65,7 @@ export function Assistant() {
         placeholder={text.placeholder}
         note={text.note}
         topics={ASSISTANT_TOPIC_KEYS.map((key) => t(key))}
-        messages={messages}
+        messages={shownMessages}
         onSend={send}
         onClose={() => setChatOpen(false)}
       />

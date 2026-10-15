@@ -1,4 +1,10 @@
 {
+  "0.33.1": {
+    "title": "Chat: the assistant bubble fits its text",
+    "fixed": [
+      "Chat: the assistant bubble was up to 94% of the window wide even for a short text (e.g. the three waiting dots); now, like the user's bubble, it fits the width of its text."
+    ]
+  },
   "0.33.0": {
     "title": "StatusBarItem: a status light",
     "added": [

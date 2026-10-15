@@ -11,6 +11,14 @@ export interface Release {
 /** Newest first. */
 export const releases: Release[] = [
   {
+    version: '0.33.1',
+    date: '2026-10-15',
+    title: 'Chat: bąbelek asystenta dopasowany do tekstu',
+    fixed: [
+      'Chat: bąbelek asystenta miał szerokość do 94% okna nawet przy krótkim tekście (np. trzy kropki oczekiwania); teraz, tak jak bąbelek użytkownika, dopasowuje się do szerokości tekstu.',
+    ],
+  },
+  {
     version: '0.33.0',
     date: '2026-09-30',
     title: 'StatusBarItem: lampka stanu',

@@ -152,6 +152,7 @@
           "text": "Wiktor develops .NET applications, integrates systems and works with databases. His experience includes B3 Consulting Poland, LSI Software, GECOS and Moje Bambino. The Experience section describes duties, tools and areas of work at each company."
         }
       },
+      "typing": "The assistant is typing…",
       "errors": {
         "unavailable": "The assistant is unavailable right now. Please try again in a moment.",
         "rateLimited": "Too many messages in a short time. Please wait a moment and try again.",
