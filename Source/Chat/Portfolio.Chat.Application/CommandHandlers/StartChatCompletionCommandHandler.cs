@@ -12,12 +12,18 @@ public class StartChatCompletionCommandHandler : IRequestHandler<StartChatComple
     private const string CompletionIdHeader = "Completion-Id";
 
     private readonly IStreamChatApi _streamChatApi;
+    private readonly ChatAnswerStreamer _answerStreamer;
     private readonly IOptions<AssistantOptions> _options;
     private readonly ICallerContext _callerContext;
 
-    public StartChatCompletionCommandHandler(IStreamChatApi streamChatApi, IOptions<AssistantOptions> options, ICallerContext callerContext)
+    public StartChatCompletionCommandHandler(
+        IStreamChatApi streamChatApi,
+        ChatAnswerStreamer answerStreamer,
+        IOptions<AssistantOptions> options,
+        ICallerContext callerContext)
     {
         _streamChatApi = streamChatApi;
+        _answerStreamer = answerStreamer;
         _options = options;
         _callerContext = callerContext;
     }
@@ -40,6 +46,6 @@ public class StartChatCompletionCommandHandler : IRequestHandler<StartChatComple
             throw new InvalidOperationException("IntegratorAI did not return the id of the conversation.");
         }
 
-        return new ChatStreamDto { CompletionId = completionId, Tokens = ServerSentEvents.ReadData(response, cancellationToken: cancellationToken) };
+        return new ChatStreamDto { CompletionId = completionId, Tokens = _answerStreamer.Stream(completionId, response, cancellationToken) };
     }
 }

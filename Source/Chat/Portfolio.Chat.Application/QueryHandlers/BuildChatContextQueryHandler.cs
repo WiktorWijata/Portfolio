@@ -8,8 +8,9 @@ using RescuePC.Portfolio.BuildingBlocks.Application;
 namespace Portfolio.Chat.Application.QueryHandlers;
 
 /// <summary>
-/// Builds the assistant's context by running every tool that needs no arguments and putting its result in front of
-/// the model. This is how the assistant gets "everything" before it can call tools itself on demand.
+/// Builds the assistant's context. The tools that need no arguments are run now and their results put in front of the
+/// model, so most questions are answered from the context with one request to the model. The tools that need an
+/// argument cannot be answered in advance: those are declared, and the model asks for them when a question needs them.
 /// </summary>
 public class BuildChatContextQueryHandler : IRequestHandler<BuildChatContextQuery, ContextRequest>
 {
@@ -31,7 +32,6 @@ public class BuildChatContextQueryHandler : IRequestHandler<BuildChatContextQuer
 
         var data = new StringBuilder(instructions.DataIntro);
 
-        // Tools that need an argument cannot be answered in advance; the model will call those itself.
         foreach (var tool in _registry.Tools.Where(t => !t.NeedsArguments).OrderBy(t => t.Name, StringComparer.Ordinal))
         {
             var json = await _runner.ExecuteAsync(tool.Name, argumentsJson: null, cancellationToken);
@@ -50,16 +50,17 @@ public class BuildChatContextQueryHandler : IRequestHandler<BuildChatContextQuer
             OutputFormat = instructions.OutputFormat,
             Examples = instructions.Examples,
 
-            // Every tool is declared, so IntegratorAI knows what the assistant can ask for. The data of the tools without
-            // arguments is also in the context above until IntegratorAI can call tools. IntegratorAI does not accept
-            // null for the lists of a tool.
+            // Only the tools the model has to ask for. A tool whose data is already in the context is not offered: the
+            // model would ask for what it has, and every such question costs a request to the model. IntegratorAI does
+            // not accept null for the lists of a tool.
             Tools = _registry.Tools
+                .Where(t => t.NeedsArguments)
                 .OrderBy(t => t.Name, StringComparer.Ordinal)
                 .Select(t => new Tool
                 {
                     Name = t.Name,
                     Description = instructions.DescribeTool(t.Name, languageCode),
-                    Parameters = t.Parameters.Select(p => new ToolParameter { Name = p.Name, Type = p.Type, Description = p.Description }).ToArray(),
+                    Parameters = t.Parameters.Select(p => new ToolParameter { Name = p.Name, Type = p.Type, Description = p.Description, Required = p.Required }).ToArray(),
                     Guardrails = [],
                 })
                 .ToArray(),

@@ -31,6 +31,7 @@ public static class ServiceCollectionExtensions
         services.AddSingleton(registry);
         services.AddSingleton<IChatToolRegistry>(registry);
         services.AddScoped<IChatToolRunner, ChatToolRunner>();
+        services.AddScoped<ChatAnswerStreamer>();
         services.AddScoped<IChatModule, ChatModule>();
 
         return services;
