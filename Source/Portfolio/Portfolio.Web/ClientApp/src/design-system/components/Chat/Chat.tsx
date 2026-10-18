@@ -35,7 +35,7 @@ export function Chat({
   const { send, onSubmit, textareaProps } = useChatInput({ onSend, inputRef })
 
   useScrollToEnd(logRef, messages)
-  useReopenFocus(open, logRef, inputRef)
+  useReopenFocus(open, logRef, inputRef, { skipOnTouch: true })
 
   function onPanelKeyDown(e: KeyboardEvent) {
     if (e.key === 'Escape') {
