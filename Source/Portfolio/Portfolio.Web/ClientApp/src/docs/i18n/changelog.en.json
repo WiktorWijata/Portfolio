@@ -1,4 +1,11 @@
 {
+  "0.34.0": {
+    "title": "Larger touch targets on tablets",
+    "changed": [
+      "RailButton, Tab (with its close button), StatusBar (the bar and its buttons), StatusBarSwitch and TitleBarButton: up to 999 px wide they have a touch target of at least 40 px.",
+      "Tab: the close button of an inactive tab is visible on a touch screen (without a hover it could not be found)."
+    ]
+  },
   "0.33.3": {
     "title": "Chat: the keyboard does not pop up on open",
     "fixed": [

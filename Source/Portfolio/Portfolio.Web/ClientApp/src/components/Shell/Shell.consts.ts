@@ -1,8 +1,10 @@
 // Literal class strings (Tailwind can't scan built ones): rail / explorer / editor columns. Phones get the
 // mobile shell instead, so there is no narrower layout here.
-export const GRID_EXPLORER_OPEN = 'grid-cols-[42px_224px_minmax(0,1fr)] max-bp850:grid-cols-[36px_210px_minmax(0,1fr)]'
+export const GRID_EXPLORER_OPEN =
+  'grid-cols-[42px_224px_minmax(0,1fr)] max-bp1000:grid-cols-[48px_224px_minmax(0,1fr)] max-bp850:grid-cols-[48px_210px_minmax(0,1fr)]'
 
-export const GRID_EXPLORER_COLLAPSED = 'grid-cols-[42px_minmax(0,1fr)] max-bp850:grid-cols-[36px_minmax(0,1fr)]'
+export const GRID_EXPLORER_COLLAPSED =
+  'grid-cols-[42px_minmax(0,1fr)] max-bp1000:grid-cols-[48px_minmax(0,1fr)] max-bp850:grid-cols-[48px_minmax(0,1fr)]'
 
 // DOM ids shared between panels: the assistant lifts itself above the docked terminal, and the
 // launcher points `aria-controls` at the chat window.

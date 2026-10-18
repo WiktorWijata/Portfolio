@@ -5,7 +5,7 @@ export function StatusBar({ className = '', children, ...rest }: StatusBarProps)
   return (
     <footer
       className={[
-        'box-border flex min-h-7 flex-nowrap items-center gap-3.5 border-t border-line-default bg-surface-hover px-3 py-0.5',
+        'box-border flex min-h-7 flex-nowrap items-center gap-3.5 border-t border-line-default bg-surface-hover px-3 py-0.5 max-bp1000:min-h-11',
         'font-mono text-xs text-content-dim',
         className,
       ].join(' ')}

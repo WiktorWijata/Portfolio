@@ -11,6 +11,15 @@ export interface Release {
 /** Newest first. */
 export const releases: Release[] = [
   {
+    version: '0.34.0',
+    date: '2026-10-18',
+    title: 'Większe cele dotyku na tabletach',
+    changed: [
+      'RailButton, Tab (razem z przyciskiem zamknięcia), StatusBar (pasek i przyciski), StatusBarSwitch i TitleBarButton: do 999 px szerokości mają cel dotyku co najmniej 40 px.',
+      'Tab: przycisk zamknięcia nieaktywnej karty jest widoczny na ekranie dotykowym (bez najechania kursorem nie dało się go znaleźć).',
+    ],
+  },
+  {
     version: '0.33.3',
     date: '2026-10-18',
     title: 'Chat: klawiatura nie wysuwa się przy otwarciu',
