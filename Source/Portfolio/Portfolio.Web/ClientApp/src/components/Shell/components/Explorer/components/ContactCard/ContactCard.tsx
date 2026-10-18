@@ -10,7 +10,7 @@ export function ContactCard() {
   const { openPage } = useEditor()
 
   return (
-    <section aria-label={text.label} className="mx-3 mb-5 border-t border-line-strong px-1 pt-[18px] max-bp570:hidden">
+    <section aria-label={text.label} className="mx-3 mb-5 border-t border-line-strong px-1 pt-[18px]">
       <Text
         as="div"
         size={FontSize.Nano}

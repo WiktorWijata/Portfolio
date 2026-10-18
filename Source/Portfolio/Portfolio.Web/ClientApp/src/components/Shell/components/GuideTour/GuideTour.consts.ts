@@ -15,7 +15,7 @@ export const TOUR_STEPS: TourStep[] = [
   { key: 'theme', targets: [TourTarget.Theme, TourTarget.StatusBar] },
   {
     key: 'explorer',
-    targets: [TourTarget.Explorer, TourTarget.ExplorerRail, TourTarget.ExplorerTitleBar, TourTarget.StatusBar],
+    targets: [TourTarget.Explorer, TourTarget.ExplorerRail, TourTarget.StatusBar],
   },
   { key: 'tabs', targets: [TourTarget.Tabs, TourTarget.StatusBar] },
   {

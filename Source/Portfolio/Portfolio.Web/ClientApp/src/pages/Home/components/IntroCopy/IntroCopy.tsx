@@ -29,16 +29,24 @@ export function IntroCopy() {
           as="h1"
           font={FontFamily.Sans}
           weight={FontWeight.Medium}
-          className="mt-3 mb-2 text-[43px] leading-[1.04] tracking-[-.03em] text-content-strong max-bp850:text-[36px] max-bp570:text-[39px]"
+          className="mt-3 mb-2 text-[43px] leading-[1.04] tracking-[-.03em] text-content-strong max-bp850:text-[36px] max-bp570:text-[34px]"
         >
           {lead} <span className="text-accent">{accent}</span>
         </Text>
         <Text as="p" size={FontSize.Medium} font={FontFamily.Sans} className="leading-[1.8] text-content-lead">
           {introduction.description}
         </Text>
-        <div className="mt-[21px] flex flex-wrap items-stretch gap-2.5">
-          <Button onClick={() => openPage(PageId.Projects)}>{text.intro.projects}</Button>
-          <Button variant={ButtonVariant.Secondary} href={CV_URL} target="_blank" rel="noopener">
+        <div className="mt-[21px] flex flex-wrap items-stretch gap-2.5 max-bp570:flex-col">
+          <Button className="max-bp570:w-full" onClick={() => openPage(PageId.Projects)}>
+            {text.intro.projects}
+          </Button>
+          <Button
+            className="max-bp570:w-full"
+            variant={ButtonVariant.Secondary}
+            href={CV_URL}
+            target="_blank"
+            rel="noopener"
+          >
             {text.intro.cv}
           </Button>
         </div>

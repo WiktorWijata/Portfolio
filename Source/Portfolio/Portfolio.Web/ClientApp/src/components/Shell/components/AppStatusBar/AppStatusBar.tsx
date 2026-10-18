@@ -51,14 +51,12 @@ export function AppStatusBar() {
   const file = activePage ? pages[activePage].file : ''
 
   return (
-    <StatusBar aria-label={text.label} data-tour={TourTarget.StatusBar} className="max-bp570:gap-2.5">
+    <StatusBar aria-label={text.label} data-tour={TourTarget.StatusBar}>
       <StatusBarItem tone={StatusBarTone.Success}>{GIT_BRANCH}</StatusBarItem>
-      <span className="contents max-bp570:hidden">
-        <StatusBarItem truncate title={file || undefined}>
-          {file}
-        </StatusBarItem>
-        <StatusBarDivider />
-      </span>
+      <StatusBarItem truncate title={file || undefined}>
+        {file}
+      </StatusBarItem>
+      <StatusBarDivider />
       <StatusBarButton
         expanded={terminalOpen}
         aria-label={text.terminalToggle}
@@ -86,7 +84,6 @@ export function AppStatusBar() {
         rel="noopener"
         aria-label={text.docsAria}
         title={text.docsAria}
-        className="max-bp570:hidden"
       >
         {`${DOCS_LABEL} v${DESIGN_SYSTEM_VERSION} ↗`}
       </StatusBarButton>
@@ -105,11 +102,11 @@ export function AppStatusBar() {
         options={LANGUAGE_OPTIONS}
       />
       {api && (
-        <StatusBarItem indicator={api.indicator} title={t(api.title)} className="max-bp570:hidden">
+        <StatusBarItem indicator={api.indicator} title={t(api.title)}>
           {t(api.label)}
         </StatusBarItem>
       )}
-      <StatusBarItem tone={StatusBarTone.Faint} title={text.versionTitle} className="max-bp570:hidden">
+      <StatusBarItem tone={StatusBarTone.Faint} title={text.versionTitle}>
         {APP_VERSION}
       </StatusBarItem>
     </StatusBar>

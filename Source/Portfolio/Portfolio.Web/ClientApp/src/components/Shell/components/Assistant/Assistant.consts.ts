@@ -1,3 +1,4 @@
+import { MOBILE_TAB_BAR_HEIGHT } from '../MobileShell/MobileShell.consts'
 import { PageId } from '@/navigation'
 import type { AssistantRuleConfig } from './Assistant.types'
 import { ASSISTANT_KEYS } from './Assistant.keys'
@@ -30,3 +31,19 @@ export const CHAT_NARROW_MAX_WIDTH = 600
 export const CHAT_TERMINAL_GAP = 12
 export const CHAT_MAX_HEIGHT = 580
 export const CHAT_TOP_MARGIN = 16
+
+// Phone layout: the chat is a sheet from just under the top of the screen down to the bottom edge, and the
+// launcher sits above the tab bar. Inline styles, because they have to beat the window's own desktop placement.
+export const CHAT_SHEET_STYLE = {
+  top: 96,
+  right: 0,
+  bottom: 0,
+  left: 0,
+  width: 'auto',
+  height: 'auto',
+  borderRadius: '20px 20px 0 0',
+} as const
+export const CHAT_LAUNCHER_MOBILE_STYLE = {
+  right: 16,
+  bottom: `calc(${MOBILE_TAB_BAR_HEIGHT}px + max(env(safe-area-inset-bottom), 6px) + 16px)`,
+} as const
