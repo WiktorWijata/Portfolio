@@ -5,11 +5,11 @@ import { STACK_KEYS } from '../../Stack.keys'
 import { useTexts } from '@/i18n/hooks/useTexts'
 
 /** Right column of the Stack page: the number of matches and the groups of technologies as chips. */
-export function StackResults({ groups, total }: StackResultsProps) {
+export function StackResults({ groups, total, flat = false }: StackResultsProps) {
   const [text] = useTexts(STACK_KEYS)
 
   return (
-    <div className="@container min-w-0 px-[26px] pt-5 pb-[26px] @max-[700px]:p-5">
+    <div className={['@container min-w-0', flat ? 'pt-[18px]' : 'px-[26px] pt-5 pb-[26px] @max-[700px]:p-5'].join(' ')}>
       <Text
         as="div"
         size={FontSize.XSmall}

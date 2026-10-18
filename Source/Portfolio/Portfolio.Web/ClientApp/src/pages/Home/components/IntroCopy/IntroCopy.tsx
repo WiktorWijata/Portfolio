@@ -9,8 +9,8 @@ import { Services } from '../Services'
 import { HOME_KEYS } from '../../Home.keys'
 import { useTexts } from '@/i18n/hooks/useTexts'
 
-/** Left column of the intro: kicker, headline, lead, the two actions and the services list. */
-export function IntroCopy() {
+/** Left column of the intro: kicker, headline, lead, the two actions and (unless left out) the services list. */
+export function IntroCopy({ withServices = true }: { withServices?: boolean }) {
   const [text] = useTexts(HOME_KEYS)
   const { openPage } = useEditor()
   const { data: introduction } = useIntroduction()
@@ -51,7 +51,7 @@ export function IntroCopy() {
           </Button>
         </div>
       </div>
-      <Services />
+      {withServices && <Services />}
     </div>
   )
 }
