@@ -1,4 +1,10 @@
 {
+  "0.33.2": {
+    "title": "Chat: topics in one row on a phone",
+    "changed": [
+      "Chat: on a narrow screen (up to 570 px) the topic buttons no longer wrap into several rows but form one row that scrolls sideways, to leave room for the conversation."
+    ]
+  },
   "0.33.1": {
     "title": "Chat: the assistant bubble fits its text",
     "fixed": [

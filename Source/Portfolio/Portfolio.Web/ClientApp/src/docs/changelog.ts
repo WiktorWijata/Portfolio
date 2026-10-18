@@ -11,6 +11,14 @@ export interface Release {
 /** Newest first. */
 export const releases: Release[] = [
   {
+    version: '0.33.2',
+    date: '2026-10-18',
+    title: 'Chat: tematy w jednym rzędzie na telefonie',
+    changed: [
+      'Chat: na wąskim ekranie (do 570 px) przyciski tematów nie zawijają się do kilku rzędów, tylko tworzą jeden rząd przewijany w bok, żeby zostawić miejsce na rozmowę.',
+    ],
+  },
+  {
     version: '0.33.1',
     date: '2026-10-15',
     title: 'Chat: bąbelek asystenta dopasowany do tekstu',

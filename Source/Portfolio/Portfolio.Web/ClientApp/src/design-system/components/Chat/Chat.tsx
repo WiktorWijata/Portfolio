@@ -110,14 +110,14 @@ export function Chat({
       </div>
 
       {topics.length > 0 && (
-        <div className="flex flex-wrap gap-[7px] px-4 pb-3">
+        <div className="flex [scrollbar-width:none] flex-wrap gap-[7px] px-4 pb-3 max-bp570:flex-nowrap max-bp570:overflow-x-auto [&::-webkit-scrollbar]:hidden">
           {topics.map((topic) => (
             <button
               key={topic}
               type="button"
               onClick={() => send(topic)}
               className={[
-                'cursor-pointer rounded-lg border border-line-emphasis bg-transparent px-[9px] py-1.5 text-content-body',
+                'cursor-pointer rounded-lg border border-line-emphasis bg-transparent px-[9px] py-1.5 text-content-body max-bp570:flex-none max-bp570:whitespace-nowrap',
                 'hover:border-accent-line-strong hover:bg-accent/[.07]',
                 focusRing,
               ].join(' ')}
