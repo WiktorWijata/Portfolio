@@ -11,6 +11,14 @@ export interface Release {
 /** Newest first. */
 export const releases: Release[] = [
   {
+    version: '0.34.0',
+    date: '2026-10-19',
+    title: 'Breakpoint bp1025',
+    added: [
+      'Breakpoint `bp1025` (1025 px): warianty `max-bp1025:` obejmują telefony i tablety. Poniżej tej szerokości aplikacja pokazuje układ mobilny zamiast okna IDE.',
+    ],
+  },
+  {
     version: '0.33.3',
     date: '2026-10-18',
     title: 'Chat: klawiatura nie wysuwa się przy otwarciu',

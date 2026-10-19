@@ -3,9 +3,10 @@ import { PageContainerPadding, type PageContainerProps } from './PageContainer.t
 // Literal class strings — Tailwind can't scan dynamically built class names.
 const paddingClasses: Record<PageContainerPadding, string> = {
   [PageContainerPadding.Content]:
-    'px-[31px] pt-9 pb-[31px] max-bp850:px-[22px] max-bp850:pt-[25px] max-bp570:px-5 max-bp570:pt-[26px] max-bp570:pb-[88px]',
-  [PageContainerPadding.Form]: 'p-8 max-bp600:p-[18px] max-bp570:px-5 max-bp570:pt-[26px] max-bp570:pb-[88px]',
-  [PageContainerPadding.Article]: 'px-5 pt-[22px] pb-[30px]',
+    'px-[31px] pt-9 pb-[31px] max-bp1025:px-[max(20px,calc((100%-720px)/2))] max-bp1025:pt-[26px] max-bp1025:pb-[88px]',
+  [PageContainerPadding.Form]:
+    'p-8 max-bp1025:px-[max(20px,calc((100%-720px)/2))] max-bp1025:pt-[26px] max-bp1025:pb-[88px]',
+  [PageContainerPadding.Article]: 'px-5 pt-[22px] pb-[30px] max-bp1025:px-[max(20px,calc((100%-720px)/2))]',
 }
 
 /** The surface every page sits on: it fills the editor area with the dotted, accent-glow background. */

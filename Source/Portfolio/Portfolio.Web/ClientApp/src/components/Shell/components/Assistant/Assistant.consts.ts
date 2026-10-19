@@ -32,13 +32,14 @@ export const CHAT_TERMINAL_GAP = 12
 export const CHAT_MAX_HEIGHT = 580
 export const CHAT_TOP_MARGIN = 16
 
-// Phone layout: the chat is a sheet from just under the top of the screen down to the bottom edge, and the
+// Phone and tablet layout: the chat is a sheet (at most 600px wide, centred) from just under the top of the
+// screen down to the bottom edge, and the
 // launcher sits above the tab bar. Inline styles, because they have to beat the window's own desktop placement.
 export const CHAT_SHEET_STYLE = {
   top: 96,
-  right: 0,
+  right: 'max(0px, calc(50% - 300px))',
   bottom: 0,
-  left: 0,
+  left: 'max(0px, calc(50% - 300px))',
   width: 'auto',
   height: 'auto',
   borderRadius: '20px 20px 0 0',
