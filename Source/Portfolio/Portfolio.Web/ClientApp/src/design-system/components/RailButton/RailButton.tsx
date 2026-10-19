@@ -17,7 +17,7 @@ export function RailButton({
       type="button"
       aria-pressed={active}
       className={[
-        'inline-flex w-8 flex-col items-center gap-[7px] rounded-sm px-0 py-[7px] max-bp1000:w-10',
+        'inline-flex w-8 flex-col items-center gap-[7px] rounded-sm px-0 py-[7px]',
         'focus-ring-tight',
         'transition-colors duration-150 ease-out',
         INTERACTIVE_BASE_CLASSES,

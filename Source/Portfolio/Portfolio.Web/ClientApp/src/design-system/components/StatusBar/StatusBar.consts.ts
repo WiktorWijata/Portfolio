@@ -18,4 +18,4 @@ export const indicatorClasses: Record<StatusBarIndicator, string> = {
 }
 
 export const buttonBase =
-  'cursor-pointer font-mono text-2xs rounded-xs px-[5px] py-[3px] focus-ring-tight transition-colors duration-140 ease-out max-bp1000:min-h-10 max-bp1000:min-w-10 max-bp1000:px-2.5'
+  'cursor-pointer font-mono text-2xs rounded-xs px-[5px] py-[3px] focus-ring-tight transition-colors duration-140 ease-out'

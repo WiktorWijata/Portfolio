@@ -15,7 +15,7 @@ export function TitleBarButton({
     <button
       type="button"
       className={[
-        'inline-flex shrink-0 cursor-pointer items-center text-xs leading-[1.3] whitespace-nowrap outline-none max-bp1000:min-h-10',
+        'inline-flex shrink-0 cursor-pointer items-center text-xs leading-[1.3] whitespace-nowrap outline-none',
         'transition-[background-color,border-color,color] duration-150 ease-out',
         toneClasses[tone],
         className,

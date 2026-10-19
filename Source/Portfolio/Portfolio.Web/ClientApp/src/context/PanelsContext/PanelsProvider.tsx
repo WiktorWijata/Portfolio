@@ -1,11 +1,11 @@
 import { useCallback, useMemo, useState, type ReactNode } from 'react'
 import { PanelsContext } from './PanelsContext'
-import { COMPACT_MEDIA_QUERY } from './PanelsContext.consts'
+import { MOBILE_MEDIA_QUERY } from './PanelsContext.consts'
 import type { Panels } from './PanelsContext.types'
 
-/** State of the explorer, terminal and chat panels. The explorer starts open except on narrow screens (tablets held upright, phones). */
+/** State of the explorer, terminal and chat panels. The explorer starts open except on phones. */
 export function PanelsProvider({ children }: { children: ReactNode }) {
-  const [explorerOpen, setExplorerOpen] = useState(() => !matchMedia(COMPACT_MEDIA_QUERY).matches)
+  const [explorerOpen, setExplorerOpen] = useState(() => !matchMedia(MOBILE_MEDIA_QUERY).matches)
   const [terminalOpen, setTerminalOpen] = useState(false)
   const [chatOpen, setChatOpen] = useState(false)
 

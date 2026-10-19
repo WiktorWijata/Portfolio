@@ -11,11 +11,7 @@ export function Tabs({ onReorder, className = '', children, ...rest }: TabsProps
   useTabsReorder(navRef, onReorder)
 
   return (
-    <nav
-      ref={navRef}
-      className={['flex h-[33px] items-stretch bg-surface-bar max-bp1000:h-[42px]', className].join(' ')}
-      {...rest}
-    >
+    <nav ref={navRef} className={['flex h-[33px] items-stretch bg-surface-bar', className].join(' ')} {...rest}>
       {children}
     </nav>
   )

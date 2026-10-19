@@ -19,8 +19,8 @@ export function Tab({ id, active = false, children, onSelect, onClose, closeLabe
         onClick={onSelect}
         aria-pressed={active}
         className={[
-          'py-[7px] pl-[11px] focus-ring max-bp1000:pl-4',
-          onClose ? 'pr-8 max-bp1000:pr-11' : 'pr-[11px] max-bp1000:pr-4',
+          'py-[7px] pl-[11px] focus-ring',
+          onClose ? 'pr-8' : 'pr-[11px]',
           active ? 'text-content-strong' : 'text-content-tertiary',
         ].join(' ')}
       >
@@ -35,13 +35,11 @@ export function Tab({ id, active = false, children, onSelect, onClose, closeLabe
           onClick={onClose}
           aria-label={closeLabel}
           className={[
-            'absolute top-1/2 right-[5px] size-5 -translate-y-1/2 rounded-sm max-bp1000:right-0.5 max-bp1000:size-10',
+            'absolute top-1/2 right-[5px] size-5 -translate-y-1/2 rounded-sm',
             'flex items-center justify-center transition-[background-color,color,opacity] duration-150 ease-out',
             'hover:bg-surface-pressed hover:text-content-strong focus-visible:opacity-100',
             'focus-ring',
-            active
-              ? 'text-content-secondary opacity-100'
-              : 'text-content-muted opacity-0 group-hover:opacity-100 pointer-coarse:opacity-100',
+            active ? 'text-content-secondary opacity-100' : 'text-content-muted opacity-0 group-hover:opacity-100',
           ].join(' ')}
         >
           <svg
