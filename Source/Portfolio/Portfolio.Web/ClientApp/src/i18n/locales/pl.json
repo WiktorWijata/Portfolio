@@ -406,12 +406,12 @@
       "note": "Wiadomość trafi bezpośrednio na moją skrzynkę. Odpowiadam zwykle w ciągu dnia lub dwóch.",
       "submit": "Wyślij wiadomość ↗",
       "incomplete": "Uzupełnij imię i treść wiadomości.",
-      "sent": "Dziękuję — wiadomość została wysłana. Odpowiem na podany adres e-mail."
-    },
-    "mail": {
-      "subjectPrefix": "Kontakt z portfolio — ",
-      "nameLabel": "Imię: ",
-      "replyLabel": "E-mail do odpowiedzi: "
+      "sending": "Wysyłanie…",
+      "sent": "Dziękuję — wiadomość została wysłana. Odpowiem na podany adres e-mail.",
+      "errors": {
+        "rateLimited": "Wiadomość została wysłana przed chwilą. Spróbuj ponownie za kilka minut.",
+        "failed": "Nie udało się wysłać wiadomości. Spróbuj ponownie za chwilę."
+      }
     },
     "company": {
       "header": "DANE FIRMY",

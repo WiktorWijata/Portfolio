@@ -22,12 +22,12 @@ export const CONTACT_KEYS = {
     note: 'contact.form.note',
     submit: 'contact.form.submit',
     incomplete: 'contact.form.incomplete',
+    sending: 'contact.form.sending',
     sent: 'contact.form.sent',
-  },
-  mail: {
-    subjectPrefix: 'contact.mail.subjectPrefix',
-    nameLabel: 'contact.mail.nameLabel',
-    replyLabel: 'contact.mail.replyLabel',
+    errors: {
+      rateLimited: 'contact.form.errors.rateLimited',
+      failed: 'contact.form.errors.failed',
+    },
   },
   company: {
     header: 'contact.company.header',

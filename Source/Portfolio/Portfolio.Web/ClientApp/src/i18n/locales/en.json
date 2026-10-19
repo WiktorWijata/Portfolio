@@ -404,12 +404,12 @@
       "note": "Your message goes straight to my inbox. I usually reply within a day or two.",
       "submit": "Send message ↗",
       "incomplete": "Please fill in your name and the message.",
-      "sent": "Thank you — your message has been sent. I will reply to the e-mail address you gave."
-    },
-    "mail": {
-      "subjectPrefix": "Portfolio contact — ",
-      "nameLabel": "Name: ",
-      "replyLabel": "Reply-to e-mail: "
+      "sending": "Sending…",
+      "sent": "Thank you — your message has been sent. I will reply to the e-mail address you gave.",
+      "errors": {
+        "rateLimited": "A message was sent a moment ago. Please try again in a few minutes.",
+        "failed": "The message could not be sent. Please try again in a moment."
+      }
     },
     "company": {
       "header": "COMPANY DETAILS",
