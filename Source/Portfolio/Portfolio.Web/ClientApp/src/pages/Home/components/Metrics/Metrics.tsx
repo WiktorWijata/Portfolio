@@ -86,7 +86,7 @@ export function Metrics() {
   ]
 
   return (
-    <div className="mt-[30px] grid grid-cols-[repeat(auto-fit,minmax(150px,1fr))] gap-3">
+    <div className="mt-[30px] grid grid-cols-[repeat(auto-fit,minmax(150px,1fr))] gap-3 max-bp570:mt-6 max-bp570:grid-cols-2 max-bp570:[&>:last-child]:col-span-full">
       {metrics.map((metric) => (
         <div key={metric.label} className={cardClasses}>
           <Text

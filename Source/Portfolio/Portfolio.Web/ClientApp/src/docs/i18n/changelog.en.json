@@ -1,4 +1,16 @@
 {
+  "0.33.3": {
+    "title": "Chat: the keyboard does not pop up on open",
+    "fixed": [
+      "Chat: on a touch screen opening the window no longer focuses the message field, so the on-screen keyboard does not slide up by itself; it appears once the field is tapped. On a computer the focus stays as it was."
+    ]
+  },
+  "0.33.2": {
+    "title": "Chat: topics in one row on a phone",
+    "changed": [
+      "Chat: on a narrow screen (up to 570 px) the topic buttons no longer wrap into several rows but form one row that scrolls sideways, to leave room for the conversation."
+    ]
+  },
   "0.33.1": {
     "title": "Chat: the assistant bubble fits its text",
     "fixed": [

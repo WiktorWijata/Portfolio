@@ -1,3 +1,4 @@
+import { useIsMobile } from '@/context'
 import { useExperiences, useIntroduction, useServices, useSpecializations } from '@/api'
 import { COMMON_KEYS } from '@/i18n/common.keys'
 import { useTexts } from '@/i18n/hooks/useTexts'
@@ -9,9 +10,25 @@ import { ArchitectureCard, IntroCopy, Metrics, SummaryCards } from './components
 export function Home() {
   const [, t] = useTexts(COMMON_KEYS)
   // The sections below read these same queries (cached), so the page appears whole instead of filling in piece by piece.
+  const isMobile = useIsMobile()
   const queries = [useIntroduction(), useServices(), useSpecializations(), useExperiences()]
   if (queries.some((query) => query.isLoading || query.error)) {
     return <PageLoader label={t(COMMON_KEYS.loading.home)} failed={queries.some((query) => !!query.error)} />
+  }
+
+  // On a phone the page is shorter: the intro, the figures, the layers I build and the certificates. The services,
+  // the career path and the technologies are covered by the layers and by the Experience and Stack pages.
+  if (isMobile) {
+    return (
+      <PageContainer>
+        <IntroCopy withServices={false} />
+        <Metrics />
+        <div className="mt-4">
+          <ArchitectureCard />
+        </div>
+        <SummaryCards certificatesOnly />
+      </PageContainer>
+    )
   }
 
   return (

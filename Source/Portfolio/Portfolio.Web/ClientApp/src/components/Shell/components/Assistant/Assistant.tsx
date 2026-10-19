@@ -1,9 +1,14 @@
 import { MessageSquareText } from 'lucide-react'
 import { useEffect, useMemo, useRef } from 'react'
 import { Chat, ChatLauncher, ChatMessageRole } from '@/design-system'
-import { usePanels } from '@/context'
+import { useIsMobile, usePanels } from '@/context'
 import { CHAT_ELEMENT_ID } from '../../Shell.consts'
-import { ASSISTANT_PENDING_TEXT, ASSISTANT_TOPIC_KEYS } from './Assistant.consts'
+import {
+  ASSISTANT_PENDING_TEXT,
+  ASSISTANT_TOPIC_KEYS,
+  CHAT_LAUNCHER_MOBILE_STYLE,
+  CHAT_SHEET_STYLE,
+} from './Assistant.consts'
 import { TypingIndicator } from './components/TypingIndicator'
 import { useAssistant } from './hooks/useAssistant'
 import { useChatDock } from './hooks/useChatDock'
@@ -38,7 +43,11 @@ export function Assistant() {
       }),
     [messages, text.typing],
   )
-  const { bottom, height } = useChatDock()
+  const dock = useChatDock()
+  const isMobile = useIsMobile()
+  // On a phone the window is a sheet over the page and the launcher floats above the tab bar.
+  const windowStyle = isMobile ? CHAT_SHEET_STYLE : { bottom: dock.bottom, height: dock.height }
+  const launcherStyle = isMobile ? CHAT_LAUNCHER_MOBILE_STYLE : { bottom: dock.bottom }
 
   // Closing the window hands the focus to the launcher (not on first render).
   const launcherRef = useRef<HTMLButtonElement>(null)
@@ -54,7 +63,7 @@ export function Assistant() {
         id={CHAT_ELEMENT_ID}
         aria-label={text.title}
         open={chatOpen}
-        style={{ bottom, height }}
+        style={windowStyle}
         title={text.title}
         labels={{
           closeButton: text.labels.close,
@@ -75,7 +84,7 @@ export function Assistant() {
           icon={<MessageSquareText strokeWidth={1.5} />}
           aria-expanded={false}
           aria-controls={CHAT_ELEMENT_ID}
-          style={{ bottom }}
+          style={launcherStyle}
           onClick={() => setChatOpen(true)}
         >
           {text.launcher}

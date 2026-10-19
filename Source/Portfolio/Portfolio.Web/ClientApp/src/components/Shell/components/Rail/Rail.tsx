@@ -23,7 +23,7 @@ export function Rail() {
   return (
     <nav
       aria-label={text.label}
-      className="flex flex-col items-center gap-[7px] border-r border-line-default bg-surface-hover py-3 max-bp570:hidden"
+      className="flex flex-col items-center gap-[7px] border-r border-line-default bg-surface-hover py-3"
     >
       <RailButton
         className="pb-[9px]"

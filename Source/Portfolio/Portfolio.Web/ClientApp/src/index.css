@@ -16,3 +16,12 @@ body {
   color: var(--color-content-strong);
   font-family: var(--font-sans);
 }
+
+/* Phones: iOS Safari zooms into any text field below 16px when it gets focus, so fields are 16px there. */
+@media (max-width: 570px) {
+  input:not([type='checkbox'], [type='radio'], [type='range']),
+  textarea,
+  select {
+    font-size: 16px !important;
+  }
+}

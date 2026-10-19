@@ -2,10 +2,10 @@ import { Chip, ChipVariant, FontFamily, FontSize, FontWeight, Text } from '@/des
 import type { PositionDetailProps } from './PositionDetail.types'
 
 /** Right column of the Experience page: the position's heading, its areas of responsibility and technologies. */
-export function PositionDetail({ position }: PositionDetailProps) {
+export function PositionDetail({ position, bare = false }: PositionDetailProps) {
   return (
     <article>
-      <header className="border-b border-b-line-default pb-4">
+      <header hidden={bare} className="border-b border-b-line-default pb-4">
         <div className="font-mono text-[13px] leading-[normal]">
           <Text size={FontSize.XSmall} className="leading-[normal] tracking-[.05em] text-content-subtle">
             {position.period}
