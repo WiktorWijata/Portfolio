@@ -631,7 +631,7 @@
             "nullable": true
           }
         },
-        "additionalProperties": { }
+        "additionalProperties": {}
       },
       "Project": {
         "type": "object",
@@ -674,6 +674,13 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/ProjectArchitectureBlock"
+            },
+            "nullable": true
+          },
+          "images": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProjectImage"
             },
             "nullable": true
           },
@@ -729,6 +736,20 @@
             "nullable": true
           },
           "text": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ProjectImage": {
+        "type": "object",
+        "properties": {
+          "url": {
+            "type": "string",
+            "nullable": true
+          },
+          "alt": {
             "type": "string",
             "nullable": true
           }

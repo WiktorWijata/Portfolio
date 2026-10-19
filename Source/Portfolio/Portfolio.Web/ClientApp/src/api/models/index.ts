@@ -19,6 +19,7 @@ export * from './problemDetails';
 export * from './project';
 export * from './projectArchitectureBlock';
 export * from './projectArchitectureNote';
+export * from './projectImage';
 export * from './service';
 export * from './skillCategory';
 export * from './specialization';

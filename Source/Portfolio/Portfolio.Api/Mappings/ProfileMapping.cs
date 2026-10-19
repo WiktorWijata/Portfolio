@@ -138,6 +138,7 @@ public static class ProfileMapping
                 Technologies = project.Technologies.Select(t => t.ToResponse()).ToArray(),
                 ArchitectureNotes = project.ArchitectureNotes.Select(n => n.ToResponse()).ToArray(),
                 ArchitectureBlocks = project.ArchitectureBlocks.Select(b => b.ToResponse()).ToArray(),
+                Images = project.Images.Select(i => i.ToResponse()).ToArray(),
                 ArchitectureCaption = project.ArchitectureCaption,
                 ArchitectureDiagramLabel = project.ArchitectureDiagramLabel
             };
@@ -156,6 +157,18 @@ public static class ProfileMapping
                 LinkLabel = block.LinkLabel,
                 ConnectionLabel = block.ConnectionLabel,
                 Children = block.Children.Select(c => c.ToResponse()).ToArray()
+            };
+        }
+    }
+
+    extension(ProjectImageDto image)
+    {
+        public ProjectImage ToResponse()
+        {
+            return new ProjectImage
+            {
+                Url = image.Url,
+                Alt = image.Alt
             };
         }
     }

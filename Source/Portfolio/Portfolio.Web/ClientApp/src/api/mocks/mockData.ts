@@ -9,6 +9,7 @@ import type {
   Project,
   ProjectArchitectureBlock,
   ProjectArchitectureNote,
+  ProjectImage,
   Service,
   SkillCategory,
   Specialization,
@@ -799,6 +800,38 @@ const ARCHITECTURE_BLOCKS_EN: ProjectArchitectureBlock[] = [
   { title: 'Infrastructure', note: 'Module facades · dependency registration · wiring the layers' },
 ]
 
+const FILES_URL = 'https://files.wiktorwijata.com/projects/portfolio/'
+
+const PROJECT_IMAGES_PL: ProjectImage[] = [
+  {
+    url: `${FILES_URL}desktop-about.webp`,
+    alt: 'Strona „O mnie” w oknie w stylu IDE: explorer plików po lewej, treść strony po prawej',
+  },
+  {
+    url: `${FILES_URL}desktop-experience.webp`,
+    alt: 'Strona „Doświadczenie” z listą stanowisk i zakresem obowiązków',
+  },
+  {
+    url: `${FILES_URL}mobile-about.webp`,
+    alt: 'Portfolio na telefonie: nagłówek, treść strony i dolny pasek zakładek',
+  },
+]
+
+const PROJECT_IMAGES_EN: ProjectImage[] = [
+  {
+    url: `${FILES_URL}desktop-about.webp`,
+    alt: 'The About page in the IDE-style window: the file explorer on the left, the page on the right',
+  },
+  {
+    url: `${FILES_URL}desktop-experience.webp`,
+    alt: 'The Experience page with the list of positions and their responsibilities',
+  },
+  {
+    url: `${FILES_URL}mobile-about.webp`,
+    alt: 'The portfolio on a phone: the header, the page and the bottom tab bar',
+  },
+]
+
 export const mockProjectsPl: Project[] = [
   {
     name: 'Portfolio',
@@ -810,6 +843,7 @@ export const mockProjectsPl: Project[] = [
     technologies: [T.csharp, T.dotnet, T.react, T.typescript, T.tailwind, T.sqlServer, T.docker, T.kubernetes],
     architectureNotes: ARCHITECTURE_NOTES_PL,
     architectureBlocks: ARCHITECTURE_BLOCKS_PL,
+    images: PROJECT_IMAGES_PL,
     architectureCaption:
       'Uproszczony schemat komponentów. HTTP opisuje komunikację, strzałki między warstwami — zależności kodu.',
     architectureDiagramLabel:
@@ -828,6 +862,7 @@ export const mockProjectsEn: Project[] = [
     technologies: [T.csharp, T.dotnet, T.react, T.typescript, T.tailwind, T.sqlServer, T.docker, T.kubernetes],
     architectureNotes: ARCHITECTURE_NOTES_EN,
     architectureBlocks: ARCHITECTURE_BLOCKS_EN,
+    images: PROJECT_IMAGES_EN,
     architectureCaption:
       'A simplified component diagram. HTTP describes communication; arrows between layers show code dependencies.',
     architectureDiagramLabel:
