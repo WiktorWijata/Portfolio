@@ -1,5 +1,6 @@
 import { Button, ButtonSize, FontFamily, FontSize, Input, Panel, Text, Textarea } from '@/design-system'
 import { EMAIL_MAX_LENGTH, MESSAGE_MAX_LENGTH, NAME_MAX_LENGTH } from '../../Contact.consts'
+import { ContactFormStatus } from '../../Contact.types'
 import { useContactForm } from '../../hooks/useContactForm'
 import { CONTACT_KEYS } from '../../Contact.keys'
 import { useTexts } from '@/i18n/hooks/useTexts'
@@ -7,7 +8,7 @@ import { useTexts } from '@/i18n/hooks/useTexts'
 /** The message form: name, e-mail and message, a note about the reply time and the submit button. */
 export function ContactForm() {
   const [text] = useTexts(CONTACT_KEYS)
-  const { feedback, onSubmit } = useContactForm()
+  const { status, feedback, onSubmit } = useContactForm()
 
   return (
     <Panel raised className="w-full p-7 max-bp600:p-5">
@@ -41,7 +42,12 @@ export function ContactForm() {
         <Text as="p" size={FontSize.Small} font={FontFamily.Sans} className="leading-[1.6] text-content-tertiary">
           {text.form.note}
         </Text>
-        <Button type="submit" size={ButtonSize.Lg} className="justify-self-end">
+        <Button
+          type="submit"
+          size={ButtonSize.Lg}
+          disabled={status === ContactFormStatus.Sending}
+          className="justify-self-end"
+        >
           {text.form.submit}
         </Button>
         <Text
@@ -50,7 +56,10 @@ export function ContactForm() {
           font={FontFamily.Sans}
           role="status"
           aria-live="polite"
-          className="leading-[1.6] text-success-content-soft empty:hidden"
+          className={[
+            'leading-[1.6] empty:hidden',
+            status === ContactFormStatus.Failed ? 'text-danger-content' : 'text-success-content-soft',
+          ].join(' ')}
         >
           {feedback}
         </Text>
