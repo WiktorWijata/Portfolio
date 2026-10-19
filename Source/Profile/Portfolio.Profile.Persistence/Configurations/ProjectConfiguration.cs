@@ -50,6 +50,23 @@ public class ProjectConfiguration : IEntityTypeConfiguration<Project>
             });
         });
 
+        builder.OwnsMany(p => p.Images, image =>
+        {
+            image.ToTable("ProjectImage");
+            image.WithOwner().HasForeignKey(i => i.ProjectId);
+            image.HasKey(i => i.Id);
+
+            image.OwnsMany(i => i.Translations, translation =>
+            {
+                translation.ToTable("ProjectImageTranslation");
+                translation.WithOwner().HasForeignKey(t => t.ProjectImageId);
+                translation.HasKey(t => new { t.ProjectImageId, t.LanguageCode });
+                translation.HasOne<Language>()
+                    .WithMany()
+                    .HasForeignKey(t => t.LanguageCode);
+            });
+        });
+
         builder.OwnsMany(p => p.ArchitectureNotes, note =>
         {
             note.ToTable("ProjectArchitectureNote");

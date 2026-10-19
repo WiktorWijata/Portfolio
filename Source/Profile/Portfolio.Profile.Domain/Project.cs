@@ -14,6 +14,7 @@ public class Project : AggregateRoot<Guid>
     public List<ProjectTechnology> Technologies { get; set; } = [];
     public List<ProjectArchitectureNote> ArchitectureNotes { get; set; } = [];
     public List<ProjectArchitectureBlock> ArchitectureBlocks { get; set; } = [];
+    public List<ProjectImage> Images { get; set; } = [];
 
     protected Project()
     {

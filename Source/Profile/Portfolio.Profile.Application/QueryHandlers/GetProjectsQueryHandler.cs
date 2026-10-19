@@ -45,8 +45,9 @@ public class GetProjectsQueryHandler : IRequestHandler<GetProjectsQuery, IEnumer
 
                 var architectureNotes = MapArchitectureNotes(x.Entity.ArchitectureNotes, languageCode);
                 var architectureBlocks = MapArchitectureBlocks(x.Entity, languageCode);
+                var images = MapImages(x.Entity.Images, languageCode);
 
-                return x.Entity.ToDto(x.Translation, technologyDtos, architectureNotes, architectureBlocks);
+                return x.Entity.ToDto(x.Translation, technologyDtos, architectureNotes, architectureBlocks, images);
             })
             .ToArray();
     }
@@ -71,6 +72,15 @@ public class GetProjectsQueryHandler : IRequestHandler<GetProjectsQuery, IEnumer
 
                 return x.Entity.ToDto(x.Translation, project.CodeUrl, children);
             })
+            .ToArray();
+    }
+
+    private static ProjectImageDto[] MapImages(IEnumerable<ProjectImage> images, LanguageCode languageCode)
+    {
+        return images
+            .OrderBy(image => image.Order)
+            .SelectTranslated(image => image.GetTranslation(languageCode))
+            .Select(x => x.Entity.ToDto(x.Translation))
             .ToArray();
     }
 

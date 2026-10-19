@@ -7,6 +7,7 @@
 import type { Technology } from './technology';
 import type { ProjectArchitectureNote } from './projectArchitectureNote';
 import type { ProjectArchitectureBlock } from './projectArchitectureBlock';
+import type { ProjectImage } from './projectImage';
 
 export interface Project {
   /** @nullable */
@@ -25,6 +26,8 @@ export interface Project {
   architectureNotes?: ProjectArchitectureNote[] | null;
   /** @nullable */
   architectureBlocks?: ProjectArchitectureBlock[] | null;
+  /** @nullable */
+  images?: ProjectImage[] | null;
   /** @nullable */
   architectureCaption?: string | null;
   /** @nullable */

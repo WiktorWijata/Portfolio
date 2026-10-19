@@ -10,6 +10,7 @@ namespace Portfolio.Profile.Contracts.Models
         public TechnologyDto[] Technologies { get; set; }
         public ProjectArchitectureNoteDto[] ArchitectureNotes { get; set; }
         public ProjectArchitectureBlockDto[] ArchitectureBlocks { get; set; }
+        public ProjectImageDto[] Images { get; set; }
         public string ArchitectureCaption { get; set; }
         public string ArchitectureDiagramLabel { get; set; }
     }

@@ -10,6 +10,7 @@ namespace RescuePC.Portfolio.Api.Contracts.Models
         public Technology[] Technologies { get; set; }
         public ProjectArchitectureNote[] ArchitectureNotes { get; set; }
         public ProjectArchitectureBlock[] ArchitectureBlocks { get; set; }
+        public ProjectImage[] Images { get; set; }
         public string ArchitectureCaption { get; set; }
         public string ArchitectureDiagramLabel { get; set; }
     }

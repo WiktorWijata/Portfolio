@@ -7,6 +7,7 @@ import { PageContainer } from '../PageContainer'
 import { PageLoader } from '../PageLoader'
 import { ArchitectureCard, GoalCard } from './components'
 import { GALLERY_SLIDES_COUNT, PROJECT_KICKER, PROJECT_TITLE } from './ProjectPortfolio.consts'
+import { toGallerySlides } from './ProjectPortfolio.helpers'
 import { PROJECT_PORTFOLIO_KEYS } from './ProjectPortfolio.keys'
 import { useTexts } from '@/i18n/hooks/useTexts'
 
@@ -14,10 +15,11 @@ import { useTexts } from '@/i18n/hooks/useTexts'
 export function ProjectPortfolio() {
   const [text, t] = useTexts(PROJECT_PORTFOLIO_KEYS)
   const [slide, setSlide] = useState(0)
-  const { isLoading, error } = useProjects()
-  const slides = Array.from({ length: GALLERY_SLIDES_COUNT }, (_, index) => ({
-    alt: t(PROJECT_PORTFOLIO_KEYS.gallery.slideAlt, { number: index + 1 }),
-  }))
+  const { data: projects, isLoading, error } = useProjects()
+  const images = projects?.find((project) => project.name === PROJECT_TITLE)?.images ?? []
+  const slides = toGallerySlides(images, GALLERY_SLIDES_COUNT, (number) =>
+    t(PROJECT_PORTFOLIO_KEYS.gallery.slideAlt, { number }),
+  )
 
   if (isLoading || error) return <PageLoader label={t(COMMON_KEYS.loading.project)} failed={!!error} />
 

@@ -7,7 +7,7 @@ public static class ProjectMapping
 {
     extension(Project project)
     {
-        public ProjectDto ToDto(ProjectTranslation translation, TechnologyDto[] technologies, ProjectArchitectureNoteDto[] architectureNotes, ProjectArchitectureBlockDto[] architectureBlocks)
+        public ProjectDto ToDto(ProjectTranslation translation, TechnologyDto[] technologies, ProjectArchitectureNoteDto[] architectureNotes, ProjectArchitectureBlockDto[] architectureBlocks, ProjectImageDto[] images)
         {
             return new ProjectDto
             {
@@ -19,6 +19,7 @@ public static class ProjectMapping
                 Technologies = technologies,
                 ArchitectureNotes = architectureNotes,
                 ArchitectureBlocks = architectureBlocks,
+                Images = images,
                 ArchitectureCaption = translation.ArchitectureCaption,
                 ArchitectureDiagramLabel = translation.ArchitectureDiagramLabel
             };
