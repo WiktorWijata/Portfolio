@@ -1,4 +1,4 @@
-import { useProjects } from '@/api'
+import type { Project } from '@/api'
 import {
   Button,
   ButtonSize,
@@ -12,18 +12,14 @@ import {
   Text,
 } from '@/design-system'
 import { GithubIcon } from '../GithubIcon'
-import { PROJECT_PORTFOLIO_KEYS } from '../../ProjectPortfolio.keys'
+import { PROJECT_DETAIL_KEYS } from '../../ProjectDetail.keys'
 import { useTexts } from '@/i18n/hooks/useTexts'
 
 const sectionTitleClasses = 'uppercase tracking-[.09em] text-content-tinted-strong'
 
 /** "O projekcie / założenia": the goal of the project, the solution, the technologies and the repository link. */
-export function GoalCard() {
-  const [text] = useTexts(PROJECT_PORTFOLIO_KEYS)
-  const { data: projects } = useProjects()
-  const project = projects?.[0]
-  if (!project) return null
-
+export function GoalCard({ project }: { project: Project }) {
+  const [text] = useTexts(PROJECT_DETAIL_KEYS)
   const technologies = project.technologies ?? []
 
   return (

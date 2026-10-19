@@ -1,18 +1,16 @@
 import { useMemo } from 'react'
-import { useProjects } from '@/api'
+import type { Project } from '@/api'
 import { ArchitectureDiagram, Card, CardVariant, FontFamily, FontSize, FontWeight, Text } from '@/design-system'
-import { toDiagramBlocks } from '../../ProjectPortfolio.helpers'
+import { toDiagramBlocks } from '../../ProjectDetail.helpers'
 import { GithubIcon } from '../GithubIcon'
-import { PROJECT_PORTFOLIO_KEYS } from '../../ProjectPortfolio.keys'
+import { PROJECT_DETAIL_KEYS } from '../../ProjectDetail.keys'
 import { useTexts } from '@/i18n/hooks/useTexts'
 
 /** Architecture of the project: the layer diagram, a caption and short notes on the patterns used. */
-export function ArchitectureCard() {
-  const [text] = useTexts(PROJECT_PORTFOLIO_KEYS)
-  const { data: projects } = useProjects()
-  const project = projects?.[0]
-  const notes = project?.architectureNotes ?? []
-  const blocks = useMemo(() => toDiagramBlocks(project?.architectureBlocks ?? []), [project])
+export function ArchitectureCard({ project }: { project: Project }) {
+  const [text] = useTexts(PROJECT_DETAIL_KEYS)
+  const notes = project.architectureNotes ?? []
+  const blocks = useMemo(() => toDiagramBlocks(project.architectureBlocks ?? []), [project])
 
   return (
     <Card
@@ -23,12 +21,12 @@ export function ArchitectureCard() {
     >
       <div className="flex flex-1 flex-col p-[18px]">
         <ArchitectureDiagram
-          aria-label={project?.architectureDiagramLabel ?? undefined}
+          aria-label={project.architectureDiagramLabel ?? undefined}
           blocks={blocks}
           linkIcon={<GithubIcon />}
         />
         <Text as="p" size={FontSize.XSmall} font={FontFamily.Sans} className="mt-3 leading-[1.6] text-content-muted">
-          {project?.architectureCaption}
+          {project.architectureCaption}
         </Text>
         <dl className="mt-[18px] grid gap-4">
           {notes.map((note) => (
@@ -53,7 +51,7 @@ export function ArchitectureCard() {
             </div>
           ))}
         </dl>
-        {project?.codeUrl && (
+        {project.codeUrl && (
           <Text
             as="p"
             size={FontSize.XSmall}

@@ -1,31 +1,35 @@
 import { useState } from 'react'
 import { useProjects } from '@/api'
 import { Gallery } from '@/design-system'
+import { pages } from '@/navigation'
 import { COMMON_KEYS } from '@/i18n/common.keys'
 import { PageIntro } from '../PageIntro'
 import { PageContainer } from '../PageContainer'
 import { PageLoader } from '../PageLoader'
 import { ArchitectureCard, GoalCard } from './components'
-import { GALLERY_SLIDES_COUNT, PROJECT_KICKER, PROJECT_TITLE } from './ProjectPortfolio.consts'
-import { toGallerySlides } from './ProjectPortfolio.helpers'
-import { PROJECT_PORTFOLIO_KEYS } from './ProjectPortfolio.keys'
+import { GALLERY_SLIDES_COUNT } from './ProjectDetail.consts'
+import { toGallerySlides } from './ProjectDetail.helpers'
+import { PROJECT_DETAIL_KEYS } from './ProjectDetail.keys'
+import type { ProjectDetailProps } from './ProjectDetail.types'
 import { useTexts } from '@/i18n/hooks/useTexts'
 
-/** Portfolio.cs: the project's gallery and goal on the left, its architecture on the right. */
-export function ProjectPortfolio() {
-  const [text, t] = useTexts(PROJECT_PORTFOLIO_KEYS)
+/** The page of one project (a file under Projects): its gallery and goal on the left, its architecture on the right. */
+export function ProjectDetail({ pageId, projectName }: ProjectDetailProps) {
+  const [text, t] = useTexts(PROJECT_DETAIL_KEYS)
   const [slide, setSlide] = useState(0)
   const { data: projects, isLoading, error } = useProjects()
-  const images = projects?.find((project) => project.name === PROJECT_TITLE)?.images ?? []
-  const slides = toGallerySlides(images, GALLERY_SLIDES_COUNT, (number) =>
-    t(PROJECT_PORTFOLIO_KEYS.gallery.slideAlt, { number }),
-  )
+  const project = projects?.find((item) => item.name === projectName)
 
   if (isLoading || error) return <PageLoader label={t(COMMON_KEYS.loading.project)} failed={!!error} />
+  if (!project) return null
+
+  const slides = toGallerySlides(project.images ?? [], GALLERY_SLIDES_COUNT, (number) =>
+    t(PROJECT_DETAIL_KEYS.gallery.slideAlt, { number }),
+  )
 
   return (
     <PageContainer>
-      <PageIntro kicker={PROJECT_KICKER} title={PROJECT_TITLE} />
+      <PageIntro kicker={`Projects / ${pages[pageId].file}`} title={projectName} />
       <div className="grid grid-cols-[minmax(0,1.2fr)_minmax(300px,1fr)] items-stretch gap-[22px] max-[1100px]:grid-cols-1">
         <div className="flex min-w-0 flex-col gap-[22px]">
           <Gallery
@@ -36,8 +40,8 @@ export function ProjectPortfolio() {
               previous: text.gallery.previous,
               next: text.gallery.next,
               slides: text.gallery.slides,
-              slide: (number) => t(PROJECT_PORTFOLIO_KEYS.gallery.slide, { number }),
-              placeholder: (number) => t(PROJECT_PORTFOLIO_KEYS.gallery.placeholder, { number }),
+              slide: (number) => t(PROJECT_DETAIL_KEYS.gallery.slide, { number }),
+              placeholder: (number) => t(PROJECT_DETAIL_KEYS.gallery.placeholder, { number }),
               placeholderNote: text.gallery.placeholderNote,
             }}
             slides={slides}
@@ -45,9 +49,9 @@ export function ProjectPortfolio() {
             onActiveIndexChange={setSlide}
             className="min-w-0 shrink-0"
           />
-          <GoalCard />
+          <GoalCard project={project} />
         </div>
-        <ArchitectureCard />
+        <ArchitectureCard project={project} />
       </div>
     </PageContainer>
   )

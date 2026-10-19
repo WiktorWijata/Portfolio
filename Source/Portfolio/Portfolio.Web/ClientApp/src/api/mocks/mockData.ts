@@ -832,6 +832,295 @@ const PROJECT_IMAGES_EN: ProjectImage[] = [
   },
 ]
 
+const INTEGRATORAI_NOTES_PL: ProjectArchitectureNote[] = [
+  {
+    title: 'Modularny monolit',
+    text: 'Chat, Context i Providers mają własne projekty Contracts, Application, Domain, Persistence i Infrastructure. Moduły rozmawiają przez kontrakty, a host API rejestruje ich implementacje.',
+  },
+  {
+    title: 'Strumieniowanie i narzędzia',
+    text: 'Odpowiedź płynie jako Server-Sent Events. Model może poprosić o narzędzie (zdarzenie tool_call); klient wykonuje je i odsyła wynik, a rozmowa czekająca na wyniki odrzuca nowe pytanie kodem 409.',
+  },
+  {
+    title: 'Wymienni dostawcy',
+    text: 'Odpowiada dostawca z aktywnym wierszem w tabeli providers.Provider, zapamiętany w Redis. OpenRouter dostaje narzędzia natywnie, HuggingFace na razie je pomija.',
+  },
+  {
+    title: 'Czat tego portfolio',
+    text: 'Asystent na tej stronie korzysta z IntegratorAI: Portfolio.Api wysyła pytanie, odpowiedź płynie strumieniem do przeglądarki, a kontekst asystenta (rola, wiedza o portfolio, narzędzia) jest synchronizowany z IntegratorAI. Narzędzia wykonuje Portfolio.',
+  },
+  {
+    title: 'Testy i obserwowalność',
+    text: 'Każdy kontekst ma testy jednostkowe i integracyjne (xUnit, NSubstitute), a API ma instrumentację OpenTelemetry.',
+  },
+]
+
+const INTEGRATORAI_BLOCKS_PL: ProjectArchitectureBlock[] = [
+  {
+    title: 'IntegratorAI.Api',
+    note: 'ASP.NET Core · REST · SSE · Scalar',
+    url: 'https://github.com/WiktorWijata/IntegratorAI/tree/develop/Source/Integrator',
+    linkLabel: 'Otwórz IntegratorAI.Api na GitHubie',
+    connectionLabel: 'HTTP / SSE',
+  },
+  {
+    title: 'Moduły',
+    connectionLabel: 'kontrakty modułów',
+    children: [
+      {
+        title: 'Chat',
+        note: 'Rozmowy i strumieniowanie odpowiedzi',
+        url: 'https://github.com/WiktorWijata/IntegratorAI/tree/develop/Source/Chat',
+        linkLabel: 'Otwórz Chat na GitHubie',
+      },
+      {
+        title: 'Context',
+        note: 'Rola, wiedza i narzędzia AI',
+        url: 'https://github.com/WiktorWijata/IntegratorAI/tree/develop/Source/Context',
+        linkLabel: 'Otwórz Context na GitHubie',
+      },
+      {
+        title: 'Providers',
+        note: 'HuggingFace · OpenRouter',
+        url: 'https://github.com/WiktorWijata/IntegratorAI/tree/develop/Source/Providers',
+        linkLabel: 'Otwórz Providers na GitHubie',
+      },
+    ],
+  },
+  {
+    title: 'BuildingBlocks',
+    note: 'Wspólne abstrakcje domeny, aplikacji i infrastruktury',
+    url: 'https://github.com/WiktorWijata/IntegratorAI/tree/develop/Source/BuildingBlocks',
+    linkLabel: 'Otwórz BuildingBlocks na GitHubie',
+  },
+  {
+    title: 'Dane',
+    note: 'SQL Server · Redis',
+  },
+]
+
+const INTEGRATORAI_IMAGES_PL: ProjectImage[] = [
+  {
+    url: `${FILES_URL}integratorai/assistant-desktop.webp`,
+    alt: 'Asystent na stronie portfolio odpowiada na pytanie; odpowiedź płynie z IntegratorAI',
+  },
+  { url: `${FILES_URL}integratorai/assistant-mobile.webp`, alt: 'Asystent portfolio na telefonie jako dolny panel' },
+  {
+    url: `${FILES_URL}integratorai/scalar-overview.webp`,
+    alt: 'Dokumentacja API IntegratorAI w Scalar: lista endpointów rozmów i kontekstów',
+  },
+  {
+    url: `${FILES_URL}integratorai/scalar-chat.webp`,
+    alt: 'Szczegóły endpointu rozmowy ze strumieniowaniem odpowiedzi w dokumentacji Scalar',
+  },
+]
+
+const INTEGRATORAI_NOTES_EN: ProjectArchitectureNote[] = [
+  {
+    title: 'Modular monolith',
+    text: 'Chat, Context and Providers each have their own Contracts, Application, Domain, Persistence and Infrastructure projects. The modules talk through contracts and the API host registers their implementations.',
+  },
+  {
+    title: 'Streaming and tools',
+    text: 'The answer flows as Server-Sent Events. The model can ask for a tool (a tool_call event); the client runs it and sends the result back, and a conversation waiting for results rejects a new prompt with a 409.',
+  },
+  {
+    title: 'Swappable providers',
+    text: 'The provider with the active row in the providers.Provider table answers, cached in Redis. OpenRouter gets the tools natively; HuggingFace ignores them for now.',
+  },
+  {
+    title: 'The chat of this portfolio',
+    text: 'The assistant on this site runs on IntegratorAI: Portfolio.Api sends the question, the answer is streamed to the browser, and the assistant context (role, knowledge about the portfolio, tools) is synchronized with IntegratorAI. The tools are run by Portfolio.',
+  },
+  {
+    title: 'Tests and observability',
+    text: 'Every context has unit and integration tests (xUnit, NSubstitute), and the API is instrumented with OpenTelemetry.',
+  },
+]
+
+const INTEGRATORAI_BLOCKS_EN: ProjectArchitectureBlock[] = [
+  {
+    title: 'IntegratorAI.Api',
+    note: 'ASP.NET Core · REST · SSE · Scalar',
+    url: 'https://github.com/WiktorWijata/IntegratorAI/tree/develop/Source/Integrator',
+    linkLabel: 'Open IntegratorAI.Api on GitHub',
+    connectionLabel: 'HTTP / SSE',
+  },
+  {
+    title: 'Modules',
+    connectionLabel: 'module contracts',
+    children: [
+      {
+        title: 'Chat',
+        note: 'Conversations and streamed answers',
+        url: 'https://github.com/WiktorWijata/IntegratorAI/tree/develop/Source/Chat',
+        linkLabel: 'Open Chat on GitHub',
+      },
+      {
+        title: 'Context',
+        note: 'AI role, knowledge and tools',
+        url: 'https://github.com/WiktorWijata/IntegratorAI/tree/develop/Source/Context',
+        linkLabel: 'Open Context on GitHub',
+      },
+      {
+        title: 'Providers',
+        note: 'HuggingFace · OpenRouter',
+        url: 'https://github.com/WiktorWijata/IntegratorAI/tree/develop/Source/Providers',
+        linkLabel: 'Open Providers on GitHub',
+      },
+    ],
+  },
+  {
+    title: 'BuildingBlocks',
+    note: 'Shared domain, application and infrastructure abstractions',
+    url: 'https://github.com/WiktorWijata/IntegratorAI/tree/develop/Source/BuildingBlocks',
+    linkLabel: 'Open BuildingBlocks on GitHub',
+  },
+  {
+    title: 'Data',
+    note: 'SQL Server · Redis',
+  },
+]
+
+const INTEGRATORAI_IMAGES_EN: ProjectImage[] = [
+  {
+    url: `${FILES_URL}integratorai/assistant-desktop.webp`,
+    alt: 'The assistant on the portfolio site answering a question; the answer comes from IntegratorAI',
+  },
+  {
+    url: `${FILES_URL}integratorai/assistant-mobile.webp`,
+    alt: 'The portfolio assistant on a phone as a bottom sheet',
+  },
+  {
+    url: `${FILES_URL}integratorai/scalar-overview.webp`,
+    alt: 'The IntegratorAI API documentation in Scalar: the list of conversation and context endpoints',
+  },
+  {
+    url: `${FILES_URL}integratorai/scalar-chat.webp`,
+    alt: 'The details of the streaming conversation endpoint in the Scalar documentation',
+  },
+]
+
+const INFRASTRUCTURE_NOTES_PL: ProjectArchitectureNote[] = [
+  {
+    title: 'Izolowane środowiska',
+    text: 'Każde środowisko ma własną sieć Docker, instancję MSSQL i Redis. Jedna instancja bazy obsługuje wszystkie aplikacje środowiska, a każda aplikacja ma w niej własną bazę.',
+  },
+  {
+    title: 'Konwencja dla aplikacji',
+    text: 'Nowa aplikacja dodaje plik routing.caddy i skrypt init.sql; Caddy sam je wczytuje, więc nie trzeba edytować żadnego wspólnego pliku.',
+  },
+  {
+    title: 'Wdrożenia z repozytoriów aplikacji',
+    text: 'Infrastruktura dostarcza tylko wspólne zasoby: proxy, bazy, Redis i monitoring. Każda aplikacja wdraża się z własnego repozytorium.',
+  },
+  {
+    title: 'Monitoring',
+    text: 'Promtail zbiera logi kontenerów bez konfiguracji per aplikacja, Tempo przyjmuje ślady OTLP, a Grafana jest dostępna po zalogowaniu.',
+  },
+  {
+    title: 'Serwer plików',
+    text: 'Zdjęcia projektów, w tym te na tej stronie, serwuje Caddy jako statyczny serwer plików wspólny dla obu środowisk.',
+  },
+]
+
+const INFRASTRUCTURE_BLOCKS_PL: ProjectArchitectureBlock[] = [
+  {
+    title: 'Caddy',
+    note: 'Reverse proxy · HTTPS · routing po subdomenach',
+    connectionLabel: 'HTTPS',
+  },
+  {
+    title: 'Środowiska',
+    connectionLabel: 'sieć Docker na środowisko',
+    children: [
+      {
+        title: 'dev',
+        note: 'Sieć Docker · MSSQL · Redis · aplikacje',
+      },
+      {
+        title: 'prod',
+        note: 'Sieć Docker · MSSQL · Redis · aplikacje',
+      },
+    ],
+  },
+  {
+    title: 'Monitoring',
+    note: 'Prometheus · Loki · Tempo · Grafana',
+  },
+  {
+    title: 'Serwer plików',
+    note: 'Statyczne zdjęcia projektów (files.wiktorwijata.com)',
+  },
+]
+
+const INFRASTRUCTURE_IMAGES_PL: ProjectImage[] = [
+  {
+    url: `${FILES_URL}infrastructure/environments.webp`,
+    alt: 'Schemat infrastruktury: Caddy, środowiska dev i prod, monitoring i serwer plików',
+  },
+]
+
+const INFRASTRUCTURE_NOTES_EN: ProjectArchitectureNote[] = [
+  {
+    title: 'Isolated environments',
+    text: 'Every environment has its own Docker network, MSSQL instance and Redis. One database instance serves all the applications of an environment, and each application has its own database in it.',
+  },
+  {
+    title: 'A convention for applications',
+    text: 'A new application adds a routing.caddy file and an init.sql script; Caddy loads them by itself, so no shared file has to be edited.',
+  },
+  {
+    title: 'Deployments from the application repositories',
+    text: 'The infrastructure provides only the shared resources: the proxy, the databases, Redis and the monitoring. Each application deploys from its own repository.',
+  },
+  {
+    title: 'Monitoring',
+    text: 'Promtail collects the container logs with no per-application configuration, Tempo accepts OTLP traces, and Grafana is available after logging in.',
+  },
+  {
+    title: 'File server',
+    text: 'The project pictures, including the ones on this site, are served by Caddy as a static file server shared by both environments.',
+  },
+]
+
+const INFRASTRUCTURE_BLOCKS_EN: ProjectArchitectureBlock[] = [
+  {
+    title: 'Caddy',
+    note: 'Reverse proxy · HTTPS · routing by subdomain',
+    connectionLabel: 'HTTPS',
+  },
+  {
+    title: 'Environments',
+    connectionLabel: 'a Docker network per environment',
+    children: [
+      {
+        title: 'dev',
+        note: 'Docker network · MSSQL · Redis · applications',
+      },
+      {
+        title: 'prod',
+        note: 'Docker network · MSSQL · Redis · applications',
+      },
+    ],
+  },
+  {
+    title: 'Monitoring',
+    note: 'Prometheus · Loki · Tempo · Grafana',
+  },
+  {
+    title: 'File server',
+    note: 'Static project pictures (files.wiktorwijata.com)',
+  },
+]
+
+const INFRASTRUCTURE_IMAGES_EN: ProjectImage[] = [
+  {
+    url: `${FILES_URL}infrastructure/environments.webp`,
+    alt: 'The infrastructure diagram: Caddy, the dev and prod environments, the monitoring and the file server',
+  },
+]
+
 export const mockProjectsPl: Project[] = [
   {
     name: 'Portfolio',
@@ -848,6 +1137,59 @@ export const mockProjectsPl: Project[] = [
       'Uproszczony schemat komponentów. HTTP opisuje komunikację, strzałki między warstwami — zależności kodu.',
     architectureDiagramLabel:
       'React komunikuje się przez HTTP z Portfolio.Api. API udostępnia moduły Profile i Notifications przez ich kontrakty. Każdy moduł ma Application, Domain, Persistence oraz Infrastructure.',
+  },
+  {
+    name: 'IntegratorAI',
+    description:
+      'Platforma integracji z modelami AI w .NET 10: REST API do rozmów z modelem ze strumieniowaniem odpowiedzi, konfigurowalne konteksty (rola, wiedza, narzędzia) i wymienni dostawcy modeli. Obsługuje czat asystenta na tej stronie.',
+    goal: 'Jedno miejsce do rozmów z modelami AI: reużywalne konteksty, strumieniowanie odpowiedzi i możliwość zmiany dostawcy modelu bez zmian w logice biznesowej.',
+    solution:
+      'Modularny monolit w .NET 10 z kontekstami Chat, Context i Providers, MediatR, EF Core, cache w Redis i telemetrią OpenTelemetry; dostawcy HuggingFace i OpenRouter.',
+    codeUrl: 'https://github.com/WiktorWijata/IntegratorAI',
+    technologies: [
+      tech('C#', 'Devicon', 'csharp'),
+      tech('.NET', 'Devicon', 'dotnetcore'),
+      tech('REST API', 'SimpleIcons', 'openapiinitiative'),
+      tech('SQL Server', 'Devicon', 'microsoftsqlserver'),
+      tech('Redis', 'Devicon', 'redis'),
+      tech('HuggingFace', 'SimpleIcons', 'huggingface'),
+      tech('OpenRouter API', 'SimpleIcons', 'openrouter'),
+      tech('Scalar', 'SimpleIcons', 'openapiinitiative'),
+      tech('xUnit', 'Devicon', 'dot-net'),
+      tech('Docker', 'Devicon', 'docker'),
+      tech('GitHub Actions', 'Devicon', 'githubactions'),
+    ],
+    architectureNotes: INTEGRATORAI_NOTES_PL,
+    architectureBlocks: INTEGRATORAI_BLOCKS_PL,
+    images: INTEGRATORAI_IMAGES_PL,
+    architectureCaption:
+      'Uproszczony schemat modułów. Strzałki między warstwami pokazują zależności kodu, etykiety — sposób komunikacji.',
+    architectureDiagramLabel:
+      'Diagram architektury IntegratorAI: klient wywołuje API, które korzysta z modułów Chat, Context i Providers, a te ze wspólnych BuildingBlocks i z danych.',
+  },
+  {
+    name: 'Infrastructure',
+    description:
+      'Infrastruktura jako kod dla moich aplikacji na jednym VPS: izolowane środowiska dev i prod, wspólny reverse proxy, bazy danych i pełne monitorowanie, wdrażane workflowami GitHub Actions.',
+    goal: 'Powtarzalne środowiska dla wszystkich projektów na jednym serwerze, w których nowa aplikacja wymaga tylko pliku routingu i skryptu bazy.',
+    solution:
+      'Caddy jako jeden reverse proxy, osobna sieć Docker, MSSQL i Redis dla każdego środowiska, stos Prometheus, Loki, Tempo i Grafana oraz reużywalne workflowy GitHub Actions.',
+    technologies: [
+      tech('Docker', 'Devicon', 'docker'),
+      tech('GitHub Actions', 'Devicon', 'githubactions'),
+      tech('SQL Server', 'Devicon', 'microsoftsqlserver'),
+      tech('Redis', 'Devicon', 'redis'),
+      tech('Grafana', 'Devicon', 'grafana'),
+      tech('Caddy', 'SimpleIcons', 'caddy'),
+      tech('Prometheus', 'SimpleIcons', 'prometheus'),
+    ],
+    architectureNotes: INFRASTRUCTURE_NOTES_PL,
+    architectureBlocks: INFRASTRUCTURE_BLOCKS_PL,
+    images: INFRASTRUCTURE_IMAGES_PL,
+    architectureCaption:
+      'Uproszczony schemat. Środowiska są od siebie odizolowane, a proxy, monitoring i serwer plików są wspólne.',
+    architectureDiagramLabel:
+      'Diagram infrastruktury: Caddy kieruje ruch do środowisk dev i prod, a monitoring i serwer plików obsługują oba środowiska.',
   },
 ]
 
@@ -867,6 +1209,59 @@ export const mockProjectsEn: Project[] = [
       'A simplified component diagram. HTTP describes communication; arrows between layers show code dependencies.',
     architectureDiagramLabel:
       'React communicates over HTTP with Portfolio.Api. The API exposes the Profile and Notifications modules through their contracts. Each module has Application, Domain, Persistence and Infrastructure layers.',
+  },
+  {
+    name: 'IntegratorAI',
+    description:
+      'An AI integration platform in .NET 10: a REST API for conversations with a model with streamed answers, configurable contexts (role, knowledge, tools) and swappable model providers. It runs the assistant chat on this site.',
+    goal: 'One place for conversations with AI models: reusable contexts, streamed answers and the ability to change the model provider without touching the business logic.',
+    solution:
+      'A modular monolith in .NET 10 with the Chat, Context and Providers contexts, MediatR, EF Core, a Redis cache and OpenTelemetry; HuggingFace and OpenRouter as providers.',
+    codeUrl: 'https://github.com/WiktorWijata/IntegratorAI',
+    technologies: [
+      tech('C#', 'Devicon', 'csharp'),
+      tech('.NET', 'Devicon', 'dotnetcore'),
+      tech('REST API', 'SimpleIcons', 'openapiinitiative'),
+      tech('SQL Server', 'Devicon', 'microsoftsqlserver'),
+      tech('Redis', 'Devicon', 'redis'),
+      tech('HuggingFace', 'SimpleIcons', 'huggingface'),
+      tech('OpenRouter API', 'SimpleIcons', 'openrouter'),
+      tech('Scalar', 'SimpleIcons', 'openapiinitiative'),
+      tech('xUnit', 'Devicon', 'dot-net'),
+      tech('Docker', 'Devicon', 'docker'),
+      tech('GitHub Actions', 'Devicon', 'githubactions'),
+    ],
+    architectureNotes: INTEGRATORAI_NOTES_EN,
+    architectureBlocks: INTEGRATORAI_BLOCKS_EN,
+    images: INTEGRATORAI_IMAGES_EN,
+    architectureCaption:
+      'A simplified module diagram. Arrows between layers show code dependencies; labels describe how they communicate.',
+    architectureDiagramLabel:
+      'IntegratorAI architecture diagram: a client calls the API, which uses the Chat, Context and Providers modules, and these use the shared BuildingBlocks and the data stores.',
+  },
+  {
+    name: 'Infrastructure',
+    description:
+      'Infrastructure as code for my applications on a single VPS: isolated dev and prod environments, a shared reverse proxy, databases and full monitoring, deployed with GitHub Actions workflows.',
+    goal: 'Repeatable environments for all projects on one server, where a new application needs only a routing file and a database script.',
+    solution:
+      'Caddy as the single reverse proxy, a separate Docker network, MSSQL and Redis for every environment, a Prometheus, Loki, Tempo and Grafana stack, and reusable GitHub Actions workflows.',
+    technologies: [
+      tech('Docker', 'Devicon', 'docker'),
+      tech('GitHub Actions', 'Devicon', 'githubactions'),
+      tech('SQL Server', 'Devicon', 'microsoftsqlserver'),
+      tech('Redis', 'Devicon', 'redis'),
+      tech('Grafana', 'Devicon', 'grafana'),
+      tech('Caddy', 'SimpleIcons', 'caddy'),
+      tech('Prometheus', 'SimpleIcons', 'prometheus'),
+    ],
+    architectureNotes: INFRASTRUCTURE_NOTES_EN,
+    architectureBlocks: INFRASTRUCTURE_BLOCKS_EN,
+    images: INFRASTRUCTURE_IMAGES_EN,
+    architectureCaption:
+      'A simplified diagram. The environments are isolated from each other, while the proxy, the monitoring and the file server are shared.',
+    architectureDiagramLabel:
+      'Infrastructure diagram: Caddy routes traffic to the dev and prod environments, and the monitoring and the file server serve both.',
   },
 ]
 

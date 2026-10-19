@@ -5,6 +5,8 @@
       "home": "O mnie",
       "projects": "Projekty",
       "projectPortfolio": "Portfolio.cs",
+      "projectIntegratorAi": "IntegratorAI.cs",
+      "projectInfrastructure": "Infrastructure.cs",
       "stack": "Stack",
       "experience": "Doświadczenie",
       "contact": "Kontakt"
@@ -260,23 +262,29 @@
       "kicker": "Portfolio / Wybrane realizacje",
       "title": "Pomysły zamienione",
       "accent": "w oprogramowanie.",
-      "text": "Autorska aplikacja portfolio z zapleczem do zarządzania treścią."
+      "text": "Własne aplikacje, platforma AI i infrastruktura, na której to wszystko działa."
     },
-    "note": "Portfolio: rzeczywisty zrzut ekranu.",
+    "note": "Zdjęcia pochodzą z działających wdrożeń.",
     "portfolio": {
       "label": "01 / APLIKACJA WEBOWA",
       "imageAlt": "Zrzut ekranu portfolio Wiktora Wijaty"
+    },
+    "integratorAi": {
+      "label": "02 / PLATFORMA AI"
+    },
+    "infrastructure": {
+      "label": "03 / INFRASTRUKTURA"
     }
   },
-  "projectPortfolio": {
+  "projectDetail": {
     "architecture": {
-      "heading": "ARCHITEKTURA / MODULARNY MONOLIT",
+      "heading": "ARCHITEKTURA",
       "label": "Architektura projektu",
       "sourceLabel": "Na podstawie kodu"
     },
     "gallery": {
-      "label": "Galeria projektu Portfolio",
-      "slideAlt": "Widok aplikacji — zdjęcie {{number}}",
+      "label": "Galeria projektu",
+      "slideAlt": "Zdjęcie projektu {{number}}",
       "heading": "GALERIA PROJEKTU",
       "carousel": "karuzela",
       "previous": "Poprzedni slajd",

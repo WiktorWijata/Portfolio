@@ -16,6 +16,18 @@ export const pages: Record<PageId, PageMeta> = {
     tab: NAV_KEYS.tabs.projectPortfolio,
     file: 'Portfolio.cs',
   },
+  [PageId.ProjectIntegratorAi]: {
+    id: PageId.ProjectIntegratorAi,
+    path: '/projects/integratorai',
+    tab: NAV_KEYS.tabs.projectIntegratorAi,
+    file: 'IntegratorAI.cs',
+  },
+  [PageId.ProjectInfrastructure]: {
+    id: PageId.ProjectInfrastructure,
+    path: '/projects/infrastructure',
+    tab: NAV_KEYS.tabs.projectInfrastructure,
+    file: 'Infrastructure.cs',
+  },
   [PageId.Stack]: { id: PageId.Stack, path: '/stack', tab: NAV_KEYS.tabs.stack, file: 'Stack.cs' },
   [PageId.Experience]: {
     id: PageId.Experience,

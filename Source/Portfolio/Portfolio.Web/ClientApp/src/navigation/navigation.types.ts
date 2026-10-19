@@ -6,6 +6,8 @@ export const PageId = {
   Home: 'home',
   Projects: 'projects',
   ProjectPortfolio: 'project-portfolio',
+  ProjectIntegratorAi: 'project-integratorai',
+  ProjectInfrastructure: 'project-infrastructure',
   Stack: 'stack',
   Experience: 'experience',
   Contact: 'contact',

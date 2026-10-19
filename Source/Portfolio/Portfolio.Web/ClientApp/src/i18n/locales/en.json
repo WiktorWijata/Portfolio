@@ -5,6 +5,8 @@
       "home": "About me",
       "projects": "Projects",
       "projectPortfolio": "Portfolio.cs",
+      "projectIntegratorAi": "IntegratorAI.cs",
+      "projectInfrastructure": "Infrastructure.cs",
       "stack": "Stack",
       "experience": "Experience",
       "contact": "Contact"
@@ -258,23 +260,29 @@
       "kicker": "Portfolio / Selected work",
       "title": "Ideas turned",
       "accent": "into software.",
-      "text": "My own portfolio application with a back office for managing content."
+      "text": "My own applications, an AI platform and the infrastructure it all runs on."
     },
-    "note": "Portfolio: a real screenshot.",
+    "note": "The pictures come from running deployments.",
     "portfolio": {
       "label": "01 / WEB APPLICATION",
       "imageAlt": "Screenshot of Wiktor Wijata's portfolio"
+    },
+    "integratorAi": {
+      "label": "02 / AI PLATFORM"
+    },
+    "infrastructure": {
+      "label": "03 / INFRASTRUCTURE"
     }
   },
-  "projectPortfolio": {
+  "projectDetail": {
     "architecture": {
-      "heading": "ARCHITECTURE / MODULAR MONOLITH",
+      "heading": "ARCHITECTURE",
       "label": "Project architecture",
       "sourceLabel": "Based on the code"
     },
     "gallery": {
-      "label": "Portfolio project gallery",
-      "slideAlt": "Application view — photo {{number}}",
+      "label": "Project gallery",
+      "slideAlt": "Project photo {{number}}",
       "heading": "PROJECT GALLERY",
       "carousel": "carousel",
       "previous": "Previous slide",
