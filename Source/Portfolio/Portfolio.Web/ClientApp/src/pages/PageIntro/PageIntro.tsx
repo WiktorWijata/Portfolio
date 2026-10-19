@@ -9,21 +9,21 @@ const variantClasses: Record<
   [PageIntroVariant.Overview]: {
     root: '',
     kicker: 'mb-3',
-    title: 'leading-[1.15] text-content-primary max-bp570:text-[28px]',
+    title: 'leading-[1.15] text-content-primary max-bp1025:text-[28px]',
     accent: 'text-accent',
     lead: '',
   },
   [PageIntroVariant.Section]: {
     root: '',
     kicker: 'mb-3',
-    title: 'leading-[1.04] text-content-strong max-bp570:text-[28px]',
+    title: 'leading-[1.04] text-content-strong max-bp1025:text-[28px]',
     accent: '',
     lead: '',
   },
   [PageIntroVariant.Contact]: {
     root: 'mb-6 max-bp600:mb-[18px]',
     kicker: 'mb-5',
-    title: 'leading-[1.04] text-content-strong max-bp570:text-[30px]',
+    title: 'leading-[1.04] text-content-strong max-bp1025:text-[30px]',
     accent: '',
     lead: 'whitespace-nowrap max-bp600:whitespace-normal',
   },
@@ -53,7 +53,7 @@ export function PageIntro({ kicker, title, accent, text, variant = PageIntroVari
         weight={FontWeight.Medium}
         // 43px (not the text-h1 44px token) is this heading's own size, measured in the prototype; only the 36px
         // step happens to match text-h1-sm, so it uses it. The phone sizes (28px, 30px for Contact) are per variant.
-        className={['text-[43px] tracking-[-.03em] max-bp850:text-h1-sm', classes.title, titleGap].join(' ')}
+        className={['text-[43px] tracking-[-.03em]', classes.title, titleGap].join(' ')}
       >
         {title}
         {accent && (

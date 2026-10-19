@@ -1,4 +1,10 @@
 {
+  "0.34.0": {
+    "title": "Breakpoint bp1025",
+    "added": [
+      "Breakpoint `bp1025` (1025 px): the `max-bp1025:` variants cover phones and tablets. Below this width the app shows the mobile layout instead of the IDE window."
+    ]
+  },
   "0.33.3": {
     "title": "Chat: the keyboard does not pop up on open",
     "fixed": [

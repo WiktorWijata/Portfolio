@@ -80,4 +80,5 @@
   --breakpoint-bp700: 700px;
   --breakpoint-bp850: 850px;
   --breakpoint-bp1000: 1000px;
+  --breakpoint-bp1025: 1025px; /* the mobile layout (phones and tablets) is everything below this width */
 }

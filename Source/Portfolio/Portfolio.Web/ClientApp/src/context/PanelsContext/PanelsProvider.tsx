@@ -1,11 +1,10 @@
 import { useCallback, useMemo, useState, type ReactNode } from 'react'
 import { PanelsContext } from './PanelsContext'
-import { MOBILE_MEDIA_QUERY } from './PanelsContext.consts'
 import type { Panels } from './PanelsContext.types'
 
-/** State of the explorer, terminal and chat panels. The explorer starts open except on phones. */
+/** State of the explorer, terminal and chat panels. The explorer starts open: the IDE window only exists above the mobile width. */
 export function PanelsProvider({ children }: { children: ReactNode }) {
-  const [explorerOpen, setExplorerOpen] = useState(() => !matchMedia(MOBILE_MEDIA_QUERY).matches)
+  const [explorerOpen, setExplorerOpen] = useState(true)
   const [terminalOpen, setTerminalOpen] = useState(false)
   const [chatOpen, setChatOpen] = useState(false)
 
