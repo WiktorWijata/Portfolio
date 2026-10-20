@@ -1067,6 +1067,26 @@ const INFRASTRUCTURE_IMAGES_EN: ProjectImage[] = [
 
 export const mockProjectsPl: Project[] = [
   {
+    name: 'Infrastructure',
+    description:
+      'Infrastruktura jako kod dla moich aplikacji na jednym VPS: izolowane środowiska dev i prod, wspólny reverse proxy, bazy danych i pełne monitorowanie, wdrażane workflowami GitHub Actions.',
+    goal: 'Powtarzalne środowiska dla wszystkich projektów na jednym serwerze, w których nowa aplikacja wymaga tylko pliku routingu i skryptu bazy.',
+    solution:
+      'Caddy jako jeden reverse proxy, osobna sieć Docker, MSSQL i Redis dla każdego środowiska, stos Prometheus, Loki, Tempo i Grafana oraz reużywalne workflowy GitHub Actions.',
+    technologies: [
+      tech('Docker', 'Devicon', 'docker'),
+      tech('GitHub Actions', 'Devicon', 'githubactions'),
+      tech('SQL Server', 'Devicon', 'microsoftsqlserver'),
+      tech('Redis', 'Devicon', 'redis'),
+      tech('Grafana', 'Devicon', 'grafana'),
+      tech('Caddy', 'SimpleIcons', 'caddy'),
+      tech('Prometheus', 'SimpleIcons', 'prometheus'),
+    ],
+    architectureNotes: INFRASTRUCTURE_NOTES_PL,
+    architectureBlocks: INFRASTRUCTURE_BLOCKS_PL,
+    images: INFRASTRUCTURE_IMAGES_PL,
+  },
+  {
     name: 'Portfolio',
     description:
       'Strona wizytówka prezentująca moje umiejętności, doświadczenie oraz projekty. Treść na stronę zarządzana jest przez autorski CMS.',
@@ -1111,13 +1131,16 @@ export const mockProjectsPl: Project[] = [
     architectureDiagramLabel:
       'Diagram architektury IntegratorAI: klient wywołuje API, które korzysta z modułów Chat, Context i Providers, a te ze wspólnych BuildingBlocks i z danych.',
   },
+]
+
+export const mockProjectsEn: Project[] = [
   {
     name: 'Infrastructure',
     description:
-      'Infrastruktura jako kod dla moich aplikacji na jednym VPS: izolowane środowiska dev i prod, wspólny reverse proxy, bazy danych i pełne monitorowanie, wdrażane workflowami GitHub Actions.',
-    goal: 'Powtarzalne środowiska dla wszystkich projektów na jednym serwerze, w których nowa aplikacja wymaga tylko pliku routingu i skryptu bazy.',
+      'Infrastructure as code for my applications on a single VPS: isolated dev and prod environments, a shared reverse proxy, databases and full monitoring, deployed with GitHub Actions workflows.',
+    goal: 'Repeatable environments for all projects on one server, where a new application needs only a routing file and a database script.',
     solution:
-      'Caddy jako jeden reverse proxy, osobna sieć Docker, MSSQL i Redis dla każdego środowiska, stos Prometheus, Loki, Tempo i Grafana oraz reużywalne workflowy GitHub Actions.',
+      'Caddy as the single reverse proxy, a separate Docker network, MSSQL and Redis for every environment, a Prometheus, Loki, Tempo and Grafana stack, and reusable GitHub Actions workflows.',
     technologies: [
       tech('Docker', 'Devicon', 'docker'),
       tech('GitHub Actions', 'Devicon', 'githubactions'),
@@ -1127,13 +1150,10 @@ export const mockProjectsPl: Project[] = [
       tech('Caddy', 'SimpleIcons', 'caddy'),
       tech('Prometheus', 'SimpleIcons', 'prometheus'),
     ],
-    architectureNotes: INFRASTRUCTURE_NOTES_PL,
-    architectureBlocks: INFRASTRUCTURE_BLOCKS_PL,
-    images: INFRASTRUCTURE_IMAGES_PL,
+    architectureNotes: INFRASTRUCTURE_NOTES_EN,
+    architectureBlocks: INFRASTRUCTURE_BLOCKS_EN,
+    images: INFRASTRUCTURE_IMAGES_EN,
   },
-]
-
-export const mockProjectsEn: Project[] = [
   {
     name: 'Portfolio',
     description:
@@ -1178,26 +1198,6 @@ export const mockProjectsEn: Project[] = [
       'A simplified module diagram. Arrows between layers show code dependencies; labels describe how they communicate.',
     architectureDiagramLabel:
       'IntegratorAI architecture diagram: a client calls the API, which uses the Chat, Context and Providers modules, and these use the shared BuildingBlocks and the data stores.',
-  },
-  {
-    name: 'Infrastructure',
-    description:
-      'Infrastructure as code for my applications on a single VPS: isolated dev and prod environments, a shared reverse proxy, databases and full monitoring, deployed with GitHub Actions workflows.',
-    goal: 'Repeatable environments for all projects on one server, where a new application needs only a routing file and a database script.',
-    solution:
-      'Caddy as the single reverse proxy, a separate Docker network, MSSQL and Redis for every environment, a Prometheus, Loki, Tempo and Grafana stack, and reusable GitHub Actions workflows.',
-    technologies: [
-      tech('Docker', 'Devicon', 'docker'),
-      tech('GitHub Actions', 'Devicon', 'githubactions'),
-      tech('SQL Server', 'Devicon', 'microsoftsqlserver'),
-      tech('Redis', 'Devicon', 'redis'),
-      tech('Grafana', 'Devicon', 'grafana'),
-      tech('Caddy', 'SimpleIcons', 'caddy'),
-      tech('Prometheus', 'SimpleIcons', 'prometheus'),
-    ],
-    architectureNotes: INFRASTRUCTURE_NOTES_EN,
-    architectureBlocks: INFRASTRUCTURE_BLOCKS_EN,
-    images: INFRASTRUCTURE_IMAGES_EN,
   },
 ]
 

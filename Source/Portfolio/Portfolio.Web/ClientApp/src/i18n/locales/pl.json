@@ -266,14 +266,14 @@
     },
     "note": "Zdjęcia pochodzą z działających wdrożeń.",
     "portfolio": {
-      "label": "01 / APLIKACJA WEBOWA",
+      "label": "02 / APLIKACJA WEBOWA",
       "imageAlt": "Zrzut ekranu portfolio Wiktora Wijaty"
     },
     "integratorAi": {
-      "label": "02 / PLATFORMA AI"
+      "label": "03 / PLATFORMA AI"
     },
     "infrastructure": {
-      "label": "03 / INFRASTRUKTURA"
+      "label": "01 / INFRASTRUKTURA"
     }
   },
   "projectDetail": {
