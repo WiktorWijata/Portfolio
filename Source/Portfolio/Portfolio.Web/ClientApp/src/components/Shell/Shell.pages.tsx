@@ -22,6 +22,8 @@ export const PAGE_SHELL: Record<PageId, PageShell> = {
     command: { name: TerminalCommandName.Projects, descriptionKey: TERMINAL_KEYS.commands.projects },
   },
   [PageId.ProjectPortfolio]: {},
+  [PageId.ProjectIntegratorAi]: {},
+  [PageId.ProjectInfrastructure]: {},
   [PageId.Stack]: {
     rail: { label: 'STACK', name: RAIL_KEYS.pages.stack, icon: <Layers /> },
     command: { name: TerminalCommandName.Stack, descriptionKey: TERMINAL_KEYS.commands.stack },

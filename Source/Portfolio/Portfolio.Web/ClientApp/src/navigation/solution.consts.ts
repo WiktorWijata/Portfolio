@@ -19,6 +19,18 @@ export const DEFAULT_SOLUTION: SolutionNode[] = [
         page: PageId.Projects,
         children: [
           { id: 'portfolio', label: 'Portfolio.cs', kind: SolutionNodeKind.CSharp, page: PageId.ProjectPortfolio },
+          {
+            id: 'integratorai',
+            label: 'IntegratorAI.cs',
+            kind: SolutionNodeKind.CSharp,
+            page: PageId.ProjectIntegratorAi,
+          },
+          {
+            id: 'infrastructure',
+            label: 'Infrastructure.cs',
+            kind: SolutionNodeKind.CSharp,
+            page: PageId.ProjectInfrastructure,
+          },
         ],
       },
       { id: 'stack', label: 'Stack.cs', kind: SolutionNodeKind.CSharp, page: PageId.Stack },

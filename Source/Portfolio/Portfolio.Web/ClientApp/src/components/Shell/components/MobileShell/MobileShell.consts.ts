@@ -13,6 +13,8 @@ export const MOBILE_TABS = [
 /** Pages on a phone that are not tabs: they open from a tab's page and keep that tab lit. */
 export const MOBILE_DETAIL_PARENTS: Partial<Record<PageId, PageId>> = {
   [PageId.ProjectPortfolio]: PageId.Projects,
+  [PageId.ProjectIntegratorAi]: PageId.Projects,
+  [PageId.ProjectInfrastructure]: PageId.Projects,
 }
 
 /** Height of the tab bar (px), without the device's bottom inset; the assistant launcher floats above it. */

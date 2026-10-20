@@ -3,7 +3,7 @@ import { Contact } from '../Contact'
 import { Experience } from '../Experience'
 import { GetStarted } from '../GetStarted'
 import { Home } from '../Home'
-import { ProjectPortfolio } from '../ProjectPortfolio'
+import { ProjectInfrastructure, ProjectIntegratorAi, ProjectPortfolio } from '../ProjectDetail'
 import { Projects } from '../Projects'
 import { Stack } from '../Stack'
 import { PageId } from '@/navigation'
@@ -14,6 +14,8 @@ export const PAGE_COMPONENTS: Record<PageId, ComponentType> = {
   [PageId.Home]: Home,
   [PageId.Projects]: Projects,
   [PageId.ProjectPortfolio]: ProjectPortfolio,
+  [PageId.ProjectIntegratorAi]: ProjectIntegratorAi,
+  [PageId.ProjectInfrastructure]: ProjectInfrastructure,
   [PageId.Stack]: Stack,
   [PageId.Experience]: Experience,
   [PageId.Contact]: Contact,

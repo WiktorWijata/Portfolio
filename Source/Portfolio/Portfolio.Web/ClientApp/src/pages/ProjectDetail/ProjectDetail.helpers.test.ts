@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { toGallerySlides } from './ProjectPortfolio.helpers'
+import { toGallerySlides } from './ProjectDetail.helpers'
 
 const placeholderAlt = (number: number) => `placeholder ${number}`
 

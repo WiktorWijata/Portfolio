@@ -11,4 +11,10 @@ export const PROJECTS_KEYS = {
     label: 'projects.portfolio.label',
     imageAlt: 'projects.portfolio.imageAlt',
   },
+  integratorAi: {
+    label: 'projects.integratorAi.label',
+  },
+  infrastructure: {
+    label: 'projects.infrastructure.label',
+  },
 } as const

@@ -5,6 +5,8 @@ export const NAV_KEYS = {
     home: 'nav.tabs.home',
     projects: 'nav.tabs.projects',
     projectPortfolio: 'nav.tabs.projectPortfolio',
+    projectIntegratorAi: 'nav.tabs.projectIntegratorAi',
+    projectInfrastructure: 'nav.tabs.projectInfrastructure',
     stack: 'nav.tabs.stack',
     experience: 'nav.tabs.experience',
     contact: 'nav.tabs.contact',
