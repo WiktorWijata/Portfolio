@@ -1,5 +1,6 @@
 import { PageId } from '@/navigation'
 import { ProjectDetail } from './ProjectDetail'
+import { InfrastructureDiagram } from './components/InfrastructureDiagram'
 
 /** One page per project, all drawn by `ProjectDetail`. The names are the projects' names in the API. */
 export function ProjectPortfolio() {
@@ -11,5 +12,11 @@ export function ProjectIntegratorAi() {
 }
 
 export function ProjectInfrastructure() {
-  return <ProjectDetail pageId={PageId.ProjectInfrastructure} projectName="Infrastructure" />
+  return (
+    <ProjectDetail
+      pageId={PageId.ProjectInfrastructure}
+      projectName="Infrastructure"
+      hero={<InfrastructureDiagram />}
+    />
+  )
 }

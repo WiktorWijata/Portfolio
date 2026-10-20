@@ -300,6 +300,65 @@
       "solution": "Rozwiązanie",
       "stack": "Technologie",
       "repository": "Repozytorium ↗"
+    },
+    "infrastructure": {
+      "heading": "SCHEMAT / JEDEN VPS",
+      "label": "Schemat infrastruktury: przeglądarka, Caddy, środowiska dev i prod, monitoring, serwer plików i GitHub Actions",
+      "title": "Wiele środowisk,",
+      "accent": "jeden serwer.",
+      "text": "Izolowane dev i prod, wspólny reverse proxy, monitoring i serwer plików.",
+      "browser": "przeglądarka · HTTPS",
+      "caddyText": "reverse proxy · HTTPS · routing po subdomenach · jeden dla wszystkich środowisk",
+      "environment": "ŚRODOWISKO",
+      "shared": "WSPÓLNE",
+      "network": "własna sieć Docker",
+      "apps": {
+        "title": "Aplikacje",
+        "text": "web, API, migracje bazy"
+      },
+      "mssql": {
+        "title": "MSSQL",
+        "text": "baza na aplikację"
+      },
+      "redis": {
+        "title": "Redis",
+        "text": "cache"
+      },
+      "convention": "konwencja aplikacji",
+      "routing": {
+        "title": "routing.caddy",
+        "text": "trasa w Caddy"
+      },
+      "init": {
+        "title": "init.sql",
+        "text": "baza aplikacji"
+      },
+      "monitoring": {
+        "title": "Monitoring",
+        "prometheus": "metryki",
+        "loki": "logi · Promtail",
+        "tempo": "ślady OTLP",
+        "grafana": "po zalogowaniu",
+        "collect": "zbieranie danych",
+        "promtail": "logi kontenerów bez konfiguracji per aplikacja"
+      },
+      "files": {
+        "title": "Pliki",
+        "server": "Serwer plików",
+        "serverText": "statyczne zdjęcia projektów, serwowane przez Caddy",
+        "common": "wspólny dla dev i prod",
+        "copy": "Jedna kopia",
+        "copyText": "te same pliki niezależnie od środowiska"
+      },
+      "ci": {
+        "text": "Wdrożenia z repozytoriów aplikacji.",
+        "detail": "Infrastruktura dostarcza proxy, bazy, Redis i monitoring; każda aplikacja dokłada tylko",
+        "and": "i",
+        "push": "push",
+        "build": "build",
+        "image": "obraz",
+        "deploy": "deploy"
+      }
     }
   },
   "getStarted": {

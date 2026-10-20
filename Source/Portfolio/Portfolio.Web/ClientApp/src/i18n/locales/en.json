@@ -298,6 +298,65 @@
       "solution": "Solution",
       "stack": "Technologies",
       "repository": "Repository ↗"
+    },
+    "infrastructure": {
+      "heading": "DIAGRAM / ONE VPS",
+      "label": "Infrastructure diagram: the browser, Caddy, the dev and prod environments, monitoring, the file server and GitHub Actions",
+      "title": "Many environments,",
+      "accent": "one server.",
+      "text": "Isolated dev and prod, a shared reverse proxy, monitoring and a file server.",
+      "browser": "browser · HTTPS",
+      "caddyText": "reverse proxy · HTTPS · routing by subdomain · one for all the environments",
+      "environment": "ENVIRONMENT",
+      "shared": "SHARED",
+      "network": "its own Docker network",
+      "apps": {
+        "title": "Applications",
+        "text": "web, API, database migrations"
+      },
+      "mssql": {
+        "title": "MSSQL",
+        "text": "a database per application"
+      },
+      "redis": {
+        "title": "Redis",
+        "text": "cache"
+      },
+      "convention": "application convention",
+      "routing": {
+        "title": "routing.caddy",
+        "text": "a route in Caddy"
+      },
+      "init": {
+        "title": "init.sql",
+        "text": "the application's database"
+      },
+      "monitoring": {
+        "title": "Monitoring",
+        "prometheus": "metrics",
+        "loki": "logs · Promtail",
+        "tempo": "OTLP traces",
+        "grafana": "behind a login",
+        "collect": "data collection",
+        "promtail": "container logs with no per-application configuration"
+      },
+      "files": {
+        "title": "Files",
+        "server": "File server",
+        "serverText": "static project pictures, served by Caddy",
+        "common": "shared by dev and prod",
+        "copy": "One copy",
+        "copyText": "the same files whatever the environment"
+      },
+      "ci": {
+        "text": "Deployments from the application repositories.",
+        "detail": "The infrastructure provides the proxy, the databases, Redis and the monitoring; each application adds only",
+        "and": "and",
+        "push": "push",
+        "build": "build",
+        "image": "image",
+        "deploy": "deploy"
+      }
     }
   },
   "getStarted": {

@@ -1024,39 +1024,11 @@ const INFRASTRUCTURE_NOTES_PL: ProjectArchitectureNote[] = [
   },
 ]
 
-const INFRASTRUCTURE_BLOCKS_PL: ProjectArchitectureBlock[] = [
-  {
-    title: 'Caddy',
-    note: 'Reverse proxy · HTTPS · routing po subdomenach',
-    connectionLabel: 'HTTPS',
-  },
-  {
-    title: 'Środowiska',
-    connectionLabel: 'sieć Docker na środowisko',
-    children: [
-      {
-        title: 'dev',
-        note: 'Sieć Docker · MSSQL · Redis · aplikacje',
-      },
-      {
-        title: 'prod',
-        note: 'Sieć Docker · MSSQL · Redis · aplikacje',
-      },
-    ],
-  },
-  {
-    title: 'Monitoring',
-    note: 'Prometheus · Loki · Tempo · Grafana',
-  },
-  {
-    title: 'Serwer plików',
-    note: 'Statyczne zdjęcia projektów (files.wiktorwijata.com)',
-  },
-]
+const INFRASTRUCTURE_BLOCKS_PL: ProjectArchitectureBlock[] = []
 
 const INFRASTRUCTURE_IMAGES_PL: ProjectImage[] = [
   {
-    url: `${FILES_URL}infrastructure/environments.webp`,
+    url: `${FILES_URL}infrastructure/diagram.webp`,
     alt: 'Schemat infrastruktury: Caddy, środowiska dev i prod, monitoring i serwer plików',
   },
 ]
@@ -1084,39 +1056,11 @@ const INFRASTRUCTURE_NOTES_EN: ProjectArchitectureNote[] = [
   },
 ]
 
-const INFRASTRUCTURE_BLOCKS_EN: ProjectArchitectureBlock[] = [
-  {
-    title: 'Caddy',
-    note: 'Reverse proxy · HTTPS · routing by subdomain',
-    connectionLabel: 'HTTPS',
-  },
-  {
-    title: 'Environments',
-    connectionLabel: 'a Docker network per environment',
-    children: [
-      {
-        title: 'dev',
-        note: 'Docker network · MSSQL · Redis · applications',
-      },
-      {
-        title: 'prod',
-        note: 'Docker network · MSSQL · Redis · applications',
-      },
-    ],
-  },
-  {
-    title: 'Monitoring',
-    note: 'Prometheus · Loki · Tempo · Grafana',
-  },
-  {
-    title: 'File server',
-    note: 'Static project pictures (files.wiktorwijata.com)',
-  },
-]
+const INFRASTRUCTURE_BLOCKS_EN: ProjectArchitectureBlock[] = []
 
 const INFRASTRUCTURE_IMAGES_EN: ProjectImage[] = [
   {
-    url: `${FILES_URL}infrastructure/environments.webp`,
+    url: `${FILES_URL}infrastructure/diagram.webp`,
     alt: 'The infrastructure diagram: Caddy, the dev and prod environments, the monitoring and the file server',
   },
 ]
@@ -1186,10 +1130,6 @@ export const mockProjectsPl: Project[] = [
     architectureNotes: INFRASTRUCTURE_NOTES_PL,
     architectureBlocks: INFRASTRUCTURE_BLOCKS_PL,
     images: INFRASTRUCTURE_IMAGES_PL,
-    architectureCaption:
-      'Uproszczony schemat. Środowiska są od siebie odizolowane, a proxy, monitoring i serwer plików są wspólne.',
-    architectureDiagramLabel:
-      'Diagram infrastruktury: Caddy kieruje ruch do środowisk dev i prod, a monitoring i serwer plików obsługują oba środowiska.',
   },
 ]
 
@@ -1258,10 +1198,6 @@ export const mockProjectsEn: Project[] = [
     architectureNotes: INFRASTRUCTURE_NOTES_EN,
     architectureBlocks: INFRASTRUCTURE_BLOCKS_EN,
     images: INFRASTRUCTURE_IMAGES_EN,
-    architectureCaption:
-      'A simplified diagram. The environments are isolated from each other, while the proxy, the monitoring and the file server are shared.',
-    architectureDiagramLabel:
-      'Infrastructure diagram: Caddy routes traffic to the dev and prod environments, and the monitoring and the file server serve both.',
   },
 ]
 

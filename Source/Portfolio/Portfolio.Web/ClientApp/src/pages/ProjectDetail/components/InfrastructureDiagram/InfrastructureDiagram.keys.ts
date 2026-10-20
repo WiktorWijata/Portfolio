@@ -1,0 +1,47 @@
+/** Translation keys of the infrastructure diagram; the texts live in `i18n/locales`. */
+const K = 'projectDetail.infrastructure'
+
+export const INFRASTRUCTURE_DIAGRAM_KEYS = {
+  heading: `${K}.heading`,
+  label: `${K}.label`,
+  title: `${K}.title`,
+  accent: `${K}.accent`,
+  text: `${K}.text`,
+  browser: `${K}.browser`,
+  caddyText: `${K}.caddyText`,
+  environment: `${K}.environment`,
+  shared: `${K}.shared`,
+  network: `${K}.network`,
+  apps: { title: `${K}.apps.title`, text: `${K}.apps.text` },
+  mssql: { title: `${K}.mssql.title`, text: `${K}.mssql.text` },
+  redis: { title: `${K}.redis.title`, text: `${K}.redis.text` },
+  convention: `${K}.convention`,
+  routing: { title: `${K}.routing.title`, text: `${K}.routing.text` },
+  init: { title: `${K}.init.title`, text: `${K}.init.text` },
+  monitoring: {
+    title: `${K}.monitoring.title`,
+    prometheus: `${K}.monitoring.prometheus`,
+    loki: `${K}.monitoring.loki`,
+    tempo: `${K}.monitoring.tempo`,
+    grafana: `${K}.monitoring.grafana`,
+    collect: `${K}.monitoring.collect`,
+    promtail: `${K}.monitoring.promtail`,
+  },
+  files: {
+    title: `${K}.files.title`,
+    server: `${K}.files.server`,
+    serverText: `${K}.files.serverText`,
+    common: `${K}.files.common`,
+    copy: `${K}.files.copy`,
+    copyText: `${K}.files.copyText`,
+  },
+  ci: {
+    text: `${K}.ci.text`,
+    detail: `${K}.ci.detail`,
+    and: `${K}.ci.and`,
+    push: `${K}.ci.push`,
+    build: `${K}.ci.build`,
+    image: `${K}.ci.image`,
+    deploy: `${K}.ci.deploy`,
+  },
+} as const

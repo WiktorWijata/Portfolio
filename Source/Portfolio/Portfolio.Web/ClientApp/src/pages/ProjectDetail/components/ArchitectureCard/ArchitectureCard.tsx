@@ -20,15 +20,19 @@ export function ArchitectureCard({ project }: { project: Project }) {
       className="flex min-w-0 flex-col"
     >
       <div className="flex flex-1 flex-col p-[18px]">
-        <ArchitectureDiagram
-          aria-label={project.architectureDiagramLabel ?? undefined}
-          blocks={blocks}
-          linkIcon={<GithubIcon />}
-        />
-        <Text as="p" size={FontSize.XSmall} font={FontFamily.Sans} className="mt-3 leading-[1.6] text-content-muted">
-          {project.architectureCaption}
-        </Text>
-        <dl className="mt-[18px] grid gap-4">
+        {blocks.length > 0 && (
+          <ArchitectureDiagram
+            aria-label={project.architectureDiagramLabel ?? undefined}
+            blocks={blocks}
+            linkIcon={<GithubIcon />}
+          />
+        )}
+        {project.architectureCaption && (
+          <Text as="p" size={FontSize.XSmall} font={FontFamily.Sans} className="mt-3 leading-[1.6] text-content-muted">
+            {project.architectureCaption}
+          </Text>
+        )}
+        <dl className={`${blocks.length > 0 ? 'mt-[18px]' : ''} grid gap-4`}>
           {notes.map((note) => (
             <div key={note.title}>
               <Text
