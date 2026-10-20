@@ -264,14 +264,14 @@
     },
     "note": "The pictures come from running deployments.",
     "portfolio": {
-      "label": "01 / WEB APPLICATION",
+      "label": "02 / WEB APPLICATION",
       "imageAlt": "Screenshot of Wiktor Wijata's portfolio"
     },
     "integratorAi": {
-      "label": "02 / AI PLATFORM"
+      "label": "03 / AI PLATFORM"
     },
     "infrastructure": {
-      "label": "03 / INFRASTRUCTURE"
+      "label": "01 / INFRASTRUCTURE"
     }
   },
   "projectDetail": {
