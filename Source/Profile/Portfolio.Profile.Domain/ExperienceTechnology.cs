@@ -1,0 +1,8 @@
+namespace Portfolio.Profile.Domain;
+
+public class ExperienceTechnology
+{
+    public Guid ExperienceId { get; set; }
+    public Guid TechnologyId { get; set; }
+    public int Order { get; set; }
+}

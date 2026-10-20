@@ -1,0 +1,301 @@
+{
+  "app": {
+    "designSystem": "Design system",
+    "sidebarHeader": "Components",
+    "sidebarLabel": "Component navigation",
+    "allComponents": "All components",
+    "theme": "Theme",
+    "themeDark": "Dark",
+    "themeDarkAria": "Dark theme",
+    "themeLight": "Light",
+    "themeLightAria": "Light theme",
+    "language": "Language",
+    "componentCount": "{{count}} components",
+    "mainNav": "Main navigation",
+    "sections": {
+      "overview": "Overview",
+      "changelog": "Changelog",
+      "components": "Components",
+      "themes": "Themes"
+    }
+  },
+  "categories": {
+    "general": "General",
+    "layout": "Layout",
+    "navigation": "Navigation",
+    "data": "Data display",
+    "forms": "Forms",
+    "overlays": "Panels and overlays"
+  },
+  "componentsIndex": {
+    "kicker": "OrchIDE UI / Components",
+    "title": "Components",
+    "text": "The component library of an IDE-styled portfolio. Pick a component to see a live demo — the whole interface is built from these blocks only.",
+    "stats": "{{components}} components · {{categories}} categories"
+  },
+  "search": {
+    "placeholder": "Search components…  ( / )",
+    "label": "Search components",
+    "noResults": "No results for “{{query}}”"
+  },
+  "componentPage": {
+    "breadcrumb": "Components",
+    "previous": "← Previous",
+    "next": "Next →",
+    "usage": "Usage example",
+    "props": {
+      "title": "Props",
+      "description": "Name, type, default value and description of each prop. The list is read straight from the component's types file."
+    },
+    "tokens": {
+      "title": "Tokens",
+      "description": "The theme tokens (@theme) this component uses, and what they are for."
+    },
+    "builtFrom": {
+      "title": "Built from",
+      "description": "Other OrchIDE UI components used inside."
+    }
+  },
+  "changelog": {
+    "kicker": "OrchIDE UI / Changelog",
+    "title": "Changelog",
+    "text": "The library's change history, newest version first.",
+    "added": "Added",
+    "changed": "Changed",
+    "fixed": "Fixed",
+    "dateLocale": "en-GB"
+  },
+  "props": {
+    "columns": {
+      "name": "Name",
+      "type": "Type",
+      "default": "Default",
+      "description": "Description"
+    },
+    "extends": "Also accepts all props of type",
+    "unionOf": "One of two shapes:",
+    "typeLabel": "Type:",
+    "missing": "No description for type {{name}}.",
+    "required": "* required prop"
+  },
+  "tokens": {
+    "none": "This component does not use any @theme tokens — its behaviour comes from the layout (widths, margins).",
+    "columns": {
+      "token": "Token",
+      "value": "Value",
+      "usage": "Usage"
+    },
+    "categories": {
+      "colors": "Colours",
+      "sizes": "Font sizes",
+      "fonts": "Fonts",
+      "radii": "Radii",
+      "shadows": "Shadows",
+      "breakpoints": "Breakpoints"
+    },
+    "roles": {
+      "background": "background",
+      "textColor": "text colour",
+      "border": "border",
+      "outline": "outline",
+      "fill": "fill",
+      "stroke": "stroke",
+      "caret": "caret",
+      "divider": "divider",
+      "gradient": "gradient",
+      "layoutChange": "layout change",
+      "color": "colour",
+      "fontSize": "font size",
+      "placeholderColor": "placeholder colour",
+      "radius": "radius",
+      "shadow": "shadow",
+      "fontFamily": "font",
+      "arbitraryValue": "arbitrary value"
+    },
+    "footnote": "The list is computed from the component's sources. Individual values measured on the prototype that are not tokens (e.g. custom shades) are not listed here."
+  },
+  "codeBlock": {
+    "copy": "Copy code",
+    "copied": "Copied"
+  },
+  "overview": {
+    "kicker": "OrchIDE UI / Overview",
+    "title": "IDE-styled portfolio components",
+    "text": "OrchIDE UI is the component library the whole portfolio is built from, including this page. One palette, one type scale, and components checked against the prototype.",
+    "browse": "Browse components",
+    "seeChangelog": "See the Changelog",
+    "stats": {
+      "components": "components",
+      "categories": "categories",
+      "colors": "key colours"
+    },
+    "principlesTitle": "Principles",
+    "principles": {
+      "colors": {
+        "title": "Colours only from the theme",
+        "body": "The default is a dark IDE-style theme with an orchid accent. Code refers to tokens by name, so another theme is a new file, not changes in components."
+      },
+      "tokens": {
+        "title": "Tokens instead of pixels",
+        "body": "Text takes FontSize, TextColor and FontFamily instead of px values. Values outside the scale go to className."
+      },
+      "fidelity": {
+        "title": "Fidelity to the prototype",
+        "body": "Styles are measured on the live prototype (computed style), not copied from a description. Each component records what it was verified against."
+      }
+    },
+    "colorsTitle": "Colours",
+    "typographyTitle": "Typography",
+    "stackTitle": "Stack",
+    "fields": {
+      "version": "Version",
+      "framework": "Framework",
+      "style": "Styles",
+      "icons": "Icons",
+      "fonts": "Fonts"
+    }
+  },
+  "themes": {
+    "kicker": "OrchIDE UI / Themes",
+    "title": "Every colour comes from the theme.",
+    "text": "A theme is a set of colour tokens in a single file. Components, pages and the docs refer to them by name ({{count}} groups: surfaces, lines, content, accent, links, tones, decoration), so a new theme needs no code changes. There are two: dark (default) and light — the switch is in the header of this page and in the app's status bar.",
+    "groups": {
+      "surfaces": "Surfaces (backgrounds)",
+      "lines": "Lines (borders and separators)",
+      "content": "Content (text and icons)",
+      "accent": "Accent",
+      "links": "Links",
+      "tones": "Tones: success, warning, danger, info",
+      "decoration": "Decoration and file types",
+      "overlays": "Translucent overlays: tint (hover wash), highlight (light edge), scrim (shadows)"
+    },
+    "howTo": {
+      "title": "How to add a theme",
+      "steps": {
+        "copy": "Copy design-system/theme/light.css to theme/<name>.css, change <name> in the :root[data-theme='<name>'] selector and the values — keep the names. Shadows are optional.",
+        "register": "Add the name to ThemeName (design-system/theme/theme.ts) and import the file in src/index.css.",
+        "check": "Run npm run check:theme: the script checks that the theme has exactly the same tokens as the default one.",
+        "use": "A theme is chosen through useTheme() (or setTheme) — the choice is remembered, and a script in index.html applies it before the first render. The switch is a StatusBarSwitch with icon options."
+      }
+    },
+    "rules": {
+      "title": "Rules",
+      "items": {
+        "raw": "Raw colour values (hex notation, rgb and hsl functions) and default Tailwind palette classes are forbidden in code — ESLint enforces it; the palette itself is disabled.",
+        "alpha": "A colour with transparency is a token with a modifier, e.g. bg-accent/10. Shadows are built from the scrim and tint tokens, so a theme defines only those two.",
+        "read": "Places that cannot use a CSS variable (SVG as a data URI, canvas) read the value through readThemeColor().",
+        "attribute": "data-theme must be set on <html>: derived tokens resolve on that element."
+      }
+    }
+  },
+  "entries": {
+    "architecturediagram": {
+      "summary": "Vertical diagram of system layers with arrows, links to the code and rows of modules.",
+      "note": "The architecture card on the project page (Portfolio.cs) — the component draws the arrows; a connection's description is the block's `connectionLabel`."
+    },
+    "badge": {
+      "summary": "A small status or date label, in a neutral or an accent tone."
+    },
+    "chip": {
+      "summary": "A static technology tag with an optional icon, in five size variants.",
+      "note": "Icons are Lucide for now, eventually Devicon/Simple Icons in brand colours."
+    },
+    "list": {
+      "summary": "A list with a header, a counter and an optional search field; rows with an animated hover.",
+      "note": "ListItem row: on hover/activation an accent bar appears, the background lightens and the left padding grows."
+    },
+    "gallery": {
+      "summary": "A carousel of project photos with placeholders, arrows, dots and keyboard support.",
+      "note": ".project-gallery (Portfolio.cs / the project card) — checked in computed style."
+    },
+    "card": {
+      "summary": "A bordered card with a header: a bar with a title and an action (Compact) or a light title (Standard); inside — lists, label/value fields or any content.",
+      "note": "Replaced DataCard, InfoCard and CardHeading. Compact: .home-card, .home-techbar, .arch2 and “Company details” on Contact; Standard: Gallery and the project architecture card; Hero: the About the project card."
+    },
+    "input": {
+      "summary": "A single-line text field with a label."
+    },
+    "textarea": {
+      "summary": "A multi-line text field with a label and adjustable height."
+    },
+    "searchfield": {
+      "summary": "A search field with an icon and a border.",
+      "note": ".solution-search (Solution Explorer). The Stack search is a private part of List."
+    },
+    "text": {
+      "summary": "Text from tokens: size, colour, font and weight instead of px values.",
+      "note": "An omitted parameter is inherited from the parent. Details outside the scale (letter-spacing, line-height) go in className."
+    },
+    "label": {
+      "summary": "A small, uppercase heading: a kicker above a title or a panel bar.",
+      "note": "A kicker above a heading (a panel heading with a counter — see List)."
+    },
+    "loader": {
+      "summary": "An IDE-style loading state: a thin progress bar and a status line with a blinking cursor.",
+      "note": "The moving bar respects the system reduced-motion setting. The error state shows the message without the bar."
+    },
+    "button": {
+      "summary": "An action button (or a link that looks like one) in the Primary, Outline and Secondary variants and the Md, Sm, Xs and Lg sizes."
+    },
+    "toolbarbutton": {
+      "summary": "An icon-only button in two sizes (Md and compact Sm) — bar tools (Terminal, Explorer)."
+    },
+    "iconbutton": {
+      "summary": "An icon-only button with a border — controls inside a card (e.g. the Gallery carousel arrows)."
+    },
+    "railbutton": {
+      "summary": "A navigation button with a vertical label, familiar from the IDE's left-hand rail.",
+      "note": ".rail button[data-go]/[data-skills] — active and hover states checked in computed style."
+    },
+    "link": {
+      "summary": "An accent-coloured text link: a link (<a>) or an action button inside content.",
+      "note": ".tour-action, .ai-message button, .explorer-contact-panel button — colours unified into a single link token."
+    },
+    "container": {
+      "summary": "A centred page-width container with side margins."
+    },
+    "panel": {
+      "summary": "The base card: background, border, radius and shadow. Optionally with a hover."
+    },
+    "splitpanel": {
+      "summary": "Master-detail: a list on the left, details on the right; it collapses on narrow screens.",
+      "note": ".xp in Experience and .stack-panel in Stack have an identical 320px/1fr grid, border and radius — checked in the DOM."
+    },
+    "statusbar": {
+      "summary": "The bottom bar of the IDE window: branch, file path, panel toggles, language and version.",
+      "note": ".status in the prototype — dimensions and colours measured with getComputedStyle."
+    },
+    "titlebar": {
+      "summary": "The top bar of the IDE window: logo, title and action buttons.",
+      "note": ".bar and .bar .run in the prototype — dimensions, colours and hover measured with getComputedStyle."
+    },
+    "menu": {
+      "summary": "A table-of-contents card with flat items and expandable groups.",
+      "note": ".gs-index (GetStarted “Quick guide”) — checked in the DOM."
+    },
+    "tabs": {
+      "summary": "Tabs of open files with closing and dragging to change the order.",
+      "note": ".tabs — default/hover/active/close/dragging states measured in computed style, dragging built on pointer events."
+    },
+    "solutionexplorer": {
+      "summary": "A file tree with a search field, collapsible folders and a collapsible panel.",
+      "note": ".explorer/.solution-tree — indents, file markers and the active state, checked in computed style."
+    },
+    "guide": {
+      "summary": "A step-by-step guide: a card, a spotlight on an element and a dimmed backdrop.",
+      "note": ".portfolio-tour-card/-shade/-highlight (the “Guide me” tour) — card, backdrop and highlight; the targets and steps are supplied by the app."
+    },
+    "terminal": {
+      "summary": "A bottom console panel with command history, Tab completion and resizable height.",
+      "note": ".portfolio-terminal — Esc closes it, the height changes by dragging or with arrows on the handle. Commands are interpreted by the app."
+    },
+    "chat": {
+      "summary": "The assistant window with message bubbles, question chips and a message field.",
+      "note": ".ai-chat — Enter sends, Shift+Enter adds a new line, Esc closes. Answers are generated by the app."
+    },
+    "chatlauncher": {
+      "summary": "A floating “Ask about me” button that opens the chat window.",
+      "note": ".ai-chat-toggle — fixed position in the bottom-right corner; the bottom offset is animated (180 ms). Dimensions and colours measured in the prototype."
+    }
+  }
+}

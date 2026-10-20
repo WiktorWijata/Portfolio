@@ -1,0 +1,1 @@
+export { useApiText } from './useApiText'

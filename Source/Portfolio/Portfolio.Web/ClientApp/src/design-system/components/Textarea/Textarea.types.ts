@@ -1,13 +1,6 @@
-import type { ChangeEvent } from 'react';
+import type { TextareaHTMLAttributes } from 'react'
 
-export interface TextareaProps {
-  id: string;
-  name: string;
-  value: string;
-  onChange: (e: ChangeEvent<HTMLTextAreaElement>) => void;
-  placeholder?: string;
-  required?: boolean;
-  label?: string;
-  rows?: number;
-  className?: string;
+export interface TextareaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
+  /** Etykieta nad polem, powiązana z nim przez `htmlFor`/`id`. Bez niej pole nie ma widocznej etykiety. */
+  label?: string
 }

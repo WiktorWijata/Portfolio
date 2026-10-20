@@ -1,13 +1,6 @@
-import type { ChangeEvent } from "react";
+import type { InputHTMLAttributes } from 'react'
 
-export interface InputProps {
-  id: string;
-  name: string;
-  value: string;
-  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
-  type?: string;
-  placeholder?: string;
-  required?: boolean;
-  label?: string;
-  className?: string;
+export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
+  /** Etykieta nad polem, powiązana z nim przez `htmlFor`/`id`. Bez niej pole nie ma widocznej etykiety. */
+  label?: string
 }

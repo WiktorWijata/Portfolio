@@ -1,18 +1,21 @@
-import { useTheme } from '../../themes';
-import type { LabelProps } from './Label.types';
+import { FontFamily, Text } from '../Text'
+import { sizes, toneColors } from './Label.consts'
+import { LabelSize, LabelTone, type LabelProps } from './Label.types'
 
-export function Label({ children, htmlFor, className = '' }: LabelProps) {
-  const { currentTheme } = useTheme();
-  
+/**
+ * Small uppercase eyebrow/section label (JetBrains Mono, 9–9.5px), e.g. a kicker above a heading
+ * or a caption of a panel.
+ */
+export function Label({ tone = LabelTone.Muted, size = LabelSize.Md, className = '', children, ...rest }: LabelProps) {
   return (
-    <label 
-      htmlFor={htmlFor} 
-      className={`block font-semibold mb-2 text-sm ${className}`}
-      style={{
-        color: currentTheme.colors.text.secondary
-      }}
+    <Text
+      {...rest}
+      size={sizes[size].fontSize}
+      font={FontFamily.Mono}
+      color={toneColors[tone]}
+      className={['uppercase', sizes[size].tracking, className].join(' ')}
     >
       {children}
-    </label>
-  );
+    </Text>
+  )
 }

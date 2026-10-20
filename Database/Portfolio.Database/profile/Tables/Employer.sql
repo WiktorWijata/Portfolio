@@ -1,0 +1,7 @@
+CREATE TABLE [profile].[Employer]
+(
+	[Id]			UNIQUEIDENTIFIER	NOT NULL PRIMARY KEY DEFAULT NEWID(),
+	[Name]			NVARCHAR(255)		NOT NULL,
+
+	CONSTRAINT [UQ_Employer_Name] UNIQUE ([Name])
+)

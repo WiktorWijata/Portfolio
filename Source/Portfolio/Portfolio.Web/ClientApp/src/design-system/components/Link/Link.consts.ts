@@ -1,13 +1,6 @@
-export const LinkVariant = {
-  NAV: 'NAV',
-  TEXT: 'TEXT',
-  CONTACT: 'CONTACT',
-} as const;
+import { LinkTone } from './Link.types'
 
-export type LinkVariantType = typeof LinkVariant[keyof typeof LinkVariant];
-
-export const linkVariantClasses: Record<LinkVariantType, string> = {
-  [LinkVariant.NAV]: 'font-medium',
-  [LinkVariant.TEXT]: '',
-  [LinkVariant.CONTACT]: 'text-base hover:text-purple-300',
-};
+export const toneClasses: Record<LinkTone, string> = {
+  [LinkTone.Accent]: 'text-link hover:text-link-hover',
+  [LinkTone.Info]: 'text-link-info hover:text-link-info-hover hover:underline',
+}

@@ -1,0 +1,301 @@
+{
+  "app": {
+    "designSystem": "Design system",
+    "sidebarHeader": "Komponenty",
+    "sidebarLabel": "Nawigacja po komponentach",
+    "allComponents": "Wszystkie komponenty",
+    "theme": "Motyw",
+    "themeDark": "Ciemny",
+    "themeDarkAria": "Motyw ciemny",
+    "themeLight": "Jasny",
+    "themeLightAria": "Motyw jasny",
+    "language": "Język",
+    "componentCount": "{{count}} komponentów",
+    "mainNav": "Nawigacja główna",
+    "sections": {
+      "overview": "Overview",
+      "changelog": "Changelog",
+      "components": "Komponenty",
+      "themes": "Motywy"
+    }
+  },
+  "categories": {
+    "general": "Ogólne",
+    "layout": "Układ",
+    "navigation": "Nawigacja",
+    "data": "Prezentacja danych",
+    "forms": "Formularze",
+    "overlays": "Panele i nakładki"
+  },
+  "componentsIndex": {
+    "kicker": "OrchIDE UI / Komponenty",
+    "title": "Komponenty",
+    "text": "Biblioteka komponentów portfolio w stylu IDE. Wybierz komponent, żeby zobaczyć żywe demo — cały interfejs jest zbudowany wyłącznie z tych klocków.",
+    "stats": "{{components}} komponentów · {{categories}} kategorii"
+  },
+  "search": {
+    "placeholder": "Szukaj komponentu…  ( / )",
+    "label": "Szukaj komponentu",
+    "noResults": "Brak wyników dla „{{query}}”"
+  },
+  "componentPage": {
+    "breadcrumb": "Komponenty",
+    "previous": "← Poprzedni",
+    "next": "Następny →",
+    "usage": "Przykład użycia",
+    "props": {
+      "title": "Parametry",
+      "description": "Nazwa, typ, wartość domyślna i opis każdego propsa. Lista jest czytana wprost z pliku typów komponentu."
+    },
+    "tokens": {
+      "title": "Tokeny",
+      "description": "Tokeny z motywu (@theme), z których korzysta ten komponent, oraz do czego służą."
+    },
+    "builtFrom": {
+      "title": "Zbudowany z",
+      "description": "Inne komponenty OrchIDE UI używane wewnątrz."
+    }
+  },
+  "changelog": {
+    "kicker": "OrchIDE UI / Changelog",
+    "title": "Changelog",
+    "text": "Historia zmian biblioteki, od najnowszej wersji.",
+    "added": "Dodano",
+    "changed": "Zmieniono",
+    "fixed": "Poprawiono",
+    "dateLocale": "pl-PL"
+  },
+  "props": {
+    "columns": {
+      "name": "Nazwa",
+      "type": "Typ",
+      "default": "Domyślnie",
+      "description": "Opis"
+    },
+    "extends": "Przyjmuje też wszystkie propsy typu",
+    "unionOf": "Jeden z dwóch kształtów:",
+    "typeLabel": "Typ:",
+    "missing": "Brak opisu typu {{name}}.",
+    "required": "* prop wymagany"
+  },
+  "tokens": {
+    "none": "Ten komponent nie odwołuje się do żadnych tokenów z @theme — jego zachowanie wynika z układu (szerokości, marginesy).",
+    "columns": {
+      "token": "Token",
+      "value": "Wartość",
+      "usage": "Zastosowanie"
+    },
+    "categories": {
+      "colors": "Kolory",
+      "sizes": "Rozmiary czcionek",
+      "fonts": "Fonty",
+      "radii": "Zaokrąglenia",
+      "shadows": "Cienie",
+      "breakpoints": "Breakpointy"
+    },
+    "roles": {
+      "background": "tło",
+      "textColor": "kolor tekstu",
+      "border": "obramowanie",
+      "outline": "obrys",
+      "fill": "wypełnienie",
+      "stroke": "kreska",
+      "caret": "kursor",
+      "divider": "separator",
+      "gradient": "gradient",
+      "layoutChange": "zmiana układu",
+      "color": "kolor",
+      "fontSize": "rozmiar czcionki",
+      "placeholderColor": "kolor placeholdera",
+      "radius": "zaokrąglenie",
+      "shadow": "cień",
+      "fontFamily": "font",
+      "arbitraryValue": "wartość arbitralna"
+    },
+    "footnote": "Lista jest wyliczana ze źródeł komponentu. Pojedyncze wartości zmierzone w prototypie, które nie są tokenami (np. niestandardowe odcienie), nie są tu wymienione."
+  },
+  "codeBlock": {
+    "copy": "Kopiuj kod",
+    "copied": "Skopiowano"
+  },
+  "overview": {
+    "kicker": "OrchIDE UI / Overview",
+    "title": "Komponenty portfolio w stylu IDE",
+    "text": "OrchIDE UI to biblioteka komponentów, z której zbudowane jest całe portfolio, łącznie z tą stroną. Jedna paleta, jedna skala typografii i komponenty sprawdzone względem prototypu.",
+    "browse": "Przeglądaj komponenty",
+    "seeChangelog": "Zobacz Changelog",
+    "stats": {
+      "components": "komponentów",
+      "categories": "kategorii",
+      "colors": "kluczowych kolorów"
+    },
+    "principlesTitle": "Zasady",
+    "principles": {
+      "colors": {
+        "title": "Kolory tylko z motywu",
+        "body": "Domyślny jest ciemny motyw w stylu IDE z akcentem orchidei. Kod odwołuje się do tokenów po nazwie, więc kolejny motyw to nowy plik, a nie zmiany w komponentach."
+      },
+      "tokens": {
+        "title": "Tokeny zamiast pikseli",
+        "body": "Tekst przyjmuje FontSize, TextColor i FontFamily zamiast wartości w px. Wartości spoza skali trafiają do className."
+      },
+      "fidelity": {
+        "title": "Wierność prototypowi",
+        "body": "Style są mierzone na żywym prototypie (computed style), a nie kopiowane z opisu. Każdy komponent ma odnotowane, z czego został zweryfikowany."
+      }
+    },
+    "colorsTitle": "Kolory",
+    "typographyTitle": "Typografia",
+    "stackTitle": "Stos",
+    "fields": {
+      "version": "Wersja",
+      "framework": "Framework",
+      "style": "Style",
+      "icons": "Ikony",
+      "fonts": "Fonty"
+    }
+  },
+  "themes": {
+    "kicker": "OrchIDE UI / Motywy",
+    "title": "Wszystkie kolory pochodzą z motywu.",
+    "text": "Motyw to zestaw tokenów kolorów w jednym pliku. Komponenty, strony i docs odwołują się do nich po nazwie ({{count}} grup: powierzchnie, linie, treść, akcent, linki, stany, dekoracje), więc nowy motyw nie wymaga zmian w kodzie. Są dwa: dark (domyślny) i light — przełącznik jest w nagłówku tej strony i w pasku statusu aplikacji.",
+    "groups": {
+      "surfaces": "Powierzchnie (tła)",
+      "lines": "Linie (obramowania i separatory)",
+      "content": "Treść (tekst i ikony)",
+      "accent": "Akcent",
+      "links": "Linki",
+      "tones": "Stany: sukces, ostrzeżenie, błąd, informacja",
+      "decoration": "Dekoracje i typy plików",
+      "overlays": "Nakładki półprzezroczyste: tint (najechanie), highlight (jasna krawędź), scrim (cienie)"
+    },
+    "howTo": {
+      "title": "Jak dodać motyw",
+      "steps": {
+        "copy": "Skopiuj design-system/theme/light.css do theme/<nazwa>.css, zmień <nazwa> w selektorze :root[data-theme='<nazwa>'] i wartości — nazwy zostaw. Cienie są opcjonalne.",
+        "register": "Dodaj nazwę do ThemeName (design-system/theme/theme.ts) i zaimportuj plik w src/index.css.",
+        "check": "Uruchom npm run check:theme: skrypt sprawdza, że motyw ma dokładnie te same tokeny co domyślny.",
+        "use": "Motyw wybiera się przez useTheme() (albo setTheme) — wybór jest zapamiętany, a skrypt w index.html ustawia go przed pierwszym renderem. Przełącznik to StatusBarSwitch z opcjami z ikonami."
+      }
+    },
+    "rules": {
+      "title": "Zasady",
+      "items": {
+        "raw": "Surowe wartości kolorów (zapis szesnastkowy, funkcje rgb i hsl) oraz klasy domyślnej palety Tailwinda są zakazane w kodzie — pilnuje tego ESLint; sama paleta jest wyłączona.",
+        "alpha": "Kolor z przezroczystością to token z modyfikatorem, np. bg-accent/10. Cienie składają się z tokenów scrim i tint, więc motyw definiuje tylko te dwa.",
+        "read": "Miejsca, które nie mogą użyć zmiennej CSS (SVG jako data URI, canvas), czytają wartość przez readThemeColor().",
+        "attribute": "data-theme musi być ustawiony na <html>: tokeny pochodne rozwiązują się na tym elemencie."
+      }
+    }
+  },
+  "entries": {
+    "architecturediagram": {
+      "summary": "Pionowy schemat warstw systemu ze strzałkami, linkami do kodu i rzędami modułów.",
+      "note": "Karta architektury na stronie projektu (Portfolio.cs) — strzałki rysuje komponent, opis połączenia to `connectionLabel` bloku."
+    },
+    "badge": {
+      "summary": "Mała etykieta statusu lub daty, w tonie neutralnym albo akcentowym."
+    },
+    "chip": {
+      "summary": "Statyczny znacznik technologii z opcjonalną ikoną, w pięciu wariantach rozmiaru.",
+      "note": "Ikony to Lucide na ten etap, docelowo Devicon/Simple Icons w kolorach marek."
+    },
+    "list": {
+      "summary": "Lista z nagłówkiem, licznikiem i opcjonalną wyszukiwarką; wiersze z animowanym hoverem.",
+      "note": "Wiersz ListItem: po hoverze/aktywacji pojawia się akcentowy pasek, tło jaśnieje i rośnie lewy padding."
+    },
+    "gallery": {
+      "summary": "Karuzela zdjęć projektu z placeholderami, strzałkami, kropkami i obsługą klawiatury.",
+      "note": ".project-gallery (Portfolio.cs / karta projektu) — sprawdzone w computed style."
+    },
+    "card": {
+      "summary": "Obramowana karta z nagłówkiem: pasek z tytułem i akcją (Compact) albo lekki tytuł (Standard); w środku listy, pola etykieta/wartość lub dowolna treść.",
+      "note": "Zastąpiła DataCard, InfoCard i CardHeading. Compact: .home-card, .home-techbar, .arch2 i „Dane firmy\" na Contact; Standard: Gallery i karta architektury projektu; Hero: karta O projekcie."
+    },
+    "input": {
+      "summary": "Jednoliniowe pole tekstowe z etykietą."
+    },
+    "textarea": {
+      "summary": "Wieloliniowe pole tekstowe z etykietą i zmianą wysokości."
+    },
+    "searchfield": {
+      "summary": "Pole wyszukiwania z ikoną i obramowaniem.",
+      "note": ".solution-search (Solution Explorer). Szukajka Stack jest prywatną częścią List."
+    },
+    "text": {
+      "summary": "Tekst z tokenów: rozmiar, kolor, font i grubość zamiast wartości w px.",
+      "note": "Pominięty parametr jest dziedziczony z rodzica. Detale spoza skali (letter-spacing, line-height) idą w className."
+    },
+    "label": {
+      "summary": "Mały, wersalikowy nagłówek: kicker nad tytułem albo pasek panelu.",
+      "note": "Kicker nad nagłówkiem (nagłówek panelu z licznikiem — patrz List)."
+    },
+    "loader": {
+      "summary": "Stan ładowania w stylu IDE: cienki pasek postępu i linia statusu z migającym kursorem.",
+      "note": "Pasek z ruchem respektuje „zmniejsz ruch” w systemie. Stan błędu pokazuje komunikat bez paska."
+    },
+    "button": {
+      "summary": "Przycisk akcji (albo odnośnik wyglądający jak przycisk) w wariantach Primary, Outline i Secondary oraz rozmiarach Md, Sm, Xs i Lg."
+    },
+    "toolbarbutton": {
+      "summary": "Przycisk z samą ikoną w dwóch rozmiarach (Md i kompaktowy Sm) — narzędzia pasków (Terminal, Explorer)."
+    },
+    "iconbutton": {
+      "summary": "Przycisk z samą ikoną i obramowaniem — sterowanie w obrębie karty (np. strzałki karuzeli Gallery)."
+    },
+    "railbutton": {
+      "summary": "Przycisk nawigacji z pionową etykietą, znany z paska po lewej stronie IDE.",
+      "note": ".rail button[data-go]/[data-skills] — stany active i hover sprawdzone w computed style."
+    },
+    "link": {
+      "summary": "Tekstowy odnośnik w kolorze akcentu: link (<a>) albo przycisk akcji w treści.",
+      "note": ".tour-action, .ai-message button, .explorer-contact-panel button — kolory ujednolicone do jednego tokenu link."
+    },
+    "container": {
+      "summary": "Wyśrodkowany kontener szerokości strony z marginesami bocznymi."
+    },
+    "panel": {
+      "summary": "Bazowa karta: tło, obramowanie, promień i cień. Opcjonalnie z hoverem."
+    },
+    "splitpanel": {
+      "summary": "Master-detail: lista po lewej, szczegóły po prawej, zwija się na wąskich ekranach.",
+      "note": ".xp w Experience i .stack-panel w Stack mają identyczny grid 320px/1fr, border, radius — sprawdzone w DOM."
+    },
+    "statusbar": {
+      "summary": "Dolny pasek okna IDE: gałąź, ścieżka pliku, przełączniki paneli, język i wersja.",
+      "note": ".status w prototypie — wymiary i kolory zmierzone przez getComputedStyle."
+    },
+    "titlebar": {
+      "summary": "Górny pasek okna IDE: logo, tytuł i przyciski akcji.",
+      "note": ".bar i .bar .run w prototypie — wymiary, kolory i hover zmierzone przez getComputedStyle."
+    },
+    "menu": {
+      "summary": "Karta-spis treści z płaskimi pozycjami i rozwijalnymi grupami.",
+      "note": ".gs-index (GetStarted „Szybki przewodnik\") — sprawdzone w DOM."
+    },
+    "tabs": {
+      "summary": "Zakładki otwartych plików z zamykaniem i przeciąganiem, by zmienić kolejność.",
+      "note": ".tabs — stany default/hover/active/close/dragging zmierzone w computed style, przeciąganie na pointer events."
+    },
+    "solutionexplorer": {
+      "summary": "Drzewo plików z wyszukiwarką, zwijaniem folderów i zwijanym panelem.",
+      "note": ".explorer/.solution-tree — wcięcia, markery plików, stan active, sprawdzone w computed style."
+    },
+    "guide": {
+      "summary": "Przewodnik krok po kroku: karta, spotlight na elemencie i przyciemnione tło.",
+      "note": ".portfolio-tour-card/-shade/-highlight (przewodnik „Oprowadź mnie\") — karta, tło i podświetlenie; cele i kroki dostarcza aplikacja."
+    },
+    "terminal": {
+      "summary": "Dolny panel konsoli z historią komend, uzupełnianiem Tab i zmianą wysokości.",
+      "note": ".portfolio-terminal — Esc zamyka, wysokość zmienia się przeciąganiem lub strzałkami na uchwycie. Komendy interpretuje aplikacja."
+    },
+    "chat": {
+      "summary": "Okno asystenta z bąbelkami, chipami z pytaniami i polem wiadomości.",
+      "note": ".ai-chat — Enter wysyła, Shift+Enter nowa linia, Esc zamyka. Odpowiedzi generuje aplikacja."
+    },
+    "chatlauncher": {
+      "summary": "Pływający przycisk „Zapytaj o mnie\", który otwiera okno czatu.",
+      "note": ".ai-chat-toggle — pozycja fixed w prawym dolnym rogu; offset bottom jest animowany (180 ms). Wymiary i kolory zmierzone w prototypie."
+    }
+  }
+}

@@ -1,1 +1,0 @@
-export { FactCard } from './FactCard';

@@ -4,10 +4,10 @@ module.exports = {
       target: './src/api/documentation/PortfolioApi.json',
     },
     output: {
-      target: './src/api/generated/content.ts',
+      target: './src/api/generated/profile.ts',
       schemas: './src/api/models',
       client: 'react-query',
       mode: 'split',
     },
   },
-};
+}

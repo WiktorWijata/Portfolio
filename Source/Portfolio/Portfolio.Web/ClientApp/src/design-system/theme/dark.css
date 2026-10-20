@@ -1,0 +1,111 @@
+/*
+ * OrchIDE UI — the "dark" theme, the default one.
+ *
+ * This file and the other theme files are the ONLY place where raw colour values may appear. Everything else
+ * (components, pages, docs) refers to the tokens below by name. A theme has to define exactly the same set of
+ * `--color-*` and `--shadow-*` tokens; `npm run check:theme` verifies it.
+ *
+ * Naming: {group}-{role}[-{variant}] — surface, line, content, accent, link, success|warning|danger|info,
+ * decor. Tailwind turns `--color-surface-card` into `bg-surface-card`, `border-surface-card` ...
+ */
+@theme static {
+  /* Surfaces (backgrounds) */
+  --color-surface-shell: #1b1c1e;
+  --color-surface-editor: #1e1f22;
+  --color-surface-inset: #202226;
+  --color-surface-panel: #222428;
+  --color-surface-field: #25262c;
+  --color-surface-bar: #26282c;
+  --color-surface-card: #27282d;
+  --color-surface-overlay: #292a30;
+  --color-surface-hover: #2b2d30;
+  --color-surface-hover-strong: #2f3236;
+  --color-surface-active: #35383d;
+  --color-surface-pressed: #3b3e45;
+  --color-surface-pressed-strong: #484c54;
+  --color-indicator-idle: #60616a;
+
+  /* Lines (borders and separators) */
+  --color-line-faint: #2c2e33;
+  --color-line-subtle: #34363b;
+  --color-line-default: #393b40;
+  --color-line-strong: #41414a;
+  --color-line-emphasis: #46424c;
+  --color-line-strongest: #4a4d53;
+  --color-line-hover: #68616d;
+
+  /* Content (text and icons) */
+  --color-content-strong: #e6e7e9;
+  --color-content-primary: #dfe1e5;
+  --color-content-emphasis: #d4d7db;
+  --color-content-soft: #c6c8ce;
+  --color-content-body: #bcbec4;
+  --color-content-secondary: #a6a9b2;
+  --color-content-lead: #a6aca6;
+  --color-content-tertiary: #9aa0a8;
+  --color-content-muted: #8b8f96;
+  --color-content-dim: #808590;
+  --color-content-subtle: #7a7e85;
+  --color-content-faint: #6f737a;
+  --color-content-tinted: #b8a7bd;
+  --color-content-tinted-strong: #d9c5d5;
+
+  /* Accent */
+  --color-accent: #c77dbb;
+  --color-accent-hover: #d48fc7;
+  --color-accent-light: #dba8d2;
+  --color-accent-dark: #a06d99;
+  --color-accent-content: #1e1f22;
+  --color-accent-surface: #3a2f39;
+  --color-accent-line-subtle: #665060;
+  --color-accent-line: #78556f;
+  --color-accent-line-strong: #916887;
+  --color-accent-line-hover: #b47ca9;
+  --color-accent-surface-hover: #443240;
+  --color-accent-surface-faint: #302a33;
+  --color-accent-muted: #bf94b8;
+  --color-accent-soft: #dab6d2;
+
+  /* Links */
+  --color-link: #d394c7;
+  --color-link-hover: #eec0e4;
+  --color-link-info: #77c9e5;
+  --color-link-info-hover: #b5e6f7;
+
+  /* Tones: success, warning, danger, info */
+  --color-success-content: #8fca99;
+  --color-success-content-muted: #6aab73;
+  --color-success-content-soft: #b9cdbd;
+  --color-success-indicator: #86b88d;
+  --color-success-surface: #29372e;
+  --color-warning-content: #e6a365;
+  --color-warning-content-soft: #cdb17a;
+  --color-warning-surface: #3c3028;
+  --color-danger-content: #e6a080;
+  --color-info-surface: #293c47;
+  --color-info-surface-hover: #344f5e;
+  --color-info-line: #48768e;
+  --color-info-line-hover: #65a6c8;
+  --color-info-content: #b8dff2;
+  --color-info-content-hover: #e1f4ff;
+  --color-info-focus: #70b9df;
+
+  /* Decoration and file types */
+  --color-filetype-cs: #79bd88;
+  --color-decor-sky: #accfe2;
+  --color-decor-lilac: #b7a2cb;
+  --color-filetype-markdown: #8eb5df;
+  --color-chat-user-line: #62405a;
+
+  /* Translucent overlays: tint = hover wash, highlight = light edge, scrim = shadows */
+  --color-tint: #ffffff;
+  --color-highlight: #ffffff;
+  --color-scrim: #000000;
+
+  /* Other values that depend on the theme */
+  --theme-icon-invert: 1; /* 1 inverts dark single-colour icons (Devicon) so they read on a dark surface */
+}
+
+:root {
+  color-scheme: dark;
+}

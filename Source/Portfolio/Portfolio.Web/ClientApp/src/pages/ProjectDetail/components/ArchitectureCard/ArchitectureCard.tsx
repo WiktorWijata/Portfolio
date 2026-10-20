@@ -1,0 +1,79 @@
+import { useMemo } from 'react'
+import type { Project } from '@/api'
+import { ArchitectureDiagram, Card, CardVariant, FontFamily, FontSize, FontWeight, Text } from '@/design-system'
+import { toDiagramBlocks } from '../../ProjectDetail.helpers'
+import { GithubIcon } from '../GithubIcon'
+import { PROJECT_DETAIL_KEYS } from '../../ProjectDetail.keys'
+import { useTexts } from '@/i18n/hooks/useTexts'
+
+/** Architecture of the project: the layer diagram, a caption and short notes on the patterns used. */
+export function ArchitectureCard({ project }: { project: Project }) {
+  const [text] = useTexts(PROJECT_DETAIL_KEYS)
+  const notes = project.architectureNotes ?? []
+  const blocks = useMemo(() => toDiagramBlocks(project.architectureBlocks ?? []), [project])
+
+  return (
+    <Card
+      variant={CardVariant.Standard}
+      title={text.architecture.heading}
+      aria-label={text.architecture.label}
+      className="flex min-w-0 flex-col"
+    >
+      <div className="flex flex-1 flex-col p-[18px]">
+        {blocks.length > 0 && (
+          <ArchitectureDiagram
+            aria-label={project.architectureDiagramLabel ?? undefined}
+            blocks={blocks}
+            linkIcon={<GithubIcon />}
+          />
+        )}
+        {project.architectureCaption && (
+          <Text as="p" size={FontSize.XSmall} font={FontFamily.Sans} className="mt-3 leading-[1.6] text-content-muted">
+            {project.architectureCaption}
+          </Text>
+        )}
+        <dl className={`${blocks.length > 0 ? 'mt-[18px]' : ''} grid gap-4`}>
+          {notes.map((note) => (
+            <div key={note.title}>
+              <Text
+                as="dt"
+                size={FontSize.Medium}
+                font={FontFamily.Sans}
+                weight={FontWeight.Medium}
+                className="mb-[5px] leading-[normal] text-content-tinted-strong"
+              >
+                {note.title}
+              </Text>
+              <Text
+                as="dd"
+                size={FontSize.Small}
+                font={FontFamily.Sans}
+                className="m-0 leading-[1.7] text-content-secondary"
+              >
+                {note.text}
+              </Text>
+            </div>
+          ))}
+        </dl>
+        {project.codeUrl && (
+          <Text
+            as="p"
+            size={FontSize.XSmall}
+            font={FontFamily.Sans}
+            className="mt-auto pt-5 leading-[1.6] text-content-muted"
+          >
+            {text.architecture.sourceLabel}{' '}
+            <a
+              href={project.codeUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-decor-lilac focus-ring hover:underline"
+            >
+              <Text>{project.name} ↗</Text>
+            </a>
+          </Text>
+        )}
+      </div>
+    </Card>
+  )
+}
